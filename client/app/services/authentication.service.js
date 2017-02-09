@@ -1,3 +1,5 @@
+import config, {apiUrl} from '../config';
+
 function AuthenticationService($window, $http){
   "ngInject";
 
@@ -12,7 +14,7 @@ function AuthenticationService($window, $http){
   let register = (newUser) => {
     return $http({
       method: 'POST',
-      url: 'http://52.26.147.247/api/auth/register',
+      url: `${apiUrl}/auth/register`,
       data: newUser,
     });
   }
@@ -20,7 +22,7 @@ function AuthenticationService($window, $http){
   let login = (user) => {
     return $http({
       method: 'POST',
-      url: 'http://52.26.147.247/api/auth/login',
+      url: `${apiUrl}/auth/login`,
       data: user,
     });
   }
