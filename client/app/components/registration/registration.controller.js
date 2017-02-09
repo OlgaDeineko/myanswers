@@ -1,18 +1,20 @@
-class LoginController {
+class RegistrationController {
   constructor(AuthenticationService) {
     "ngInject";
 
-    this.name = 'login';
+    this.name = 'Registration';
     this.AuthenticationService = AuthenticationService;
-    this.user = {
+    this.newUser = {
       email: '',
+      subdomain: '',
       password: '',
+      password_repeat: ''
     }
   }
 
-  login(newUser) {
-    let user = this.user;
-    this.AuthenticationService.login(user)
+  register() {
+    let newUser = this.newUser;
+    this.AuthenticationService.register(newUser)
       .then(result => {
           console.log('result', result);
       })
@@ -20,7 +22,6 @@ class LoginController {
           console.log('error', error);
       })
   }
-
 }
 
-export default LoginController;
+export default RegistrationController;
