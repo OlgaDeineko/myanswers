@@ -1,4 +1,4 @@
-function AuthenticationService($window){
+function AuthenticationService($window, $http){
   "ngInject";
 
   let initialize = () => {
@@ -9,7 +9,15 @@ function AuthenticationService($window){
     }
   }
 
-  return { initialize };
+  let register = (newUser) => {
+    return $http({
+      method: 'POST',
+      url: 'http://52.26.147.247/api/auth/register',
+      data: newUser,
+    });
+  }
+
+  return { initialize, register };
 }
 
 export default AuthenticationService;

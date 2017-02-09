@@ -4,6 +4,7 @@ import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
 import AuthenticationService from './services/authentication.service';
+import settigns from './config.js';
 import 'angular-ui-bootstrap';
 import 'normalize.css';
 import 'jquery';
