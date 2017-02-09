@@ -17,7 +17,15 @@ function AuthenticationService($window, $http){
     });
   }
 
-  return { initialize, register };
+  let login = (user) => {
+    return $http({
+      method: 'POST',
+      url: 'http://52.26.147.247/api/auth/login',
+      data: user,
+    });
+  }
+
+  return { initialize, register, login };
 }
 
 export default AuthenticationService;
