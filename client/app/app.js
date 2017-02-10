@@ -5,6 +5,10 @@ import Components from './components/components';
 import AppComponent from './app.component';
 import AuthenticationService from './services/authentication.service';
 import settigns from './config.js';
+
+import 'angular-schema-form';
+import 'angular-schema-form-bootstrap';
+
 import 'angular-ui-bootstrap';
 import 'normalize.css';
 import 'jquery';
@@ -14,7 +18,8 @@ angular.module('app', [
     uiRouter,
     Common,
     Components,
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'schemaForm',
   ])
   .config(($locationProvider) => {
     "ngInject";
@@ -22,7 +27,7 @@ angular.module('app', [
     // #how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true).hashPrefix('!');
   })
-  .factory('AuthenticationService', AuthenticationService)
+  .service('AuthenticationService', AuthenticationService)
   .component('app', AppComponent)
   .run((AuthenticationService) => {
       "ngInject";

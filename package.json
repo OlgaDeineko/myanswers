@@ -5,6 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "angular": "^1.5.0",
+    "angular-schema-form": "^0.8.13",
+    "angular-schema-form-bootstrap": "^0.2.0",
     "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^1.0.0-beta.1",
     "bootstrap": "^3.3.7",
