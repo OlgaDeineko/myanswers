@@ -29,7 +29,7 @@ class LoginController {
           }
         }
       },
-      required: ["email","password"]
+      required: ["username","password"]
     };
     this.form = [
       "*"
