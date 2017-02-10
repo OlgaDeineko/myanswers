@@ -10,13 +10,21 @@ class LoginController {
     this.schema = {
       type: "object",
       properties: {
-        "username": {
+        "email": {
           type: "string",
           title: "Email",
           minLength: 5,
           "pattern": "^\\S+@\\S+$",
           "x-schema-form": {
             placeholder: "email"
+          }
+        },
+        "subdomain": {
+          type: "string",
+          title: "Subdomain",
+          minLength: 5,
+          "x-schema-form": {
+            "placeholder": "subdomain"
           }
         },
         "password": {
@@ -29,7 +37,7 @@ class LoginController {
           }
         }
       },
-      required: ["username","password"]
+      required: ["subdomain", "email","password"]
     };
     this.form = [
       "*"

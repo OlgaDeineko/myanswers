@@ -24,11 +24,20 @@ angular.module('app', [
     'ui.bootstrap',
     'schemaForm',
   ])
-  .config(($locationProvider) => {
+  .config(($locationProvider, $httpProvider) => {
     "ngInject";
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
     // #how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true).hashPrefix('!');
+
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    $httpProvider.defaults.transformRequest = (obj) => {
+      var str = [];
+      for(var p in obj)
+      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      return str.join("&");
+    };
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
   })
   .service('SessionService', SessionService)
   .service('AuthenticationService', AuthenticationService)
@@ -36,15 +45,24 @@ angular.module('app', [
   .run(($rootScope, $location, AuthenticationService, SessionService) => {
       "ngInject";
 
-      $rootScope.$on("$locationChangeStart", (event, next, current) => {
-        if (!SessionService.isLoggedIn()) {
-          // event.preventDefault();
-          $location.path('/registration');
+      $rootScope.$on('$routeChangeStart', function(event, next, current) {
+        alert('tt');
+        if(next.access){
+            //Do Stuff
         }
-        else {
-            console.log('ALLOW');
-            $location.path('/home');
+        else{
+            $location.path("/login");
+            //This will load the current route first (ie: '/home'), and then
+            //redirect the user to the correct 'login' route.
         }
       });
+
+      // $rootScope.$on("$locationChangeStart", (event, newUrl, current) => {
+      //   if (!SessionService.isLoggedIn()) {
+      //     $rootScope.$evalAsync(() => {
+      //       $location.path('/login');
+      //     });
+      //   }
+      // });
 
   });

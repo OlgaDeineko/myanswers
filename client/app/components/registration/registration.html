@@ -5,6 +5,14 @@
     <div class="col-md-4">
       <h1>{{ $ctrl.name }}</h1>
 
+      <div class="alert alert-success" role="alert" ng-repeat="(key, value) in $ctrl.successMessage">
+        {{value.description}}
+      </div>
+
+      <div class="alert alert-danger" role="alert" ng-repeat="(key, value) in $ctrl.errorMessage">
+        {{value.description}}
+      </div>
+
       <form
         name="registrationForm"
         sf-schema="$ctrl.schema"

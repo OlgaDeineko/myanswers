@@ -8,7 +8,7 @@ function SessionService() {
         user = aUser;
     },
     isLoggedIn : function(){
-        return(user)? user : false;
+        return (user)? user : false;
     }
   }
 }

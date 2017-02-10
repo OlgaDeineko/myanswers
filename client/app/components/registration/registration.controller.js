@@ -56,14 +56,18 @@ class RegistrationController {
   }
 
   register(form, newUser) {
+    const self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
       this.AuthenticationService.register(newUser)
         .then(result => {
-            console.log('result', result);
+            self.successMessage = [{
+              description: 'Done'
+            }];
+            self.errorMessage = [];
         })
         .catch(error => {
-            console.log('error', error);
+            self.errorMessage = error.data.errors;
         })
     }
   }
