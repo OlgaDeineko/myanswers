@@ -6,6 +6,7 @@
       <h1>{{ $ctrl.name }}</h1>
 
       <form
+        name="registrationForm"
         sf-schema="$ctrl.schema"
         sf-form="$ctrl.form"
         sf-model="$ctrl.newUser">
@@ -14,8 +15,10 @@
       <button
         type="button"
         class="btn btn-primary"
-        ng-click="$ctrl.register($ctrl.form)">Create
+        ng-disabled="registrationForm.$invalid"
+        ng-click="$ctrl.register(registrationForm, $ctrl.newUser)">Create
       </button>
+
     </div>
     <div class="col-md-4">
     </div>

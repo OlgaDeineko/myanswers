@@ -1,63 +1,63 @@
 class RegistrationController {
-  constructor(AuthenticationService) {
+  constructor($scope, AuthenticationService) {
     "ngInject";
-
+    this.$scope = $scope;
     this.name = 'Registration';
     this.AuthenticationService = AuthenticationService;
 
-    this.newUser = {}
-
+    this.newUser = {};
     this.schema = {
       type: "object",
       properties: {
-        email: {
+        "email": {
           type: "string",
-          title: "email",
+          title: "Email",
           minLength: 5,
           "pattern": "^\\S+@\\S+$",
           "x-schema-form": {
             placeholder: "email"
           }
         },
-        subdomain: {
+        "subdomain": {
           minLength: 5,
           type: "string",
-          title: "subdomain",
+          title: "Subdomain",
           "x-schema-form": {
             "placeholder": "subdomain"
           }
         },
-        password: {
+        "password": {
           minLength: 5,
           type: "string",
-          title: "password",
+          title: "Password",
           "x-schema-form": {
             "type": "password",
             "placeholder": "password"
           }
         },
-        password_repeat: {
+        "password_repeat": {
           minLength: 5,
           type: "string",
-          title: "password repeat",
+          title: "Password repeat",
+          constant: {
+            "$data": "1/password"
+          },
           "x-schema-form": {
             "type": "password",
             "placeholder": "password repeat"
           }
         }
-      }
+      },
+      required: ["email","subdomain","password","password_repeat"]
     }
-
     this.form = [
       "*"
     ]
   }
 
-  register(form) {
-    alert(form.$valid);
+  register(form, newUser) {
+    this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
-      let newUser = this.newUser;
-      debugger;
       this.AuthenticationService.register(newUser)
         .then(result => {
             console.log('result', result);
