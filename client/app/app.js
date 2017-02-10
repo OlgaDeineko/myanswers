@@ -3,7 +3,10 @@ import uiRouter from 'angular-ui-router';
 import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
+
+import SessionService from './services/session.service';
 import AuthenticationService from './services/authentication.service';
+
 import settigns from './config.js';
 
 import 'angular-schema-form';
@@ -27,9 +30,21 @@ angular.module('app', [
     // #how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true).hashPrefix('!');
   })
+  .service('SessionService', SessionService)
   .service('AuthenticationService', AuthenticationService)
   .component('app', AppComponent)
-  .run((AuthenticationService) => {
+  .run(($rootScope, $location, AuthenticationService, SessionService) => {
       "ngInject";
-      AuthenticationService.initialize();
+
+      $rootScope.$on("$locationChangeStart", (event, next, current) => {
+        if (!SessionService.isLoggedIn()) {
+          // event.preventDefault();
+          $location.path('/registration');
+        }
+        else {
+            console.log('ALLOW');
+            $location.path('/home');
+        }
+      });
+
   });

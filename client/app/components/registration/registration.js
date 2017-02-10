@@ -2,7 +2,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import registrationComponent from './registration.component';
 
-let registrationModule = angular.module('registration', [
+let registrationModule = angular.module('app.component.registration', [
   uiRouter
 ])
 
@@ -12,6 +12,7 @@ let registrationModule = angular.module('registration', [
   $stateProvider
     .state('registration', {
       url: '/registration',
+      requireLogin: false,
       component: 'registration',
     });
 })
