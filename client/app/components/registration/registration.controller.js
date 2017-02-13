@@ -5,6 +5,8 @@ class RegistrationController {
     this.name = 'Registration';
     this.AuthenticationService = AuthenticationService;
 
+    this.alerts = [];
+
     this.newUser = {};
     this.schema = {
       type: "object",
@@ -13,7 +15,7 @@ class RegistrationController {
           type: "string",
           title: "Email",
           minLength: 5,
-          "pattern": "^\\S+@\\S+$",
+          "pattern": "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",
           "x-schema-form": {
             placeholder: "email"
           }
@@ -55,19 +57,26 @@ class RegistrationController {
     ]
   }
 
+  closeAlert(index) {
+    this.alerts.splice(index, 1);
+  };
+
   register(form, newUser) {
     const self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
       this.AuthenticationService.register(newUser)
         .then(result => {
-            self.successMessage = [{
-              description: 'Done'
-            }];
-            self.errorMessage = [];
+            self.alerts.push({
+              type: 'success',
+              msg: 'Done' });
         })
         .catch(error => {
-            self.errorMessage = error.data.errors;
+            error.data.errors.forEach(error => {
+              self.alerts.push({
+                type: 'danger',
+                msg: error.description })
+            });
         })
     }
   }

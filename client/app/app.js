@@ -38,6 +38,18 @@ angular.module('app', [
       return str.join("&");
     };
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+    // $httpProvider.interceptors.push(function() {
+    //     return {
+    //         responseError: function(rejection) {
+    //             console.log("bad response");
+    //             if(rejection.config.handleError && rejection.status === 403){
+    //               console.warn("bad response")
+    //                 //show error dialog
+    //             }
+    //             return rejection;
+    //         }
+    //     }
+    // });
   })
   .service('SessionService', SessionService)
   .service('AuthenticationService', AuthenticationService)
