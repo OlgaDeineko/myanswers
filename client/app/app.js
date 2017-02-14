@@ -1,5 +1,6 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import {permission, uiPermission} from 'angular-permission';
 import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
@@ -19,62 +20,54 @@ import 'bootstrap/dist/js/bootstrap';
 
 angular.module('app', [
     uiRouter,
+    permission,
+    uiPermission,
     Common,
     Components,
     'ui.bootstrap',
-    'schemaForm',
+    'schemaForm'
   ])
-  .config(($locationProvider, $httpProvider) => {
+  .config(($locationProvider, $httpProvider, $urlRouterProvider) => {
     "ngInject";
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
     // #how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true).hashPrefix('!');
-
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+
     $httpProvider.defaults.transformRequest = (obj) => {
       var str = [];
       for(var p in obj)
       str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
       return str.join("&");
     };
-    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-    // $httpProvider.interceptors.push(function() {
-    //     return {
-    //         responseError: function(rejection) {
-    //             console.log("bad response");
-    //             if(rejection.config.handleError && rejection.status === 403){
-    //               console.warn("bad response")
-    //                 //show error dialog
-    //             }
-    //             return rejection;
-    //         }
-    //     }
-    // });
+
+    $urlRouterProvider.otherwise('/');
   })
   .service('SessionService', SessionService)
   .service('AuthenticationService', AuthenticationService)
   .component('app', AppComponent)
-  .run(($rootScope, $location, AuthenticationService, SessionService) => {
+  .run(($rootScope, PermPermissionStore) => {
       "ngInject";
 
-      $rootScope.$on('$routeChangeStart', function(event, next, current) {
-        alert('tt');
-        if(next.access){
-            //Do Stuff
-        }
-        else{
-            $location.path("/login");
-            //This will load the current route first (ie: '/home'), and then
-            //redirect the user to the correct 'login' route.
-        }
-      });
+      PermPermissionStore.definePermission('notAuthorized', (params) => {
+        console.log(arguments)
+        return true;
+      })
 
-      // $rootScope.$on("$locationChangeStart", (event, newUrl, current) => {
-      //   if (!SessionService.isLoggedIn()) {
-      //     $rootScope.$evalAsync(() => {
-      //       $location.path('/login');
-      //     });
-      //   }
-      // });
+      $rootScope.$on('$stateChangeStart', (event, next) => {
+        debugger;
+        // let authorizedRoles = next.data.authorizedRoles;
+        // if (!AuthenticationService.isAuthorized(authorizedRoles)) {
+        //   event.preventDefault();
+        //   if (AuthenticationService.isAuthenticated()) {
+        //     // user is not allowed
+        //     $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+        //   } else {
+        //     // user is not logged in
+        //     $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+        //   }
+        // }
+      });
 
   });

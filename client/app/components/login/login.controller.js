@@ -1,10 +1,15 @@
 class LoginController {
-  constructor($scope, AuthenticationService) {
+  constructor($scope, AuthenticationService, SessionService, $location, $rootScope) {
     "ngInject";
 
     this.$scope = $scope;
+    this.$rootScope = $rootScope;
+    this.$location = $location;
     this.name = 'login';
+    this.SessionService = SessionService;
     this.AuthenticationService = AuthenticationService;
+
+    this.alerts = [];
 
     this.user = {};
     this.schema = {
@@ -44,15 +49,26 @@ class LoginController {
     ];
   }
 
+  closeAlert(index) {
+    this.alerts.splice(index, 1);
+  };
+
   login(loginForm, user) {
+    let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if(loginForm.$valid) {
       this.AuthenticationService.login(user)
         .then(result => {
-            console.log('result', result);
+          self.SessionService.create(result.data.data.access_token);
+          self.$location.path('/');
         })
         .catch(error => {
-            console.log('error', error);
+          error.data.errors.forEach(error => {
+            self.alerts.push({
+              type: 'danger',
+              msg: error.description
+            })
+          });
         })
     }
   }

@@ -6,15 +6,21 @@ let homeModule = angular.module('home', [
   uiRouter
 ])
 
-.config(($stateProvider, $urlRouterProvider) => {
+.config(($stateProvider) => {
   "ngInject";
 
-  $urlRouterProvider.otherwise('/');
-
   $stateProvider
-    .state('home', {
+    .state({
+      name: 'home',
       url: '/',
-      component: 'home'
+      component: 'home',
+      template: '<home/>',
+      data: {
+        permissions: {
+          only: 'isAuthorized',
+          redirectTo: 'login'
+        }
+      }
     });
 })
 

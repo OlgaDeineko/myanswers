@@ -12,8 +12,14 @@ let registrationModule = angular.module('registration', [
   $stateProvider
     .state('registration', {
       url: '/registration',
-      requireLogin: false,
+      template: '<registration/>',
       component: 'registration',
+      data: {
+        permissions: {
+          only: 'notAuthorized',
+          redirectTo: 'home'
+        }
+      }
     });
 })
 

@@ -1,21 +1,17 @@
 import config, {apiUrl} from '../config';
 
-function AuthenticationService($window, $http){
+function AuthenticationService(SessionService, $http){
   "ngInject";
-
-  let initialize = () => {
-    if ($window.sessionStorage['TokenInfo']) {
-      tokenInfo = JSON.parse($window.sessionStorage['TokenInfo']);
-    } else {
-      console.info('notAuth');
-    }
-  }
 
   let login = (user) => {
     return $http({
       method: 'POST',
       url: `${apiUrl}/auth/login`,
       data: user
+    }).then(result => {
+      let role = 'admin';
+      SessionService.create(result.data.data.access_token, role);
+      return result;
     });
   }
 
@@ -27,11 +23,25 @@ function AuthenticationService($window, $http){
     });
   }
 
+  let isAuthenticated = () => {
+    return !!Session.userId;
+  }
+
+
+  // let isAuthorized = (authorizedRoles) => {
+  //   if (!angular.isArray(authorizedRoles)) {
+  //     authorizedRoles = [authorizedRoles];
+  //   }
+  //   return (authService.isAuthenticated() &&
+  //     authorizedRoles.indexOf(Session.userRole) !== -1);
+  // }
+
   return {
-    initialize,
     register,
-    login
-  };
+    login,
+    isAuthenticated,
+    // isAuthorized
+  }
 }
 
 export default AuthenticationService;

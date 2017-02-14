@@ -4,13 +4,16 @@
   "description": "Starter for Angular + ES6 + (Webpack or JSPM)",
   "main": "index.js",
   "dependencies": {
-    "angular": "^1.5.9",
+    "angular": "^1.5.0",
+    "angular-permission": "^5.2.1",
+    "angular-route": "^1.6.2",
     "angular-schema-form": "^0.8.13",
     "angular-schema-form-bootstrap": "^0.2.0",
     "angular-ui-bootstrap": "^2.5.0",
-    "angular-ui-router": "^1.0.0-beta.1",
+    "angular-ui-router": "^0.4.2",
     "bootstrap": "^3.3.7",
     "jquery": "^3.1.1",
+    "less": "^2.7.2",
     "normalize.css": "^3.0.3"
   },
   "devDependencies": {

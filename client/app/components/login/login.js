@@ -10,10 +10,17 @@ let loginModule = angular.module('login', [
   "ngInject";
 
   $stateProvider
-    .state('login', {
+    .state({
+      name: 'login',
       url: '/login',
-      requireLogin: false,
       component: 'login',
+      template: '<login/>',
+      data: {
+        permissions: {
+          only: 'notAuthorized',
+          redirectTo: 'home'
+        }
+      }
     });
 })
 
