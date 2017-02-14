@@ -1,25 +1,53 @@
 <navbar></navbar>
 
 <div class="content-wrapper">
-  <div>
-    <h1>{{ $ctrl.name }}</h1>
 
-    <div ui-tree="treeOptions" data-drag-enabled="false">
-      <ol ui-tree-nodes="" ng-model="$ctrl.list">
-        <li ng-repeat="item in $ctrl.list" ui-tree-node>
-          <div ui-tree-handle>
-            {{item.title}}
-          </div>
-          <ol ui-tree-nodes="" ng-model="item.nodes">
-            <li ng-repeat="subItem in item.nodes" ui-tree-node>
-              <div ui-tree-handle>
-                {{subItem.title}}
-              </div>
-            </li>
-          </ol>
-        </li>
-      </ol>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <toolbar></toolbar>
+      </div>
     </div>
 
-  </div>
+    <div class="row">
+
+      <div class="col-md-3">
+        <type-of-questions></type-of-questions>
+      </div>
+      <div class="col-md-9">
+
+        <main>
+          <h1>{{ $ctrl.name }} / {Category name}</h1>
+
+          <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="active">Data</li>
+          </ol>
+
+          <div ui-tree="treeOptions" data-drag-enabled="false">
+            <ol ui-tree-nodes="" ng-model="$ctrl.list">
+              <li ng-repeat="item in $ctrl.list" ui-tree-node>
+
+                <div ui-tree-handle>
+                  {{item.title}}
+                </div>
+
+                <ol ui-tree-nodes="" ng-model="item.nodes">
+                  <li ng-repeat="subItem in item.nodes" ui-tree-node>
+                    <div ui-tree-handle>
+                      {{subItem.title}}
+                    </div>
+                  </li>
+                </ol>
+
+              </li>
+            </ol>
+          </div>
+
+        </main>
+
+      </div>
+    </div>
+
 </div>
