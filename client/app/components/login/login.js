@@ -17,7 +17,7 @@ let loginModule = angular.module('login', [
       template: '<login/>',
       data: {
         permissions: {
-          only: 'notAuthorized',
+          only: 'anonymous',
           redirectTo: 'home'
         }
       }

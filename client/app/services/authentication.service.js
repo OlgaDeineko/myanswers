@@ -1,6 +1,6 @@
 import config, {apiUrl} from '../config';
 
-function AuthenticationService(SessionService, $http){
+function AuthenticationService(SessionService, PermPermissionStore, $http){
   "ngInject";
 
   let login = (user) => {
@@ -24,23 +24,24 @@ function AuthenticationService(SessionService, $http){
   }
 
   let isAuthenticated = () => {
-    return !!Session.userId;
+    return !!Session.hasToken();
   }
 
+  let initPermission = () => {
+    PermPermissionStore.definePermission('anonymous', () => {
+      return !SessionService.hasToken();
+    });
+    PermPermissionStore.definePermission('user', () => {
+      return !!SessionService.hasToken();
+    });
+  }
 
-  // let isAuthorized = (authorizedRoles) => {
-  //   if (!angular.isArray(authorizedRoles)) {
-  //     authorizedRoles = [authorizedRoles];
-  //   }
-  //   return (authService.isAuthenticated() &&
-  //     authorizedRoles.indexOf(Session.userRole) !== -1);
-  // }
 
   return {
     register,
     login,
     isAuthenticated,
-    // isAuthorized
+    initPermission,
   }
 }
 

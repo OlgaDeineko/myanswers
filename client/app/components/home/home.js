@@ -3,7 +3,7 @@ import uiRouter from 'angular-ui-router';
 import homeComponent from './home.component';
 
 let homeModule = angular.module('home', [
-  uiRouter
+  uiRouter,
 ])
 
 .config(($stateProvider) => {
@@ -17,7 +17,7 @@ let homeModule = angular.module('home', [
       template: '<home/>',
       data: {
         permissions: {
-          only: 'isAuthorized',
+          only: 'user',
           redirectTo: 'login'
         }
       }
