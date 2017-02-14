@@ -8,6 +8,17 @@ let categoryModule = angular.module('category', [
 
 .component('category', categoryComponent)
 
+.config(($stateProvider) => {
+  "ngInject";
+
+  $stateProvider
+    .state('category', {
+      url: '/category/{categoryId}',
+      template: '<category/>',
+      component: 'category'
+    });
+})
+
 .name;
 
 export default categoryModule;

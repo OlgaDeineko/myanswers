@@ -8,6 +8,7 @@ import AppComponent from './app.component';
 import SessionService from './services/session.service';
 import AuthenticationService from './services/authentication.service';
 import ResponseObserver from './services/responseObserver.service';
+import CategoryService from './services/category.service';
 
 import settigns from './config.js';
 
@@ -45,6 +46,7 @@ angular.module('app', [
   .service('ResponseObserver', ResponseObserver)
   .service('SessionService', SessionService)
   .service('AuthenticationService', AuthenticationService)
+  .service('CategoryService', CategoryService)
   .component('app', AppComponent)
   .run(($rootScope, AuthenticationService) => {
       "ngInject";
