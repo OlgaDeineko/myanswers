@@ -36,6 +36,10 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
     });
   }
 
+  let logOut = () => {
+    SessionService.destroy();
+  }
+
 
   return {
     register,

@@ -10,6 +10,7 @@ function SessionService($window) {
   }
 
   let destroy = () => {
+    $window.sessionStorage.removeItem('access_token');
   }
 
   return{
