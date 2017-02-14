@@ -1,6 +1,6 @@
 class TypeOfQuestionsController {
   constructor() {
-    this.name = 'typeOfQuestions';
+    this.name = 'Questions';
   }
 }
 

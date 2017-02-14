@@ -3,6 +3,7 @@
 <div class="content-wrapper">
 
   <div class="container-fluid">
+
     <div class="row">
       <div class="col-md-12">
         <toolbar></toolbar>
@@ -14,40 +15,100 @@
       <div class="col-md-3">
         <type-of-questions></type-of-questions>
       </div>
+
       <div class="col-md-9">
 
-        <main>
-          <h1>{{ $ctrl.name }} / {Category name}</h1>
+        <div class="container-fluid">
 
-          <ol class="breadcrumb">
-            <li><a href="#">Category 1</a></li>
-            <li><a href="#">Sub category 5</a></li>
-            <li class="active">Sub category of sab category 7</li>
-          </ol>
+          <div class="row">
+            <div class="col-md-9">
+              <h1>{{ $ctrl.name }} / {Category name}</h1>
 
-          <div ui-tree="treeOptions" data-drag-enabled="false">
-            <ol ui-tree-nodes="" ng-model="$ctrl.list">
-              <li ng-repeat="item in $ctrl.list" ui-tree-node>
+              <ol class="breadcrumb">
+                <li><a href="#">Category 1</a></li>
+                <li><a href="#">Sub category 5</a></li>
+                <li class="active">Sub category of sab category 7</li>
+              </ol>
 
-                <div ui-tree-handle>
-                  {{item.title}}
+            </div>
+            <div class="col-md-3">
+                <!-- start Split action -->
+                <div class="btn-group pull-right">
+                  <button type="button" class="btn btn-primary">Action</button>
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
                 </div>
+                <!-- end Split action -->
+            </div>
+          </div>
 
-                <ol ui-tree-nodes="" ng-model="item.nodes">
-                  <li ng-repeat="subItem in item.nodes" ui-tree-node>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="email" class="form-control" placeholder="Search">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <h3>Category / FAQ</h3>
+            </div>
+            <div class="col-md-6">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+            <!-- start Main content -->
+            <main>
+
+
+              <div ui-tree="treeOptions" data-drag-enabled="false">
+
+                <ol ui-tree-nodes="" ng-model="$ctrl.list">
+                  <li ng-repeat="item in $ctrl.list" ui-tree-node>
+
                     <div ui-tree-handle>
-                      {{subItem.title}}
+                      <p>{{item.title}}</p>
                     </div>
+
+                    <ol ui-tree-nodes="" ng-model="item.nodes">
+                      <li ng-repeat="subItem in item.nodes" ui-tree-node>
+                        <div ui-tree-handle>
+                          <p>{{subItem.title}}</p>
+                        </div>
+                      </li>
+                    </ol>
+
                   </li>
                 </ol>
 
-              </li>
-            </ol>
+              </div>
+
+
+            </main>
+            <!-- end Main content -->
+            </div>
+
           </div>
 
-        </main>
+        </div>
 
       </div>
+
     </div>
+  </div>
 
 </div>
