@@ -12,6 +12,7 @@ let dashboardModule = angular.module('dashboard', [
   $stateProvider
     .state('dashboard', {
       url: '/dashboard',
+      template: '<dashboard/>',
       component: 'dashboard'
     });
 })

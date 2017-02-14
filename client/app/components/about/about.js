@@ -12,7 +12,8 @@ let aboutModule = angular.module('about', [
   $stateProvider
     .state('about', {
       url: '/about',
-      component: 'about'
+      component: 'about',
+      template: '<about/>',
     });
 })
 

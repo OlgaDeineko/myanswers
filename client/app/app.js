@@ -19,6 +19,8 @@ import 'normalize.css';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap';
 
+import 'angular-ui-tree';
+
 angular.module('app', [
     uiRouter,
     permission,
@@ -26,7 +28,8 @@ angular.module('app', [
     Common,
     Components,
     'ui.bootstrap',
-    'schemaForm'
+    'schemaForm',
+    'ui.tree',
   ])
   .config(($locationProvider, $httpProvider, $urlRouterProvider) => {
     "ngInject";
