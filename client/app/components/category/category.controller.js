@@ -1,3 +1,18 @@
+let parseTreeCategory = (categories) => {
+  categories.forEach((category, i) => {
+    categories[i].categories = categories.filter(c => c.dependencies == category.node_id);
+  });
+  return categories;
+}
+
+let filterArticles = (articles, categoryId) => {
+  return articles.filter(article => article.categories.find(c => c == categoryId));
+}
+
+let filterCategories = (categories, categoryId) => {
+  return categories.filter(c => c.node_id == categoryId);
+}
+
 class CategoryController {
   constructor($stateParams, CategoryService) {
     "ngInject";
@@ -12,20 +27,15 @@ class CategoryController {
     (function getAllData(self) {
       self.CategoryService.getAll()
           .then((result) => {
-            self.categories = [self.parseTreeCategory(result.categories).find(c => c.node_id == self.currentCategory)];
-            self.articles = result.articles.filter(article => article.categories.find(c => c == self.currentCategory));
+            let categoriesTree = parseTreeCategory(result.categories);
+            self.categories = filterCategories(categoriesTree, self.currentCategory);
+            console.log(self.categories);
+            self.articles = filterArticles(result.articles, self.currentCategory);
           })
           .catch((error) => {
             console.warn(error);
           })
     })(this);
-  }
-
-  parseTreeCategory(categories) {
-    categories.forEach((category, i) => {
-      categories[i].categories = categories.filter(c => c.dependencies == category.node_id);
-    });
-    return categories;
   }
 
 }
