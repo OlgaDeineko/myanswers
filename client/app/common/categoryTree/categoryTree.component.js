@@ -5,7 +5,8 @@ import './categoryTree.scss';
 let categoryTreeComponent = {
   restrict: 'E',
   bindings: {
-    list: "="
+    categories: "=",
+    current: "="
   },
   template,
   controller

@@ -4,7 +4,9 @@ import './typeOfQuestions.scss';
 
 let typeOfQuestionsComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    articles: "=",
+  },
   template,
   controller
 };
