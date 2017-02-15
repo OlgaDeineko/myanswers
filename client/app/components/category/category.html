@@ -74,29 +74,7 @@
             <!-- start Main content -->
             <main>
 
-
-              <div ui-tree="treeOptions" data-drag-enabled="false">
-
-                <ol ui-tree-nodes="" ng-model="$ctrl.list">
-                  <li ng-repeat="item in $ctrl.list" ui-tree-node>
-
-                    <div ui-tree-handle>
-                      <p>{{item.title}}</p>
-                    </div>
-
-                    <ol ui-tree-nodes="" ng-model="item.nodes">
-                      <li ng-repeat="subItem in item.nodes" ui-tree-node>
-                        <div ui-tree-handle>
-                          <p>{{subItem.title}}</p>
-                        </div>
-                      </li>
-                    </ol>
-
-                  </li>
-                </ol>
-
-              </div>
-
+              <category-tree list="$ctrl.list"></category-tree>
 
             </main>
             <!-- end Main content -->
