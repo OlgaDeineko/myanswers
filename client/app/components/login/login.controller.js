@@ -1,10 +1,15 @@
+import config, {mainDomian} from '../../config';
+
 class LoginController {
-  constructor($scope, AuthenticationService, SessionService, $location, $rootScope) {
+  constructor($window, $stateParams, $scope, AuthenticationService, SessionService, $location, $rootScope) {
     "ngInject";
 
     this.$scope = $scope;
+
+    this.$stateParams = $stateParams;
     this.$rootScope = $rootScope;
     this.$location = $location;
+    this.$window = $window;
     this.name = 'login';
     this.SessionService = SessionService;
     this.AuthenticationService = AuthenticationService;
@@ -24,14 +29,14 @@ class LoginController {
             placeholder: "email"
           }
         },
-        "subdomain": {
-          type: "string",
-          title: "Subdomain",
-          minLength: 5,
-          "x-schema-form": {
-            "placeholder": "subdomain"
-          }
-        },
+        // "subdomain": {
+        //   type: "string",
+        //   title: "Subdomain",
+        //   minLength: 5,
+        //   "x-schema-form": {
+        //     "placeholder": "subdomain"
+        //   }
+        // },
         "password": {
           minLength: 5,
           type: "string",
@@ -57,9 +62,11 @@ class LoginController {
     let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if(loginForm.$valid) {
+      user.subdomain = self.$stateParams.subdomian;
       this.AuthenticationService.login(user)
         .then(result => {
           self.SessionService.create(result.data.data.access_token, result.data.data.subdomain);
+
           self.$location.path('/');
         })
         .catch(error => {

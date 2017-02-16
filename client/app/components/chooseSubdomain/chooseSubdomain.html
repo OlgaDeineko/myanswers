@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <h1>{{ $ctrl.name }}</h1>
+        <div uib-alert ng-repeat="alert in $ctrl.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="$ctrl.closeAlert($index)">{{alert.msg}}</div>
+        <form class="form-inline">
+          <div class="form-group">
+            <label class="sr-only">Subdomian</label>
+            <p class="form-control-static">Subdomian</p>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword2" class="sr-only">Password</label>
+            <input type="text" class="form-control" id="inputPassword2" placeholder="subdomian.name" ng-model="$ctrl.subdomian">
+          </div>
+          <button type="submit" class="btn btn-success" ng-click="$ctrl.moveTo($ctrl.subdomian)" ng-class="{'disabled': !$ctrl.subdomianIsValid()}">Choose</button>
+        </form>
+      </form>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>

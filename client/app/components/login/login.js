@@ -12,7 +12,7 @@ let loginModule = angular.module('login', [
   $stateProvider
     .state({
       name: 'login',
-      url: '/login',
+      url: '/login/{subdomian}',
       component: 'login',
       template: '<login/>',
       data: {

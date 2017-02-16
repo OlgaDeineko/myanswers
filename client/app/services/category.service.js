@@ -9,7 +9,7 @@ function CategoryService($http) {
       url: `${apiUrl}/category/tree`,
     }).then(result => {
       return result.data.data
-    })
+    });
     // return new Promise((resolve, reject) => {
     //   resolve([
     //     {
@@ -47,7 +47,8 @@ function CategoryService($http) {
     //       "dependencies": "4",
     //       "name": "Drupal"
     //     },
-    //     {
+    //     {  //   })
+  // }
     //       "node_id": "6",
     //       "dependencies": "2",
     //       "name": "FrontEnd"
@@ -63,7 +64,7 @@ function CategoryService($http) {
     //       "name": "React"
     //     }
     //   ]);
-    // })
+  //   })
   }
 
   return {

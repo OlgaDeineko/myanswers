@@ -18,7 +18,7 @@ let homeModule = angular.module('home', [
       data: {
         permissions: {
           only: 'user',
-          redirectTo: 'login'
+          redirectTo: 'chooseSubdomain'
         }
       }
     });

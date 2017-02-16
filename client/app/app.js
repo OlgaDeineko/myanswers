@@ -10,6 +10,7 @@ import AuthenticationService from './services/authentication.service';
 import ResponseObserver from './services/responseObserver.service';
 import ArticleService from './services/article.service';
 import CategoryService from './services/category.service';
+import SubdomainService from './services/subdomain.service';
 
 import settigns from './config.js';
 
@@ -42,6 +43,11 @@ angular.module('app', [
 
     $httpProvider.interceptors.push('ResponseObserver');
 
+    $httpProvider.defaults.headers.common = {};
+    $httpProvider.defaults.headers.post = {};
+    $httpProvider.defaults.headers.put = {};
+    $httpProvider.defaults.headers.patch = {};
+
     $urlRouterProvider.otherwise('/');
   })
   .service('ResponseObserver', ResponseObserver)
@@ -49,6 +55,7 @@ angular.module('app', [
   .service('AuthenticationService', AuthenticationService)
   .service('ArticleService', ArticleService)
   .service('CategoryService', CategoryService)
+  .service('SubdomainService', SubdomainService)
   .component('app', AppComponent)
   .run(($rootScope, AuthenticationService) => {
       "ngInject";
