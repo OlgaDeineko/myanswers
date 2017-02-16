@@ -24,11 +24,7 @@
             <div class="col-md-9">
               <h1>{{$ctrl.getCurentCategoryName()}}</h1>
 
-              <ol class="breadcrumb">
-                <li><a href="#">Category 1</a></li>
-                <li><a href="#">Sub category 5</a></li>
-                <li class="active">Sub category of sab category 7</li>
-              </ol>
+              <breadcrumbs categories="$ctrl.categories" current="$ctrl.currentCategory"</breadcrumbs>
 
             </div>
             <div class="col-md-3">

@@ -6,12 +6,14 @@ import TypeOfQuestions from './typeOfQuestions/typeOfQuestions';
 import ActionsOfTreeItem from './actionsOfTreeItem/actionsOfTreeItem';
 import CategoryTree from './categoryTree/categoryTree';
 import ArticleTree from './articleTree/articleTree';
+import Breadcrumbs from './breadcrumbs/breadcrumbs';
 
 import Hero from './hero/hero';
 import User from './user/user';
 
 let commonModule = angular.module('app.common', [
   Toolbar,
+  Breadcrumbs,
   TypeOfQuestions,
   ActionsOfTreeItem,
   CategoryTree,
