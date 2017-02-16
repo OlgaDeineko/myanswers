@@ -32,7 +32,7 @@ class CategoryController {
             self.articles = filterArticles(result.articles, self.currentCategory);
           })
           .catch((error) => {
-            console.warn(error);
+            console.warn('Error request:', error);
           })
     })(this);
   }

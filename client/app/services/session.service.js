@@ -10,6 +10,10 @@ function SessionService($window) {
     return !!$window.sessionStorage['access_token'];
   }
 
+  let getToken = () => {
+    return $window.sessionStorage['access_token'];
+  }
+
   let getSubdomain = () => {
     return $window.sessionStorage['client_subdomain'];
   }
@@ -23,7 +27,8 @@ function SessionService($window) {
     create,
     hasToken,
     destroy,
-    getSubdomain
+    getSubdomain,
+    getToken
   }
 }
 

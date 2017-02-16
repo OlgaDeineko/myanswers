@@ -2,16 +2,27 @@ function ResponseObserver($q, $window, SessionService) {
   "ngInject";
   return {
     'request': (config) => {
-
-      config.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-      config.headers['Client-Subdomain'] = SessionService.getSubdomain();
-
-      config.transformRequest = (obj) => {
-        var str = [];
-        for(var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        return str.join("&");
-      };
+      switch (config.method) {
+      case 'POST':
+          config.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+          config.transformRequest = (obj) => {
+            var str = [];
+            for(var p in obj)
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            return str.join("&");
+          };
+          config.transformRequest = (obj) => {
+            var str = [];
+            for(var p in obj)
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            return str.join("&");
+          };
+          break;
+      }
+      if(SessionService.getSubdomain()){
+        config.headers['Client-Subdomain'] = SessionService.getSubdomain();
+        config.headers['Authorization'] = 'Bearer ' + SessionService.getToken();
+      }
       return config;
     },
     'response': (response) => {

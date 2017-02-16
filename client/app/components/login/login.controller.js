@@ -59,7 +59,7 @@ class LoginController {
     if(loginForm.$valid) {
       this.AuthenticationService.login(user)
         .then(result => {
-          self.SessionService.create(result.data.data.access_token);
+          self.SessionService.create(result.data.data.access_token, result.data.data.subdomain);
           self.$location.path('/');
         })
         .catch(error => {

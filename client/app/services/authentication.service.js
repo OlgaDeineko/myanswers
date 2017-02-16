@@ -9,9 +9,8 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
       url: `${apiUrl}/auth/login`,
       data: user
     }).then(result => {
-      debugger;
-      let role = 'admin';
-      SessionService.create(result.data.data.access_token, role);
+      let role = 'ADMIN'// result.data.data.role;
+      SessionService.create(result.data.data.access_token, result.data.data.subdomain, role);
       return result;
     });
   }
@@ -33,7 +32,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
       return !SessionService.hasToken();
     });
     PermPermissionStore.definePermission('user', () => {
-      return !!SessionService.hasToken();
+      return SessionService.hasToken();
     });
   }
 

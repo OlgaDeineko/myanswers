@@ -38,7 +38,7 @@ angular.module('app', [
     // #how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true).hashPrefix('!');
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    // $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+
     $httpProvider.interceptors.push('ResponseObserver');
 
     $urlRouterProvider.otherwise('/');
