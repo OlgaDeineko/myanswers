@@ -1,6 +1,6 @@
 let parseTreeCategory = (categories) => {
   categories.forEach((category, i) => {
-    categories[i].categories = categories.filter(c => c.dependencies == category.node_id);
+    categories[i].categories = categories.filter(c => c.parent_id == category.node_id);
   });
   return categories;
 }

@@ -1,3 +1,5 @@
+import config, {apiUrl, mainDomian} from '../config';
+
 function SessionService($window) {
   "ngInject";
 
@@ -8,6 +10,15 @@ function SessionService($window) {
 
   let hasToken = () => {
     return !!$window.sessionStorage['access_token'];
+  }
+
+  let geApiUrl = () => {
+    let userSubdomian = $window.sessionStorage['client_subdomain'];
+    let result = apiUrl;
+    if(userSubdomian){
+      result = `http://${userSubdomian}.${mainDomian}/api/v1`
+    }
+    return result;
   }
 
   let getToken = () => {
@@ -23,12 +34,13 @@ function SessionService($window) {
     $window.sessionStorage.removeItem('client_subdomain');
   }
 
-  return{
+  return {
     create,
     hasToken,
     destroy,
     getSubdomain,
-    getToken
+    getToken,
+    geApiUrl
   }
 }
 

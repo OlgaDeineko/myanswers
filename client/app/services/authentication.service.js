@@ -44,8 +44,9 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
   return {
     register,
     login,
+    logOut,
     isAuthenticated,
-    initPermission,
+    initPermission
   }
 }
 

@@ -1,13 +1,15 @@
 import config, {apiUrl} from '../config';
 
-function CategoryService($http) {
+function CategoryService($http, SessionService) {
   "ngInject";
 
   let getAll = () => {
     return $http({
       method: 'GET',
-      url: `${apiUrl}/category/tree`,
+      url: `${SessionService.geApiUrl()}/category/tree`,
     }).then(result => {
+      debugger;
+      console.log(result);
       return result.data.data
     });
     // return new Promise((resolve, reject) => {

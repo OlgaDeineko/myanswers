@@ -1,14 +1,14 @@
 import config, {mainDomian} from '../../config';
 
 class LoginController {
-  constructor($window, $stateParams, $scope, AuthenticationService, SessionService, $location, $rootScope) {
+  constructor($window, $stateParams, $scope, AuthenticationService, SessionService, $state, $rootScope) {
     "ngInject";
 
     this.$scope = $scope;
 
     this.$stateParams = $stateParams;
     this.$rootScope = $rootScope;
-    this.$location = $location;
+    this.$state = $state;
     this.$window = $window;
     this.name = 'login';
     this.SessionService = SessionService;
@@ -66,8 +66,7 @@ class LoginController {
       this.AuthenticationService.login(user)
         .then(result => {
           self.SessionService.create(result.data.data.access_token, result.data.data.subdomain);
-
-          self.$location.path('/');
+          self.$state.go("category");
         })
         .catch(error => {
           error.data.errors.forEach(error => {
