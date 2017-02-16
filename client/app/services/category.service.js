@@ -6,7 +6,7 @@ function CategoryService($http) {
   let getAll = () => {
     return $http({
       method: 'GET',
-      url: `${apiUrl}/category/get-tree`,
+      url: `${apiUrl}/category/tree`,
     }).then(result => {
       return result.data.data
     })

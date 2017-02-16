@@ -27,9 +27,8 @@ class CategoryController {
     (function getAllData(self) {
       self.CategoryService.getAll()
           .then((result) => {
-            let categoriesTree = parseTreeCategory(result.categories);
+            let categoriesTree = parseTreeCategory(result);
             self.categories = filterCategories(categoriesTree, self.currentCategory);
-            console.log(self.categories);
             self.articles = filterArticles(result.articles, self.currentCategory);
           })
           .catch((error) => {
