@@ -2,32 +2,34 @@
 
   <script type="text/ng-template" id="tree_children_renderer.html">
     <div class="col-md-12">
+
       <div class="row" ui-tree-handle>
         <div class="col-md-8">
           <a class="tree-icon" data-nodrag ng-click="$ctrl.toggleChildren(this)">
-            <span class="glyphicon glyphicon-folder-close" aria-hidden="true" ng-class="{'fa-folder': collapsed, 'fa-folder-open': !collapsed}">
+            <span class="glyphicon" aria-hidden="true" ng-class="{'glyphicon-folder-close': collapsed, 'glyphicon-folder-open': !collapsed}">
           </a>
           {{item.name}}
         </div>
         <div class="col-md-3">
-
-          <actions-of-tree-item></actions-of-tree-item>
-
+          <actions-of-tree-item category="item">
+          </actions-of-tree-item>
         </div>
       </div>
 
       <div class="row" ui-tree-nodes="treeOptions" ng-model="item.categories" ng-class="{hidden: collapsed}">
         <div class="col-md-12">
-          <div ng-repeat="item in item.categories" ui-tree-node ng-include="'tree_children_renderer.html'" data-collapsed="!item.expanded"></div>
+          <div ng-repeat="item in item.categories" ui-tree-node ng-include="'tree_children_renderer.html'" data-collapsed="!item.expanded">
+          </div>
         </div>
       </div>
 
     </div>
   </script>
 
-  <div ui-tree="$ctrl.treeOptions" id="admin-tree-root" data-nodrop-enabled="false" data-drag-enabled="false" ng-if="$ctrl.categories.length">
+  <div ui-tree="$ctrl.treeOptions" id="admin-tree-root" data-empty-placeholder-enabled="false" data-nodrop-enabled="false" data-drag-enabled="false" ng-if="$ctrl.categories.length">
     <div class="container-fluid" ui-tree-nodes ng-model="$ctrl.categories[0].categories">
-      <div class="row angular-ui-tree-nodes" ng-repeat="item in $ctrl.categories[0].categories" ui-tree-node ng-include="'tree_children_renderer.html'" data-collapsed="!item.expanded"></div>
+      <div class="row angular-ui-tree-nodes" ng-repeat="item in $ctrl.categories[0].categories" ui-tree-node ng-include="'tree_children_renderer.html'" data-collapsed="!item.expanded">
+      </div>
     </div>
   </div>
 

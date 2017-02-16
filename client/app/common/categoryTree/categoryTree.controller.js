@@ -22,10 +22,6 @@ class CategoryTreeController {
     }
   }
 
-  moveTo(categoryId){
-    this.$state.go("category", {"categoryId": categoryId });
-  }
-
 }
 
 export default CategoryTreeController;

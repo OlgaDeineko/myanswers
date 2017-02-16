@@ -4,7 +4,9 @@ import './actionsOfTreeItem.scss';
 
 let actionsOfTreeItemComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    category: '='
+  },
   template,
   controller
 };

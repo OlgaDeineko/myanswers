@@ -22,7 +22,7 @@
 
           <div class="row">
             <div class="col-md-9">
-              <h1>{{ $ctrl.name }} / {Category name}</h1>
+              <h1>{{$ctrl.getCurentCategoryName()}}</h1>
 
               <ol class="breadcrumb">
                 <li><a href="#">Category 1</a></li>
@@ -74,7 +74,10 @@
             <!-- start Main content -->
             <main>
 
-              <category-tree categories="$ctrl.categories" current="$ctrl.currentCategory"></category-tree>
+              <div ng-if="$ctrl.categories.length">
+                <category-tree categories="$ctrl.categories" current="$ctrl.currentCategory"></category-tree>
+              </div>
+
               <article-tree articles="$ctrl.articles"></article-tree>
 
             </main>
