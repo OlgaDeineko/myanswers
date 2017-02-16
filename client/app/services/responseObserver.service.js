@@ -1,8 +1,11 @@
-function ResponseObserver($q, $window) {
+function ResponseObserver($q, $window, SessionService) {
   "ngInject";
   return {
     'request': (config) => {
+
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+      config.headers['Client-Subdomain'] = SessionService.getSubdomain();
+
       config.transformRequest = (obj) => {
         var str = [];
         for(var p in obj)

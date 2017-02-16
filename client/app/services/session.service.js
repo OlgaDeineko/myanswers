@@ -1,22 +1,29 @@
 function SessionService($window) {
   "ngInject";
 
-  let create = (accessToken) => {
+  let create = (accessToken, subdomain) => {
     $window.sessionStorage['access_token'] = accessToken;
+    $window.sessionStorage['client_subdomain'] = subdomain;
   }
 
   let hasToken = () => {
-    return $window.sessionStorage['access_token'];
+    return !!$window.sessionStorage['access_token'];
+  }
+
+  let getSubdomain = () => {
+    return $window.sessionStorage['client_subdomain'];
   }
 
   let destroy = () => {
     $window.sessionStorage.removeItem('access_token');
+    $window.sessionStorage.removeItem('client_subdomain');
   }
 
   return{
     create,
     hasToken,
-    destroy
+    destroy,
+    getSubdomain
   }
 }
 

@@ -15,7 +15,13 @@ let categoryModule = angular.module('category', [
     .state('category', {
       url: '/category/{categoryId}',
       template: '<category/>',
-      component: 'category'
+      component: 'category',
+      data: {
+        permissions: {
+          only: 'user',
+          redirectTo: 'login'
+        }
+      }
     });
 })
 

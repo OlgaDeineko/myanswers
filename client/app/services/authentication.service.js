@@ -9,6 +9,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
       url: `${apiUrl}/auth/login`,
       data: user
     }).then(result => {
+      debugger;
       let role = 'admin';
       SessionService.create(result.data.data.access_token, role);
       return result;
@@ -24,7 +25,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
   }
 
   let isAuthenticated = () => {
-    return !!Session.hasToken();
+    return Session.hasToken() && !!Session.getSubdomain();
   }
 
   let initPermission = () => {
