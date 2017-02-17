@@ -46,7 +46,7 @@ class CategoryController {
   }
 
   getCurentCategoryName(){
-    return (this.currentCategory != this.uncategoryId)
+    return (this.categories.length && this.currentCategory != this.uncategoryId)
       ? this.categories.find(c => c.node_id == this.currentCategory).name
       : this.name;
   }
