@@ -4,16 +4,16 @@ function SessionService($window) {
   "ngInject";
 
   let create = (accessToken, subdomain) => {
-    $window.sessionStorage['access_token'] = accessToken;
-    $window.sessionStorage['client_subdomain'] = subdomain;
+    $window.localStorage['access_token'] = accessToken;
+    $window.localStorage['client_subdomain'] = subdomain;
   }
 
   let hasToken = () => {
-    return !!$window.sessionStorage['access_token'];
+    return !!$window.localStorage['access_token'];
   }
 
   let geApiUrl = () => {
-    let userSubdomain = $window.sessionStorage['client_subdomain'];
+    let userSubdomain = $window.localStorage['client_subdomain'];
     let result = apiUrl;
     if(userSubdomain){
       result = `http://${userSubdomain}.${mainDomian}/api/v1`
@@ -22,16 +22,16 @@ function SessionService($window) {
   }
 
   let getToken = () => {
-    return $window.sessionStorage['access_token'];
+    return $window.localStorage['access_token'];
   }
 
   let getSubdomain = () => {
-    return $window.sessionStorage['client_subdomain'];
+    return $window.localStorage['client_subdomain'];
   }
 
   let destroy = () => {
-    $window.sessionStorage.removeItem('access_token');
-    $window.sessionStorage.removeItem('client_subdomain');
+    $window.localStorage.removeItem('access_token');
+    $window.localStorage.removeItem('client_subdomain');
   }
 
   return {

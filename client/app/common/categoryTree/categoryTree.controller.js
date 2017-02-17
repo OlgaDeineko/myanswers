@@ -8,8 +8,7 @@ class CategoryTreeController {
   }
 
   moveTo(categoryId){
-    let self = this;
-    this.$state.go("category", {"categoryId": self.category.node_id });
+    this.$state.go("category", {"categoryId": categoryId });
   }
 
   toggleChildren(scope) {

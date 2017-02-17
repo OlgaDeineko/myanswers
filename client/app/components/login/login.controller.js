@@ -13,7 +13,7 @@ class LoginController {
     this.name = 'login';
     this.SessionService = SessionService;
     this.AuthenticationService = AuthenticationService;
-
+    this.subdomain = this.$stateParams.subdomain || SessionService.getSubdomain();
     this.alerts = [];
 
     this.user = {};
@@ -52,6 +52,8 @@ class LoginController {
     this.form = [
       "*"
     ];
+
+    if(this.subdomain == false) this.$state.go("chooseSubdomain");
   }
 
   closeAlert(index) {
@@ -62,7 +64,7 @@ class LoginController {
     let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if(loginForm.$valid) {
-      user.subdomain = self.$stateParams.subdomain;
+      user.subdomain = self.subdomain;
       this.AuthenticationService.login(user)
         .then(result => {
           self.SessionService.create(result.data.data.access_token, result.data.data.subdomain);
