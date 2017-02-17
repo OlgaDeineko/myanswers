@@ -62,7 +62,7 @@ class LoginController {
     let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if(loginForm.$valid) {
-      user.subdomain = self.$stateParams.subdomian;
+      user.subdomain = self.$stateParams.subdomain;
       this.AuthenticationService.login(user)
         .then(result => {
           self.SessionService.create(result.data.data.access_token, result.data.data.subdomain);

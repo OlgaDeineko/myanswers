@@ -13,10 +13,10 @@ function SessionService($window) {
   }
 
   let geApiUrl = () => {
-    let userSubdomian = $window.sessionStorage['client_subdomain'];
+    let userSubdomain = $window.sessionStorage['client_subdomain'];
     let result = apiUrl;
-    if(userSubdomian){
-      result = `http://${userSubdomian}.${mainDomian}/api/v1`
+    if(userSubdomain){
+      result = `http://${userSubdomain}.${mainDomian}/api/v1`
     }
     return result;
   }

@@ -8,10 +8,10 @@ class ChooseSubdomainController {
     this.alerts = [];
   }
 
-  subdomianIsValid() {
+  subdomainIsValid() {
     let result = false;
-    if(this.subdomian){
-      result = !!this.subdomian.length > 0;
+    if(this.subdomain){
+      result = !!this.subdomain.length > 0;
     }
     return result;
   }
@@ -25,7 +25,7 @@ class ChooseSubdomainController {
     this.SubdomainService.check(subdomain)
       .then(result => {
         // if(result.errors){
-        //   alert('not subdomian');
+        //   alert('not subdomain');
         // }else{
           this.$window.location.href = `http://${subdomain}.myanswers.io/login/${subdomain}`;
         // }

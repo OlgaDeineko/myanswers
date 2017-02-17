@@ -7,6 +7,11 @@ class CategoryTreeController {
     this.name = 'categoryTree';
   }
 
+  moveTo(categoryId){
+    let self = this;
+    this.$state.go("category", {"categoryId": self.category.node_id });
+  }
+
   toggleChildren(scope) {
     if (!scope.$nodeScope.$modelValue.categories) {
       scope.$nodeScope.$modelValue.getList("categories").then(function(data) {
