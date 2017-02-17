@@ -1,10 +1,13 @@
 class RegistrationController {
-  constructor($scope, AuthenticationService) {
+  constructor($scope, $state, AuthenticationService) {
     "ngInject";
+
+    this.$state = $state;
     this.$scope = $scope;
     this.name = 'Registration';
     this.AuthenticationService = AuthenticationService;
 
+    this.isCreated = '';
     this.alerts = [];
 
     this.newUser = {};
@@ -57,9 +60,18 @@ class RegistrationController {
     ]
   }
 
+  moteToLogin() {
+    let self = this;
+    if(self.isCreated){
+      self.$state.go("login", {subdomain: self.isCreated});
+    }else{
+      self.$state.go("chooseSubdomain");
+    }
+  }
+
   closeAlert(index) {
     this.alerts.splice(index, 1);
-  };
+  }
 
   register(form, newUser) {
     const self = this;
@@ -67,6 +79,7 @@ class RegistrationController {
     if (form.$valid) {
       this.AuthenticationService.register(newUser)
         .then(result => {
+            self.isCreated = newUser.subdomain.toLowerCase();
             self.alerts.push({
               type: 'success',
               msg: 'Done' });
