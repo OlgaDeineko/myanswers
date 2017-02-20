@@ -6,9 +6,8 @@ function CategoryService($http, SessionService) {
   let getAll = () => {
     return $http({
       method: 'GET',
-      url: `${SessionService.geApiUrl()}/category/tree`,
+      url: `${SessionService.geApiUrl()}/categories`,
     }).then(result => {
-      debugger;
       console.log(result);
       return result.data.data
     });

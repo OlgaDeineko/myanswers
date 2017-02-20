@@ -1,0 +1,104 @@
+<navbar></navbar>
+<div class="content-wrapper faq">
+
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <div class="col-md-8">
+        <tags-input ng-model="$ctrl.faq.tags"></tags-input>
+
+        <input class="form-control" placeholder="Title FAQ" ng-model="$ctrl.faq.question">
+
+        <h4>Answer</h4>
+        <textarea ui-tinymce="$ctrl.tinymceOptions" ng-model="$ctrl.faq.answer"></textarea>
+
+        <h4>Remarks</h4>
+        <textarea class="form-control remarks" ng-model="remarkModel"></textarea>
+
+        <div class="text-right">
+          <div class="btn btn-primary" ng-click="$ctrl.addRemark(remarkModel); remarkModel=null">
+            Add
+          </div>
+        </div>
+
+        <div class="one-remark" ng-repeat="item in $ctrl.faq.remarks track by $index">
+          {{item}}
+        </div>
+
+      </div>
+
+      <div class="col-md-4 faq-left-sidebar">
+        <div class="text-center" ng-if="$ctrl.$state.current.name == 'editFaq'">
+          <div class="btn btn-danger" ng-click="$ctrl.remove()">Delete</div>
+        </div>
+
+        <h4>Categories:</h4>
+          <select class="form-control" ng-model="$ctrl.faq.category" >
+            <option ng-repeat="item in $ctrl.categories" value="{{item.node_id}}">{{item.name}}</option>
+          </select>
+
+        <h4>Visibility:</h4>
+        <div class="row faq-visibility">
+          <div class="col-md-4"
+               ng-class="{'active': $ctrl.faq.visibility == 'Public'}"
+               ng-click="$ctrl.faq.visibility = 'Public'">
+            <i class="glyphicon glyphicon-globe"></i>Public
+          </div>
+          <div class="col-md-4"
+               ng-class="{'active': $ctrl.faq.visibility == 'Internal'}"
+               ng-click="$ctrl.faq.visibility = 'Internal'">
+            <i class="glyphicon glyphicon-briefcase"></i>Internal
+          </div>
+          <div class="col-md-4"
+               ng-class="{'active': $ctrl.faq.visibility == 'Private'}"
+               ng-click="$ctrl.faq.visibility = 'Private'">
+            <i class="glyphicon glyphicon-lock"></i>Private
+          </div>
+        </div>
+
+        <h4>Author:</h4>
+        <input class="form-control" type="text" ng-disabled="true" ng-model="$ctrl.faq.author">
+
+
+        <h4>Language:</h4>
+        <select class="form-control" ng-model="$ctrl.faq.language" ng-options="item for item in $ctrl.languages">
+        </select>
+
+        <h4>Attachments:</h4>
+
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="$ctrl.faq.openForComments">
+            Open for comments
+          </label>
+        </div>
+
+        <div class="text-center">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="$ctrl.faq.published">
+              Published
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="btn btn-primary" ng-click="$ctrl.saveAsDraft();">
+              Save As Draft
+            </div>
+          </div>
+          <div class="col-md-6 col-md-offset-3">
+            <div class="btn btn-primary" ng-click="$ctrl.save();">
+              Save
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

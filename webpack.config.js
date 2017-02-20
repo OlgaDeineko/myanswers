@@ -12,7 +12,7 @@ module.exports = {
        { test: /\.(woff|woff2)$/,  loader: "url-loader?limit=10000&mimetype=application/font-woff" },
        { test: /\.ttf$/,    loader: "file-loader" },
        { test: /\.eot$/,    loader: "file-loader" },
-       { test: /\.svg$/,    loader: "file-loader" },
+       { test: /\.(svg|gif)$/,    loader: "file-loader" },
        { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
        { test: /\.css$/, loader: 'style!css' }
     ]

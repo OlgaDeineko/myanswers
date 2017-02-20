@@ -11,6 +11,7 @@ import ResponseObserver from './services/responseObserver.service';
 import ArticleService from './services/article.service';
 import CategoryService from './services/category.service';
 import SubdomainService from './services/subdomain.service';
+import FaqService from './services/faq.service';
 
 import settigns from './config.js';
 
@@ -23,6 +24,22 @@ import 'jquery';
 import 'bootstrap/dist/js/bootstrap';
 
 import 'angular-ui-tree';
+import 'ng-tags-input';
+import 'ng-tags-input/build/ng-tags-input.min.css';
+
+
+import 'tinymce';
+import 'angular-ui-tinymce';
+import 'tinymce/skins/lightgray/skin.min.css';
+import 'tinymce/skins/lightgray/content.min.css';
+
+import 'tinymce/themes/modern/theme';
+import 'tinymce/plugins/link/plugin';
+import 'tinymce/plugins/paste/plugin';
+import 'tinymce/plugins/table/plugin';
+import 'tinymce/plugins/image/plugin';
+import 'tinymce/plugins/image/plugin';
+
 
 angular.module('app', [
     uiRouter,
@@ -33,6 +50,8 @@ angular.module('app', [
     'ui.bootstrap',
     'schemaForm',
     'ui.tree',
+    'ui.tinymce',
+    'ngTagsInput'
   ])
   .config(($locationProvider, $httpProvider, $urlRouterProvider) => {
     "ngInject";
@@ -56,6 +75,7 @@ angular.module('app', [
   .service('ArticleService', ArticleService)
   .service('CategoryService', CategoryService)
   .service('SubdomainService', SubdomainService)
+  .service('FaqService', FaqService)
   .component('app', AppComponent)
   .run(($rootScope, AuthenticationService) => {
       "ngInject";
