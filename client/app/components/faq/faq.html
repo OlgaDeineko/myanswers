@@ -1,22 +1,25 @@
 <navbar></navbar>
 <div class="content-wrapper faq">
-
   <div class="container-fluid">
-
     <div class="row">
-
-      <div class="col-md-8">
+      <div class="col-md-8 faq-content">
         <div class="faq-tags">
           <div class="faq-tag" ng-repeat="item in $ctrl.faq.tags track by $index">
-            {{item}}
+            {{item.name}}
           </div>
         </div>
 
-        <div class="text-right">
-          <div class="btn btn-primary">Copy to clipboard</div>
+        <div class="text-right faq-counts">
+          <p>
+            {{$ctrl.faq.countWords}} word{{$ctrl.faq.countWords > 1 ? 's': ''}} {{$ctrl.faq.countChars}} character{{$ctrl.faq.countChars > 1 ? 's': ''}}
+          </p>
         </div>
 
-        <div class="question">
+        <div class="text-right">
+          <div class="btn btn-success">Copy to clipboard</div>
+        </div>
+
+        <div class="faq-question">
           <h2>{{$ctrl.faq.question}}</h2>
         </div>
 
@@ -34,7 +37,7 @@
       <div class="col-md-4 faq-left-sidebar">
         <h4>Categories:</h4>
         <div class="faq-category">
-          {{$ctrl.faq.category.name}}
+          {{$ctrl.faq.categories.name}}
         </div>
 
         <h4>Visibility:</h4>
@@ -54,11 +57,11 @@
         </div>
 
         <h4>Analytics:</h4>
-        <div class="analytics">
+        <div class="faq-analytics">
           <i class="glyphicon glyphicon-eye-open"></i>{{$ctrl.faq.analytics}} views
         </div>
 
-        <div class="row">
+        <div class="row faq-actions">
           <div class="col-md-6 col-md-offset-3">
             <div class="btn btn-primary" ng-click="$ctrl.goTo()">
               Edit
@@ -66,7 +69,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 

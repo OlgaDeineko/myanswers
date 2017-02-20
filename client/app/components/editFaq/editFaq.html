@@ -5,8 +5,14 @@
 
     <div class="row">
 
-      <div class="col-md-8">
-        <tags-input ng-model="$ctrl.faq.tags"></tags-input>
+      <div class="col-md-8 faq-content">
+        <tags-input ng-model="$ctrl.faq.tags" display-property="name"></tags-input>
+
+        <div class="text-right faq-counts">
+          <p>
+            {{$ctrl.faq.countWords}} word{{$ctrl.faq.countWords > 1 ? 's': ''}} {{$ctrl.faq.countChars}} character{{$ctrl.faq.countChars > 1 ? 's': ''}}
+          </p>
+        </div>
 
         <input class="form-control" placeholder="Title FAQ" ng-model="$ctrl.faq.question">
 
@@ -14,10 +20,10 @@
         <textarea ui-tinymce="$ctrl.tinymceOptions" ng-model="$ctrl.faq.answer"></textarea>
 
         <h4>Remarks</h4>
-        <textarea class="form-control remarks" ng-model="remarkModel"></textarea>
+        <textarea class="form-control remarks" ng-model="remarkModel" rows="4"></textarea>
 
         <div class="text-right">
-          <div class="btn btn-primary" ng-click="$ctrl.addRemark(remarkModel); remarkModel=null">
+          <div class="btn btn-primary add-btn" ng-click="$ctrl.addRemark(remarkModel); remarkModel=null">
             Add
           </div>
         </div>
@@ -28,13 +34,13 @@
 
       </div>
 
-      <div class="col-md-4 faq-left-sidebar">
+      <div class="col-md-4 faq-left-sidebar edit">
         <div class="text-center" ng-if="$ctrl.$state.current.name == 'editFaq'">
-          <div class="btn btn-danger" ng-click="$ctrl.remove()">Delete</div>
+          <div class="btn btn-danger delete-btn" ng-click="$ctrl.remove()">Delete</div>
         </div>
 
         <h4>Categories:</h4>
-          <select class="form-control" ng-model="$ctrl.faq.category" >
+          <select class="form-control" ng-model="$ctrl.faq.categories" >
             <option ng-repeat="item in $ctrl.categories" value="{{item.node_id}}">{{item.name}}</option>
           </select>
 
@@ -83,14 +89,14 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row faq-actions">
           <div class="col-md-6 col-md-offset-3">
             <div class="btn btn-primary" ng-click="$ctrl.saveAsDraft();">
               Save As Draft
             </div>
           </div>
           <div class="col-md-6 col-md-offset-3">
-            <div class="btn btn-primary" ng-click="$ctrl.save();">
+            <div class="btn btn-primary save-btn" ng-click="$ctrl.save();">
               Save
             </div>
           </div>

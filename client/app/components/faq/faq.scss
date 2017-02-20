@@ -1,4 +1,8 @@
+@import "../../common/common";
+
 .faq {
+  background: $bgColor;
+
   .tags {
     background-color: #fff;
     background-image: none;
@@ -9,20 +13,96 @@
     -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    &.focused{
+    &.focused {
       border-color: #66afe9;
-      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
-      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    }
+
+    .tag-item {
+      background: $tagsBgColor;
     }
   }
-  &-visibility > div {
-    cursor: pointer;
-    &.active{
-      text-decoration: underline;
-    }
+
+  &-content {
+    background: #ffffff;
+    padding-top: 20px;
   }
-  &-tag{
+  &-tag {
     display: inline-block;
     margin: 0 5px;
+    background: $tagsBgColor;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+
+  &-question {
+    border-bottom: 1px solid $primaryColor;
+    h2 {
+      font-size: $fonLg;
+    }
+  }
+
+  &-answer {
+    margin-top: 20px;
+    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid $lightBgColor;
+  }
+
+  .one-remark {
+    margin-top: 20px;
+    padding: 20px 10px;
+    background: $tagsBgColor;
+    border-radius: 4px;
+  }
+
+  &-counts {
+    color: $darkTextColor;
+    margin: 10px 0;
+  }
+
+  &-left-sidebar {
+    .faq-category,
+    .faq-visibility,
+    .faq-author,
+    .faq-lang,
+    .faq-analytics {
+      background: #fff;
+      border-radius: 4px;
+      padding: 3px 10px;
+    }
+    .faq-actions {
+      margin: 20px 0;
+      .btn {
+        width: 100%;
+      }
+    }
+
+    .faq-visibility > div {
+      cursor: pointer;
+      &.active {
+        text-decoration: underline;
+        color: $primaryColor;
+      }
+    }
+    &.edit .faq-visibility {
+      background: none;
+    }
+    .delete-btn,
+    .save-btn {
+      margin-top: 20px;
+    }
+  }
+  .add-btn {
+    margin-top: 10px;
+  }
+  textarea {
+    resize: none;
+  }
+  h4 {
+    margin-top: 20px;
+    color: $darkTextColor;
+    text-transform: uppercase;
   }
 }

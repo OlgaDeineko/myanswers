@@ -6,7 +6,7 @@ let parseTreeCategory = (categories) => {
 }
 
 let filterArticles = (articles, categoryId) => {
-  return articles.filter(article => article.categories.find(c => c == categoryId));
+  return articles.filter(article => article.categories.find(c => c.node_id == categoryId));
 }
 
 let filterCategories = (categories, categoryId) => {

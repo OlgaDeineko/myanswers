@@ -17,10 +17,10 @@ let categoryModule = angular.module('category', [
       template: '<category/>',
       component: 'category',
       data: {
-        permissions: {
-          only: 'user',
-          redirectTo: 'login'
-        }
+        // permissions: {
+        //   only: 'user',
+        //   redirectTo: 'login'
+        // }
       }
     });
 })
