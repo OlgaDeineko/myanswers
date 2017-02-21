@@ -1,8 +1,28 @@
 import config, {apiUrl} from '../config';
 
+/**
+ * @typedef {object} Article
+ * @property {integer} id - article id
+ * @property {string} question - article question (title)
+ * @property {string} answer - faq answer (text)
+ * @property {string} slug - article slug
+ * @property {string} visibility - article visibility (Public | Internal | Private)
+ * @property {string} is_open_comments
+ * @property {string} author - author full name
+ * @property {string} status - article status published or no
+ * @property {integer} algolia_object_id - algolia id
+ * @property {timestamp} created_at
+ * @property {timestamp} updated_at
+ * @property {object[]} categories - categories article. now in array one element
+ */
+
 function ArticleService($http, SessionService) {
   "ngInject";
 
+  /**
+   * Get all articles(FAQ)
+   * @returns {*|Promise.<{Article[]}>}
+   */
   let getAll = () => {
     return $http({
       method: 'GET',
@@ -133,6 +153,11 @@ function ArticleService($http, SessionService) {
     */
   };
 
+  /**
+   * Get article(FAQ) by id
+   * @param {integer} faqId
+   * @returns {*|Promise.<Article>}
+   */
   let getById = (faqId) => {
     return $http({
       method: 'GET',
@@ -168,6 +193,11 @@ function ArticleService($http, SessionService) {
     */
   };
 
+  /**
+   * Create article(FAQ)
+   * @param {Article} faq - new faq
+   * @returns {Promise.<{Article}>}
+   */
   let save = (faq) => {
     return $http({
       method: 'POST',
@@ -179,6 +209,11 @@ function ArticleService($http, SessionService) {
     });
   };
 
+  /**
+   * Update article(FAQ)
+   * @param {Article} faq - new faq
+   * @returns {Promise.<{Article}>}
+   */
   let update = (faq) => {
     return $http({
       method: 'PUT',
@@ -190,6 +225,11 @@ function ArticleService($http, SessionService) {
     });
   };
 
+  /**
+   * Remove article(FAQ)
+   * @param {integer} faqId - faq ID
+   * @returns {Promise.<{Article}>}
+   */
   let remove = (faqId) => {
     return $http({
       method: 'DELETE',

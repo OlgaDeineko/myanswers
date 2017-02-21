@@ -2,74 +2,75 @@
 <div class="content-wrapper faq">
   <div class="container-fluid">
     <div class="row">
+      <!--Content article-->
       <div class="col-md-8 faq-content">
+        <!--Tags-->
         <div class="faq-tags">
           <div class="faq-tag" ng-repeat="item in $ctrl.faq.tags track by $index">
             {{item.name}}
           </div>
-        </div>
-
+        </div><!--END: Tags-->
+        <!--Counts word-->
         <div class="text-right faq-counts">
           <p>
             {{$ctrl.faq.countWords}} word{{$ctrl.faq.countWords > 1 ? 's': ''}} {{$ctrl.faq.countChars}} character{{$ctrl.faq.countChars > 1 ? 's': ''}}
           </p>
-        </div>
-
+        </div><!--END: Counts word-->
+        <!--Copy To Clipboard-->
         <div class="text-right">
           <div class="btn btn-success">Copy to clipboard</div>
-        </div>
-
+        </div><!--END: Copy To Clipboard-->
+        <!--Question-->
         <div class="faq-question">
           <h2>{{$ctrl.faq.question}}</h2>
-        </div>
-
+        </div><!--END: Question-->
+        <!--Answer-->
         <h4>Answer</h4>
         <div class="faq-answer" ng-bind-html="$ctrl.faq.answer">
-        </div>
-
+        </div><!--END: Answer-->
+        <!--Remarks-->
         <h4>Remarks</h4>
         <div class="one-remark" ng-repeat="item in $ctrl.faq.remarks track by $index">
           {{item}}
-        </div>
+        </div><!--END: Remarks-->
+      </div><!--END: Content article-->
 
-      </div>
-
+      <!--left sideba article-->
       <div class="col-md-4 faq-left-sidebar">
+        <!--Categories-->
         <h4>Categories:</h4>
         <div class="faq-category">
           {{$ctrl.faq.categories.name}}
-        </div>
-
+        </div><!--END: Categories-->
+        <!--Visibility-->
         <h4>Visibility:</h4>
         <div class="faq-visibility">
           {{$ctrl.faq.visibility}}
-        </div>
-
+        </div><!--END: Visibility-->
+        <!--Author-->
         <h4>Author:</h4>
         <div class="faq-author">
           {{$ctrl.faq.author}}
-        </div>
-
-
+        </div><!--END: Author-->
+        <!--Language-->
         <h4>Language:</h4>
         <div class="faq-lang">
           {{$ctrl.faq.language}}
-        </div>
-
+        </div><!--END: Language-->
+        <!--Analytics-->
         <h4>Analytics:</h4>
         <div class="faq-analytics">
           <i class="glyphicon glyphicon-eye-open"></i>{{$ctrl.faq.analytics}} views
-        </div>
-
+        </div><!--END: Analytics-->
+        <!--Action buttons-->
         <div class="row faq-actions">
           <div class="col-md-6 col-md-offset-3">
             <div class="btn btn-primary" ng-click="$ctrl.goTo()">
               Edit
             </div>
           </div>
-        </div>
-      </div>
+        </div><!--END: Action buttons-->
+      </div><!--END: left sideba article-->
     </div>
   </div>
-
 </div>

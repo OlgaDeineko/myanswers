@@ -12,7 +12,9 @@ class EditFaqController {
 
     this.faq = {};
     this.categories=[];
+    //TODO array of language need get from server
     this.languages = languages;
+    // configs for tinyMCE editor @see {@link https://www.tinymce.com/docs/}
     this.tinymceOptions = {
       plugins: 'link image',
       themes: "modern",
@@ -35,6 +37,7 @@ class EditFaqController {
       }
     };
 
+    //state can be in two states: createFaq or editFaq. for create - empty object, for edit - grab from server
     if($state.current.name == 'createFaq'){
       this.faq = {
         question: '',
@@ -54,8 +57,10 @@ class EditFaqController {
     }else{
       this.ArticleService.getById($state.params.faqId)
         .then((result) => {
+          //don't ask)))
           result.categories = result.categories[0].node_id+'';
 
+          //counting words and character in article answer
           let answerWithoutTags = String(result.answer).replace(/<[^>]+>/gm, '');
           result.countWords = answerWithoutTags.trim().split(/\s+/).length;
           result.countChars = (answerWithoutTags.match(/\S/g) || []).length;
@@ -76,12 +81,23 @@ class EditFaqController {
       });
   }
 
+  /**
+   * Add remark to article
+   * @param {string} data - text remark
+   */
   addRemark(data) {
     this.faq.remarks.push(data)
   }
 
+  /**
+   * Create/update article
+   */
   save() {
     let self = this;
+    /*
+    * {string[]} new_tags - array of new tags
+    * {integer[]} tag_ids - array of old tags
+    * */
     this.faq.new_tags = [];
     this.faq.tag_ids = [];
 
