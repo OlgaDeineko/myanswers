@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">{{$ctrl.mode}} {{$ctrl.type}}</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+
+  <div uib-alert
+       ng-repeat="alert in $ctrl.alerts"
+       ng-class="'alert-' + (alert.type || 'warning')"
+       close="$ctrl.closeAlert($index)">
+    {{alert.msg}}
+  </div>
+
+  <form
+    name="createCategoryForm"
+    sf-schema="$ctrl.schema"
+    sf-form="$ctrl.form"
+    sf-model="$ctrl.newCategory">
+  </form>
+
+</div>
+
+<div class="modal-footer">
+
+  <button class="btn btn-success"
+          ng-disabled="createCategoryForm.$invalid"
+          ng-click="$ctrl.save(createCategoryForm, $ctrl.newCategory)">
+    Save
+  </button>
+
+  <button class="btn btn-warning" ng-click="$ctrl.cancel()">
+    Cancel
+  </button>
+
+</div>

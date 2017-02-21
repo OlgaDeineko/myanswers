@@ -58,7 +58,7 @@ class EditFaqController {
       this.ArticleService.getById($state.params.faqId)
         .then((result) => {
           //don't ask)))
-          result.categories = result.categories[0].node_id+'';
+          result.categories = result.categories[0].id+'';
 
           //counting words and character in article answer
           let answerWithoutTags = String(result.answer).replace(/<[^>]+>/gm, '');

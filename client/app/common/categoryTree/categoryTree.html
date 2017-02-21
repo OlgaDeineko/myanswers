@@ -12,7 +12,7 @@
                 <sub>
                   <span class="glyphicon" ng-class="{'glyphicon-arrow-down': (item.categories.length > 0 && !!item.expanded), 'glyphicon-arrow-right': (item.categories.length > 0 && !item.expanded), 'glyphicon-remove': item.categories.length == 0}"></span>
                 </sub>
-                <a href="#" ng-click="$ctrl.moveTo(item.node_id)">{{item.name}}</a>
+                <a href="#" ng-click="$ctrl.moveTo(item.id)">{{item.name}}</a>
             <h4>
           </div>
           <div class="col-md-3">

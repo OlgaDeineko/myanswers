@@ -5,18 +5,12 @@
   <div class="container-fluid">
 
     <div class="row">
-      <div class="col-md-12">
-        <!-- <toolbar></toolbar> -->
-      </div>
-    </div>
 
-    <div class="row">
-
-      <div class="col-md-3">
+      <div class="col-md-2">
         <type-of-questions articles="$ctrl.articles"></type-of-questions>
       </div>
 
-      <div class="col-md-9">
+      <div class="col-md-10">
 
         <div class="container-fluid">
 
@@ -36,6 +30,7 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <ul class="dropdown-menu">
+                    <li><a href='#' ng-click="$ctrl.createCategory()">Create {{$ctrl.currentCategory == 1 ? 'Category': 'Subcategory'}}</a></li>
                     <li><a ui-sref="createFaq">Create FAQ</a></li>
                   </ul>
                 </div>

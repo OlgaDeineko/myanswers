@@ -26,7 +26,6 @@ import 'angular-ui-tree';
 import 'ng-tags-input';
 import 'ng-tags-input/build/ng-tags-input.min.css';
 
-
 import 'tinymce';
 import 'angular-ui-tinymce';
 import 'tinymce/skins/lightgray/skin.min.css';
@@ -41,17 +40,17 @@ import 'tinymce/plugins/image/plugin';
 
 
 angular.module('app', [
-    uiRouter,
-    permission,
-    uiPermission,
-    Common,
-    Components,
-    'ui.bootstrap',
-    'schemaForm',
-    'ui.tree',
-    'ui.tinymce',
-    'ngTagsInput'
-  ])
+  uiRouter,
+  permission,
+  uiPermission,
+  Common,
+  Components,
+  'ui.bootstrap',
+  'schemaForm',
+  'ui.tree',
+  'ui.tinymce',
+  'ngTagsInput'
+])
   .config(($locationProvider, $httpProvider, $urlRouterProvider) => {
     "ngInject";
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
@@ -76,10 +75,10 @@ angular.module('app', [
   .service('SubdomainService', SubdomainService)
   .component('app', AppComponent)
   .run(($rootScope, AuthenticationService) => {
-      "ngInject";
+    "ngInject";
 
-      $rootScope.$on('$stateChangeStart', (event, next) => {
-        AuthenticationService.initPermission();
-      });
+    $rootScope.$on('$stateChangeStart', (event, next) => {
+      AuthenticationService.initPermission();
+    });
 
   });
