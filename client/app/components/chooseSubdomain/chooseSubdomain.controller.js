@@ -6,6 +6,15 @@ class ChooseSubdomainController {
     this.$window = $window;
     this.name = 'Choose subdomain';
     this.alerts = [];
+
+    //TODO remove this.local for production and all 'if' with this variable
+    this.local = $window.location.host.indexOf('localhost') != -1;
+
+    let partsHost = $window.location.host.split('.');
+    if (partsHost.length > 2 || this.local) {
+      this.subdomain = partsHost[0];
+      this.moveTo(this.subdomain);
+    }
   }
 
   subdomainIsValid() {
@@ -27,6 +36,9 @@ class ChooseSubdomainController {
         // if(result.errors){
         //   alert('not subdomain');
         // }else{
+        if(self.local){
+          this.$window.location.href = `http://${subdomain}.localhost:3000/login/${subdomain}`;
+        }else
           this.$window.location.href = `http://${subdomain}.myanswers.io/login/${subdomain}`;
         // }
       })
