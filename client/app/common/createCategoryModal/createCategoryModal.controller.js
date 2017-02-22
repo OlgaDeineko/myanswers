@@ -1,7 +1,5 @@
-import {languages} from '../../config';
-
 class CreateCategoryModalController {
-  constructor($scope, $stateParams, CategoryService) {
+  constructor($scope, $stateParams, CategoryService, SettingsService) {
     'ngInject';
     this.name = 'createCategoryModal';
     let self = this;
@@ -61,8 +59,8 @@ class CreateCategoryModalController {
             key: 'lang',
             type: "select",
             title: "Language",
-            titleMap: languages.map((item) => {
-              return {value: item, name: item};
+            titleMap: SettingsService.getLanguages().map((item) => {
+              return {value: item.code, name: item.name};
             })
           }
         ]

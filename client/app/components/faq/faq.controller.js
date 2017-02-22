@@ -1,5 +1,5 @@
 class FaqController {
-  constructor($sce, $state, ArticleService) {
+  constructor($sce, $state, ArticleService, SettingsService) {
     "ngInject";
     this.name = 'faq';
 
@@ -14,6 +14,7 @@ class FaqController {
         //convert html to string @see{@link https://docs.angularjs.org/api/ng/directive/ngBindHtml}
         result.answer = $sce.trustAsHtml(result.answer);
         result.categories = result.categories[0];
+        result.language = SettingsService.getLanguages().find(l => l.code == result.language).name
 
         //counting words and character in article answer
         result.answerWithoutTags = String(result.answer).replace(/<[^>]+>/gm, '');

@@ -1,7 +1,5 @@
-import {languages} from '../../config';
-
 class EditFaqController {
-  constructor($state, CategoryService, ArticleService) {
+  constructor($state, CategoryService, ArticleService, SettingsService) {
     'ngInject';
     this.name = 'editFaq';
 
@@ -9,11 +7,12 @@ class EditFaqController {
     this.$state = $state;
     this.CategoryService = CategoryService;
     this.ArticleService = ArticleService;
+    this.SettingsService = SettingsService;
 
     this.faq = {};
     this.categories=[];
     //TODO array of language need get from server
-    this.languages = languages;
+    this.languages = SettingsService.getLanguages();
     // configs for tinyMCE editor @see {@link https://www.tinymce.com/docs/}
     this.tinymceOptions = {
       plugins: 'link image wordcount',

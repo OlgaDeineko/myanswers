@@ -11,6 +11,7 @@ import ResponseObserver from './services/responseObserver.service';
 import ArticleService from './services/article.service';
 import CategoryService from './services/category.service';
 import SubdomainService from './services/subdomain.service';
+import SettingsService from './services/settings.service';
 
 import settigns from './config.js';
 
@@ -75,9 +76,12 @@ angular.module('app', [
   .service('ArticleService', ArticleService)
   .service('CategoryService', CategoryService)
   .service('SubdomainService', SubdomainService)
+  .service('SettingsService', SettingsService)
   .component('app', AppComponent)
-  .run(($rootScope, AuthenticationService) => {
+  .run(($rootScope, AuthenticationService, SettingsService) => {
     "ngInject";
+
+    SettingsService.getCommon();
 
     $rootScope.$on('$stateChangeStart', (event, next) => {
       AuthenticationService.initPermission();

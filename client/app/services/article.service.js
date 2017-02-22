@@ -231,31 +231,30 @@ function ArticleService($http, SessionService) {
       console.log(result);
       return result.data.data
     });
-    /*
-     return new Promise((resolve, reject) => {
-     resolve({
-     algolia_object_id: 370371350,
-     answer: "<p>sdgdfgdsgsdfgd</p>",
-     author: "Amelia Kim",
-     categories: [{id: 4, id: 4, name: "IT", description: "", lang: "en"}],
-     created_at: 1487603827,
-     id: 51,
-     is_open_comments: 1,
-     question: "bla-bla-bla",
-     status: null,
-     tags: [{tag_id: 9, name: "test"}, {tag_id: 10, name: "testsd"}, {tag_id: 12, name: "bla"}],
-     updated_at: 1487605866,
 
-     language: 'English',
-     visibility: 'Public',
-     remarks: [
-     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla tellus. Aenean ac convallis odio. Praesent sed quam dolor. Suspendisse vel facilisis lorem. Cras non aliquet mauris. Aenean et ipsum interdum, congue lectus vitae, consequat ex. Vestibulum auctor ex eros, a cursus dolor lobortis sed. Vestibulum lacinia malesuada diam, ac tristique felis lacinia ac.',
-     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla tellus. Aenean ac convallis odio. Praesent sed quam dolor. Suspendisse vel facilisis lorem. Cras non aliquet mauris. Aenean et ipsum interdum, congue lectus vitae, consequat ex. Vestibulum auctor ex eros, a cursus dolor lobortis sed. Vestibulum lacinia malesuada diam, ac tristique felis lacinia ac.',
-     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla tellus. Aenean ac convallis odio. Praesent sed quam dolor. Suspendisse vel facilisis lorem. Cras non aliquet mauris. Aenean et ipsum interdum, congue lectus vitae, consequat ex. Vestibulum auctor ex eros, a cursus dolor lobortis sed. Vestibulum lacinia malesuada diam, ac tristique felis lacinia ac.',
-     ],
-     })
-     });
-     */
+    // return new Promise((resolve, reject) => {
+    //   resolve({
+    //     algolia_object_id: 370371350,
+    //     answer: "<p>sdgdfgds ssdfsgsdfgd sdfsd sfsd sdfsdfsdfs dfsd swew w ewt</p>",
+    //     author: "Amelia Kim",
+    //     categories: [{id: 4, id: 4, name: "IT", description: "", lang: "en"}],
+    //     created_at: 1487603827,
+    //     id: 51,
+    //     is_open_comments: 1,
+    //     question: "bla-bla-bla",
+    //     status: null,
+    //     tags: [{tag_id: 9, name: "test"}, {tag_id: 10, name: "testsd"}, {tag_id: 12, name: "bla"}],
+    //     updated_at: 1487605866,
+    //
+    //     language: 'en',
+    //     visibility: 'Public',
+    //     remarks: [
+    //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla tellus. Aenean ac convallis odio. Praesent sed quam dolor. Suspendisse vel facilisis lorem. Cras non aliquet mauris. Aenean et ipsum interdum, congue lectus vitae, consequat ex. Vestibulum auctor ex eros, a cursus dolor lobortis sed. Vestibulum lacinia malesuada diam, ac tristique felis lacinia ac.',
+    //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla tellus. Aenean ac convallis odio. Praesent sed quam dolor. Suspendisse vel facilisis lorem. Cras non aliquet mauris. Aenean et ipsum interdum, congue lectus vitae, consequat ex. Vestibulum auctor ex eros, a cursus dolor lobortis sed. Vestibulum lacinia malesuada diam, ac tristique felis lacinia ac.',
+    //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla tellus. Aenean ac convallis odio. Praesent sed quam dolor. Suspendisse vel facilisis lorem. Cras non aliquet mauris. Aenean et ipsum interdum, congue lectus vitae, consequat ex. Vestibulum auctor ex eros, a cursus dolor lobortis sed. Vestibulum lacinia malesuada diam, ac tristique felis lacinia ac.',
+    //     ],
+    //   })
+    // });
   };
 
   /**
