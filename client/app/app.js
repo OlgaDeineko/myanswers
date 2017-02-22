@@ -12,6 +12,7 @@ import ArticleService from './services/article.service';
 import CategoryService from './services/category.service';
 import SubdomainService from './services/subdomain.service';
 import SettingsService from './services/settings.service';
+import UsersService from './services/users.service';
 
 import settigns from './config.js';
 
@@ -27,6 +28,8 @@ import 'angular-ui-tree';
 import 'ng-tags-input';
 import 'ng-tags-input/build/ng-tags-input.min.css';
 import 'angular-clipboard';
+import  'ng-table';
+import  'ng-table/bundles/ng-table.css';
 
 import 'tinymce';
 import 'angular-ui-tinymce';
@@ -52,7 +55,8 @@ angular.module('app', [
   'ui.tree',
   'ui.tinymce',
   'ngTagsInput',
-  'angular-clipboard'
+  'angular-clipboard',
+  'ngTable'
 ])
   .config(($locationProvider, $httpProvider, $urlRouterProvider) => {
     "ngInject";
@@ -77,6 +81,7 @@ angular.module('app', [
   .service('CategoryService', CategoryService)
   .service('SubdomainService', SubdomainService)
   .service('SettingsService', SettingsService)
+  .service('UsersService', UsersService)
   .component('app', AppComponent)
   .run(($rootScope, AuthenticationService, SettingsService) => {
     "ngInject";
