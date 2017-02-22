@@ -6,13 +6,6 @@
       <div class="col-md-8 faq-content">
         <!--Tags-->
         <tags-input ng-model="$ctrl.faq.tags" display-property="name"></tags-input><!--END: Tags-->
-        <!--Counts word-->
-        <div class="text-right faq-counts">
-          <p>
-            {{$ctrl.faq.countWords}} word{{$ctrl.faq.countWords > 1 ? 's': ''}} {{$ctrl.faq.countChars}}
-            character{{$ctrl.faq.countChars > 1 ? 's': ''}}
-          </p>
-        </div><!--END: Counts word-->
         <!--Question-->
         <input class="form-control" placeholder="Title FAQ" ng-model="$ctrl.faq.question"><!--END: Question-->
         <!--Answer-->

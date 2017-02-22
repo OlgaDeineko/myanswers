@@ -36,7 +36,7 @@ import 'tinymce/plugins/link/plugin';
 import 'tinymce/plugins/paste/plugin';
 import 'tinymce/plugins/table/plugin';
 import 'tinymce/plugins/image/plugin';
-import 'tinymce/plugins/image/plugin';
+import 'tinymce/plugins/wordcount/plugin';
 
 
 angular.module('app', [

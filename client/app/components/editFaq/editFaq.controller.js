@@ -16,7 +16,7 @@ class EditFaqController {
     this.languages = languages;
     // configs for tinyMCE editor @see {@link https://www.tinymce.com/docs/}
     this.tinymceOptions = {
-      plugins: 'link image',
+      plugins: 'link image wordcount',
       themes: "modern",
       skin: false,
       height: 350,
@@ -59,12 +59,6 @@ class EditFaqController {
         .then((result) => {
           //don't ask)))
           result.categories = result.categories[0].id+'';
-
-          //counting words and character in article answer
-          let answerWithoutTags = String(result.answer).replace(/<[^>]+>/gm, '');
-          result.countWords = answerWithoutTags.trim().split(/\s+/).length;
-          result.countChars = (answerWithoutTags.match(/\S/g) || []).length;
-
           self.faq = result;
         })
         .catch((error) => {

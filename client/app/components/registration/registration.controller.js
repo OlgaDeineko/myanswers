@@ -83,6 +83,7 @@ class RegistrationController {
             self.alerts.push({
               type: 'success',
               msg: 'Done' });
+          self.moteToLogin();
         })
         .catch(error => {
             error.data.errors.forEach(error => {
