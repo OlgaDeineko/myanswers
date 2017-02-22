@@ -11,7 +11,7 @@ class ChooseSubdomainController {
     this.local = $window.location.host.indexOf('localhost') != -1;
 
     let partsHost = $window.location.host.split('.');
-    if (partsHost.length > 2 || this.local) {
+    if ((partsHost.length > 2 || this.local) && partsHost[0] != 'main') {
       this.subdomain = partsHost[0];
       this.moveTo(this.subdomain);
     }

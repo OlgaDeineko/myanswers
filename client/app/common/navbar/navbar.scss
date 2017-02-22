@@ -25,8 +25,13 @@
       }
     }
   }
+  .logout{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 
-  span {
+  span, i {
     font-size: 2rem;
   }
 }
