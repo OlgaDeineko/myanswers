@@ -25,6 +25,7 @@ import 'bootstrap/dist/js/bootstrap';
 import 'angular-ui-tree';
 import 'ng-tags-input';
 import 'ng-tags-input/build/ng-tags-input.min.css';
+import 'angular-clipboard';
 
 import 'tinymce';
 import 'angular-ui-tinymce';
@@ -49,7 +50,8 @@ angular.module('app', [
   'schemaForm',
   'ui.tree',
   'ui.tinymce',
-  'ngTagsInput'
+  'ngTagsInput',
+  'angular-clipboard'
 ])
   .config(($locationProvider, $httpProvider, $urlRouterProvider) => {
     "ngInject";

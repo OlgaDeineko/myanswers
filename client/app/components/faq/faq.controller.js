@@ -16,9 +16,9 @@ class FaqController {
         result.categories = result.categories[0];
 
         //counting words and character in article answer
-        let answerWithoutTags = String(result.answer).replace(/<[^>]+>/gm, '');
-        result.countWords = answerWithoutTags.trim().split(/\s+/).length;
-        result.countChars = (answerWithoutTags.match(/\S/g) || []).length;
+        result.answerWithoutTags = String(result.answer).replace(/<[^>]+>/gm, '');
+        result.countWords = result.answerWithoutTags.trim().split(/\s+/).length;
+        result.countChars = (result.answerWithoutTags.match(/\S/g) || []).length;
 
         self.faq = result;
       })
