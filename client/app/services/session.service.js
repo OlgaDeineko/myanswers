@@ -13,7 +13,7 @@ function SessionService($window) {
   }
 
   let geApiUrl = () => {
-    let userSubdomain = $window.localStorage['client_subdomain'] || 'maxii2';
+    let userSubdomain = $window.localStorage['client_subdomain'];
     let result = apiUrl;
     if(userSubdomain){
       result = `http://${userSubdomain}.${mainDomian}/api/v1`
@@ -26,7 +26,7 @@ function SessionService($window) {
   }
 
   let getSubdomain = () => {
-    return $window.localStorage['client_subdomain'] || 'maxii2';
+    return $window.localStorage['client_subdomain'];
   }
 
   let destroy = () => {

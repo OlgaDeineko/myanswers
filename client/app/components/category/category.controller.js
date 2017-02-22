@@ -26,11 +26,13 @@ class CategoryController {
     this.currentCategory = $stateParams.categoryId || this.uncategoryId;
 
     this.categories = [];
+    this.categoriesArr = [];
     this.articles = [];
 
     (function getAllData(self) {
       self.CategoryService.getAll()
         .then((result) => {
+          self.categoriesArr = result;
           let categoriesTree = parseTreeCategory(result);
           self.categories = filterCategories(categoriesTree, self.currentCategory);
         })

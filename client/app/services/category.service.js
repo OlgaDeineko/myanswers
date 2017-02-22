@@ -4,27 +4,27 @@ function CategoryService($http, SessionService) {
   "ngInject";
 
   let getAll = () => {
-    // return $http({
-    //   method: 'GET',
-    //   url: `${SessionService.geApiUrl()}/categories`,
-    // }).then(result => {
-    //   console.log(result);
-    //   return result.data.data
-    // });
-    return new Promise((resolve, reject) => {
-      resolve([
-      {id: "1", parent_id: "0", name: "Uncategorized", lang: "en"},
-      {id: "4", parent_id: "1", name: "IT", lang: "en"},
-      {id: "5", parent_id: "4", name: "Backend", lang: "en"},
-      {id: "6", parent_id: "4", name: "FrontEnd", lang: "en"},
-      {id: "7", parent_id: "6", name: "Angular", lang: "en"},
-      {id: "8", parent_id: "6", name: "React", lang: "en"},
-      {id: "9", parent_id: "5", name: "Frameworks", lang: "en"},
-      {id: "10", parent_id: "5", name: "CMS", lang: "en"},
-      {id: "11", parent_id: "10", name: "WordPress", lang: "en"},
-      {id: "12", parent_id: "10", name: "Drupal", lang: "en"}
-      ]);
-    })
+    return $http({
+      method: 'GET',
+      url: `${SessionService.geApiUrl()}/categories`,
+    }).then(result => {
+      console.log(result);
+      return result.data.data
+    });
+    // return new Promise((resolve, reject) => {
+    //   resolve([
+    //   {id: "1", parent_id: "0", name: "Uncategorized", lang: "en"},
+    //   {id: "4", parent_id: "1", name: "IT", lang: "en"},
+    //   {id: "5", parent_id: "4", name: "Backend", lang: "en"},
+    //   {id: "6", parent_id: "4", name: "FrontEnd", lang: "en"},
+    //   {id: "7", parent_id: "6", name: "Angular", lang: "en"},
+    //   {id: "8", parent_id: "6", name: "React", lang: "en"},
+    //   {id: "9", parent_id: "5", name: "Frameworks", lang: "en"},
+    //   {id: "10", parent_id: "5", name: "CMS", lang: "en"},
+    //   {id: "11", parent_id: "10", name: "WordPress", lang: "en"},
+    //   {id: "12", parent_id: "10", name: "Drupal", lang: "en"}
+    //   ]);
+    // })
   };
 
   let create = (newCategory) => {

@@ -1,10 +1,8 @@
 <div class="row">
   <div class="col-md-12">
     <div class="row" ng-repeat="article in $ctrl.articles">
-      <div class="col-md-9">
-        <h4>
-          <a href="#" ng-click="$ctrl.moveTo('faq', article.id)"><span class="glyphicon glyphicon-list-alt"></span> {{article.question}}</a>
-        </h4>
+      <div class="col-md-9 tree-title">
+        <a href="#" ng-click="$ctrl.moveTo('faq', article.id)"><span class="glyphicon glyphicon-list-alt tree-icon-folder"></span> {{article.question}}</a>
       </div>
       <div class="col-md-3">
         <!-- start Action btn -->

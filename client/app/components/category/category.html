@@ -18,32 +18,33 @@
             <div class="col-md-9">
               <h1>{{$ctrl.getCurentCategoryName()}}</h1>
 
-              <breadcrumbs categories="$ctrl.categories" current="$ctrl.currentCategory"</breadcrumbs>
+              <breadcrumbs ng-if="$ctrl.categoriesArr.length" categories="$ctrl.categoriesArr" current="$ctrl.currentCategory"
+              </breadcrumbs>
 
             </div>
             <div class="col-md-3">
-                <!-- start Split action -->
-                <div class="btn-group pull-right">
-                  <button type="button" class="btn btn-primary">Action</button>
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a href='#' ng-click="$ctrl.createCategory()">Create {{$ctrl.currentCategory == 1 ? 'Category': 'Subcategory'}}</a></li>
-                    <li><a ui-sref="createFaq">Create FAQ</a></li>
-                  </ul>
-                </div>
-                <!-- end Split action -->
+              <!-- start Split action -->
+              <div class="btn-group pull-right">
+                <button type="button" class="btn btn-primary">Action</button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href='#' ng-click="$ctrl.createCategory()">Create {{$ctrl.currentCategory == 1 ? 'Category':
+                    'Subcategory'}}</a></li>
+                  <li><a ui-sref="createFaq">Create FAQ</a></li>
+                </ul>
+              </div>
+              <!-- end Split action -->
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <div class="col-sm-12">
-                  <input type="email" class="form-control" placeholder="Search">
-                </div>
+                <input type="text" class="form-control" placeholder="Search">
               </div>
             </div>
           </div>
@@ -58,17 +59,17 @@
 
           <div class="row">
             <div class="col-md-12">
-            <!-- start Main content -->
-            <main>
+              <!-- start Main content -->
+              <main>
 
-              <div ng-if="$ctrl.categories.length">
-                <category-tree categories="$ctrl.categories" current="$ctrl.currentCategory"></category-tree>
-              </div>
+                <div ng-if="$ctrl.categories.length">
+                  <category-tree categories="$ctrl.categories" current="$ctrl.currentCategory"></category-tree>
+                </div>
 
-              <article-tree articles="$ctrl.articles"></article-tree>
+                <article-tree articles="$ctrl.articles"></article-tree>
 
-            </main>
-            <!-- end Main content -->
+              </main>
+              <!-- end Main content -->
             </div>
 
           </div>
