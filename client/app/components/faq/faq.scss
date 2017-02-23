@@ -1,7 +1,6 @@
 @import "../../common/common";
 
 .faq {
-  background: $bgColor;
 
   .tags {
     background-color: #fff;
@@ -63,6 +62,8 @@
   }
 
   &-left-sidebar {
+    background: $bgColor;
+    padding-bottom: 20px;
     .faq-category,
     .faq-visibility,
     .faq-author,

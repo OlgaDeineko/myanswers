@@ -9,6 +9,7 @@ import ChooseSubdomain from './chooseSubdomain/chooseSubdomain';
 import Faq from './faq/faq';
 import EditFaq from './editFaq/editFaq';
 import Users from './users/users';
+import Visitor from './visitor/visitor';
 
 let componentModule = angular.module('app.components', [
   ChooseSubdomain,
@@ -21,6 +22,7 @@ let componentModule = angular.module('app.components', [
   EditFaq,
   Faq,
   Users,
+  Visitor
 ])
 
 .name;

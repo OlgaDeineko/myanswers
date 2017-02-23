@@ -1,0 +1,56 @@
+@import "../../common/common";
+$lineHeight: 1.2;
+$lines: 5;
+$fontSize: 14;
+
+em {
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: underline;
+}
+.algolia{
+  padding: 10px;
+  border: 1px solid $lightBgColor;
+  border-radius: 4px;
+  margin: 10px;
+
+  &-question{
+    h3{
+      margin: 10px 0;
+    }
+  }
+
+  &-tags .one-tag {
+    display: inline-block;
+    margin: 0 5px;
+    background: $tagsBgColor;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+}
+
+.algolia-category{
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.algolia-answer{
+  font-size: $fontSize+px;
+  display: block;
+  display: -webkit-box;
+  height: $fontSize*$lineHeight*$lines+5+px;
+  line-height: $lineHeight;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  padding: 5px;
+  border-radius: 4px;
+  background: #f6f6f6;
+  margin-bottom: 5px;
+}
+
+.tree{
+  margin-top: 30px;
+}

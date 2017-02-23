@@ -1,0 +1,79 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group pull-right">
+        <div class="btn btn-success" ui-sref="visitor({categoryId: ''})">
+          Home
+        </div>
+        <div class="btn btn-warning" ng-click="$ctrl.logout()">
+          Log Out
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <h1>{{ $ctrl.name }}</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <input class="form-control" placeholder="Search" ng-model="$ctrl.searchModel"
+             ng-change="$ctrl.search($ctrl.searchModel)">
+    </div>
+  </div>
+
+  <div class="container-fluid tree" ng-if="!$ctrl.searchModel">
+    <div class="row">
+      <breadcrumbs ng-if="$ctrl.categoriesArr.length" home="'Home'" categories="$ctrl.categoriesArr"
+                   current="$ctrl.currentCategory"
+      </breadcrumbs>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- start Main content -->
+        <main>
+
+          <div ng-if="$ctrl.categories.length">
+            <category-tree categories="$ctrl.categories" current="$ctrl.currentCategory"></category-tree>
+          </div>
+
+          <article-tree articles="$ctrl.articles"></article-tree>
+
+        </main>
+        <!-- end Main content -->
+      </div>
+
+    </div>
+  </div>
+
+  <div ng-if="$ctrl.searchModel">
+    <div class="algolia" ng-repeat="item in $ctrl.algoliaResults">
+      <div class="row algolia-question">
+        <div class="col-md-12">
+          <h3><a href="#" ng-bind-html="item._highlightResult.question.value"></a></h3>
+        </div>
+
+      </div>
+
+      <div class="algolia-category">
+        Category: <span ng-bind-html="item._highlightResult.categories[0].value"></span>
+      </div>
+
+      <div class="algolia-answer" ng-bind-html="item._highlightResult.answer.value">
+      </div>
+
+      <div class="algolia-tags">
+        <div class="one-tag" ng-repeat="tag in item._highlightResult.tags" ng-bind-html="tag.value"></div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="$ctrl.searchModel && $ctrl.algoliaResults.length == 0">
+    <h3 class="text-center">
+      Not found
+    </h3>
+  </div>
+</div>
+

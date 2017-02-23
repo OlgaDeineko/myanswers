@@ -1,4 +1,4 @@
-<navbar></navbar>
+<navbar ng-if="!$ctrl.visitor"></navbar>
 <div class="content-wrapper faq">
   <div class="container-fluid">
     <div class="row">
@@ -29,10 +29,11 @@
         <div class="faq-answer" ng-bind-html="$ctrl.faq.answer">
         </div><!--END: Answer-->
         <!--Remarks-->
+        <div  ng-if="!$ctrl.visitor">
         <h4>Remarks</h4>
         <div class="one-remark" ng-repeat="item in $ctrl.faq.remarks track by $index">
           {{item}}
-        </div><!--END: Remarks-->
+        </div></div><!--END: Remarks-->
       </div><!--END: Content article-->
 
       <!--left sideba article-->
@@ -66,7 +67,7 @@
           <i class="glyphicon glyphicon-eye-open"></i>{{$ctrl.faq.analytics}} views
         </div><!--END: Analytics-->
         <!--Action buttons-->
-        <div class="row faq-actions">
+        <div class="row faq-actions" ng-if="!$ctrl.visitor">
           <div class="col-md-6 col-md-offset-3">
             <div class="btn btn-success" ng-click="$ctrl.goTo()">
               Edit

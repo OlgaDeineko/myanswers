@@ -30,6 +30,8 @@ import 'ng-tags-input/build/ng-tags-input.min.css';
 import 'angular-clipboard';
 import  'ng-table';
 import  'ng-table/bundles/ng-table.css';
+import 'algoliasearch';
+import 'angular-sanitize';
 
 import 'tinymce';
 import 'angular-ui-tinymce';
@@ -56,7 +58,8 @@ angular.module('app', [
   'ui.tinymce',
   'ngTagsInput',
   'angular-clipboard',
-  'ngTable'
+  'ngTable',
+  'ngSanitize'
 ])
   .config(($locationProvider, $httpProvider, $urlRouterProvider) => {
     "ngInject";

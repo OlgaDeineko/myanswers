@@ -6,6 +6,8 @@ class FaqController {
     let self = this;
     this.$state = $state;
     this.ArticleService = ArticleService;
+    console.log('visitor', $state.current.name)
+    this.visitor = $state.current.name == 'faqVisitor';
 
     this.faq = {};
 

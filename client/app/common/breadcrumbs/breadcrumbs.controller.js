@@ -1,6 +1,8 @@
 class BreadcrumbsController {
-  constructor() {
+  constructor($state) {
+    'ngInject';
     this.name = 'breadcrumbs';
+    this.$state = $state;
     this.breadcrumbs = [];
   }
 
@@ -13,6 +15,10 @@ class BreadcrumbsController {
       id = category.parent_id;
     }
   };
+
+  goTo(categoryId){
+    this.$state.go(this.$state.current.name, {"categoryId": categoryId });
+  }
 }
 
 export default BreadcrumbsController;

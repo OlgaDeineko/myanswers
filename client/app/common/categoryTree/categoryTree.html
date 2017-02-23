@@ -15,7 +15,7 @@
         </span>
         <a href="#" ng-click="$ctrl.moveTo(item.id)">{{item.name}}</a>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3" ng-if="$ctrl.$state.current.name != 'visitor'">
         <actions-of-tree-item category="item">
         </actions-of-tree-item>
       </div>
