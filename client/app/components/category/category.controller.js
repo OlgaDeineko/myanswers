@@ -44,12 +44,12 @@ class CategoryController {
       component: 'createCategoryModal'
     });
     modalInstance.result.then(result => {
-      self.getAllData(self);
+      self.getAllData(self, true);
     })
   };
 
-  getAllData(self) {
-    self.CategoryService.getAll()
+  getAllData(self, update) {
+    self.CategoryService.getAll(update)
       .then((result) => {
         self.categoriesArr = result;
         let categoriesTree = parseTreeCategory(result);

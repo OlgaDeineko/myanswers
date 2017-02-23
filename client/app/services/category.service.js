@@ -4,9 +4,9 @@ function CategoryService($http, SessionService) {
   "ngInject";
   let categories = null;
 
-  let getAll = () => {
+  let getAll = (update) => {
     let self = this;
-    if(this.categories){
+    if(this.categories && !update){
       return new Promise((resolve, reject) => {
         resolve(self.categories);
       })
