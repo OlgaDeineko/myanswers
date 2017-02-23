@@ -17,21 +17,21 @@ let editFaqModule = angular.module('editFaq', [
         template: '<edit-faq/>',
         component: 'editFaq',
         data: {
-          // permissions: {
-          //   only: 'user',
-          //   redirectTo: 'login'
-          // }
+          permissions: {
+            only: 'user',
+            redirectTo: 'chooseSubdomain'
+          }
         }
       })
       .state('createFaq', {
-        url: '/faq/create',
+        url: '/faq/create?categoryId',
         template: '<edit-faq/>',
         component: 'editFaq',
         data: {
-          // permissions: {
-          //   only: 'user',
-          //   redirectTo: 'login'
-          // }
+          permissions: {
+            only: 'user',
+            redirectTo: 'chooseSubdomain'
+          }
         }
       });
   })

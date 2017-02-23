@@ -17,10 +17,10 @@ let usersModule = angular.module('users', [
         template: '<users/>',
         component: 'users',
         data: {
-          // permissions: {
-          //   only: 'user',
-          //   redirectTo: 'login'
-          // }
+          permissions: {
+            only: 'user',
+            redirectTo: 'chooseSubdomain'
+          }
         }
       });
   })

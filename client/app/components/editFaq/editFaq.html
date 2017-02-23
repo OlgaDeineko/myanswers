@@ -84,12 +84,12 @@
         <!--Action buttons-->
         <div class="row faq-actions">
           <div class="col-md-6 col-md-offset-3">
-            <div class="btn btn-primary" ng-click="$ctrl.saveAsDraft();">
+            <div class="btn btn-primary" ng-click="$ctrl.saveAsDraft();" ng-disabled="!$ctrl.faq.question">
               Save As Draft
             </div>
           </div>
           <div class="col-md-6 col-md-offset-3">
-            <div class="btn btn-primary save-btn" ng-click="$ctrl.save();">
+            <div class="btn btn-primary save-btn" ng-click="$ctrl.save();" ng-disabled="!$ctrl.faq.question">
               Save
             </div>
           </div>

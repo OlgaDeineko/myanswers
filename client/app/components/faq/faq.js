@@ -18,10 +18,10 @@ let faqModule = angular.module('faq', [
         template: '<faq/>',
         component: 'faq',
         data: {
-          // permissions: {
-          //   only: 'user',
-          //   redirectTo: 'login'
-          // }
+          permissions: {
+            only: 'user',
+            redirectTo: 'chooseSubdomain'
+          }
         }
       });
   })

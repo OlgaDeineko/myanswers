@@ -11,7 +11,7 @@ class CreateCategoryModalController {
 
     this.mode = 'create';
     this.type = $stateParams.categoryId ? 'Subcategory' : 'Category';
-    this.newCategory = {parent_id: $stateParams.categoryId || '1'};
+    this.newCategory = {parent_id: $stateParams.categoryId || '1', lang: 'en'};
     this.alerts = [];
 
     if (this.$resolve.category) {
@@ -40,7 +40,7 @@ class CreateCategoryModalController {
           type: "string",
         }
       },
-      required: ["title", "parent_id", "lang"]
+      required: ["name", "parent_id", "lang"]
     };
 
     this.CategoryService.getAll()

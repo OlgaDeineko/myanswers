@@ -34,7 +34,7 @@
                 <ul class="dropdown-menu">
                   <li><a href='#' ng-click="$ctrl.createCategory()">Create {{$ctrl.currentCategory == 1 ? 'Category':
                     'Subcategory'}}</a></li>
-                  <li><a ui-sref="createFaq">Create FAQ</a></li>
+                  <li><a ui-sref="createFaq({categoryId: $ctrl.currentCategory})" ui-sref-opts="{qqq: 'w'}">Create FAQ</a></li>
                 </ul>
               </div>
               <!-- end Split action -->

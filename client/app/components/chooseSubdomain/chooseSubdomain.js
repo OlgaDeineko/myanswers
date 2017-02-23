@@ -20,7 +20,7 @@ let chooseSubdomainModule = angular.module('chooseSubdomain', [
       data: {
         permissions: {
           only: 'anonymous',
-          redirectTo: 'home'
+          redirectTo: 'category'
         }
       }
     });

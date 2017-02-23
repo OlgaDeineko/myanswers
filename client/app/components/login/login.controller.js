@@ -67,7 +67,6 @@ class LoginController {
       user.subdomain = self.subdomain;
       this.AuthenticationService.login(user)
         .then(result => {
-          self.SessionService.create(result.data.data.access_token, result.data.data.subdomain);
           self.$state.go("category");
         })
         .catch(error => {

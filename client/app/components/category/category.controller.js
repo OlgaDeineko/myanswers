@@ -29,24 +29,7 @@ class CategoryController {
     this.categoriesArr = [];
     this.articles = [];
 
-    (function getAllData(self) {
-      self.CategoryService.getAll()
-        .then((result) => {
-          self.categoriesArr = result;
-          let categoriesTree = parseTreeCategory(result);
-          self.categories = filterCategories(categoriesTree, self.currentCategory);
-        })
-        .catch((error) => {
-          console.warn('Error request:', error);
-        });
-      self.ArticleService.getAll()
-        .then(result => {
-          self.articles = filterArticles(result, self.currentCategory);
-        })
-        .catch((error) => {
-          console.warn('Error request:', error);
-        })
-    })(this);
+    this.getAllData(this);
   }
 
   getCurentCategoryName() {
@@ -55,11 +38,33 @@ class CategoryController {
       : this.name;
   }
 
-
-  createCategory = () => {
+  createCategory() {
+    let self = this;
     let modalInstance = this.$uibModal.open({
       component: 'createCategoryModal'
     });
+    modalInstance.result.then(result => {
+      self.getAllData(self);
+    })
+  };
+
+  getAllData(self) {
+    self.CategoryService.getAll()
+      .then((result) => {
+        self.categoriesArr = result;
+        let categoriesTree = parseTreeCategory(result);
+        self.categories = filterCategories(categoriesTree, self.currentCategory);
+      })
+      .catch((error) => {
+        console.warn('Error request:', error);
+      });
+    self.ArticleService.getAll()
+      .then(result => {
+        self.articles = filterArticles(result, self.currentCategory);
+      })
+      .catch((error) => {
+        console.warn('Error request:', error);
+      })
   };
 
 }

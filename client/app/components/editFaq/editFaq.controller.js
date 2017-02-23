@@ -11,7 +11,6 @@ class EditFaqController {
 
     this.faq = {};
     this.categories=[];
-    //TODO array of language need get from server
     this.languages = SettingsService.getLanguages();
     // configs for tinyMCE editor @see {@link https://www.tinymce.com/docs/}
     this.tinymceOptions = {
@@ -41,11 +40,11 @@ class EditFaqController {
       this.faq = {
         question: '',
         answer: '',
-        categories: {},
+        categories: $state.params.categoryId || '1',
         tags: [],
         visibility: 'Public',
-        author: 'Amelia Kim',
-        language: 'English',
+        author: 'Test User',
+        language: 'en',
         openForComments: true,
         published: true,
         remarks: [],

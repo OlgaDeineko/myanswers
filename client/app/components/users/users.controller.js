@@ -40,12 +40,12 @@ class UsersController {
   edit(user){
     let self = this;
     console.log('edit', user);
-    let modalInstance = this.$uibModal.open({
-      component: 'createUserModal',
-      resolve: {
-        user: user
-      }
-    });
+    // let modalInstance = this.$uibModal.open({
+    //   component: 'createUserModal',
+    //   resolve: {
+    //     user: user
+    //   }
+    // });
   }
 }
 

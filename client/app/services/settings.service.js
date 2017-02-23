@@ -7,20 +7,21 @@ function SettingsService($http, SessionService) {
 
   let getCommon = () => {
     let self = this;
-    // return $http({
-    //   method: 'GET',
-    //   url: `${SessionService.geApiUrl()}/settings/common`,
-    // }).then(result => {
-    //   self.languages = result.data.data.languages;
-    //   self.roles = result.data.data.roles;
-    // });
+    return $http({
+      method: 'GET',
+      url: `${SessionService.geApiUrl()}/settings/common`,
+    }).then(result => {
+      self.languages = result.data.data.languages;
+      self.roles = result.data.data.roles;
+    });
 
-    self.languages = [{"code":"en","name":"English"},{"code":"nl","name":"Dutch"},{"code":"fr","name":"French"}]
-    self.roles = [{"code":"admin","name":"admin"},{"code":"user","name":"user"},{"code":"visitor","name":"visitor"},{"code":"contributor","name":"contributor"}]
+    // self.languages = [{"code":"en","name":"English"},{"code":"nl","name":"Dutch"},{"code":"fr","name":"French"}]
+    // self.roles = [{"code":"admin","name":"admin"},{"code":"user","name":"user"},{"code":"visitor","name":"visitor"},{"code":"contributor","name":"contributor"}]
   };
 
   let getLanguages = () => {
-    return this.languages;
+    //TODO fix this
+    return this.languages || [{"code":"en","name":"English"},{"code":"nl","name":"Dutch"},{"code":"fr","name":"French"}];
   };
 
   let getRoles = () => {

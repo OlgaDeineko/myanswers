@@ -24,7 +24,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
   }
 
   let isAuthenticated = () => {
-    return Session.hasToken() && !!Session.getSubdomain();
+    return SessionService.hasToken() && !!SessionService.getSubdomain();
   }
 
   let initPermission = () => {

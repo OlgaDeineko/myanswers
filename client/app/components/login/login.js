@@ -18,7 +18,7 @@ let loginModule = angular.module('login', [
       data: {
         permissions: {
           only: 'anonymous',
-          redirectTo: 'home'
+          redirectTo: 'category'
         }
       }
     });

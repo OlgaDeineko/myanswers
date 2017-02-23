@@ -86,7 +86,9 @@ angular.module('app', [
   .run(($rootScope, AuthenticationService, SettingsService) => {
     "ngInject";
 
-    SettingsService.getCommon();
+    if(AuthenticationService.isAuthenticated()) {
+      SettingsService.getCommon();
+    }
 
     $rootScope.$on('$stateChangeStart', (event, next) => {
       AuthenticationService.initPermission();

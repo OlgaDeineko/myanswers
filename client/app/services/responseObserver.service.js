@@ -25,7 +25,8 @@ function ResponseObserver($q, $window, SessionService) {
     'responseError': (errorResponse) => {
       switch (errorResponse.status) {
       case 403:
-          //$window.location = './403.html';
+      case 401:
+          $window.location = './403.html';
           break;
       case 500:
           //$window.location = './500.html';
