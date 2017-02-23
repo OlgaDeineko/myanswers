@@ -72,7 +72,7 @@ angular.module('app', [
     $httpProvider.defaults.headers.put = {};
     $httpProvider.defaults.headers.patch = {};
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/category/');
   })
   .service('ResponseObserver', ResponseObserver)
   .service('SessionService', SessionService)

@@ -6,7 +6,8 @@ let breadcrumbsComponent = {
   restrict: 'E',
   bindings: {
     categories: '=',
-    current: '='
+    current: '=',
+    home: '='
   },
   template,
   controller

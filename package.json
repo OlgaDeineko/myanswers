@@ -4,6 +4,7 @@
   "description": "Starter for Angular + ES6 + (Webpack or JSPM)",
   "main": "index.js",
   "dependencies": {
+    "algoliasearch": "^3.21.1",
     "angular": "^1.5.0",
     "angular-clipboard": "^1.5.0",
     "angular-permission": "^5.2.1",

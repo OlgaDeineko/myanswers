@@ -1,9 +1,10 @@
 class RegistrationController {
-  constructor($scope, $state, AuthenticationService) {
+  constructor($scope, $window, $state, AuthenticationService) {
     "ngInject";
 
     this.$state = $state;
     this.$scope = $scope;
+    this.$window = $window;
     this.name = 'Registration';
     this.AuthenticationService = AuthenticationService;
 
@@ -63,7 +64,8 @@ class RegistrationController {
   moteToLogin() {
     let self = this;
     if(self.isCreated){
-      self.$state.go("login", {subdomain: self.isCreated});
+      this.$window.location.href = `http://${self.isCreated}.myanswers.io/login/${self.isCreated}`;
+      // self.$state.go("login", {subdomain: self.isCreated});
     }else{
       self.$state.go("chooseSubdomain");
     }
