@@ -2,13 +2,22 @@ import config, {apiUrl} from '../config';
 
 function CategoryService($http, SessionService) {
   "ngInject";
+  let categories = null;
 
   let getAll = () => {
+    let self = this;
+    if(this.categories){
+      return new Promise((resolve, reject) => {
+        resolve(self.categories);
+      })
+    }
+
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/categories`,
     }).then(result => {
       console.log(result);
+      self.categories = result.data.data;
       return result.data.data
     });
     // return new Promise((resolve, reject) => {

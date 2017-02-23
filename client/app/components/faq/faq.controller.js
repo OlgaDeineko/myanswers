@@ -11,10 +11,14 @@ class FaqController {
 
     this.ArticleService.getById($state.params.faqId)
       .then((result) => {
+        if(!result.id){
+          self.$state.go('category');
+        }
         //convert html to string @see{@link https://docs.angularjs.org/api/ng/directive/ngBindHtml}
         result.answer = $sce.trustAsHtml(result.answer);
         result.categories = result.categories[0];
-        result.language = SettingsService.getLanguages().find(l => l.code == result.language).name
+        if(result.lang)
+          result.lang = SettingsService.getLanguages().find(l => l.code == result.lang).name;
 
         //counting words and character in article answer
         result.answerWithoutTags = String(result.answer).replace(/<[^>]+>/gm, '');

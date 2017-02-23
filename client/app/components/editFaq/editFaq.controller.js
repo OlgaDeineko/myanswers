@@ -44,7 +44,7 @@ class EditFaqController {
         tags: [],
         visibility: 'Public',
         author: 'Test User',
-        language: 'en',
+        lang: 'en',
         openForComments: true,
         published: true,
         remarks: [],

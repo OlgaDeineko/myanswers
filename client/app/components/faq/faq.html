@@ -43,20 +43,23 @@
           {{$ctrl.faq.categories.name}}
         </div><!--END: Categories-->
         <!--Visibility-->
+        <div ng-if="$ctrl.faq.visibility">
         <h4>Visibility:</h4>
         <div class="faq-visibility">
           {{$ctrl.faq.visibility}}
-        </div><!--END: Visibility-->
+        </div></div><!--END: Visibility-->
         <!--Author-->
+        <div ng-if="$ctrl.faq.author">
         <h4>Author:</h4>
         <div class="faq-author">
           {{$ctrl.faq.author}}
-        </div><!--END: Author-->
+        </div></div><!--END: Author-->
         <!--Language-->
+        <div ng-if="$ctrl.faq.lang">
         <h4>Language:</h4>
         <div class="faq-lang">
-          {{$ctrl.faq.language}}
-        </div><!--END: Language-->
+          {{$ctrl.faq.lang}}
+        </div></div><!--END: Language-->
         <!--Analytics-->
         <h4>Analytics:</h4>
         <div class="faq-analytics">
