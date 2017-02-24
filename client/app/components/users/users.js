@@ -13,7 +13,7 @@ let usersModule = angular.module('users', [
 
     $stateProvider
       .state('users', {
-        url: '/users',
+        url: '/admin/users',
         template: '<users/>',
         component: 'users',
         data: {

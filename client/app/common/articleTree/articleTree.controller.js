@@ -12,7 +12,7 @@ class ArticleTreeController {
   }
 
   removeArticle(faqId){
-    this.ArticleService.remove(faqId)
+    this.ArticleService.remove(faqId);
   }
 }
 

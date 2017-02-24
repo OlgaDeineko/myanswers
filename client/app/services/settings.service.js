@@ -25,7 +25,7 @@ function SettingsService($http, SessionService) {
   };
 
   let getRoles = () => {
-    return this.roles;
+    return this.roles ||  [{"code":"admin","name":"admin"},{"code":"user","name":"user"},{"code":"visitor","name":"visitor"},{"code":"contributor","name":"contributor"}];
   };
 
   return {

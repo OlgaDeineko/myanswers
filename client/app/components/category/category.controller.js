@@ -14,7 +14,7 @@ let filterCategories = (categories, categoryId) => {
 };
 
 class CategoryController {
-  constructor($stateParams, $uibModal, CategoryService, ArticleService) {
+  constructor($stateParams, $scope, $uibModal, CategoryService, ArticleService) {
     "ngInject";
 
     this.name = 'Dashboard';
@@ -28,6 +28,15 @@ class CategoryController {
     this.categories = [];
     this.categoriesArr = [];
     this.articles = [];
+
+    $scope.$on('updateArticles', () => {
+      console.log('$on: updateArticles');
+      this.getAllData(this, true);
+    });
+    $scope.$on('updateCategories', () => {
+      console.log('$on: updateCategories');
+      this.getAllData(this, true);
+    });
 
     this.getAllData(this);
   }
@@ -43,9 +52,6 @@ class CategoryController {
     let modalInstance = this.$uibModal.open({
       component: 'createCategoryModal'
     });
-    modalInstance.result.then(result => {
-      self.getAllData(self, true);
-    })
   };
 
   getAllData(self, update) {
@@ -58,7 +64,7 @@ class CategoryController {
       .catch((error) => {
         console.warn('Error request:', error);
       });
-    self.ArticleService.getAll()
+    self.ArticleService.getAll(update)
       .then(result => {
         self.articles = filterArticles(result, self.currentCategory);
       })

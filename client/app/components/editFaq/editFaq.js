@@ -13,7 +13,7 @@ let editFaqModule = angular.module('editFaq', [
 
     $stateProvider
       .state('editFaq', {
-        url: '/faq/edit/{faqId}',
+        url: '/admin/faq/edit/{faqId}',
         template: '<edit-faq/>',
         component: 'editFaq',
         data: {
@@ -24,7 +24,7 @@ let editFaqModule = angular.module('editFaq', [
         }
       })
       .state('createFaq', {
-        url: '/faq/create?categoryId',
+        url: '/admin/faq/create?categoryId',
         template: '<edit-faq/>',
         component: 'editFaq',
         data: {

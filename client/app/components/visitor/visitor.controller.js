@@ -14,7 +14,7 @@ let filterCategories = (categories, categoryId) => {
 };
 let algoliasearch = require('algoliasearch');
 class VisitorController {
-  constructor($window, $stateParams, $scope, AuthenticationService, CategoryService, ArticleService) {
+  constructor($window, $stateParams, $scope, AuthenticationService, CategoryService, ArticleService, SessionService) {
     'ngInject';
 
     this.name = 'Welcome to KB';
@@ -23,7 +23,7 @@ class VisitorController {
 
     let id = 'I9WKUNVPGV';
     let key = '5a6dbbf12e7c8d629d22ec3197fe0186';
-    let index = 'cook-house';
+    let index = SessionService.getSubdomain();
     this.algoliaResults = [];
 
     this.index = new algoliasearch(id, key, {protocol: 'https:'}).initIndex(index);

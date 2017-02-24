@@ -13,7 +13,7 @@ let categoryModule = angular.module('category', [
 
   $stateProvider
     .state('category', {
-      url: '/category/{categoryId}',
+      url: '/admin/category/{categoryId}',
       template: '<category/>',
       component: 'category',
       data: {

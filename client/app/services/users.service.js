@@ -45,14 +45,14 @@ function CategoryService($http, SessionService) {
   };
 
   let update = (user) => {
-    // return $http({
-    //   method: 'PUT',
-    //   url: `${SessionService.geApiUrl()}/users/${user.id}`,
-    //   data: user
-    // }).then(result => {
-    //   console.log(result);
-    //   return result.data.data
-    // });
+    return $http({
+      method: 'PUT',
+      url: `${SessionService.geApiUrl()}/users/${user.id}`,
+      data: user
+    }).then(result => {
+      console.log(result);
+      return result.data.data
+    });
   };
 
   let remove = (userId) => {

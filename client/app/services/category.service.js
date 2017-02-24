@@ -1,6 +1,6 @@
 import config, {apiUrl} from '../config';
 
-function CategoryService($http, SessionService) {
+function CategoryService($http, $rootScope, SessionService) {
   "ngInject";
   let categories = null;
 
@@ -43,6 +43,7 @@ function CategoryService($http, SessionService) {
       data: newCategory
     }).then(result => {
       console.log(result);
+      $rootScope.$broadcast('updateCategories');
       return result.data.data || result.data
     });
   };
@@ -54,6 +55,7 @@ function CategoryService($http, SessionService) {
       data: category
     }).then(result => {
       console.log(result);
+      $rootScope.$broadcast('updateCategories');
       return result.data.data
     });
   };
@@ -64,6 +66,7 @@ function CategoryService($http, SessionService) {
       url: `${SessionService.geApiUrl()}/categories/${categoryId}`,
     }).then(result => {
       console.log(result);
+      $rootScope.$broadcast('updateCategories');
       return result.data.data
     });
   };

@@ -75,7 +75,7 @@ angular.module('app', [
     $httpProvider.defaults.headers.put = {};
     $httpProvider.defaults.headers.patch = {};
 
-    $urlRouterProvider.otherwise('/category/');
+    $urlRouterProvider.otherwise('/admin/category/');
   })
   .service('ResponseObserver', ResponseObserver)
   .service('SessionService', SessionService)

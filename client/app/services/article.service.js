@@ -16,19 +16,27 @@ import config, {apiUrl} from '../config';
  * @property {object[]} categories - categories article. now in array one element
  */
 
-function ArticleService($http, SessionService) {
+function ArticleService($http, $rootScope, SessionService) {
   "ngInject";
+  let articles = null;
 
   /**
    * Get all articles(FAQ)
    * @returns {*|Promise.<{Article[]}>}
    */
-  let getAll = () => {
+  let getAll = (update) => {
+    let self = this;
+    if(this.articles && !update){
+      return new Promise((resolve, reject) => {
+        resolve(self.articles);
+      })
+    }
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq`,
     }).then(result => {
       console.log(result);
+      self.articles = result.data.data;
       return result.data.data
     });
     // return new Promise((resolve, reject) => {
@@ -246,7 +254,7 @@ function ArticleService($http, SessionService) {
     //     tags: [{tag_id: 9, name: "test"}, {tag_id: 10, name: "testsd"}, {tag_id: 12, name: "bla"}],
     //     updated_at: 1487605866,
     //
-    //     language: 'en',
+    //     lang: 'en',
     //     visibility: 'Public',
     //     remarks: [
     //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla tellus. Aenean ac convallis odio. Praesent sed quam dolor. Suspendisse vel facilisis lorem. Cras non aliquet mauris. Aenean et ipsum interdum, congue lectus vitae, consequat ex. Vestibulum auctor ex eros, a cursus dolor lobortis sed. Vestibulum lacinia malesuada diam, ac tristique felis lacinia ac.',
@@ -263,12 +271,14 @@ function ArticleService($http, SessionService) {
    * @returns {Promise.<{Article}>}
    */
   let save = (faq) => {
+    let self = this;
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/faq`,
       data: faq
     }).then(result => {
       console.log(result);
+      self.articles=null;
       return result.data.data
     });
   };
@@ -279,12 +289,14 @@ function ArticleService($http, SessionService) {
    * @returns {Promise.<{Article}>}
    */
   let update = (faq) => {
+    let self = this;
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/faq/${faq.id}`,
       data: faq
     }).then(result => {
       console.log(result);
+      self.articles=null;
       return result.data.data
     });
   };
@@ -300,6 +312,7 @@ function ArticleService($http, SessionService) {
       url: `${SessionService.geApiUrl()}/faq/${faqId}`,
     }).then(result => {
       console.log(result);
+      $rootScope.$broadcast('updateArticles');
       return result.data.data
     });
   };

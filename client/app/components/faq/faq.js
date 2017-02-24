@@ -14,7 +14,7 @@ let faqModule = angular.module('faq', [
 
     $stateProvider
       .state('faq', {
-        url: '/faq/{faqId}',
+        url: '/admin/faq/{faqId}',
         template: '<faq/>',
         component: 'faq',
         data: {

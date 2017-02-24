@@ -23,15 +23,19 @@ class UsersController {
   }
 
   create () {
+    let self = this;
     let modalInstance = this.$uibModal.open({
       component: 'createUserModal'
     });
+    modalInstance.result.then(r =>{
+      self.tableParams.reload();
+    })
   };
 
   remove(userId){
     let self = this;
     console.log('remove', userId);
-
+    // self.tableParams.reload();
     // self.UsersService.remove(userId)
     //   .then((result) => {
     //   })
@@ -40,12 +44,15 @@ class UsersController {
   edit(user){
     let self = this;
     console.log('edit', user);
-    // let modalInstance = this.$uibModal.open({
-    //   component: 'createUserModal',
-    //   resolve: {
-    //     user: user
-    //   }
-    // });
+    let modalInstance = this.$uibModal.open({
+      component: 'createUserModal',
+      resolve: {
+        user: user
+      }
+    });
+    modalInstance.result.then(r =>{
+      self.tableParams.reload();
+    })
   }
 }
 
