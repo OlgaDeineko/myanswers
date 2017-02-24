@@ -189,6 +189,11 @@ function FakeDataService() {
     console.log('getLocalData', url);
 
     let reg = /\/?[\d]+$/; //regexp if url ends id etc: 'faq/54'
+    let regUserId = /(users)\/.*/  //regexp for replace user id
+
+    if(regUserId.test(url)){
+      url = url.replace(/\/.*/, '/23');
+    }
 
     switch (url.replace(reg, '')) {
       case 'categories':
@@ -205,6 +210,9 @@ function FakeDataService() {
         return {data: {data: data.articles}};
         break;
       case 'users':
+        if (reg.test(url) || method != 'GET') {
+          return {data: {data: data.users[0]}};
+        }
         return {data: {data: data.users}};
         break;
       case 'settings/common':

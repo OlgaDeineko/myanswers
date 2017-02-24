@@ -1,56 +1,55 @@
 class UsersController {
-  constructor($uibModal, NgTableParams, UsersService) {
+  constructor($scope, $uibModal, NgTableParams, UsersService) {
     'ngInject';
     this.name = 'Users';
-    let self = this;
 
     this.$uibModal = $uibModal;
     this.UsersService = UsersService;
+    this.users = [];
+    this.NgTableParams = NgTableParams;
 
-    this.tableParams = new NgTableParams({}, {
-      counts: [],
-      getData: function (params) {
-        return self.UsersService.getAll().then(result => {
-          result = result.map(u => {
-            u.role = u.role[0];
-            return u;
-          } );
+    this.getData(this);
+    this.tableParams = {};
 
-          return result;
-        })
-      }
+    $scope.$on('updateUsers', () => {
+      console.log('$on: updateUsers');
+      this.getData(this, true);
     });
   }
 
-  create () {
-    let self = this;
+  create() {
     let modalInstance = this.$uibModal.open({
       component: 'createUserModal'
     });
-    modalInstance.result.then(r =>{
-      self.tableParams.reload();
-    })
   };
 
-  remove(userId){
-    let self = this;
+  remove(userId) {
     console.log('remove', userId);
-    // self.tableParams.reload();
-    // self.UsersService.remove(userId)
-    //   .then((result) => {
-    //   })
+    // this.UsersService.remove(userId)
   }
 
-  edit(user){
-    let self = this;
+  edit(user) {
     let modalInstance = this.$uibModal.open({
       component: 'createUserModal',
       resolve: {
         user: user
       }
     });
-    modalInstance.result.then(r =>{
-      self.tableParams.reload();
+  }
+
+  getData(self, update) {
+    self.UsersService.getAll(update).then(result => {
+      self.users = result.map(u => {
+        u.role = u.role[0];
+        return u;
+      });
+
+      self.tableParams = new self.NgTableParams({
+        count: 15,
+      }, {
+        counts: [],
+        dataset:  self.users,
+      });
     })
   }
 }

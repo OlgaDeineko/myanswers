@@ -1,6 +1,6 @@
 import config, {apiUrl} from '../config';
 
-function UsersService($http, SessionService) {
+function UsersService($http, $rootScope, SessionService) {
   "ngInject";
   let users = null;
 
