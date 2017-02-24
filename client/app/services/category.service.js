@@ -1,6 +1,6 @@
 import config, {apiUrl} from '../config';
 
-function CategoryService($http, $rootScope, SessionService) {
+function CategoryService($http, $q, $rootScope, SessionService) {
   "ngInject";
   let categories = null;
 
@@ -12,13 +12,18 @@ function CategoryService($http, $rootScope, SessionService) {
       })
     }
 
-    return $http({
+    if(self.deferred) return self.deferred.promise;
+    this.deferred = $q.defer();
+
+    $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/categories`,
     }).then(result => {
       self.categories = result.data.data;
-      return result.data.data
+      self.deferred.resolve(result.data.data);
+      delete self.deferred;
     });
+    return self.deferred.promise;
   };
 
   let create = (newCategory) => {

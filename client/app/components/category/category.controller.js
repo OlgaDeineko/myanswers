@@ -23,12 +23,10 @@ class CategoryController {
 
     this.ArticleService = ArticleService;
     this.CategoryService = CategoryService;
-    this.currentCategory = $stateParams.categoryId || this.uncategoryId;
 
+    this.currentCategory = $stateParams.categoryId || this.uncategoryId;
     this.categories = [];
-    this.categoriesArr = [];
     this.articles = [];
-    this.articlesArr = [];
 
     $scope.$on('updateArticles', () => {
       console.log('$on: updateArticles');
@@ -49,7 +47,6 @@ class CategoryController {
   }
 
   createCategory() {
-    let self = this;
     let modalInstance = this.$uibModal.open({
       component: 'createCategoryModal'
     });
@@ -58,20 +55,12 @@ class CategoryController {
   getAllData(self, update) {
     self.CategoryService.getAll(update)
       .then((result) => {
-        self.categoriesArr = result;
         let categoriesTree = parseTreeCategory(result);
         self.categories = filterCategories(categoriesTree, self.currentCategory);
-      })
-      .catch((error) => {
-        console.warn('Error request:', error);
       });
     self.ArticleService.getAll(update)
       .then(result => {
-        self.articlesArr = result;
         self.articles = filterArticles(result, self.currentCategory);
-      })
-      .catch((error) => {
-        console.warn('Error request:', error);
       })
   };
 

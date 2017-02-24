@@ -5,7 +5,6 @@ import './breadcrumbs.scss';
 let breadcrumbsComponent = {
   restrict: 'E',
   bindings: {
-    categories: '=',
     current: '=',
     home: '='
   },

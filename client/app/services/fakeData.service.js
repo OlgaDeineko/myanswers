@@ -102,17 +102,13 @@ function FakeDataService() {
         }
       ],
       categories: [
-        {"id": "1", "parent_id": "0", "name": "Uncategorized", "lang": "en"}, {
-          "id": "2",
-          "parent_id": "1",
-          "name": "Keyboard",
-          "lang": "en"
-        }, {"id": "3", "parent_id": "1", "name": "Phone", "lang": "en"}, {
-          "id": "4",
-          "parent_id": "1",
-          "name": "test",
-          "lang": "en"
-        }, {"id": "7", "parent_id": "1", "name": "new", "lang": "en"}
+        {"id": "1", "parent_id": "0", "name": "Uncategorized", "lang": "en"},
+        {"id": "2", "parent_id": "1", "name": "Keyboard", "lang": "en"},
+        {"id": "3", "parent_id": "1", "name": "Phone", "lang": "en"},
+        {"id": "4", "parent_id": "2", "name": "test1", "lang": "en"},
+        {"id": "5", "parent_id": "4", "name": "test2", "lang": "en"},
+        {"id": "6", "parent_id": "15", "name": "test3", "lang": "en"},
+        {"id": "7", "parent_id": "1", "name": "new", "lang": "en"}
       ],
       settings: {
         "languages": [{"code": "en", "name": "English"}, {"code": "nl", "name": "Dutch"}, {
@@ -176,17 +172,19 @@ function FakeDataService() {
         }
       ],
       checkSubdomain: {"data": {"subdomain": "exist"}},
-      login: {data:{
-        "data": {
-          "access_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiIxTkt6WUZVeFMwbE9OVDZwQU5mR2RLIiwiaWF0IjoxNDg3OTQ2MzY1LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDg3OTQ5OTY1LCJydGkiOiIxTkt6WUNBc1hRU1BrZTB4eTdvMDFHIn0.F8-AurIMsRS3SuHT0yGG50zCiXSX8e89KSXSaPWFHKQ",
-          "refresh_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoicmVmcmVzaCIsImFsZyI6IkhTMjU2In0.eyJqdGkiOiIxTkt6WUNBc1hRU1BrZTB4eTdvMDFHIiwiaWF0IjoxNDg3OTQ2MzY1LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDkzMTMwMzY1fQ.ExynGLJVHb1n1pXLFzjDH4zrmVFdJdk2zT36GqLqCNw",
-          "token_type": "Bearer",
-          "expires_in": 3600,
-          "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/1NKzYFUxS0lONT6pANfGdK",
-          "role": "admin",
-          "subdomain": "skiba"
+      login: {
+        data: {
+          "data": {
+            "access_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiIxTkt6WUZVeFMwbE9OVDZwQU5mR2RLIiwiaWF0IjoxNDg3OTQ2MzY1LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDg3OTQ5OTY1LCJydGkiOiIxTkt6WUNBc1hRU1BrZTB4eTdvMDFHIn0.F8-AurIMsRS3SuHT0yGG50zCiXSX8e89KSXSaPWFHKQ",
+            "refresh_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoicmVmcmVzaCIsImFsZyI6IkhTMjU2In0.eyJqdGkiOiIxTkt6WUNBc1hRU1BrZTB4eTdvMDFHIiwiaWF0IjoxNDg3OTQ2MzY1LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDkzMTMwMzY1fQ.ExynGLJVHb1n1pXLFzjDH4zrmVFdJdk2zT36GqLqCNw",
+            "token_type": "Bearer",
+            "expires_in": 3600,
+            "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/1NKzYFUxS0lONT6pANfGdK",
+            "role": "admin",
+            "subdomain": "skiba"
+          }
         }
-      }}
+      }
     };
     console.log('getLocalData', url);
 

@@ -36,7 +36,6 @@ class VisitorController {
     this.currentCategory = $stateParams.categoryId || this.uncategoryId;
 
     this.categories = [];
-    this.categoriesArr = [];
     this.articles = [];
 
     this.getAllData(this);
@@ -67,19 +66,12 @@ class VisitorController {
   getAllData(self, update) {
     self.CategoryService.getAll(update)
       .then((result) => {
-        self.categoriesArr = result;
         let categoriesTree = parseTreeCategory(result);
         self.categories = filterCategories(categoriesTree, self.currentCategory);
       })
-      .catch((error) => {
-        console.warn('Error request:', error);
-      });
-    self.ArticleService.getAll()
+    self.ArticleService.getAll(update)
       .then(result => {
         self.articles = filterArticles(result, self.currentCategory);
-      })
-      .catch((error) => {
-        console.warn('Error request:', error);
       })
   };
 }
