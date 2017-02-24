@@ -73,7 +73,6 @@ class CreateUserModalController {
     let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
-      console.log('newUser', newUser);
       // newUser.role = [newUser.role];
       self.UsersService[self.mode](newUser)
         .then((result) => {

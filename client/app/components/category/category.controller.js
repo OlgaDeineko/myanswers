@@ -28,6 +28,7 @@ class CategoryController {
     this.categories = [];
     this.categoriesArr = [];
     this.articles = [];
+    this.articlesArr = [];
 
     $scope.$on('updateArticles', () => {
       console.log('$on: updateArticles');
@@ -66,6 +67,7 @@ class CategoryController {
       });
     self.ArticleService.getAll(update)
       .then(result => {
+        self.articlesArr = result;
         self.articles = filterArticles(result, self.currentCategory);
       })
       .catch((error) => {

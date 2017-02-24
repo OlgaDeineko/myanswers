@@ -67,7 +67,6 @@ class VisitorController {
   getAllData(self, update) {
     self.CategoryService.getAll(update)
       .then((result) => {
-        console.log('norm', result)
         self.categoriesArr = result;
         let categoriesTree = parseTreeCategory(result);
         self.categories = filterCategories(categoriesTree, self.currentCategory);

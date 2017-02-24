@@ -10,8 +10,10 @@ class EditFaqController {
     this.SettingsService = SettingsService;
 
     this.faq = {};
-    this.categories=[];
+    this.categories = [];
     this.languages = SettingsService.getLanguages();
+    this.faqVisibility = SettingsService.getFaqVisibility();
+    this.getFaqStatuses = SettingsService.getFaqStatuses();
     // configs for tinyMCE editor @see {@link https://www.tinymce.com/docs/}
     this.tinymceOptions = {
       plugins: 'link image wordcount',
@@ -36,7 +38,7 @@ class EditFaqController {
     };
 
     //state can be in two states: createFaq or editFaq. for create - empty object, for edit - grab from server
-    if($state.current.name == 'createFaq'){
+    if ($state.current.name == 'createFaq') {
       this.faq = {
         question: '',
         answer: '',
@@ -45,18 +47,18 @@ class EditFaqController {
         visibility: 'Public',
         author: 'Test User',
         lang: 'en',
-        openForComments: true,
+        is_open_comments: true,
         published: true,
         remarks: [],
         draft: false,
         countWords: 0,
         countChars: 0
       };
-    }else{
+    } else {
       this.ArticleService.getById($state.params.faqId)
         .then((result) => {
           //don't ask)))
-          result.categories = result.categories[0].id+'';
+          result.categories = result.categories[0].id + '';
           self.faq = result;
         })
         .catch((error) => {
@@ -66,7 +68,7 @@ class EditFaqController {
 
     self.CategoryService.getAll()
       .then((result) => {
-        self.categories=result;
+        self.categories = result;
       })
       .catch((error) => {
         console.warn('Error request:', error);
@@ -84,30 +86,30 @@ class EditFaqController {
   /**
    * Create/update article
    */
-  save() {
+  save(status) {
     let self = this;
     /*
-    * {string[]} new_tags - array of new tags
-    * {integer[]} tag_ids - array of old tags
-    * */
+     * {string[]} new_tags - array of new tags
+     * {integer[]} tag_ids - array of old tags
+     * */
     this.faq.new_tags = [];
     this.faq.tag_ids = [];
 
-    this.faq.tags.map((i)=>{
-      if(i.tag_id){
+    this.faq.tags.map((i) => {
+      if (i.tag_id) {
         self.faq.tag_ids.push(i.tag_id);
-      }else{
+      } else {
         self.faq.new_tags.push(i.name);
       }
     });
     this.faq.category_ids = [this.faq.categories];
-    console.log('save', this.faq);
-    if(this.$state.current.name == 'createFaq'){
+    this.faq.status = status || 'published';
+    if (this.$state.current.name == 'createFaq') {
       this.ArticleService.save(this.faq)
         .then((result) => {
           self.$state.go("faq", {'faqId': result.id});
-      })
-    }else{
+        })
+    } else {
       this.ArticleService.update(this.faq)
         .then((result) => {
           self.$state.go("faq", {'faqId': result.id});
@@ -117,8 +119,7 @@ class EditFaqController {
 
   saveAsDraft() {
     console.log('saveAsDraft');
-    this.faq.draft=true;
-    this.save();
+    this.save('draft');
   }
 
   remove() {

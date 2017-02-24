@@ -4,6 +4,9 @@ function SettingsService($http, SessionService) {
   "ngInject";
   let languages = null;
   let roles = null;
+  let faqStatuses = [{"code": "published", "name": "Published"}, {"code": "draft", "name": "Draft"}];
+  let faqVisibility =[{"code": "public", "name": "Public"}, {"code": "internal", "name": "Internal"}, {"code": "private", "name": "Private"}];
+  
 
   let getCommon = () => {
     let self = this;
@@ -28,10 +31,20 @@ function SettingsService($http, SessionService) {
     return this.roles ||  [{"code":"admin","name":"admin"},{"code":"user","name":"user"},{"code":"visitor","name":"visitor"},{"code":"contributor","name":"contributor"}];
   };
 
+  let getFaqStatuses = () => {
+    return this.faqStatuses
+  };
+
+  let getFaqVisibility = () => {
+    return this.faqVisibility
+  };
+
   return {
     getCommon,
     getLanguages,
-    getRoles
+    getRoles,
+    getFaqStatuses,
+    getFaqVisibility
   }
 }
 

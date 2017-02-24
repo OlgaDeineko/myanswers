@@ -13,6 +13,7 @@ import CategoryService from './services/category.service';
 import SubdomainService from './services/subdomain.service';
 import SettingsService from './services/settings.service';
 import UsersService from './services/users.service';
+import FakeDataService from './services/fakeData.service';
 
 import settigns from './config.js';
 
@@ -85,6 +86,7 @@ angular.module('app', [
   .service('SubdomainService', SubdomainService)
   .service('SettingsService', SettingsService)
   .service('UsersService', UsersService)
+  .service('FakeDataService', FakeDataService)
   .component('app', AppComponent)
   .run(($rootScope, AuthenticationService, SettingsService) => {
     "ngInject";

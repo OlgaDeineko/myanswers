@@ -1,7 +1,17 @@
-function ResponseObserver($q, $window, SessionService) {
+import {local} from '../config';
+function ResponseObserver($q, $window, SessionService, FakeDataService) {
   "ngInject";
   return {
-    'request': (config) => {
+    'request': (config ) => {
+      //TODO: remove on production
+      if(local && !(/html$/.test(config.url))){
+        return $q.reject({
+          err: 'RejectForLocal',
+          url: config.url.replace(/http.*\/api\/v1\//, ''),
+          method: config.method
+        });
+      }
+
       switch (config.method) {
       case 'POST':
           config.headers['Content-Type'] = 'application/json; charset=UTF-8';
@@ -20,9 +30,17 @@ function ResponseObserver($q, $window, SessionService) {
       return config;
     },
     'response': (response) => {
+      if(!(/html$/.test(response.config.url))) {
+        console.info(response.config.url, response);
+      }
       return response;
     },
     'responseError': (errorResponse) => {
+      //TODO: remove on production
+      if(errorResponse.err == 'RejectForLocal'){
+        return $q.resolve(FakeDataService.getData(errorResponse.url, errorResponse.method))
+      }
+
       switch (errorResponse.status) {
       case 403:
       case 401:
@@ -32,6 +50,7 @@ function ResponseObserver($q, $window, SessionService) {
           //$window.location = './500.html';
           break;
       }
+      console.warn(errorResponse);
       return $q.reject(errorResponse);
     }
   };

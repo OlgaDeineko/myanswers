@@ -1,3 +1,4 @@
+import {local} from '../../config';
 class ChooseSubdomainController {
   constructor($window, SubdomainService) {
     "ngInject";
@@ -7,11 +8,9 @@ class ChooseSubdomainController {
     this.name = 'Choose subdomain';
     this.alerts = [];
 
-    //TODO remove this.local for production and all 'if' with this variable
-    this.local = $window.location.host.indexOf('localhost') != -1;
-
+    //TODO remove on production
     let partsHost = $window.location.host.split('.');
-    if ((partsHost.length > 2 || this.local) && partsHost[0] != 'main') {
+    if ((partsHost.length > 2 || local) && partsHost[0] != 'main') {
       this.subdomain = partsHost[0];
       this.moveTo(this.subdomain);
     }
@@ -33,14 +32,11 @@ class ChooseSubdomainController {
     let self = this;
     this.SubdomainService.check(subdomain)
       .then(result => {
-        // if(result.errors){
-        //   alert('not subdomain');
-        // }else{
-        if(self.local){
+        //TODO remove on production
+        if(local){
           this.$window.location.href = `http://${subdomain}.localhost:3000/login/${subdomain}`;
         }else
           this.$window.location.href = `http://${subdomain}.myanswers.io/login/${subdomain}`;
-        // }
       })
       .catch(errors => {
         errors.forEach(err => {

@@ -1,36 +1,24 @@
 import config, {apiUrl} from '../config';
 
-function CategoryService($http, SessionService) {
+function UsersService($http, SessionService) {
   "ngInject";
+  let users = null;
 
-  let getAll = () => {
+  let getAll = (update) => {
+    let self = this;
+    if(self.users && !update){
+      return new Promise((resolve, reject) => {
+        resolve(self.users);
+      })
+    }
+
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/users`,
     }).then(result => {
-      console.log(result);
+      self.users = result.data.data;
       return result.data.data
     });
-
-    // return new Promise((resolve, reject) => {
-    //   resolve([{
-    //     "id": "78FsrnMdYHAcJEWUPo4gQe",
-    //     "email": "oleg.skiba@yanpix.com",
-    //     "username": "oleg.skiba@yanpix.com",
-    //     "first_name": "Oleg",
-    //     "last_name": "Skiba",
-    //     "role": ["visitor"],
-    //     "subdomains": ["skiba"]
-    //   }, {
-    //     "id": "5G0kKHSP10OICd4MRAr6cO",
-    //     "email": "test@test.com",
-    //     "username": "test@test.com",
-    //     "first_name": "Test",
-    //     "last_name": "User",
-    //     "role": ["user"],
-    //     "subdomains": ["skiba"]
-    //   }]);
-    // })
   };
 
   let create = (newUser) => {
@@ -39,7 +27,8 @@ function CategoryService($http, SessionService) {
       url: `${SessionService.geApiUrl()}/users`,
       data: newUser
     }).then(result => {
-      console.log(result);
+      self.users=null;
+      $rootScope.$broadcast('updateUsers');
       return result.data.data || result.data
     });
   };
@@ -50,7 +39,8 @@ function CategoryService($http, SessionService) {
       url: `${SessionService.geApiUrl()}/users/${user.id}`,
       data: user
     }).then(result => {
-      console.log(result);
+      self.users=null;
+      $rootScope.$broadcast('updateUsers');
       return result.data.data
     });
   };
@@ -60,7 +50,8 @@ function CategoryService($http, SessionService) {
     //   method: 'DELETE',
     //   url: `${SessionService.geApiUrl()}/users/${userId}`,
     // }).then(result => {
-    //   console.log(result);
+    //   self.users = null;
+    //   $rootScope.$broadcast('updateUsers');
     //   return result.data.data
     // });
   };
@@ -73,4 +64,4 @@ function CategoryService($http, SessionService) {
   }
 }
 
-export default CategoryService;
+export default UsersService;
