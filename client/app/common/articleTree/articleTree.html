@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="row" ng-repeat="article in $ctrl.articles">
+    <div class="row" ng-repeat="article in $ctrl.articles | filter:{question: $ctrl.search}">
       <div class="col-md-9 tree-title">
         <a href="#" ng-if="$ctrl.$state.current.name != 'visitor'" ng-click="$ctrl.moveTo('faq', article.id)">
           <span class="glyphicon glyphicon-list-alt tree-icon-folder"></span> {{article.question}}

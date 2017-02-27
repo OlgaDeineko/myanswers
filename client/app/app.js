@@ -37,7 +37,7 @@ import 'tinymce/skins/lightgray/skin.min.css';
 import 'tinymce/skins/lightgray/content.min.css';
 import 'angular-toastr';
 import 'angular-toastr/dist/angular-toastr.min.css';
-import 'angular-animate';
+// import 'angular-animate';
 
 import 'tinymce/themes/modern/theme';
 import 'tinymce/plugins/link/plugin';
@@ -61,7 +61,7 @@ angular.module('app', [
   'angular-clipboard',
   'ngTable',
   'ngSanitize',
-  'ngAnimate',
+  // 'ngAnimate',
   'toastr'
 ])
   .config(($locationProvider, $httpProvider, $urlRouterProvider) => {

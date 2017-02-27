@@ -45,7 +45,7 @@
          ui-tree-nodes
          ng-model="$ctrl.categories[0].categories">
       <div class="row"
-           ng-repeat="item in $ctrl.categories[0].categories"
+           ng-repeat="item in $ctrl.categories[0].categories | filter:{name: $ctrl.search}"
            ui-tree-node
            ng-include="'tree_children_renderer.html'"
            data-collapsed="!item.expanded">

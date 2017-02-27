@@ -5,7 +5,8 @@ import './articleTree.scss';
 let articleTreeComponent = {
   restrict: 'E',
   bindings: {
-    articles: "="
+    articles: "=",
+    search: "="
   },
   template,
   controller

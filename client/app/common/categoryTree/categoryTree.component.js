@@ -6,7 +6,8 @@ let categoryTreeComponent = {
   restrict: 'E',
   bindings: {
     categories: "=",
-    current: "="
+    current: "=",
+    search: "="
   },
   template,
   controller

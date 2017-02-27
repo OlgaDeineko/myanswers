@@ -33,7 +33,8 @@
                 <ul class="dropdown-menu">
                   <li><a href='#' ng-click="$ctrl.createCategory()">Create {{$ctrl.currentCategory == 1 ? 'Category':
                     'Subcategory'}}</a></li>
-                  <li><a ui-sref="createFaq({categoryId: $ctrl.currentCategory})" ui-sref-opts="{qqq: 'w'}">Create FAQ</a></li>
+                  <li><a ui-sref="createFaq({categoryId: $ctrl.currentCategory})" ui-sref-opts="{qqq: 'w'}">Create
+                    FAQ</a></li>
                 </ul>
               </div>
               <!-- end Split action -->
@@ -43,7 +44,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
+                <input type="text" class="form-control" ng-model="$ctrl.searchModel" placeholder="Search">
               </div>
             </div>
           </div>
@@ -60,12 +61,12 @@
             <div class="col-md-12">
               <!-- start Main content -->
               <main>
+                <category-tree categories="$ctrl.categories"
+                               current="$ctrl.currentCategory"
+                               search="$ctrl.searchModel"></category-tree>
 
-                <div ng-if="$ctrl.categories.length">
-                  <category-tree categories="$ctrl.categories" current="$ctrl.currentCategory"></category-tree>
-                </div>
-
-                <article-tree articles="$ctrl.articles"></article-tree>
+                <article-tree articles="$ctrl.articles"
+                              search="$ctrl.searchModel"></article-tree>
 
               </main>
               <!-- end Main content -->
