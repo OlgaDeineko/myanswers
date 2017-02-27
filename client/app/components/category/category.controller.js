@@ -14,7 +14,7 @@ let filterCategories = (categories, categoryId) => {
 };
 
 class CategoryController {
-  constructor($stateParams, $scope, $uibModal, CategoryService, ArticleService) {
+  constructor($stateParams, $scope, $uibModal, CategoryService, ArticleService, SettingsService) {
     "ngInject";
 
     this.name = 'Dashboard';
@@ -23,10 +23,12 @@ class CategoryController {
 
     this.ArticleService = ArticleService;
     this.CategoryService = CategoryService;
+    this.SettingsService = SettingsService;
 
     this.currentCategory = $stateParams.categoryId || this.uncategoryId;
     this.categories = [];
     this.articles = [];
+    this.articlesArr = [];
 
     $scope.$on('updateArticles', () => {
       console.log('$on: updateArticles');
@@ -61,6 +63,18 @@ class CategoryController {
     self.ArticleService.getAll(update)
       .then(result => {
         self.articles = filterArticles(result, self.currentCategory);
+        return result;
+      })
+      .then(result => {
+        self.SettingsService.getSettings().then(settings => {
+
+          self.articlesCounts = {
+            All: result.length,
+          };
+          settings.faq_statuses.map(status => {
+            self.articlesCounts[status.name] = result.filter(article => article.status == status.code).length;
+          })
+        })
       })
   };
 

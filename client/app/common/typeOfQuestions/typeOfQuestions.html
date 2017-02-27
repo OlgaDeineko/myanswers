@@ -2,17 +2,9 @@
   <h3>{{ $ctrl.name }}</h3>
 
   <ul class="list-group">
-    <li class="list-group-item">
-      <span class="badge">{{$ctrl.articles.length}}</span>
-      All articles
-    </li>
-    <li class="list-group-item">
-      <span class="badge">-</span>
-      Drafts
-    </li>
-    <li class="list-group-item">
-      <span class="badge">-</span>
-      Trash
+    <li class="list-group-item" ng-repeat="(key, value) in $ctrl.articleCounts">
+      <span class="badge">{{value}}</span>
+      {{key}}
     </li>
   </ul>
 

@@ -17,7 +17,7 @@ function FakeDataService() {
           "visibility": null,
           "is_open_comments": "1",
           "author": "Test User",
-          "status": null,
+          "status": 'draft',
           "lang": 'en',
           "algolia_object_id": "379636340",
           "created_at": "1487850702",
@@ -32,7 +32,7 @@ function FakeDataService() {
           "visibility": null,
           "is_open_comments": "1",
           "author": "Test User",
-          "status": null,
+          "status": 'published',
           "lang": null,
           "algolia_object_id": "379636380",
           "created_at": "1487850724",
@@ -47,7 +47,7 @@ function FakeDataService() {
           "visibility": null,
           "is_open_comments": "1",
           "author": "Test User",
-          "status": null,
+          "status": 'trash',
           "lang": "en",
           "algolia_object_id": "379636710",
           "created_at": "1487851132",
@@ -77,7 +77,7 @@ function FakeDataService() {
           "visibility": null,
           "is_open_comments": "1",
           "author": "Test User",
-          "status": null,
+          "status": 'published',
           "lang": "en",
           "algolia_object_id": "354285312",
           "created_at": "1487854965",
@@ -92,7 +92,7 @@ function FakeDataService() {
           "visibility": "Public",
           "is_open_comments": "1",
           "author": "Test User",
-          "status": null,
+          "status": 'published',
           "lang": "en",
           "algolia_object_id": "357316872",
           "created_at": "1487925920",
@@ -111,22 +111,28 @@ function FakeDataService() {
         {"id": "7", "parent_id": "1", "name": "new", "lang": "en"}
       ],
       settings: {
-        "languages": [{"code": "en", "name": "English"}, {"code": "nl", "name": "Dutch"}, {
-          "code": "fr",
-          "name": "French"
-        }],
-        "roles": [{"code": "admin", "name": "admin"}, {"code": "user", "name": "user"}, {
-          "code": "visitor",
-          "name": "visitor"
-        }, {"code": "contributor", "name": "contributor"}],
-        "faq_statuses": [{"code": "published", "name": "Published"}, {
-          "key": "unpublished",
-          "value": "Unpublished"
-        }, {"key": "draft", "value": "Draft"}, {"key": "trash", "value": "Trash"}],
-        "faq_visibility": [{"code": "public", "name": "Public"}, {
-          "code": "internal",
-          "name": "Internal"
-        }, {"code": "private", "name": "Private"}]
+        "languages": [
+          {"code": "en", "name": "English"},
+          {"code": "nl", "name": "Dutch"},
+          {"code": "fr", "name": "French"}
+        ],
+        "roles": [
+          {"code": "admin", "name": "admin"},
+          {"code": "user", "name": "user"},
+          {"code": "visitor", "name": "visitor"},
+          {"code": "contributor", "name": "contributor"}
+          ],
+        "faq_statuses": [
+          {"code": "published", "name": "Published"},
+          {"code": "unpublished", "name": "Unpublished"},
+          {"code": "draft", "name": "Draft"},
+          {"code": "trash", "name": "Trash"}
+          ],
+        "faq_visibility": [
+          {"code": "public", "name": "Public"},
+          {"code": "internal", "name": "Internal"},
+          {"code": "private", "name": "Private"}
+          ]
       },
       users: [
         {
