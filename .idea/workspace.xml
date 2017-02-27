@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5819f230-d39c-489e-bc3e-a255b0d121ee" name="Default" comment="search article and categories on the dashboard">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/common/typeOfQuestions/typeOfQuestions.component.js" afterPath="$PROJECT_DIR$/client/app/common/typeOfQuestions/typeOfQuestions.component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/common/typeOfQuestions/typeOfQuestions.html" afterPath="$PROJECT_DIR$/client/app/common/typeOfQuestions/typeOfQuestions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/category/category.controller.js" afterPath="$PROJECT_DIR$/client/app/components/category/category.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/category/category.html" afterPath="$PROJECT_DIR$/client/app/components/category/category.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/services/fakeData.service.js" afterPath="$PROJECT_DIR$/client/app/services/fakeData.service.js" />
+    <list default="true" id="5819f230-d39c-489e-bc3e-a255b0d121ee" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/app.scss" afterPath="$PROJECT_DIR$/client/app/app.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/common/navbar/navbar.html" afterPath="$PROJECT_DIR$/client/app/common/navbar/navbar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/common/navbar/navbar.scss" afterPath="$PROJECT_DIR$/client/app/common/navbar/navbar.scss" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,11 +44,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="category.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="category.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/app/components/category/category.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="414">
-                  <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+                <state relative-caret-position="126">
+                  <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
                   <folding>
                     <element signature="n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
                     <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
@@ -58,6 +56,36 @@
                     <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
                     <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="navbar.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/app/common/navbar/navbar.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="app.scss" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/client/app/app.scss">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="198">
+                  <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="navbar.scss" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/app/common/navbar/navbar.scss">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="198">
+                  <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -261,13 +289,15 @@
         <option value="$PROJECT_DIR$/client/app/common/categoryTree/categoryTree.html" />
         <option value="$PROJECT_DIR$/client/app/common/articleTree/articleTree.component.js" />
         <option value="$PROJECT_DIR$/client/app/common/articleTree/articleTree.html" />
-        <option value="$PROJECT_DIR$/client/app/common/navbar/navbar.html" />
         <option value="$PROJECT_DIR$/client/app/services/fakeData.service.js" />
         <option value="$PROJECT_DIR$/client/app/components/category/category.html" />
         <option value="$PROJECT_DIR$/client/app/common/typeOfQuestions/typeOfQuestions.component.js" />
         <option value="$PROJECT_DIR$/client/app/common/typeOfQuestions/typeOfQuestions.html" />
-        <option value="$PROJECT_DIR$/client/app/config.js" />
         <option value="$PROJECT_DIR$/client/app/components/category/category.controller.js" />
+        <option value="$PROJECT_DIR$/client/app/common/navbar/navbar.scss" />
+        <option value="$PROJECT_DIR$/client/app/common/navbar/navbar.html" />
+        <option value="$PROJECT_DIR$/client/app/app.scss" />
+        <option value="$PROJECT_DIR$/client/app/config.js" />
       </list>
     </option>
   </component>
@@ -437,54 +467,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myanswers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myanswers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="category" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myanswers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myanswers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="common" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -511,7 +493,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="typeOfQuestions" />
+              <option name="myItemId" value="navbar" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -643,7 +625,7 @@
       <workItem from="1487950176138" duration="9544000" />
       <workItem from="1488183376177" duration="7984000" />
       <workItem from="1488191788446" duration="5738000" />
-      <workItem from="1488201124582" duration="5718000" />
+      <workItem from="1488201124582" duration="7543000" />
     </task>
     <task id="LOCAL-00001" summary="refactoring: breadcrumbs component">
       <created>1487953636416</created>
@@ -673,11 +655,18 @@
       <option name="project" value="LOCAL" />
       <updated>1488203514125</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="type of article">
+      <created>1488206874764</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1488206874764</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28984000" />
+    <option name="totallyTimeSpent" value="30809000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -698,8 +687,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5469729" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.135388" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15448852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15448852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.24986242" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" x="761" y="202" width="448" height="638" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -746,7 +735,8 @@
     <MESSAGE value="refactoring: users" />
     <MESSAGE value="change webpack configuration" />
     <MESSAGE value="search article and categories on the dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="search article and categories on the dashboard" />
+    <MESSAGE value="type of article" />
+    <option name="LAST_COMMIT_MESSAGE" value="type of article" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -755,8 +745,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dist/394bafc3cc4dfb3a0ee48c1f54669539.gif" />
-    <entry file="file://$PROJECT_DIR$/dist/7262d908f15434ec7c3ae2126bc87350.svg" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1016,14 +1004,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/common/navbar/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="52" lean-forward="true" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/app/common/categoryTree/categoryTree.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -1145,14 +1125,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/app/common/typeOfQuestions/typeOfQuestions.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1185,8 +1157,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/app/components/category/category.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+        <state relative-caret-position="126">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
             <element signature="n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
@@ -1194,6 +1166,38 @@
             <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/common/navbar/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/common/navbar/navbar.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>

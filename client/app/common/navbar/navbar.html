@@ -1,25 +1,37 @@
 <nav class="navbar">
 
   <div class="navbar__item">
-    <a ui-sref="category({categoryId: ''})" ui-sref-active="active">
-      <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div class="navbar__item">
-    <a ui-sref="users" ui-sref-active="active">
-      <i class="fa fa-users" aria-hidden="true"></i>
-    </a>
-  </div>
-
-  <div class="navbar__item">
-    <a ui-sref="visitor" ui-sref-active="active">
+    <a ui-sref="visitor"
+       ui-sref-active="active"
+       target="_blank"
+       tooltip-placement="right"
+       uib-tooltip="View KB">
       <i class="fa fa-home" aria-hidden="true"></i>
     </a>
   </div>
 
+  <div class="navbar__item">
+    <a ui-sref="category({categoryId: ''})"
+       ui-sref-active="active"
+       tooltip-placement="right"
+       uib-tooltip="Dashboard">
+      <i class="fa fa-tachometer" aria-hidden="true"></i>
+    </a>
+  </div>
+
+  <div class="navbar__item">
+    <a ui-sref="users"
+       ui-sref-active="active"
+       tooltip-placement="right"
+       uib-tooltip="Users">
+      <i class="fa fa-users" aria-hidden="true"></i>
+    </a>
+  </div>
+
   <div class="navbar__item logout">
-    <a ng-click="$ctrl.logout()">
+    <a ng-click="$ctrl.logout()"
+       tooltip-placement="right"
+       uib-tooltip="Log Out">
       <i class="fa fa-sign-out" aria-hidden="true"></i>
     </a>
   </div>
