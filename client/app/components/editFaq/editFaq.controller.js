@@ -1,19 +1,19 @@
 class EditFaqController {
-  constructor($state, CategoryService, ArticleService, SettingsService) {
+  constructor($state, toastr, CategoryService, ArticleService, SettingsService) {
     'ngInject';
     this.name = 'editFaq';
 
     let self = this;
     this.$state = $state;
+    this.toastr = toastr;
     this.CategoryService = CategoryService;
     this.ArticleService = ArticleService;
     this.SettingsService = SettingsService;
 
     this.faq = {};
     this.categories = [];
-    this.languages = SettingsService.getLanguages();
-    this.faqVisibility = SettingsService.getFaqVisibility();
-    this.getFaqStatuses = SettingsService.getFaqStatuses();
+
+
     // configs for tinyMCE editor @see {@link https://www.tinymce.com/docs/}
     this.tinymceOptions = {
       plugins: 'link image wordcount',
@@ -61,18 +61,18 @@ class EditFaqController {
           result.categories = result.categories[0].id + '';
           self.faq = result;
         })
-        .catch((error) => {
-          console.warn('Error request:', error);
-        });
     }
 
-    self.CategoryService.getAll()
+    this.CategoryService.getAll()
       .then((result) => {
         self.categories = result;
+
+        self.SettingsService.getSettings().then(result => {
+          this.languages = result.languages;
+          this.faqVisibility = result.faq_visibility;
+          this.getFaqStatuses = result.faq_statuses;
+        })
       })
-      .catch((error) => {
-        console.warn('Error request:', error);
-      });
   }
 
   /**
@@ -108,17 +108,18 @@ class EditFaqController {
       this.ArticleService.save(this.faq)
         .then((result) => {
           self.$state.go("faq", {'faqId': result.id});
+          self.toastr.success('FAQ created successfully.')
         })
     } else {
       this.ArticleService.update(this.faq)
         .then((result) => {
           self.$state.go("faq", {'faqId': result.id});
+          self.toastr.success('FAQ updated successfully.')
         })
     }
   }
 
   saveAsDraft() {
-    console.log('saveAsDraft');
     this.save('draft');
   }
 
@@ -127,6 +128,7 @@ class EditFaqController {
     this.ArticleService.remove(this.faq.id)
       .then((result) => {
         self.$state.go("category");
+        self.toastr.success('FAQ removed successfully.')
       })
   }
 }

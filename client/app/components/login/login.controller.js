@@ -1,7 +1,7 @@
 import config, {mainDomian} from '../../config';
 
 class LoginController {
-  constructor($window, $stateParams, $scope, AuthenticationService, SessionService, $state, $rootScope) {
+  constructor($window, $stateParams, $scope, toastr, AuthenticationService, SessionService, $state, $rootScope) {
     "ngInject";
 
     this.$scope = $scope;
@@ -11,10 +11,11 @@ class LoginController {
     this.$state = $state;
     this.$window = $window;
     this.name = 'login';
+
+    this.toastr = toastr;
     this.SessionService = SessionService;
     this.AuthenticationService = AuthenticationService;
     this.subdomain = this.$stateParams.subdomain || SessionService.getSubdomain();
-    this.alerts = [];
 
     this.user = {};
     this.schema = {
@@ -56,10 +57,6 @@ class LoginController {
     if(this.subdomain == false) this.$state.go("chooseSubdomain");
   }
 
-  closeAlert(index) {
-    this.alerts.splice(index, 1);
-  };
-
   login(loginForm, user) {
     let self = this;
     this.$scope.$broadcast('schemaFormValidate');
@@ -71,10 +68,7 @@ class LoginController {
         })
         .catch(error => {
           error.data.errors.forEach(error => {
-            self.alerts.push({
-              type: 'danger',
-              msg: error.description
-            })
+            self.toastr.error(error.description, `Validation error:`);
           });
         })
     }

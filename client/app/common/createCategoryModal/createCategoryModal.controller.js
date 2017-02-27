@@ -1,10 +1,11 @@
 class CreateCategoryModalController {
-  constructor($scope, $stateParams, CategoryService, SettingsService) {
+  constructor($scope, $stateParams, toastr, CategoryService, SettingsService) {
     'ngInject';
     this.name = 'createCategoryModal';
     let self = this;
 
     this.$scope = $scope;
+    this.toastr = toastr;
     this.CategoryService = CategoryService;
     this.$uibModalInstance = $scope.$parent.$uibModalInstance;
     this.$resolve = $scope.$parent.$resolve;
@@ -12,7 +13,6 @@ class CreateCategoryModalController {
     this.mode = 'create';
     this.type = $stateParams.categoryId ? 'Subcategory' : 'Category';
     this.newCategory = {parent_id: $stateParams.categoryId || '1', lang: 'en'};
-    this.alerts = [];
 
     if (this.$resolve.category) {
       this.newCategory = this.$resolve.category;
@@ -21,6 +21,33 @@ class CreateCategoryModalController {
         this.type = 'Subcategory';
       }
     }
+
+    SettingsService.getSettings().then(result => {
+      self.languages = result.languages;
+
+      self.CategoryService.getAll()
+        .then((result) => {
+          self.form = [
+            "name",
+            {
+              key: 'parent_id',
+              type: "select",
+              title: "Parent Category",
+              titleMap: result.map((item) => {
+                return {value: item.id, name: item.name};
+              })
+            },
+            {
+              key: 'lang',
+              type: "select",
+              title: "Language",
+              titleMap: self.languages.map((item) => {
+                return {value: item.code, name: item.name};
+              })
+            }
+          ]
+        });
+    });
 
     this.schema = {
       type: "object",
@@ -42,32 +69,6 @@ class CreateCategoryModalController {
       },
       required: ["name", "parent_id", "lang"]
     };
-
-    this.CategoryService.getAll()
-      .then((result) => {
-        self.form = [
-          "name",
-          {
-            key: 'parent_id',
-            type: "select",
-            title: "Parent Category",
-            titleMap: result.map((item) => {
-              return {value: item.id, name: item.name};
-            })
-          },
-          {
-            key: 'lang',
-            type: "select",
-            title: "Language",
-            titleMap: SettingsService.getLanguages().map((item) => {
-              return {value: item.code, name: item.name};
-            })
-          }
-        ]
-      })
-      .catch((error) => {
-        console.warn('Error request:', error);
-      });
   }
 
   save(form, newCategory) {
@@ -78,20 +79,17 @@ class CreateCategoryModalController {
         .then((result) => {
           if (result.status == 0) {
             result.errors.forEach(error => {
-              self.alerts.push({
-                type: 'danger',
-                msg: error.description
-              })
+              self.toastr.error(error.description, `Validation error:`);
             });
           } else {
+            self.toastr.success(`${self.type} ${self.mode}d successfully`);
             self.$uibModalInstance.close(result);
           }
         }, (error) => {
           error.data.errors.forEach(error => {
-            self.alerts.push({
-              type: 'danger',
-              msg: error.description
-            })
+            error.data.errors.forEach(error => {
+              self.toastr.error(error.description, `Validation error:`);
+            });
           });
         })
     }
@@ -99,10 +97,6 @@ class CreateCategoryModalController {
 
   cancel() {
     this.$uibModalInstance.dismiss({$value: 'cancel'});
-  }
-
-  closeAlert(index) {
-    this.alerts.splice(index, 1);
   }
 }
 

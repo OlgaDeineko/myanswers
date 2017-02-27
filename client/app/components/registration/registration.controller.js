@@ -1,15 +1,15 @@
 class RegistrationController {
-  constructor($scope, $window, $state, AuthenticationService) {
+  constructor($scope, $window, $state, toastr, AuthenticationService) {
     "ngInject";
 
     this.$state = $state;
     this.$scope = $scope;
     this.$window = $window;
+    this.toastr = toastr;
     this.name = 'Registration';
     this.AuthenticationService = AuthenticationService;
 
     this.isCreated = '';
-    this.alerts = [];
 
     this.newUser = {};
     this.schema = {
@@ -54,7 +54,7 @@ class RegistrationController {
           }
         }
       },
-      required: ["email","subdomain","password","password_repeat"]
+      required: ["email", "subdomain", "password", "password_repeat"]
     }
     this.form = [
       "*"
@@ -63,16 +63,12 @@ class RegistrationController {
 
   moteToLogin() {
     let self = this;
-    if(self.isCreated){
+    if (self.isCreated) {
       this.$window.location.href = `http://${self.isCreated}.myanswers.io/login/${self.isCreated}`;
       // self.$state.go("login", {subdomain: self.isCreated});
-    }else{
+    } else {
       self.$state.go("chooseSubdomain");
     }
-  }
-
-  closeAlert(index) {
-    this.alerts.splice(index, 1);
   }
 
   register(form, newUser) {
@@ -81,18 +77,14 @@ class RegistrationController {
     if (form.$valid) {
       this.AuthenticationService.register(newUser)
         .then(result => {
-            self.isCreated = newUser.subdomain.toLowerCase();
-            self.alerts.push({
-              type: 'success',
-              msg: 'Done' });
+          self.isCreated = newUser.subdomain.toLowerCase();
+          self.toastr.success(`Registration done`);
           self.moteToLogin();
         })
         .catch(error => {
-            error.data.errors.forEach(error => {
-              self.alerts.push({
-                type: 'danger',
-                msg: error.description })
-            });
+          error.data.errors.forEach(error => {
+            self.toastr.error(error.description, `Validation error:`);
+          });
         })
     }
   }

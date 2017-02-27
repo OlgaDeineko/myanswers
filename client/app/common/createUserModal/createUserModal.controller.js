@@ -1,22 +1,37 @@
 class CreateUserModalController {
-  constructor($scope, UsersService, SettingsService) {
+  constructor($scope, UsersService, toastr, SettingsService) {
     'ngInject';
     this.name = 'createUserModal';
     let self = this;
 
     this.$scope = $scope;
     this.UsersService = UsersService;
+    this.toastr = toastr;
 
     this.mode = 'create';
-    this.roles = SettingsService.getRoles();
+    SettingsService.getSettings().then(result => {
+      self.roles = result.roles;
+
+      self.form = [
+        "email", "first_name", "last_name",
+        {
+          key: 'role',
+          type: "select",
+          title: "Role",
+          titleMap: self.roles.map((item) => {
+            return {value: item.code, name: item.name};
+          })
+        },
+      ];
+    });
+
     this.$uibModalInstance = $scope.$parent.$uibModalInstance;
     this.$resolve = $scope.$parent.$resolve;
     this.newUser = {};
 
-    this.alerts = [];
-
     if (this.$resolve.user) {
       this.newUser = this.$resolve.user;
+      this.newUser.role = this.newUser.role[0];
       this.mode = 'update';
     }
 
@@ -55,43 +70,25 @@ class CreateUserModalController {
       required: ["email", "first_name", "last_name", "role"]
     };
 
-    this.form = [
-      "email", "first_name", "last_name",
-      {
-        key: 'role',
-        type: "select",
-        title: "Role",
-        titleMap: this.roles.map((item) => {
-          return {value: item.code, name: item.name};
-        })
-      },
-    ];
-
   }
 
   save(form, newUser) {
     let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
-      // newUser.role = [newUser.role];
       self.UsersService[self.mode](newUser)
         .then((result) => {
           if (result.status == 0) {
             result.errors.forEach(error => {
-              self.alerts.push({
-                type: 'danger',
-                msg: error.description
-              })
+              self.toastr.error(error.description, `Validation error:`);
             });
           } else {
+            self.toastr.success(`User ${self.mode}d successfully`);
             self.$uibModalInstance.close(result);
           }
         }, (error) => {
           error.data.errors.forEach(error => {
-            self.alerts.push({
-              type: 'danger',
-              msg: error.description
-            })
+            self.toastr.error(error.description, `Validation error:`);
           });
         })
     }
@@ -99,10 +96,6 @@ class CreateUserModalController {
 
   cancel() {
     this.$uibModalInstance.dismiss();
-  }
-
-  closeAlert(index) {
-    this.alerts.splice(index, 1);
   }
 }
 

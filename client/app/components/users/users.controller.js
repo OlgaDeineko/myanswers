@@ -1,15 +1,15 @@
 class UsersController {
-  constructor($scope, $uibModal, NgTableParams, UsersService) {
+  constructor($scope, $uibModal, NgTableParams, toastr, UsersService) {
     'ngInject';
     this.name = 'Users';
 
     this.$uibModal = $uibModal;
+    this.toastr = toastr;
     this.UsersService = UsersService;
     this.users = [];
     this.NgTableParams = NgTableParams;
 
-    this.getData(this);
-    this.tableParams = {};
+    this.getData(this)
 
     $scope.$on('updateUsers', () => {
       console.log('$on: updateUsers');
@@ -25,6 +25,7 @@ class UsersController {
 
   remove(userId) {
     console.log('remove', userId);
+    this.toastr.success('User removed successfully.');
     // this.UsersService.remove(userId)
   }
 
@@ -39,10 +40,7 @@ class UsersController {
 
   getData(self, update) {
     self.UsersService.getAll(update).then(result => {
-      self.users = result.map(u => {
-        u.role = u.role[0];
-        return u;
-      });
+      self.users = result;
 
       self.tableParams = new self.NgTableParams({
         count: 15,

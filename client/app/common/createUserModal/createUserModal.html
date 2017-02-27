@@ -4,13 +4,6 @@
 
 <div class="modal-body" id="modal-body">
 
-  <div uib-alert
-       ng-repeat="alert in $ctrl.alerts"
-       ng-class="'alert-' + (alert.type || 'warning')"
-       close="$ctrl.closeAlert($index)">
-    {{alert.msg}}
-  </div>
-
   <form
     name="createUserForm"
     sf-schema="$ctrl.schema"

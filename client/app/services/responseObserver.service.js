@@ -2,9 +2,9 @@ import {local} from '../config';
 function ResponseObserver($q, $window, SessionService, FakeDataService) {
   "ngInject";
   return {
-    'request': (config ) => {
+    'request': (config) => {
       //TODO: remove on production
-      if(local && !(/html$/.test(config.url))){
+      if (local && !(/html$/.test(config.url))) {
         return $q.reject({
           err: 'RejectForLocal',
           url: config.url.replace(/http.*\/api\/v1\//, ''),
@@ -13,7 +13,7 @@ function ResponseObserver($q, $window, SessionService, FakeDataService) {
       }
 
       switch (config.method) {
-      case 'POST':
+        case 'POST':
           config.headers['Content-Type'] = 'application/json; charset=UTF-8';
           // config.transformRequest = (obj) => {
           //   var str = [];
@@ -23,34 +23,35 @@ function ResponseObserver($q, $window, SessionService, FakeDataService) {
           // };
           break;
       }
-      if(SessionService.getSubdomain()){
+      if (SessionService.getSubdomain()) {
         config.headers['Client-Subdomain'] = SessionService.getSubdomain();
         config.headers['Authorization'] = 'Bearer ' + SessionService.getToken();
       }
       return config;
     },
     'response': (response) => {
-      if(!(/html$/.test(response.config.url))) {
+      if (!(/html$/.test(response.config.url))) {
         console.info(response.config.url, response);
       }
       return response;
     },
     'responseError': (errorResponse) => {
       //TODO: remove on production
-      if(errorResponse.err == 'RejectForLocal'){
+      if (errorResponse.err == 'RejectForLocal') {
         return $q.resolve(FakeDataService.getData(errorResponse.url, errorResponse.method))
       }
-
+      console.warn(errorResponse);
       switch (errorResponse.status) {
-      case 403:
-      case 401:
-          $window.location = './403.html';
+        case 403:
+        case 401:
+          //$window.location = './403.html';
+          toastr.error(errorResponse.text, `Server error ${Response.status}`);
           break;
-      case 500:
+        case 500:
           //$window.location = './500.html';
+          toastr.error(errorResponse.text, `Server error ${Response.status}`);
           break;
       }
-      console.warn(errorResponse);
       return $q.reject(errorResponse);
     }
   };

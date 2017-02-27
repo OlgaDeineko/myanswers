@@ -19,12 +19,10 @@ import settigns from './config.js';
 
 import 'angular-schema-form';
 import 'angular-schema-form-bootstrap';
-
 import 'angular-ui-bootstrap';
 import 'normalize.css';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap';
-
 import 'angular-ui-tree';
 import 'ng-tags-input';
 import 'ng-tags-input/build/ng-tags-input.min.css';
@@ -33,11 +31,13 @@ import  'ng-table';
 import  'ng-table/bundles/ng-table.css';
 import 'algoliasearch';
 import 'angular-sanitize';
-
 import 'tinymce';
 import 'angular-ui-tinymce';
 import 'tinymce/skins/lightgray/skin.min.css';
 import 'tinymce/skins/lightgray/content.min.css';
+import 'angular-toastr';
+import 'angular-toastr/dist/angular-toastr.min.css';
+import 'angular-animate';
 
 import 'tinymce/themes/modern/theme';
 import 'tinymce/plugins/link/plugin';
@@ -60,7 +60,9 @@ angular.module('app', [
   'ngTagsInput',
   'angular-clipboard',
   'ngTable',
-  'ngSanitize'
+  'ngSanitize',
+  'ngAnimate',
+  'toastr'
 ])
   .config(($locationProvider, $httpProvider, $urlRouterProvider) => {
     "ngInject";
@@ -88,12 +90,8 @@ angular.module('app', [
   .service('UsersService', UsersService)
   .service('FakeDataService', FakeDataService)
   .component('app', AppComponent)
-  .run(($rootScope, AuthenticationService, SettingsService) => {
+  .run(($rootScope, AuthenticationService) => {
     "ngInject";
-
-    if(AuthenticationService.isAuthenticated()) {
-      SettingsService.getCommon();
-    }
 
     $rootScope.$on('$stateChangeStart', (event, next) => {
       AuthenticationService.initPermission();

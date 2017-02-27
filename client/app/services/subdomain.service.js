@@ -11,9 +11,6 @@ function SubdomainService($http) {
         "subdomain": subdomain
       }
     }).then(result => {
-      if(result.data.errors){
-        throw result.data.errors
-      }
       return result.data
     });
   }

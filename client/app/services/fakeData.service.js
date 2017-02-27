@@ -18,7 +18,7 @@ function FakeDataService() {
           "is_open_comments": "1",
           "author": "Test User",
           "status": null,
-          "lang": null,
+          "lang": 'en',
           "algolia_object_id": "379636340",
           "created_at": "1487850702",
           "updated_at": "1487850702",
@@ -186,7 +186,7 @@ function FakeDataService() {
         }
       }
     };
-    console.log('getLocalData', url);
+    console.info('getLocalData', url);
 
     let reg = /\/?[\d]+$/; //regexp if url ends id etc: 'faq/54'
     let regUserId = /(users)\/.*/  //regexp for replace user id

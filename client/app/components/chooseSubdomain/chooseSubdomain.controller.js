@@ -1,12 +1,12 @@
 import {local} from '../../config';
 class ChooseSubdomainController {
-  constructor($window, SubdomainService) {
+  constructor($window, toastr, SubdomainService) {
     "ngInject";
 
     this.SubdomainService = SubdomainService;
     this.$window = $window;
+    this.toastr = toastr;
     this.name = 'Choose subdomain';
-    this.alerts = [];
 
     //TODO remove on production
     let partsHost = $window.location.host.split('.');
@@ -18,33 +18,28 @@ class ChooseSubdomainController {
 
   subdomainIsValid() {
     let result = false;
-    if(this.subdomain){
+    if (this.subdomain) {
       result = !!this.subdomain.length > 0;
     }
     return result;
   }
 
-  closeAlert(index) {
-    this.alerts.splice(index, 1);
-  };
-
   moveTo(subdomain) {
     let self = this;
     this.SubdomainService.check(subdomain)
       .then(result => {
-        //TODO remove on production
-        if(local){
-          this.$window.location.href = `http://${subdomain}.localhost:3000/login/${subdomain}`;
-        }else
-          this.$window.location.href = `http://${subdomain}.myanswers.io/login/${subdomain}`;
-      })
-      .catch(errors => {
-        errors.forEach(err => {
-          self.alerts.push({
-            type: 'danger',
-            msg: err.description
-          })
-        });
+        if (result.status == 0) {
+          result.errors.forEach(error => {
+            self.toastr.error(error.description, `Validation error:`);
+          });
+        } else {
+          //TODO remove on production
+          if (local) {
+            this.$window.location.href = `http://${subdomain}.localhost:3000/login/${subdomain}`;
+          } else
+            this.$window.location.href = `http://${subdomain}.myanswers.io/login/${subdomain}`;
+        }
+
       })
   }
 }

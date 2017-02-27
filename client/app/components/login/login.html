@@ -5,8 +5,6 @@
     <div class="col-md-4">
       <h1>{{ $ctrl.name }}</h1>
 
-      <div uib-alert ng-repeat="alert in $ctrl.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="$ctrl.closeAlert($index)">{{alert.msg}}</div>
-
       <form
         name="loginForm"
         sf-schema="$ctrl.schema"

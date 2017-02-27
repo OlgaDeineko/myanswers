@@ -1,50 +1,35 @@
 import config, {apiUrl} from '../config';
 
-function SettingsService($http, SessionService) {
+function SettingsService($http, $q, SessionService) {
   "ngInject";
-  let languages = null;
-  let roles = null;
-  let faqStatuses = [{"code": "published", "name": "Published"}, {"code": "draft", "name": "Draft"}];
-  let faqVisibility =[{"code": "public", "name": "Public"}, {"code": "internal", "name": "Internal"}, {"code": "private", "name": "Private"}];
-  
+  let settings = null;
 
-  let getCommon = () => {
+  let getSettings = () => {
     let self = this;
-    return $http({
+
+    if (this.settings) {
+      return new Promise((resolve) => {
+        resolve(self.settings);
+      })
+    }
+
+    if (self.deferred) return self.deferred.promise;
+    this.deferred = $q.defer();
+
+    $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/settings/common`,
     }).then(result => {
-      self.languages = result.data.data.languages;
-      self.roles = result.data.data.roles;
+      self.settings = result.data.data;
+      self.deferred.resolve(result.data.data);
+      delete self.deferred;
     });
 
-    // self.languages = [{"code":"en","name":"English"},{"code":"nl","name":"Dutch"},{"code":"fr","name":"French"}]
-    // self.roles = [{"code":"admin","name":"admin"},{"code":"user","name":"user"},{"code":"visitor","name":"visitor"},{"code":"contributor","name":"contributor"}]
-  };
-
-  let getLanguages = () => {
-    //TODO fix this
-    return this.languages || [{"code":"en","name":"English"},{"code":"nl","name":"Dutch"},{"code":"fr","name":"French"}];
-  };
-
-  let getRoles = () => {
-    return this.roles ||  [{"code":"admin","name":"admin"},{"code":"user","name":"user"},{"code":"visitor","name":"visitor"},{"code":"contributor","name":"contributor"}];
-  };
-
-  let getFaqStatuses = () => {
-    return this.faqStatuses
-  };
-
-  let getFaqVisibility = () => {
-    return this.faqVisibility
+    return self.deferred.promise;
   };
 
   return {
-    getCommon,
-    getLanguages,
-    getRoles,
-    getFaqStatuses,
-    getFaqVisibility
+    getSettings
   }
 }
 
