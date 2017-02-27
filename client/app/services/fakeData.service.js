@@ -179,16 +179,19 @@ function FakeDataService() {
       ],
       checkSubdomain: {"data": {"subdomain": "exist"}},
       login: {
-        data: {
-          "data": {
-            "access_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiIxTkt6WUZVeFMwbE9OVDZwQU5mR2RLIiwiaWF0IjoxNDg3OTQ2MzY1LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDg3OTQ5OTY1LCJydGkiOiIxTkt6WUNBc1hRU1BrZTB4eTdvMDFHIn0.F8-AurIMsRS3SuHT0yGG50zCiXSX8e89KSXSaPWFHKQ",
-            "refresh_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoicmVmcmVzaCIsImFsZyI6IkhTMjU2In0.eyJqdGkiOiIxTkt6WUNBc1hRU1BrZTB4eTdvMDFHIiwiaWF0IjoxNDg3OTQ2MzY1LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDkzMTMwMzY1fQ.ExynGLJVHb1n1pXLFzjDH4zrmVFdJdk2zT36GqLqCNw",
-            "token_type": "Bearer",
-            "expires_in": 3600,
-            "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/1NKzYFUxS0lONT6pANfGdK",
-            "role": "admin",
-            "subdomain": "skiba"
-          }
+        "data": {
+          "access_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiIzMVRoOE5NZXQ3R3VCT0R4dDRsTkU0IiwiaWF0IjoxNDg4MjA5NzM4LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDg4MjEzMzM4LCJydGkiOiIzMVRjb0s0VFhDbmhDcm5wVzZ4WFZVIn0.XgsGFDduqHdezCOGKr_JD7taQ5ao_Ozwz2ARfwgQNcA",
+          "refresh_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoicmVmcmVzaCIsImFsZyI6IkhTMjU2In0.eyJqdGkiOiIzMVRjb0s0VFhDbmhDcm5wVzZ4WFZVIiwiaWF0IjoxNDg4MjA5NzM4LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDkzMzkzNzM4fQ.nfSz9RXMFyJh7kzDuVpRFjbVNaoVrBPUwppb3_iVfEA",
+          "token_type": "Bearer",
+          "expires_in": 3600,
+          "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/31Th8NMet7GuBODxt4lNE4",
+          "role": ["admin"],
+          "id": "78FsrnMdYHAcJEWUPo4gQe",
+          "email": "oleg.skiba@yanpix.com",
+          "username": "oleg.skiba@yanpix.com",
+          "first_name": "Oleg",
+          "last_name": "Skiba",
+          "subdomains": ["skiba"]
         }
       }
     };
