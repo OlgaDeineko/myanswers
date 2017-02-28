@@ -1,5 +1,5 @@
 class FaqController {
-  constructor($sce, $state, toastr, ArticleService, SettingsService) {
+  constructor($sce, $state, toastr, ArticleService, SettingsService, FilesService) {
     "ngInject";
     this.name = 'faq';
 
@@ -8,6 +8,7 @@ class FaqController {
     this.toastr = toastr;
     this.SettingsService = SettingsService;
     this.ArticleService = ArticleService;
+    this.FilesService = FilesService;
     this.visitor = $state.current.name == 'faqVisitor';
 
 
@@ -33,6 +34,10 @@ class FaqController {
           result.countChars = (result.answerWithoutTags.match(/\S/g) || []).length;
 
           self.faq = result;
+          return result;
+        })
+        .then(result => {
+          self.FilesService.getAll('faq', result.id);
         })
     })
   }

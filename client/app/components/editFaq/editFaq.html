@@ -46,12 +46,12 @@
       <h4>Add internal comments</h4>
       <div class="row">
         <div class="col-md-10">
-      <textarea class="form-control remarks" ng-model="remarkModel" rows="4"></textarea>
+          <textarea class="form-control remarks" ng-model="remarkModel" rows="4"></textarea>
         </div>
         <div class="col-md-2">
           <button class="button button-primary"
-               ng-disabled="!remarkModel.length"
-               ng-click="$ctrl.addRemark(remarkModel); remarkModel=null">
+                  ng-disabled="!remarkModel.length"
+                  ng-click="$ctrl.addRemark(remarkModel); remarkModel=null">
             Add
           </button>
         </div>
@@ -75,7 +75,7 @@
       </div>
       <div class="col-md-6">
         <button class="button button-primary" ng-click="$ctrl.save();"
-             ng-disabled="!$ctrl.faq.question || !$ctrl.faq.answer">
+                ng-disabled="!$ctrl.faq.question || !$ctrl.faq.answer">
           {{$ctrl.mode }}
         </button>
       </div>
@@ -129,6 +129,26 @@
     <!--Attachments-->
     <div class="faq-attachment">
       <h4>Attachments:</h4>
+
+      <div flow-init
+           flow-attrs="{accept:'image/*'}"
+           flow-file-success="$file.msg = $message"
+           flow-file-added="$ctrl.addedNewFile($file, $event, $flow )"
+           class="faq-uploader">
+
+        <button class="button button-primary"
+                flow-btn
+                ng-disapbled="$ctrl.loadingFileFlag"
+                flow-attrs="{accept:'image/*'}">
+          {{$flow.files.length ? 'Add': 'Upload'}} File
+        </button>
+
+        <div class="files" ng-repeat="item in $flow.files">
+          <div class="files-name">{{item.name}}</div>
+          <i class="fa fa-remove" ng-click="$ctrl.removeFile($index, $flow)"></i>
+        </div>
+
+      </div>
     </div><!--END:Attachments-->
 
   </div><!--END: left sidebar article-->

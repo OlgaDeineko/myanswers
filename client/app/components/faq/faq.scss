@@ -2,12 +2,12 @@
 
 .faq {
   .mce-panel,
-  .mce-btn{
+  .mce-btn {
     background: none;
   }
 
   tags-input {
-    .tags{
+    .tags {
       background: none;
       border: none;
       box-shadow: none;
@@ -20,7 +20,7 @@
         box-shadow: none;
       }
 
-      input.input{
+      input.input {
         float: none;
         display: block;
         width: 100% !important;
@@ -32,7 +32,7 @@
       }
     }
 
-    .host{
+    .host {
       outline: none;
     }
   }
@@ -53,13 +53,13 @@
       top: 0;
     }
 
-    .faq{
+    .faq {
       &-counts {
         color: rgba($darkTextColor, 0.5);
         margin: 10px 0;
       }
 
-      &-question{
+      &-question {
         position: relative;
         label {
           position: absolute;
@@ -69,7 +69,7 @@
           opacity: 0.4;
           font-weight: normal;
 
-          &:after{
+          &:after {
             content: "";
             border-right: 3px solid black;
             height: 100%;
@@ -78,7 +78,7 @@
           }
         }
         .form-control,
-        h2{
+        h2 {
           border: none;
           font-size: 50px;
           height: auto;
@@ -109,12 +109,11 @@
     padding-bottom: 20px;
     padding-top: 20px;
 
-
     h4 {
       font-size: 15px;
     }
 
-    .faq{
+    .faq {
       &-visibility,
       &-category,
       &-open-comments,
@@ -124,6 +123,30 @@
       &-attachment {
         margin-bottom: 40px;
       }
+
+      &-uploader {
+        .files {
+          position: relative;
+          font-size: 16px;
+          margin: 10px 0;
+
+          .files-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 1;
+            margin-right: 20px;
+          }
+
+          i {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 2px;
+            cursor: pointer;
+          }
+        }
+      }
     }
 
     &.edit .faq-visibility {
@@ -131,7 +154,7 @@
     }
   }
 
-  &-right-sidebar{
+  &-right-sidebar {
     padding-bottom: 20px;
     padding-top: 20px;
   }

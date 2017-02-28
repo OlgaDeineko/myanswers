@@ -14,6 +14,7 @@ import SubdomainService from './services/subdomain.service';
 import SettingsService from './services/settings.service';
 import UsersService from './services/users.service';
 import FakeDataService from './services/fakeData.service';
+import FilesService from './services/files.services';
 
 import settigns from './config.js';
 
@@ -35,8 +36,8 @@ import 'tinymce';
 import 'angular-ui-tinymce';
 import 'angular-toastr';
 import 'angular-toastr/dist/angular-toastr.min.css';
-// import 'angular-animate';
-import './styles/font-awesome-4.7.0/css/font-awesome.min.css'
+import './styles/font-awesome-4.7.0/css/font-awesome.min.css';
+import 'ng-flow/dist/ng-flow-standalone';
 
 import 'tinymce/skins/lightgray/skin.min.css';
 import 'tinymce/skins/lightgray/content.min.css';
@@ -94,10 +95,10 @@ angular.module('app', [
   'angular-clipboard',
   'ngTable',
   'ngSanitize',
-  // 'ngAnimate',
-  'toastr'
+  'toastr',
+  'flow'
 ])
-  .config(($locationProvider, $httpProvider, $urlRouterProvider) => {
+  .config(($locationProvider, $httpProvider, $urlRouterProvider, flowFactoryProvider, $qProvider) => {
     "ngInject";
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
     // #how-to-configure-your-server-to-work-with-html5mode
@@ -111,6 +112,13 @@ angular.module('app', [
     $httpProvider.defaults.headers.put = {};
     $httpProvider.defaults.headers.patch = {};
 
+    $qProvider.errorOnUnhandledRejections(false);
+
+    flowFactoryProvider.factory = function (opts) {
+      let Flow = require('ng-flow/dist/ng-flow-standalone');
+      return new Flow(opts)
+    };
+
     $urlRouterProvider.otherwise('/admin/category/');
   })
   .service('ResponseObserver', ResponseObserver)
@@ -122,6 +130,7 @@ angular.module('app', [
   .service('SettingsService', SettingsService)
   .service('UsersService', UsersService)
   .service('FakeDataService', FakeDataService)
+  .service('FilesService', FilesService)
   .component('app', AppComponent)
   .run(($rootScope, AuthenticationService) => {
     "ngInject";

@@ -1,5 +1,5 @@
 import {local} from '../config';
-function ResponseObserver($q, $window, SessionService, FakeDataService) {
+function ResponseObserver($q, $window, toastr, SessionService, FakeDataService) {
   "ngInject";
   return {
     'request': (config) => {
@@ -45,11 +45,11 @@ function ResponseObserver($q, $window, SessionService, FakeDataService) {
         case 403:
         case 401:
           //$window.location = './403.html';
-          toastr.error(errorResponse.text, `Server error ${Response.status}`);
+          toastr.error(errorResponse.text, `Server error ${errorResponse.status}:`);
           break;
         case 500:
           //$window.location = './500.html';
-          toastr.error(errorResponse.text, `Server error ${Response.status}`);
+          toastr.error(errorResponse.data.message, `Server error ${errorResponse.status}:`);
           break;
       }
       return $q.reject(errorResponse);

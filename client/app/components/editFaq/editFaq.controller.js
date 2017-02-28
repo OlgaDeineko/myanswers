@@ -1,22 +1,26 @@
 class EditFaqController {
-  constructor($state, toastr, CategoryService, ArticleService, SettingsService, SessionService) {
+  constructor($state, $scope, toastr, CategoryService, ArticleService, SettingsService, SessionService, FilesService) {
     'ngInject';
     this.name = 'editFaq';
 
     let self = this;
     this.$state = $state;
+    this.$scope = $scope;
     this.toastr = toastr;
     this.CategoryService = CategoryService;
+    this.SessionService = SessionService;
     this.ArticleService = ArticleService;
     this.SettingsService = SettingsService;
+    this.FilesService = FilesService;
 
     this.faq = {};
     this.categories = [];
     this.mode = 'create';
-    if ($state.current.name == 'editFaq'){
+    this.loadingFileFlag = true;
+    this.filesBase64 = [];
+    if ($state.current.name == 'editFaq') {
       this.mode = 'update';
     }
-
 
     // configs for tinyMCE editor @see {@link https://www.tinymce.com/docs/}
     // this.tinymceOptions = {
@@ -126,12 +130,19 @@ class EditFaqController {
       }
     });
     this.faq.category_ids = [this.faq.categories];
-    this.faq.status = status || 'published';
-      this.ArticleService[this.mode](this.faq)
-        .then((result) => {
-          self.$state.go("faq", {'faqId': result.id});
-          self.toastr.success(`FAQ ${self.mode}d successfully.`)
-        })
+    this.faq.author = this.SessionService.getFullName();
+
+    this.ArticleService[this.mode](this.faq)
+      .then(result => {
+        if(self.filesBase64.length){
+          self.FilesService.create(self.filesBase64, 'faq', result.id);
+        }
+        return result
+      })
+      .then(result => {
+        self.$state.go("faq", {'faqId': result.id});
+        self.toastr.success(`FAQ ${self.mode}d successfully.`)
+      })
   }
 
   remove() {
@@ -142,6 +153,35 @@ class EditFaqController {
         self.toastr.success('FAQ removed successfully.')
       })
   }
+
+  addedNewFile(file, event, $flow) {
+    let self = this;
+
+    if (!/\.(doc|docx|pdf)$/.test(file.file.name)) {
+      self.toastr.error("File must be document (*.doc, *.docx, *.pdf)");
+      return false;
+    }
+    self.loadingFileFlag = true;
+
+    let reader = new FileReader();
+
+    reader.onload = (event) => {
+      self.filesBase64.push({name: file.name, base64: event.target.result});
+    };
+
+    reader.onloadend = () => {
+      self.loadingFileFlag = false;
+      self.$scope.$apply();
+    };
+
+    reader.readAsDataURL(file.file);
+  };
+
+  removeFile(idx, $flow){
+    $flow.files.splice(idx, 1);
+    this.filesBase64.splice(idx, 1)
+  }
+
 }
 
 export default EditFaqController;
