@@ -9,10 +9,10 @@ module.exports = {
     loaders: [
        { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
        { test: /\.html$/, loader: 'raw' },
-       { test: /\.(woff|woff2)$/,  loader: "url-loader?limit=10000&mimetype=application/font-woff&name=./fonts/[hash].[ext]" },
-       { test: /\.ttf$/,    loader: "file-loader?name=./fonts/[hash].[ext]" },
-       { test: /\.eot$/,    loader: "file-loader?name=./fonts/[hash].[ext]" },
-       { test: /\.(svg|gif)$/,    loader: "file-loader?name=./images/[hash].[ext]"  },
+       { test: /\.((woff|woff2)(\?v=.*)?)$/,  loader: "url-loader?limit=10000&mimetype=application/font-woff&name=./fonts/[hash].[ext]" },
+       { test: /\.((ttf)(\?v=.*)?)$/,    loader: "file-loader?name=./fonts/[hash].[ext]" },
+       { test: /\.((eot)(\?v=.*)?)$/,  loader: "file-loader?name=./fonts/[hash].[ext]" },
+       { test: /\.((svg|gif)(\?v=.*)?)$/,    loader: "file-loader?name=./images/[hash].[ext]"  },
        { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
        { test: /\.css$/, loader: 'style!css' }
     ]

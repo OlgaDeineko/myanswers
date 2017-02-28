@@ -10,7 +10,12 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
       data: user
     }).then(result => {
       let role = 'ADMIN'// result.data.data.role;
-      SessionService.create(result.data.data.access_token, result.data.data.subdomains[0], role);
+      SessionService.create(
+        result.data.data.access_token,
+        result.data.data.subdomains[0],
+        role,
+        `${result.data.data.first_name} ${result.data.data.last_name}`
+      );
       return result;
     });
   }

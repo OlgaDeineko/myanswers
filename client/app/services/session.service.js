@@ -3,10 +3,11 @@ import config, {apiUrl, mainDomian} from '../config';
 function SessionService($window) {
   "ngInject";
 
-  let create = (accessToken, subdomain, role) => {
+  let create = (accessToken, subdomain, role, fullName) => {
     $window.localStorage['access_token'] = accessToken;
     $window.localStorage['client_subdomain'] = subdomain;
     $window.localStorage['role'] = role;
+    $window.localStorage['full_name'] = fullName;
   }
 
   let hasToken = () => {
@@ -34,10 +35,15 @@ function SessionService($window) {
     return $window.localStorage['client_subdomain'];
   }
 
+  let getFullName = () => {
+    return $window.localStorage['full_name'];
+  }
+
   let destroy = () => {
     $window.localStorage.removeItem('access_token');
     $window.localStorage.removeItem('client_subdomain');
     $window.localStorage.removeItem('role');
+    $window.localStorage.removeItem('full_name');
   }
 
   return {
@@ -47,7 +53,8 @@ function SessionService($window) {
     getSubdomain,
     getToken,
     getRole,
-    geApiUrl
+    geApiUrl,
+    getFullName,
   }
 }
 

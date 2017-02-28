@@ -1,5 +1,5 @@
 class EditFaqController {
-  constructor($state, toastr, CategoryService, ArticleService, SettingsService) {
+  constructor($state, toastr, CategoryService, ArticleService, SettingsService, SessionService) {
     'ngInject';
     this.name = 'editFaq';
 
@@ -12,45 +12,66 @@ class EditFaqController {
 
     this.faq = {};
     this.categories = [];
+    this.mode = 'create';
+    if ($state.current.name == 'editFaq'){
+      this.mode = 'update';
+    }
 
 
     // configs for tinyMCE editor @see {@link https://www.tinymce.com/docs/}
+    // this.tinymceOptions = {
+    //   plugins: 'link image wordcount',
+    //   themes: "modern",
+    //   skin: false,
+    //   height: 350,
+    //   menubar: 'edit insert view format table tools',
+    //   resize: false,
+    //   toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    //   menu: {
+    //     file: {title: 'File', items: 'newdocument'},
+    //     edit: {title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall'},
+    //     insert: {title: 'Insert', items: 'link media | template hr'},
+    //     view: {title: 'View', items: 'visualaid'},
+    //     format: {
+    //       title: 'Format',
+    //       items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'
+    //     },
+    //     table: {title: 'Table', items: 'inserttable tableprops deletetable | cell row column'},
+    //     tools: {title: 'Tools', items: 'spellchecker code'}
+    //   }
+    // };
     this.tinymceOptions = {
-      plugins: 'link image wordcount',
+      //plugins: 'link image wordcount',
       themes: "modern",
       skin: false,
       height: 350,
-      menubar: 'edit insert view format table tools',
       resize: false,
-      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-      menu: {
-        file: {title: 'File', items: 'newdocument'},
-        edit: {title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall'},
-        insert: {title: 'Insert', items: 'link media | template hr'},
-        view: {title: 'View', items: 'visualaid'},
-        format: {
-          title: 'Format',
-          items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'
-        },
-        table: {title: 'Table', items: 'inserttable tableprops deletetable | cell row column'},
-        tools: {title: 'Tools', items: 'spellchecker code'}
-      }
+
+
+      plugins: [
+        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        'searchreplace wordcount visualblocks visualchars code fullscreen',
+        'insertdatetime media nonbreaking save table contextmenu directionality',
+        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+      ],
+      toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+      toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+      image_advtab: true,
     };
 
     //state can be in two states: createFaq or editFaq. for create - empty object, for edit - grab from server
-    if ($state.current.name == 'createFaq') {
+    if (this.mode == 'create') {
       this.faq = {
         question: '',
         answer: '',
         categories: $state.params.categoryId || '1',
         tags: [],
-        visibility: 'Public',
-        author: 'Test User',
+        visibility: 'public',
+        author: {id: '12345', full_name: SessionService.getFullName()},
         lang: 'en',
         is_open_comments: true,
-        published: true,
+        status: 'draft',
         remarks: [],
-        draft: false,
         countWords: 0,
         countChars: 0
       };
@@ -66,11 +87,13 @@ class EditFaqController {
     this.CategoryService.getAll()
       .then((result) => {
         self.categories = result;
-
+        return result;
+      })
+      .then(() => {
         self.SettingsService.getSettings().then(result => {
           this.languages = result.languages;
           this.faqVisibility = result.faq_visibility;
-          this.getFaqStatuses = result.faq_statuses;
+          this.faqStatuses = result.faq_statuses;
         })
       })
   }
@@ -104,23 +127,11 @@ class EditFaqController {
     });
     this.faq.category_ids = [this.faq.categories];
     this.faq.status = status || 'published';
-    if (this.$state.current.name == 'createFaq') {
-      this.ArticleService.save(this.faq)
+      this.ArticleService[this.mode](this.faq)
         .then((result) => {
           self.$state.go("faq", {'faqId': result.id});
-          self.toastr.success('FAQ created successfully.')
+          self.toastr.success(`FAQ ${self.mode}d successfully.`)
         })
-    } else {
-      this.ArticleService.update(this.faq)
-        .then((result) => {
-          self.$state.go("faq", {'faqId': result.id});
-          self.toastr.success('FAQ updated successfully.')
-        })
-    }
-  }
-
-  saveAsDraft() {
-    this.save('draft');
   }
 
   remove() {

@@ -1,8 +1,10 @@
 @import "styles/utilities/index";
 @import "common/common";
 
-.app {
+app, html, ui-view {
   height: 100%;
+  background-color: $bgColor;
+  display: block
 }
 
 .modal-title{
@@ -12,4 +14,66 @@
 .tooltip-inner {
   white-space:pre;
   max-width:none;
+}
+
+.form-control{
+  background: none;
+}
+
+.content-wrapper {
+  width: calc(100% - #{$navbar-width});
+  right: 0;
+  position: absolute;
+  height: 100%;
+  padding: 20px 0;
+}
+
+.button{
+  text-align: center;
+  padding: 10px;
+  color: $blueColor;
+  border: 1px solid $blueColor;
+  border-radius: $buttonBorderRadius;
+  cursor: pointer;
+  position: relative;
+  font-weight: bold;
+  outline: none;
+  text-transform: capitalize;
+  width: 100%;
+
+  i {
+    margin-right: 7px;
+    transform: scale(2);
+  }
+
+  &:after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  &[disabled]{
+    border: 1px solid rgba(255,255,255, 0.5);
+
+    &:after,
+    &:hover:after{
+      background-color: rgba(255,255,255, 0.5);
+    }
+  }
+
+  &:hover:after{
+    background-color: rgba(0,0,0, 0.05);
+  }
+
+  &:active:after{
+    background-color: rgba(0,0,0, 0.15);
+  }
+
+  &-primary{
+    color: white;
+    background-color: $blueColor;
+  }
 }

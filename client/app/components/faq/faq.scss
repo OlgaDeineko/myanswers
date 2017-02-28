@@ -1,109 +1,145 @@
 @import "../../common/common";
 
 .faq {
+  .mce-panel,
+  .mce-btn{
+    background: none;
+  }
 
-  .tags {
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    &.focused {
-      border-color: #66afe9;
-      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
-      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+  tags-input {
+    .tags{
+      background: none;
+      border: none;
+      box-shadow: none;
+      -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+      -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+      transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+      &.focused {
+        border: none;
+        box-shadow: none;
+      }
+
+      input.input{
+        float: none;
+        display: block;
+        width: 100% !important;
+        background: none;
+      }
+
+      .tag-item {
+        background: $tagsBgColor;
+      }
     }
 
-    .tag-item {
-      background: $tagsBgColor;
+    .host{
+      outline: none;
     }
   }
 
   &-content {
-    background: #ffffff;
     padding-top: 20px;
-  }
-  &-tag {
-    display: inline-block;
-    margin: 0 5px;
-    background: $tagsBgColor;
-    padding: 5px 10px;
-    border-radius: 4px;
-  }
+    padding-bottom: 20px;
+    min-height: 100%;
+    padding-left: 100px;
 
-  &-question {
-    border-bottom: 1px solid $primaryColor;
-    h2 {
-      font-size: $fonLg;
+    &:after {
+      content: " ";
+      border-right: 1px solid;
+      opacity: 0.4;
+      position: absolute;
+      height: 100%;
+      right: 0;
+      top: 0;
     }
-  }
 
-  &-answer {
-    margin-top: 20px;
-    border-radius: 4px;
-    padding: 10px;
-    border: 1px solid $lightBgColor;
-  }
+    .faq{
+      &-counts {
+        color: rgba($darkTextColor, 0.5);
+        margin: 10px 0;
+      }
 
-  .one-remark {
-    margin-top: 20px;
-    padding: 20px 10px;
-    background: $tagsBgColor;
-    border-radius: 4px;
-  }
+      &-question{
+        position: relative;
+        label {
+          position: absolute;
+          left: -60px;
+          top: 40%;
+          font-size: 16px;
+          opacity: 0.4;
+          font-weight: normal;
 
-  &-counts {
-    color: $darkTextColor;
-    margin: 10px 0;
+          &:after{
+            content: "";
+            border-right: 3px solid black;
+            height: 100%;
+            opacity: 0.4;
+            margin-left: 10px;
+          }
+        }
+        .form-control,
+        h2{
+          border: none;
+          font-size: 50px;
+          height: auto;
+          box-shadow: none;
+          padding: 0;
+          font-weight: bold;
+        }
+      }
+
+      &-tag {
+        display: inline-block;
+        margin: 0 5px;
+        background: $tagsBgColor;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
+
+      .one-remark {
+        margin-top: 20px;
+        padding: 20px 10px;
+        background: $tagsBgColor;
+        border-radius: 4px;
+      }
+    }
   }
 
   &-left-sidebar {
-    background: $bgColor;
     padding-bottom: 20px;
-    .faq-category,
-    .faq-visibility,
-    .faq-author,
-    .faq-lang,
-    .faq-analytics {
-      background: #fff;
-      border-radius: 4px;
-      padding: 3px 10px;
+    padding-top: 20px;
+
+
+    h4 {
+      font-size: 15px;
     }
-    .faq-actions {
-      margin: 20px 0;
-      .btn {
-        width: 100%;
+
+    .faq{
+      &-visibility,
+      &-category,
+      &-open-comments,
+      &-author,
+      &-language,
+      &-analytics,
+      &-attachment {
+        margin-bottom: 40px;
       }
     }
 
-    .faq-visibility > div {
-      cursor: pointer;
-      &.active {
-        text-decoration: underline;
-        color: $primaryColor;
-      }
-    }
     &.edit .faq-visibility {
       background: none;
     }
-    .delete-btn,
-    .save-btn {
-      margin-top: 20px;
-    }
   }
-  .add-btn {
-    margin-top: 10px;
+
+  &-right-sidebar{
+    padding-bottom: 20px;
+    padding-top: 20px;
   }
+
   textarea {
     resize: none;
   }
   h4 {
-    margin-top: 20px;
     color: $darkTextColor;
-    text-transform: uppercase;
   }
 }

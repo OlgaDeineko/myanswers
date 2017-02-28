@@ -59,7 +59,7 @@ function ArticleService($http, $rootScope, SessionService) {
    * @param {Article} faq - new faq
    * @returns {Promise.<{Article}>}
    */
-  let save = (faq) => {
+  let create = (faq) => {
     let self = this;
     return $http({
       method: 'POST',
@@ -110,7 +110,7 @@ function ArticleService($http, $rootScope, SessionService) {
   return {
     getAll,
     getById,
-    save,
+    create,
     update,
     remove
   }

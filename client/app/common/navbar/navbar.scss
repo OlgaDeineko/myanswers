@@ -37,9 +37,3 @@
     font-size: 2rem;
   }
 }
-
-.content-wrapper {
-  width: calc(100% - #{$navbar-width});
-  right: 0;
-  position: absolute;
-}

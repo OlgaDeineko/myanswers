@@ -4,6 +4,7 @@ import './editFaq.scss';
 
 let editFaqComponent = {
   restrict: 'E',
+  replace: true,
   bindings: {},
   template,
   controller

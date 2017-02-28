@@ -1,80 +1,96 @@
 <navbar ng-if="!$ctrl.visitor"></navbar>
 <div class="content-wrapper faq">
-  <div class="container-fluid">
-    <div class="row">
-      <!--Content article-->
-      <div class="col-md-8 faq-content">
-        <!--Tags-->
-        <div class="faq-tags">
-          <div class="faq-tag" ng-repeat="item in $ctrl.faq.tags track by $index">
-            {{item.name}}
-          </div>
-        </div><!--END: Tags-->
-        <!--Counts word-->
-        <div class="text-right faq-counts">
-          <p>
-            {{$ctrl.faq.countWords}} word{{$ctrl.faq.countWords > 1 ? 's': ''}} {{$ctrl.faq.countChars}} character{{$ctrl.faq.countChars > 1 ? 's': ''}}
-          </p>
-        </div><!--END: Counts word-->
-        <!--Copy To Clipboard-->
-        <div class="text-right">
-          <div class="btn btn-success" clipboard text="$ctrl.faq.answerWithoutTags" ng-click="$ctrl.copyToClipboard()">Copy to clipboard</div>
-        </div><!--END: Copy To Clipboard-->
-        <!--Question-->
-        <div class="faq-question">
-          <h2>{{$ctrl.faq.question}}</h2>
-        </div><!--END: Question-->
-        <!--Answer-->
-        <h4>Answer</h4>
-        <div class="faq-answer" ng-bind-html="$ctrl.faq.answer">
-        </div><!--END: Answer-->
-        <!--Remarks-->
-        <div  ng-if="!$ctrl.visitor">
-        <h4>Remarks</h4>
-        <div class="one-remark" ng-repeat="item in $ctrl.faq.remarks track by $index">
-          {{item}}
-        </div></div><!--END: Remarks-->
-      </div><!--END: Content article-->
 
-      <!--left sideba article-->
-      <div class="col-md-4 faq-left-sidebar">
-        <!--Categories-->
-        <h4>Categories:</h4>
-        <div class="faq-category">
-          {{$ctrl.faq.categories.name}}
-        </div><!--END: Categories-->
-        <!--Visibility-->
-        <div ng-if="$ctrl.faq.visibility">
-        <h4>Visibility:</h4>
-        <div class="faq-visibility">
-          {{$ctrl.faq.visibility}}
-        </div></div><!--END: Visibility-->
-        <!--Author-->
-        <div ng-if="$ctrl.faq.author">
-        <h4>Author:</h4>
-        <div class="faq-author">
-          {{$ctrl.faq.author}}
-        </div></div><!--END: Author-->
-        <!--Language-->
-        <div ng-if="$ctrl.faq.lang">
-        <h4>Language:</h4>
-        <div class="faq-lang">
-          {{$ctrl.faq.lang}}
-        </div></div><!--END: Language-->
-        <!--Analytics-->
-        <h4>Analytics:</h4>
-        <div class="faq-analytics">
-          <i class="glyphicon glyphicon-eye-open"></i>{{$ctrl.faq.analytics}} views
-        </div><!--END: Analytics-->
-        <!--Action buttons-->
-        <div class="row faq-actions" ng-if="!$ctrl.visitor">
-          <div class="col-md-6 col-md-offset-3">
-            <div class="btn btn-success" ng-click="$ctrl.goTo()">
-              Edit
-            </div>
-          </div>
-        </div><!--END: Action buttons-->
-      </div><!--END: left sideba article-->
-    </div>
-  </div>
+  <!--Content article-->
+  <div class="col-md-8 faq-content">
+    <!--Tags-->
+    <div class="faq-tags">
+      <div class="faq-tag" ng-repeat="item in $ctrl.faq.tags track by $index">
+        {{item.name}}
+      </div>
+    </div><!--END: Tags-->
+    <!--Counts word-->
+    <div class="text-right faq-counts">
+      <p>
+        {{$ctrl.faq.countWords}} word{{$ctrl.faq.countWords > 1 ? 's': ''}} {{$ctrl.faq.countChars}}
+        character{{$ctrl.faq.countChars > 1 ? 's': ''}}
+      </p>
+    </div><!--END: Counts word-->
+
+    <!--Copy To Clipboard-->
+    <div class="row">
+      <div class="col-md-3 col-md-offset-9">
+        <div class="button button-primary"
+             clipboard
+             text="$ctrl.faq.answerWithoutTags"
+             ng-click="$ctrl.copyToClipboard()">
+          Copy to clipboard
+        </div>
+      </div>
+    </div><!--END: Copy To Clipboard-->
+
+    <!--Question-->
+    <div class="faq-question">
+      <label>Title</label>
+      <h2>{{$ctrl.faq.question}}</h2>
+    </div><!--END: Question-->
+
+    <!--Answer-->
+    <div class="faq-answer">
+      <div ng-bind-html="$ctrl.faq.answer">
+      </div>
+    </div><!--END: Answer-->
+
+    <!--Remarks-->
+    <div class="faq-remarks" ng-if="!$ctrl.visitor && $ctrl.faq.remarks.length">
+      <h4>Remarks</h4>
+      <div class="one-remark" ng-repeat="item in $ctrl.faq.remarks track by $index">
+        {{item}}
+      </div>
+    </div><!--END: Remarks-->
+
+  </div><!--END: Content article-->
+
+  <!--left sideba article-->
+  <div class="col-md-4 faq-left-sidebar">
+    <!--Categories-->
+    <div class="faq-category">
+      <h4>Categories:</h4>
+      <div>{{$ctrl.faq.categories.name}}</div>
+    </div><!--END: Categories-->
+
+    <!--Visibility-->
+    <div class="faq-visibility" ng-if="$ctrl.faq.visibility">
+      <h4>Visibility:</h4>
+      <div>{{$ctrl.faq.visibility}}</div>
+    </div><!--END: Visibility-->
+
+    <!--Author-->
+    <div class="faq-author" ng-if="$ctrl.faq.author">
+      <h4>Author:</h4>
+      <div>{{$ctrl.faq.author.full_name}}</div>
+    </div><!--END: Author-->
+
+    <!--Language-->
+    <div class="faq-lang" ng-if="$ctrl.faq.lang">
+      <h4>Language:</h4>
+      <div>{{$ctrl.faq.lang}}</div>
+    </div><!--END: Language-->
+
+    <!--Analytics-->
+    <!--<h4>Analytics:</h4>-->
+    <!--<div class="faq-analytics">-->
+    <!--<i class="glyphicon glyphicon-eye-open"></i>{{$ctrl.faq.analytics}} views-->
+    <!--</div>&lt;!&ndash;END: Analytics&ndash;&gt;-->
+
+    <!--Action buttons-->
+    <div class="row faq-actions" ng-if="!$ctrl.visitor">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="button button-primary" ng-click="$ctrl.goTo()">
+          Edit
+        </div>
+      </div>
+    </div><!--END: Action buttons-->
+  </div><!--END: left sideba article-->
+
 </div>

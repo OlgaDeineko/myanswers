@@ -14,37 +14,39 @@ function FakeDataService() {
           "question": "dsdgdsfg",
           "answer": "<p>sdgsdfgdfg</p>",
           "slug": "dsdgdsfg",
-          "visibility": null,
+          "visibility": 'public',
           "is_open_comments": "1",
-          "author": "Test User",
+          "author": {id: '12345', full_name: 'Oleg Skiba'},
           "status": 'draft',
           "lang": 'en',
           "algolia_object_id": "379636340",
           "created_at": "1487850702",
           "updated_at": "1487850702",
           "categories": [{"id": "1", "name": "Uncategorized", "slug": null, "description": "", "lang": "en"}],
-          "tags": []
+          "tags": [{"tag_id": "1", "name": "test"},{"tag_id": "2", "name": "new tag"},],
+          "remarks": []
         }, {
           "id": "2",
           "question": "fdhdfhfd",
           "answer": "<p>hfdhfgh</p>",
           "slug": "fdhdfhfd",
-          "visibility": null,
+          "visibility": 'public',
           "is_open_comments": "1",
           "author": "Test User",
           "status": 'published',
-          "lang": null,
+          "lang": 'en',
           "algolia_object_id": "379636380",
           "created_at": "1487850724",
           "updated_at": "1487850724",
           "categories": [],
-          "tags": []
+          "tags": [],
+          "remarks": []
         }, {
           "id": "3",
           "question": "wwwwwwwwww",
           "answer": "<p>sdgdfgdgsdg</p>",
           "slug": "wwwwwwwwww",
-          "visibility": null,
+          "visibility": 'public',
           "is_open_comments": "1",
           "author": "Test User",
           "status": 'trash',
@@ -53,13 +55,14 @@ function FakeDataService() {
           "created_at": "1487851132",
           "updated_at": "1487927683",
           "categories": [{"id": "1", "name": "Uncategorized", "slug": null, "description": "", "lang": "en"}],
-          "tags": []
+          "tags": [],
+          "remarks": []
         }, {
           "id": "4",
           "question": "sdfsdf",
           "answer": "<p>sdfsdfsd</p>",
           "slug": "sdfsdf",
-          "visibility": null,
+          "visibility": 'public',
           "is_open_comments": "1",
           "author": "Test User",
           "status": "draft",
@@ -68,13 +71,14 @@ function FakeDataService() {
           "created_at": "1487851727",
           "updated_at": "1487930293",
           "categories": [{"id": "1", "name": "Uncategorized", "slug": null, "description": "", "lang": "en"}],
-          "tags": []
+          "tags": [],
+          "remarks": []
         }, {
           "id": "5",
           "question": "cat2",
           "answer": "<p>dfgdsfg</p>",
           "slug": "cat2",
-          "visibility": null,
+          "visibility": 'public',
           "is_open_comments": "1",
           "author": "Test User",
           "status": 'published',
@@ -83,7 +87,8 @@ function FakeDataService() {
           "created_at": "1487854965",
           "updated_at": "1487854965",
           "categories": [{"id": "2", "name": "Keyboard", "slug": "keyboard", "description": "", "lang": "en"}],
-          "tags": []
+          "tags": [],
+          "remarks": []
         }, {
           "id": "6",
           "question": "test new",
@@ -98,7 +103,8 @@ function FakeDataService() {
           "created_at": "1487925920",
           "updated_at": "1487925920",
           "categories": [{"id": "1", "name": "Uncategorized", "slug": null, "description": "", "lang": "en"}],
-          "tags": [{"tag_id": "1", "name": "test"}]
+          "tags": [{"tag_id": "1", "name": "test"}],
+          "remarks": []
         }
       ],
       categories: [
