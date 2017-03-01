@@ -2,7 +2,7 @@
   <h3>{{ $ctrl.name }}</h3>
 
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="(key, value) in $ctrl.articleCounts">
+    <li class="list-group-item" ui-sref="faqCategories({status: key.toLowerCase()})" ng-repeat="(key, value) in $ctrl.articleCounts">
       <span class="badge">{{value}}</span>
       {{key}}
     </li>
