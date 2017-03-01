@@ -15,14 +15,33 @@ class RegistrationController {
     this.schema = {
       type: "object",
       properties: {
+        "first_name": {
+          minLength: 3,
+          type: "string",
+          title: "First name",
+          "x-schema-form": {
+            "placeholder": "First name"
+          }
+        },
+        "last_name": {
+          minLength: 3,
+          type: "string",
+          title: "Last name",
+          "x-schema-form": {
+            "placeholder": "Last name"
+          }
+        },
         "email": {
           type: "string",
           title: "Email",
           minLength: 5,
-          "pattern": "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",
+          "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
           "x-schema-form": {
-            placeholder: "email"
-          }
+            placeholder: "email",
+          },
+          validationMessage: {
+            202: 'Invalid email'
+          },
         },
         "subdomain": {
           minLength: 5,
@@ -33,13 +52,17 @@ class RegistrationController {
           }
         },
         "password": {
-          minLength: 5,
+          minLength: 8,
           type: "string",
           title: "Password",
+          "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
           "x-schema-form": {
             "type": "password",
             "placeholder": "password"
-          }
+          },
+          validationMessage: {
+            202: 'Password must contain 1 uppercase letter, 1 lowercase letter and 1 number'
+          },
         },
         "password_repeat": {
           minLength: 5,
@@ -54,7 +77,7 @@ class RegistrationController {
           }
         }
       },
-      required: ["email", "subdomain", "password", "password_repeat"]
+      required: ["first_name", "last_name", "email", "subdomain", "password", "password_repeat"]
     }
     this.form = [
       "*"
