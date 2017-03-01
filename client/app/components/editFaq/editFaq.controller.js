@@ -84,6 +84,17 @@ class EditFaqController {
         .then((result) => {
           //don't ask)))
           result.categories = result.categories[0].id + '';
+
+          result.author = {id: '1111', full_name: result.author}
+
+          //counting words and character in article answer
+          result.answerWithoutTags = String(result.answer).replace(/<[^>]+>/gm, '');
+          result.countWords = result.answerWithoutTags.trim().split(/\s+/).length;
+          result.countChars = (result.answerWithoutTags.match(/\S/g) || []).length;
+          //@see http://marketingland.com/estimated-reading-times-increase-engagement-79830
+          let time = (result.countWords/200+"").split('.');
+          result.timeReads = `${time[0]} min ${((('.'+time[1])*60).toFixed())} sec`;
+
           self.faq = result;
         })
     }

@@ -23,7 +23,7 @@ function FakeDataService() {
           "created_at": "1487850702",
           "updated_at": "1487850702",
           "categories": [{"id": "1", "name": "Uncategorized", "slug": null, "description": "", "lang": "en"}],
-          "tags": [{"tag_id": "1", "name": "test"},{"tag_id": "2", "name": "new tag"},],
+          "tags": [{"tag_id": "1", "name": "test"}, {"tag_id": "2", "name": "new tag"},],
           "remarks": []
         }, {
           "id": "2",
@@ -127,18 +127,18 @@ function FakeDataService() {
           {"code": "user", "name": "user"},
           {"code": "visitor", "name": "visitor"},
           {"code": "contributor", "name": "contributor"}
-          ],
+        ],
         "faq_statuses": [
           {"code": "published", "name": "Published"},
           {"code": "unpublished", "name": "Unpublished"},
           {"code": "draft", "name": "Draft"},
           {"code": "trash", "name": "Trash"}
-          ],
+        ],
         "faq_visibility": [
           {"code": "public", "name": "Public"},
           {"code": "internal", "name": "Internal"},
           {"code": "private", "name": "Private"}
-          ]
+        ]
       },
       users: [
         {
@@ -199,14 +199,34 @@ function FakeDataService() {
           "last_name": "Skiba",
           "subdomains": ["skiba"]
         }
-      }
+      },
+      attachments: {
+        "data": [
+          {
+            "model": "faq",
+            "model_id": "11",
+            "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/11/1488301972qoy5qVpnJf26yA7cITwV.pdf",
+            "size": 35761,
+            "type": "pdf",
+            "mime": "application/pdf"
+          },
+          {
+            "model": "faq",
+            "model_id": "11",
+            "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/11/1488301972qoy5qVpnJf26yA7cITwV.pdf",
+            "size": 35761,
+            "type": "pdf",
+            "mime": "application/pdf"
+          }
+        ]
+      },
     };
     console.info('getLocalData', url);
 
     let reg = /\/?[\d]+$/; //regexp if url ends id etc: 'faq/54'
     let regUserId = /(users)\/.*/  //regexp for replace user id
 
-    if(regUserId.test(url)){
+    if (regUserId.test(url)) {
       url = url.replace(/\/.*/, '/23');
     }
 
@@ -238,6 +258,12 @@ function FakeDataService() {
         break;
       case 'auth/login':
         return data.login;
+        break;
+      case 'attachments/faq':
+        if (method != 'GET') {
+          return {data: {data: data.attachments.data[0]}};
+        }
+        return {data: data.attachments};
         break;
     }
   };

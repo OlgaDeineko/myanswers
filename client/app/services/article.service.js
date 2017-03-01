@@ -16,7 +16,7 @@ import config, {apiUrl} from '../config';
  * @property {object[]} categories - categories article. now in array one element
  */
 
-function ArticleService($http, $rootScope, SessionService) {
+function ArticleService($http, $rootScope, SessionService, FilesService) {
   "ngInject";
   let articles = null;
 
@@ -26,7 +26,7 @@ function ArticleService($http, $rootScope, SessionService) {
    */
   let getAll = (update) => {
     let self = this;
-    if(this.articles && !update){
+    if (this.articles && !update) {
       return new Promise((resolve, reject) => {
         resolve(self.articles);
       })
@@ -51,6 +51,16 @@ function ArticleService($http, $rootScope, SessionService) {
       url: `${SessionService.geApiUrl()}/faq/${faqId}`,
     }).then(result => {
       return result.data.data
+    }).then(article => {
+      return FilesService.getAll('faq', article.id)
+        .then(attachments => {
+          article.attachments = attachments.map(file => {
+            file.name = file.attachment_url.match(/.*\/faq\/\d+\/(.*)$/)[1];
+            return file;
+          });
+
+          return article;
+        });
     });
   };
 
@@ -66,7 +76,7 @@ function ArticleService($http, $rootScope, SessionService) {
       url: `${SessionService.geApiUrl()}/faq`,
       data: faq
     }).then(result => {
-      self.articles=null;
+      self.articles = null;
       $rootScope.$broadcast('updateArticles');
       return result.data.data
     });
@@ -84,7 +94,7 @@ function ArticleService($http, $rootScope, SessionService) {
       url: `${SessionService.geApiUrl()}/faq/${faq.id}`,
       data: faq
     }).then(result => {
-      self.articles=null;
+      self.articles = null;
       $rootScope.$broadcast('updateArticles');
       return result.data.data
     });
@@ -101,7 +111,7 @@ function ArticleService($http, $rootScope, SessionService) {
       method: 'DELETE',
       url: `${SessionService.geApiUrl()}/faq/${faqId}`,
     }).then(result => {
-      self.articles=null;
+      self.articles = null;
       $rootScope.$broadcast('updateArticles');
       return result.data.data
     });

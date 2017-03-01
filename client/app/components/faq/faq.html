@@ -9,11 +9,12 @@
         {{item.name}}
       </div>
     </div><!--END: Tags-->
+
     <!--Counts word-->
     <div class="text-right faq-counts">
       <p>
         {{$ctrl.faq.countWords}} word{{$ctrl.faq.countWords > 1 ? 's': ''}} {{$ctrl.faq.countChars}}
-        character{{$ctrl.faq.countChars > 1 ? 's': ''}}
+        character{{$ctrl.faq.countChars > 1 ? 's': ''}}, {{$ctrl.faq.timeReads}} reading time
       </p>
     </div><!--END: Counts word-->
 
@@ -53,6 +54,16 @@
 
   <!--left sideba article-->
   <div class="col-md-4 faq-left-sidebar">
+
+    <!--Action buttons-->
+    <div class="row faq-actions" ng-if="!$ctrl.visitor">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="button button-primary" ng-click="$ctrl.goTo()">
+          Edit
+        </div>
+      </div>
+    </div><!--END: Action buttons-->
+
     <!--Categories-->
     <div class="faq-category">
       <h4>Categories:</h4>
@@ -72,10 +83,19 @@
     </div><!--END: Author-->
 
     <!--Language-->
-    <div class="faq-lang" ng-if="$ctrl.faq.lang">
+    <div class="faq-language" ng-if="$ctrl.faq.lang">
       <h4>Language:</h4>
       <div>{{$ctrl.faq.lang}}</div>
     </div><!--END: Language-->
+
+    <!--faq-attachment-->
+    <div class="faq-attachment" ng-if="$ctrl.faq.attachments.length">
+      <h4>Attachments:</h4>
+
+      <div class="files" ng-repeat="item in $ctrl.faq.attachments">
+        <a ng-href="{{item.attachment_url}}" target="_blank" class="files-name">{{item.name}}</a>
+      </div>
+    </div><!--END: Attachments-->
 
     <!--Analytics-->
     <!--<h4>Analytics:</h4>-->
@@ -83,14 +103,6 @@
     <!--<i class="glyphicon glyphicon-eye-open"></i>{{$ctrl.faq.analytics}} views-->
     <!--</div>&lt;!&ndash;END: Analytics&ndash;&gt;-->
 
-    <!--Action buttons-->
-    <div class="row faq-actions" ng-if="!$ctrl.visitor">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="button button-primary" ng-click="$ctrl.goTo()">
-          Edit
-        </div>
-      </div>
-    </div><!--END: Action buttons-->
   </div><!--END: left sideba article-->
 
 </div>

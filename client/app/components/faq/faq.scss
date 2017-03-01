@@ -124,11 +124,13 @@
         margin-bottom: 40px;
       }
 
-      &-uploader {
+      &-uploader,
+      &-attachment{
         .files {
           position: relative;
           font-size: 16px;
           margin: 10px 0;
+          color: inherit;
 
           .files-name {
             white-space: nowrap;
@@ -136,6 +138,7 @@
             text-overflow: ellipsis;
             -webkit-line-clamp: 1;
             margin-right: 20px;
+            color: inherit;
           }
 
           i {

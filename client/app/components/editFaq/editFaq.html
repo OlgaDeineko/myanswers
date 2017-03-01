@@ -15,6 +15,14 @@
   <!--Content article-->
   <div class="col-md-7 faq-content">
 
+    <!--Counts word-->
+    <div class="text-right faq-counts" ng-if="$ctrl.faq.countWords">
+      <p>
+        {{$ctrl.faq.countWords}} word{{$ctrl.faq.countWords > 1 ? 's': ''}} {{$ctrl.faq.countChars}}
+        character{{$ctrl.faq.countChars > 1 ? 's': ''}}, {{$ctrl.faq.timeReads}} reading time
+      </p>
+    </div><!--END: Counts word-->
+
     <!--Status-->
     <div class="row faq-status">
       <div class="col-md-3 col-md-offset-9">
@@ -129,6 +137,10 @@
     <!--Attachments-->
     <div class="faq-attachment">
       <h4>Attachments:</h4>
+
+      <div class="files" ng-repeat="item in $ctrl.faq.attachments">
+        <a ng-href="{{item.attachment_url}}" target="_blank" class="files-name">{{item.name}}</a>
+      </div>
 
       <div flow-init
            flow-attrs="{accept:'image/*'}"
