@@ -31,7 +31,10 @@ function ResponseObserver($q, $window, toastr, SessionService, FakeDataService) 
     },
     'response': (response) => {
       if (!(/html$/.test(response.config.url))) {
-        console.info(response.config.url, response);
+        console.info(
+          response.config.method,
+          response.config.url.match(/.*\/api\/(v1\/.*)$/)[1],
+          response);
       }
       return response;
     },

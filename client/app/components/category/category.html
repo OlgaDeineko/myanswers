@@ -50,25 +50,29 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
-              <h3>Category / FAQ</h3>
-            </div>
-            <div class="col-md-6">
-            </div>
-          </div>
-
-          <div class="row">
             <div class="col-md-12">
               <!-- start Main content -->
-              <main>
-                <category-tree categories="$ctrl.categories"
-                               current="$ctrl.currentCategory"
-                               search="$ctrl.searchModel"></category-tree>
+              <div class="category-table-header">
+                <div class="category-table-header-title">
+                  Title
+                </div>
+                <div class="category-table-header-update">
+                  Last edited
+                </div>
+                <div class="category-table-header-lang">
+                  Language
+                </div>
+                <div class="category-table-header-author">
+                  Author
+                </div>
+                <div class="category-table-header-actions">
+                </div>
+              </div>
 
-                <article-tree articles="$ctrl.articles"
-                              search="$ctrl.searchModel"></article-tree>
+              <category-tree categories="$ctrl.tree"
+                             current="$ctrl.currentCategory"
+                             search="$ctrl.searchModel"></category-tree>
 
-              </main>
               <!-- end Main content -->
             </div>
 

@@ -1,3 +1,35 @@
-.category {
-  color: red;
+@import "../../common/common";
+.category-table-header{
+  display: table;
+  width: 100%;
+  padding: 10px 0;
+  opacity: 0.6;
+
+  &-title,
+  &-update,
+  &-author,
+  &-lang{
+    display: table-cell;
+    font-size: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  &-update{
+    width: 100px;
+  }
+  &-author{
+    width: 250px;
+  }
+  &-lang{
+    width: 75px;
+  }
+
+  &-title{
+    display: table-cell;
+  }
+  &-actions{
+    display: table-cell;
+    width: $iconButtonsSize*2+10;
+  }
 }

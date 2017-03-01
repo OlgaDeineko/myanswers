@@ -1,28 +1,14 @@
 <div class="tree">
 
   <script type="text/ng-template" id="tree_children_renderer.html">
-    <div class="row" ui-tree-handle>
-      <div class="col-md-9 tree-title">
-        <a class="tree-icon" data-nodrag ng-click="$ctrl.toggleChildren(this)">
-          <span class="glyphicon tree-icon-folder"
-                aria-hidden="true"
-                ng-class="{'glyphicon-folder-close': collapsed, 'glyphicon-folder-open': !collapsed}"></span>
-        </a>
-        <span class="glyphicon tree-icon-has-sub-category"
-              ng-class="{'glyphicon-arrow-down': (item.categories.length > 0 && !!item.expanded),
-              'glyphicon-arrow-right': (item.categories.length > 0 && !item.expanded),
-               'glyphicon-remove': item.categories.length == 0}">
-        </span>
-        <a href="#" ng-click="$ctrl.moveTo(item.id)">{{item.name}}</a>
-      </div>
-      <div class="col-md-3" ng-if="$ctrl.$state.current.name != 'visitor'">
-        <actions-of-tree-item category="item">
-        </actions-of-tree-item>
-      </div>
+
+    <div ui-tree-handle>
+      <tree-item
+          item="item"
+          type="'category'"></tree-item>
     </div>
 
-    <div class="row"
-         ui-tree-nodes="treeOptions"
+    <div ui-tree-nodes="treeOptions"
          ng-model="item.categories"
          ng-class="{hidden: collapsed}">
       <div class="tree-row">
@@ -33,23 +19,33 @@
         </div>
       </div>
     </div>
+
   </script>
 
   <div ui-tree="$ctrl.treeOptions"
        id="admin-tree-root"
        data-empty-placeholder-enabled="false"
        data-nodrop-enabled="false"
-       data-drag-enabled="false"
-       ng-if="$ctrl.categories.length">
-    <div class="container-fluid"
-         ui-tree-nodes
-         ng-model="$ctrl.categories[0].categories">
-      <div class="row"
-           ng-repeat="item in $ctrl.categories[0].categories | filter:{name: $ctrl.search}"
+       data-drag-enabled="false">
+    <div ui-tree-nodes
+         ng-model="$ctrl.categories.categories">
+      <div ng-repeat="item in $ctrl.categories.categories | filter:{name: $ctrl.search}"
            ui-tree-node
            ng-include="'tree_children_renderer.html'"
            data-collapsed="!item.expanded">
       </div>
+
+      <div ng-repeat="article in $ctrl.categories.articles | filter:{question: $ctrl.search}">
+
+        <div>
+          <tree-item
+              item="article"
+              type="'faq'">
+          </tree-item>
+        </div>
+
+      </div>
+
     </div>
   </div>
 

@@ -8,6 +8,7 @@ import ArticleTree from './articleTree/articleTree';
 import Breadcrumbs from './breadcrumbs/breadcrumbs';
 import CreateCategoryModal from './createCategoryModal/createCategoryModal';
 import CreateUserModal from './createUserModal/createUserModal';
+import TreeItem from './treeItem/treeItem';
 
 import User from './user/user';
 
@@ -20,6 +21,7 @@ let commonModule = angular.module('app.common', [
   Navbar,
   CreateCategoryModal,
   CreateUserModal,
+  TreeItem,
   User
 ])
 

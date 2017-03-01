@@ -108,13 +108,69 @@ function FakeDataService() {
         }
       ],
       categories: [
-        {"id": "1", "parent_id": "0", "name": "Uncategorized", "lang": "en"},
-        {"id": "2", "parent_id": "1", "name": "Keyboard", "lang": "en"},
-        {"id": "3", "parent_id": "1", "name": "Phone", "lang": "en"},
-        {"id": "4", "parent_id": "2", "name": "test1", "lang": "en"},
-        {"id": "5", "parent_id": "4", "name": "test2", "lang": "en"},
-        {"id": "6", "parent_id": "15", "name": "test3", "lang": "en"},
-        {"id": "7", "parent_id": "1", "name": "new", "lang": "en"}
+        {
+          "id": "1",
+          "parent_id": "0",
+          "name": "Uncategorized",
+          "lang": "en",
+          "author": 'Oleg Skiba',
+          "created_at": "1487850702",
+          "updated_at": "1487850702",
+        },
+        {
+          "id": "2",
+          "parent_id": "1",
+          "name": "Keyboard",
+          "lang": "en",
+          "author": 'Oleg Skiba',
+          "created_at": "1487850702",
+          "updated_at": "1487850702",
+        },
+        {
+          "id": "3",
+          "parent_id": "1",
+          "name": "Phone",
+          "lang": "en",
+          "author": 'Oleg Skiba',
+          "created_at": "1487850702",
+          "updated_at": "1487850702",
+        },
+        {
+          "id": "4",
+          "parent_id": "2",
+          "name": "test1 sd dgfdsfg dsgdsgs  sdgdfgdg  sggsd sdgsd ds dsfd fgsd ds fg",
+          "lang": "en",
+          "author": 'Oleg Skiba',
+          "created_at": "1487850702",
+          "updated_at": "1487850702",
+        },
+        {
+          "id": "5",
+          "parent_id": "4",
+          "name": "test2  sdgdfg sd dfsg ss dgdsf gsdgdsf gdsfgsd gdfg",
+          "lang": "en",
+          "author": 'Oleg Skiba',
+          "created_at": "1487850702",
+          "updated_at": "1487850702",
+        },
+        {
+          "id": "6",
+          "parent_id": "5",
+          "name": "test3 dfgdfgsd sd fgds gsddsdsfg sd sdgd sgd sgdfg s dfgsdg sdg d sdg ds sddsfgsd  g",
+          "lang": "en",
+          "author": 'Oleg Skiba',
+          "created_at": "1487850702",
+          "updated_at": "1487850702",
+        },
+        {
+          "id": "7",
+          "parent_id": "1",
+          "name": "new",
+          "lang": "en",
+          "author": 'Oleg Skiba',
+          "created_at": "1487850702",
+          "updated_at": "1487850702",
+        }
       ],
       settings: {
         "languages": [
@@ -257,7 +313,7 @@ function FakeDataService() {
         return data.checkSubdomain;
         break;
       case 'auth/login':
-        return data.login;
+        return {data: data.login};
         break;
       case 'attachments/faq':
         if (method != 'GET') {
