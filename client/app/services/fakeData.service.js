@@ -235,7 +235,7 @@ function FakeDataService() {
           "username": "test@test.ww",
           "first_name": "Test",
           "last_name": "User",
-          "role": [],
+          "role": ["user"],
           "subdomains": ["skiba"]
         }
       ],

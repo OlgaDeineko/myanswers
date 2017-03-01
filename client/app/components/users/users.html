@@ -17,13 +17,13 @@
       </colgroup>
       <tr ng-repeat="user in $data">
         <td title="'User Name'" sortable="'first_name'">
-          {{user.first_name}} {{user.last_name}}
+          {{user.fullName}}
         </td>
         <td title="'Email'" sortable="'email'">
           {{user.email}}
         </td>
         <td title="'Role'" sortable="'role'">
-          {{user.role[0]}}
+          {{user.role}}
         </td>
         <td title="" class="text-center">
           <!-- start Action btn -->

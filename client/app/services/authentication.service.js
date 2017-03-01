@@ -1,4 +1,5 @@
 import config, {apiUrl} from '../config';
+import userHelper from '../helpers/user';
 
 function AuthenticationService(SessionService, PermPermissionStore, $http){
   "ngInject";
@@ -10,13 +11,14 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
       data: user
     }).then(result => {
       let role = 'ADMIN'// result.data.data.role;
+      let user = userHelper.responseToData(result.data.data);
       SessionService.create(
-        result.data.data.access_token,
-        result.data.data.subdomains[0],
+        user.access_token,
+        user.subdomain,
         role,
-        `${result.data.data.first_name} ${result.data.data.last_name}`
+        user.fullName
       );
-      return result;
+      return user;
     });
   }
 
