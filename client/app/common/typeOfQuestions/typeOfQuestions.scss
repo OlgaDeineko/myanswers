@@ -1,3 +1,18 @@
-.typeOfQuestions {
-  color: red;
+.type-of-questions {
+  .list-group-item{
+    cursor: pointer;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgba(#000, 0.3);
+    background: none;
+
+    &:last-child{
+      border: none;
+    }
+
+    &:hover{
+      background-color: rgba(#000, 0.1);
+    }
+  }
+
 }

@@ -33,3 +33,33 @@
     width: $iconButtonsSize*2+10;
   }
 }
+.category{
+
+  &-content{
+    min-height: 100%;
+
+    &:after {
+      content: " ";
+      border-right: 1px solid;
+      opacity: 0.4;
+      position: absolute;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &-title{
+    h1{
+      font-weight: bold;
+      font-size: 24px;
+      margin: 0;
+    }
+
+  }
+
+  &-actions{
+    position: relative;
+    margin-bottom: 40px;
+  }
+}

@@ -27,9 +27,9 @@ function faqHelper() {
 
     faq.tags.map((i) => {
       if (i.tag_id) {
-        self.faq.tag_ids.push(i.tag_id);
+        faq.tag_ids.push(i.tag_id);
       } else {
-        self.faq.new_tags.push(i.name);
+        faq.new_tags.push(i.name);
       }
     });
 
