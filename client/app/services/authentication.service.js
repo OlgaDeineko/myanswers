@@ -63,6 +63,13 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
     });
   }
 
+  let sendActivation = (hash) => {
+    return $http({
+      method: 'GET',
+      url: `${apiUrl}/auth/verifyEmail?token=${hash}`
+    });
+  }
+
 
   return {
     register,
@@ -72,6 +79,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
     initPermission,
     forgotPassword,
     resetPassword,
+    sendActivation,
   }
 }
 
