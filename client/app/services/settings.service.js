@@ -3,6 +3,7 @@ import config, {apiUrl} from '../config';
 function SettingsService($http, $q, SessionService) {
   "ngInject";
   let settings = null;
+  let subdomains = null;
 
   let getSettings = () => {
     let self = this;
@@ -28,8 +29,32 @@ function SettingsService($http, $q, SessionService) {
     return self.deferred.promise;
   };
 
+  let getAllSubdomains = () => {
+    let self = this;
+    if (this.subdomains) {
+      return new Promise((resolve) => {
+        resolve(self.subdomains);
+      })
+    }
+
+    if (self.deferred2) return self.deferred2.promise;
+    this.deferred2 = $q.defer();
+
+    $http({
+      method: 'GET',
+      url: `${SessionService.geApiUrl()}/settings/advanced`,
+    }).then(result => {
+      self.subdomains = result.data.data;
+      self.deferred2.resolve(self.subdomains);
+      delete self.subdomains;
+    });
+
+    return self.deferred2.promise;
+  };
+
   return {
-    getSettings
+    getSettings,
+    getAllSubdomains,
   }
 }
 

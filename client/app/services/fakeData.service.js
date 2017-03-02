@@ -292,6 +292,15 @@ function FakeDataService() {
           }
         ]
       },
+      domains: {
+          "subdomains": [
+            {"code": "annatest", "name": "annatest"},
+            {"code": "skiba", "name": "skiba"},
+            {"code": "skiba2", "name": "skiba2"},
+            {"code": "annam", "name": "annam"},
+            {"code": "max-oni", "name": "max-oni"},
+            {"code": "anna1", "name": "anna1"}]
+        }
     };
     console.info('getLocalData', url);
 
@@ -325,6 +334,9 @@ function FakeDataService() {
         break;
       case 'settings/common':
         return {data: {data: data.settings}};
+        break;
+      case 'settings/advanced':
+        return {data: {data: data.domains}};
         break;
       case 'auth/check-subdomain':
         return data.checkSubdomain;

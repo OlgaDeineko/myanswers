@@ -1,10 +1,11 @@
 class NavbarController {
-  constructor($state, $window, AuthenticationService) {
+  constructor($state, $uibModal, $window, AuthenticationService) {
     "ngInject";
 
     this.name = 'navbar';
     this.$state = $state;
     this.$window = $window;
+    this.$uibModal = $uibModal;
     this.AuthenticationService = AuthenticationService;
   }
 
@@ -14,6 +15,12 @@ class NavbarController {
       this.$window.location.href = `http://main.localhost:3000/subdomain`;
     }else
     this.$window.location.href = `http://main.myanswers.io/subdomain`;
+  }
+
+  openChooseDomain() {
+    this.$uibModal.open({
+      component: 'chooseSubdomainModal'
+    });
   }
 }
 
