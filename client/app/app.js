@@ -112,7 +112,7 @@ angular.module('app', [
     $httpProvider.defaults.headers.put = {};
     $httpProvider.defaults.headers.patch = {};
 
-    $qProvider.errorOnUnhandledRejections(false);
+    // $qProvider.errorOnUnhandledRejections(false);
 
     flowFactoryProvider.factory = function (opts) {
       let Flow = require('ng-flow/dist/ng-flow-standalone');

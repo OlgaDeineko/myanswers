@@ -68,10 +68,10 @@ class EditFaqController {
       this.faq = {
         question: '',
         answer: '',
-        categories: $state.params.categoryId || '1',
+        categoryId: $state.params.categoryId || '1',
         tags: [],
         visibility: 'public',
-        author: {id: '12345', full_name: SessionService.getFullName()},
+        author:SessionService.getFullName() || 'Anonim',
         lang: 'en',
         is_open_comments: true,
         status: 'draft',
@@ -82,19 +82,6 @@ class EditFaqController {
     } else {
       this.ArticleService.getById($state.params.faqId)
         .then((result) => {
-          //don't ask)))
-          result.categories = result.categories[0].id + '';
-
-          result.author = {id: '1111', full_name: result.author}
-
-          //counting words and character in article answer
-          result.answerWithoutTags = String(result.answer).replace(/<[^>]+>/gm, '');
-          result.countWords = result.answerWithoutTags.trim().split(/\s+/).length;
-          result.countChars = (result.answerWithoutTags.match(/\S/g) || []).length;
-          //@see http://marketingland.com/estimated-reading-times-increase-engagement-79830
-          let time = (result.countWords/200+"").split('.');
-          result.timeReads = `${time[0]} min ${((('.'+time[1])*60).toFixed())} sec`;
-
           self.faq = result;
         })
     }
@@ -126,22 +113,6 @@ class EditFaqController {
    */
   save(status) {
     let self = this;
-    /*
-     * {string[]} new_tags - array of new tags
-     * {integer[]} tag_ids - array of old tags
-     * */
-    this.faq.new_tags = [];
-    this.faq.tag_ids = [];
-
-    this.faq.tags.map((i) => {
-      if (i.tag_id) {
-        self.faq.tag_ids.push(i.tag_id);
-      } else {
-        self.faq.new_tags.push(i.name);
-      }
-    });
-    this.faq.category_ids = [this.faq.categories];
-    this.faq.author = this.SessionService.getFullName();
 
     this.ArticleService[this.mode](this.faq)
       .then(result => {

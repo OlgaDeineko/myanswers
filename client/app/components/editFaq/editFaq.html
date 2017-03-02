@@ -102,7 +102,7 @@
     <!--Categories-->
     <div class="faq-category">
       <h4>Publish in section</h4>
-      <select class="form-control" ng-model="$ctrl.faq.categories">
+      <select class="form-control" ng-model="$ctrl.faq.categoryId">
         <option ng-repeat="item in $ctrl.categories" value="{{item.id}}">{{item.name}}</option>
       </select>
     </div><!--END: Categories-->
@@ -118,9 +118,9 @@
     <!--Author-->
     <div class="faq-author">
       <h4>Author:</h4>
-      <select class="form-control" disabled ng-model="$ctrl.faq.author.id">
-        <option value="{{$ctrl.faq.author.id}}">
-          {{$ctrl.faq.author.full_name}}
+      <select class="form-control" disabled ng-model="$ctrl.faq.author">
+        <option value="{{$ctrl.faq.author}}">
+          {{$ctrl.faq.author}}
         </option>
       </select>
       <!--<input class="form-control" type="text" ng-disabled="true" ng-model="$ctrl.faq.author">-->

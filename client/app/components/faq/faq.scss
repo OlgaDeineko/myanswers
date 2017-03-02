@@ -96,11 +96,13 @@
         border-radius: 4px;
       }
 
-      .one-remark {
-        margin-top: 20px;
-        padding: 20px 10px;
-        background: $tagsBgColor;
-        border-radius: 4px;
+      &-remarks {
+        .one-remark {
+          margin-top: 20px;
+          padding: 20px 10px;
+          background: $tagsBgColor;
+          border-radius: 4px;
+        }
       }
     }
   }

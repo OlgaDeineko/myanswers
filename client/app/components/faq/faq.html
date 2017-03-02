@@ -38,7 +38,7 @@
 
     <!--Answer-->
     <div class="faq-answer">
-      <div ng-bind-html="$ctrl.faq.answer">
+      <div ng-bind-html="$ctrl.convertHTML($ctrl.faq.answer)">
       </div>
     </div><!--END: Answer-->
 
@@ -67,7 +67,7 @@
     <!--Categories-->
     <div class="faq-category">
       <h4>Categories:</h4>
-      <div>{{$ctrl.faq.categories.name}}</div>
+      <div>{{$ctrl.faq.category.name}}</div>
     </div><!--END: Categories-->
 
     <!--Visibility-->

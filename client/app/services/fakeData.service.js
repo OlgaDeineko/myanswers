@@ -12,11 +12,11 @@ function FakeDataService() {
         {
           "id": "1",
           "question": "dsdgdsfg",
-          "answer": "<p>sdgsdfgdfg</p>",
+          "answer": "<p style='color: red'>sdgsdfgdfg</p><h3>ssssss</h3><div>qqqqqqqq</div>",
           "slug": "dsdgdsfg",
           "visibility": 'public',
           "is_open_comments": "1",
-          "author": {id: '12345', full_name: 'Oleg Skiba'},
+          "author": 'Oleg Skiba',
           "status": 'draft',
           "lang": 'en',
           "algolia_object_id": "379636340",

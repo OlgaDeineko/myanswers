@@ -13,6 +13,8 @@
 //   return categories.filter(c => c.id == categoryId);
 // };
 
+import faqHelper from '../../helpers/faq';
+
 let buildTree = (articles, categories, currentCategory ) => {
   categories.forEach((category, i) => {
     categories[i].categories = categories.filter(c => c.parent_id == category.id);
@@ -100,20 +102,8 @@ class CategoryController {
       let articles = res[1];
       let settings = res[2];
 
-      // let categoriesTree = parseTreeCategory(categories);
-      // self.categories = filterCategories(categoriesTree, self.currentCategory);
-      //
-      // self.articles = filterArticles(articles, self.currentCategory);
-
-      self.articlesCounts = {
-        All: articles.length,
-      };
-
-      settings.faq_statuses.map(status => {
-        self.articlesCounts[status.name] = articles.filter(article => article.status == status.code).length;
-      })
-
-      self.tree = buildTree(articles, categories, self.currentCategory)
+      self.articlesCounts = faqHelper.countsTypes(articles, settings.faq_statuses);
+      self.tree = buildTree(articles, categories, self.currentCategory);
 
       self.$scope.$apply();
     })

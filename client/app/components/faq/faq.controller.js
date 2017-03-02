@@ -6,6 +6,7 @@ class FaqController {
     let self = this;
     this.$state = $state;
     this.toastr = toastr;
+    this.convertHTML = $sce.trustAsHtml;
     this.SettingsService = SettingsService;
     this.ArticleService = ArticleService;
     this.FilesService = FilesService;
@@ -22,22 +23,10 @@ class FaqController {
           if (!result.id) {
             self.$state.go('category');
           }
-          //convert html to string @see{@link https://docs.angularjs.org/api/ng/directive/ngBindHtml}
-          result.answer = $sce.trustAsHtml(result.answer);
-          result.categories = result.categories[0];
-          if (result.lang)
-            result.lang = self.languages.find(l => l.code == result.lang).name;
 
-          //counting words and character in article answer
-          result.answerWithoutTags = String(result.answer).replace(/<[^>]+>/gm, '');
-          result.countWords = result.answerWithoutTags.trim().split(/\s+/).length;
-          result.countChars = (result.answerWithoutTags.match(/\S/g) || []).length;
-          //@see http://marketingland.com/estimated-reading-times-increase-engagement-79830
-          let time = (result.countWords/200+"").split('.');
-          result.timeReads = `${time[0]} min ${((('.'+time[1])*60).toFixed())} sec`;
+          result.lang = self.languages.find(l => l.code == result.lang).name;
 
           self.faq = result;
-          return result;
         })
     })
   }

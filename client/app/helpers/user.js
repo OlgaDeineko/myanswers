@@ -1,5 +1,3 @@
-import config, {apiUrl} from '../config';
-
 function userHelper() {
 
   let responseToData = (user) => {

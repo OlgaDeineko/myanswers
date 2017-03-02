@@ -1,4 +1,5 @@
 import config, {apiUrl} from '../config';
+import faqHelper from '../helpers/faq';
 
 /**
  * @typedef {object} Article
@@ -35,8 +36,8 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq`,
     }).then(result => {
-      self.articles = result.data.data;
-      return result.data.data
+      self.articles = result.data.data.map(faqHelper.responseToData);
+      return self.articles;
     });
   };
 
@@ -50,7 +51,7 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq/${faqId}`,
     }).then(result => {
-      return result.data.data
+      return faqHelper.responseToData(result.data.data);
     }).then(article => {
       return FilesService.getAll('faq', article.id)
         .then(attachments => {
@@ -74,11 +75,11 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/faq`,
-      data: faq
+      data: faqHelper.dataToRequest(faq)
     }).then(result => {
       self.articles = null;
       $rootScope.$broadcast('updateArticles');
-      return result.data.data
+      return faqHelper.responseToData(result.data.data);
     });
   };
 
@@ -92,11 +93,11 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/faq/${faq.id}`,
-      data: faq
+      data: faqHelper.dataToRequest(faq)
     }).then(result => {
       self.articles = null;
       $rootScope.$broadcast('updateArticles');
-      return result.data.data
+      return faqHelper.responseToData(result.data.data);
     });
   };
 
