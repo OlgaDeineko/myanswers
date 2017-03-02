@@ -65,7 +65,7 @@ class RegistrationController {
           },
         },
         "password_repeat": {
-          minLength: 5,
+          minLength: 8,
           type: "string",
           title: "Password repeat",
           constant: {

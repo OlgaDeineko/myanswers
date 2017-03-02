@@ -55,6 +55,14 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
     });
   }
 
+  let resetPassword = (hash, pass) => {
+    return $http({
+      method: 'POST',
+      url: `${apiUrl}/auth/resetPassword?resetToken=${hash}`,
+      data: {"new_password": pass}
+    });
+  }
+
 
   return {
     register,
@@ -62,7 +70,8 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
     logOut,
     isAuthenticated,
     initPermission,
-    forgotPassword
+    forgotPassword,
+    resetPassword,
   }
 }
 
