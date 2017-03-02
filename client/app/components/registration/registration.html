@@ -2,29 +2,38 @@
   <div class="row">
     <div class="col-md-4">
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4"
+         ng-if="!$ctrl.registrationDone">
       <h1 class="text-center">{{ $ctrl.name }}</h1>
 
       <form
-        name="registrationForm"
-        sf-schema="$ctrl.schema"
-        sf-form="$ctrl.form"
-        sf-model="$ctrl.newUser">
+          name="registrationForm"
+          sf-schema="$ctrl.schema"
+          sf-form="$ctrl.form"
+          sf-model="$ctrl.newUser">
       </form>
 
       <div class="text-center">
-      <button
-        type="button"
-        class="button button-primary"
-        ng-disabled="registrationForm.$invalid"
-        ng-click="$ctrl.register(registrationForm, $ctrl.newUser)">Create
-      </button>
+        <button
+            type="button"
+            class="button button-primary"
+            ng-disabled="registrationForm.$invalid"
+            ng-click="$ctrl.register(registrationForm, $ctrl.newUser)">Create
+        </button>
 
         <button class="button" style="margin-top: 15px" ng-click="$ctrl.moteToLogin()">
           Sign in {{$ctrl.isCreated}}
         </button>
       </div>
 
+    </div>
+    <div class="col-md-4 text-center"
+         ng-if="$ctrl.registrationDone">
+        <h2>
+          Thank you for registration. <br>
+          Please activate your account. <br>
+          Link sent to {{$ctrl.newUser.email}}
+        </h2>
     </div>
     <div class="col-md-4">
     </div>

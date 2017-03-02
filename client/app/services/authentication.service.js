@@ -4,7 +4,7 @@ import userHelper from '../helpers/user';
 function AuthenticationService(SessionService, PermPermissionStore, $http){
   "ngInject";
 
-  let login = (user) => {
+  let login = (user, subdomen) => {
     return $http({
       method: 'POST',
       url: `${apiUrl}/auth/login`,
@@ -14,7 +14,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
       let user = userHelper.responseToData(result.data.data);
       SessionService.create(
         user.access_token,
-        user.subdomain,
+        subdomen,
         role,
         user.fullName
       );

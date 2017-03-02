@@ -7,4 +7,4 @@ export const aloglia = {
   key: '5a6dbbf12e7c8d629d22ec3197fe0186'
 };
 
-export const local = true;
+// export const local = true;

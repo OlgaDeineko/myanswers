@@ -66,11 +66,12 @@ class LoginController {
     this.$scope.$broadcast('schemaFormValidate');
     if(loginForm.$valid) {
       user.subdomain = self.subdomain;
-      this.AuthenticationService.login(user)
+      this.AuthenticationService.login(user, self.subdomain)
         .then(result => {
           self.$state.go("category");
         })
         .catch(error => {
+          console.log(error)
           error.data.errors.forEach(error => {
             self.toastr.error(error.description, `Validation error:`);
           });

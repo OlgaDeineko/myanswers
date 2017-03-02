@@ -8,6 +8,7 @@ class RegistrationController {
     this.toastr = toastr;
     this.name = 'Registration';
     this.AuthenticationService = AuthenticationService;
+    this.registrationDone = false;
 
     this.isCreated = '';
 
@@ -102,7 +103,8 @@ class RegistrationController {
         .then(result => {
           self.isCreated = newUser.subdomain.toLowerCase();
           self.toastr.success(`Registration done`);
-          self.moteToLogin();
+          // self.moteToLogin();
+          self.registrationDone = true;
         })
         .catch(error => {
           error.data.errors.forEach(error => {

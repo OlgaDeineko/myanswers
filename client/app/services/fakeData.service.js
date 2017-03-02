@@ -256,6 +256,22 @@ function FakeDataService() {
           "subdomains": ["skiba"]
         }
       },
+      superAdmin: {
+        "data": {
+          "access_token": "eyJraWQiOiIxUEdWOFZEVk5BSkZRRVRMWTkzS1JBUUE4Iiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI2anhGTjVJRHNHaU9JSU1FMktaOU9XIiwiaWF0IjoxNDg4NDcyNzk0LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy8xTThIaGZibjIxd29vQVU1b0pqcWd1Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy81alQ4UWY3a3d1NUp0V1Zka1hub1ZnIiwiZXhwIjoxNDg4NDc2Mzk0LCJvcmciOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL29yZ2FuaXphdGlvbnMvNXRQREc3UUpIZzJ3ZEhUc3JVNTBvdyIsInJ0aSI6IjZqeEZOMXk4eGdQUGZUR01xNGhzbVMifQ.yUSo_Pe27ZEbArjdjE4toerMA_eKmz7C5H57CBAClqk",
+          "refresh_token": "eyJraWQiOiIxUEdWOFZEVk5BSkZRRVRMWTkzS1JBUUE4Iiwic3R0IjoicmVmcmVzaCIsImFsZyI6IkhTMjU2In0.eyJqdGkiOiI2anhGTjF5OHhnUFBmVEdNcTRoc21TIiwiaWF0IjoxNDg4NDcyNzk0LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy8xTThIaGZibjIxd29vQVU1b0pqcWd1Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy81alQ4UWY3a3d1NUp0V1Zka1hub1ZnIiwiZXhwIjoxNDkzNjU2Nzk0LCJvcmciOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL29yZ2FuaXphdGlvbnMvNXRQREc3UUpIZzJ3ZEhUc3JVNTBvdyJ9.n8-1EagLfrWzbQfPXLJ5mCg4-o9VoYMDun6Qv1tXDBE",
+          "token_type": "Bearer",
+          "expires_in": 3600,
+          "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/6jxFN5IDsGiOIIME2KZ9OW",
+          "role": ["Super Admin"],
+          "id": "5jT8Qf7kwu5JtWVdkXnoVg",
+          "email": "onyshchenko.max@gmail.com",
+          "username": "onyshchenko.max@gmail.com",
+          "first_name": "Max",
+          "last_name": "Oni",
+          "subdomains": null
+        }
+      },
       attachments: {
         "data": [
           {
