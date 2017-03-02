@@ -295,6 +295,7 @@ function FakeDataService() {
         return {data: {data: data.categories}};
         break;
       case 'faq':
+      case 'faq/algolia':
         if (reg.test(url) || method != 'GET') {
           return {data: {data: data.articles[0]}};
         }

@@ -1,35 +1,34 @@
-let parseTreeCategory = (categories) => {
+import config, {aloglia} from '../../config';
+
+import faqHelper from '../../helpers/faq';
+
+let buildTree = (articles, categories, currentCategory ) => {
   categories.forEach((category, i) => {
     categories[i].categories = categories.filter(c => c.parent_id == category.id);
+    categories[i].articles = articles.filter(a => a.categories.find(c => c.id == category.id));
   });
-  return categories;
-};
 
-let filterArticles = (articles, categoryId) => {
-  return articles.filter(article => article.categories.find(c => c.id == categoryId));
-};
+  return categories.find(c => c.id == currentCategory)
+}
 
-let filterCategories = (categories, categoryId) => {
-  return categories.filter(c => c.id == categoryId);
-};
 let algoliasearch = require('algoliasearch');
 class VisitorController {
-  constructor($window, $stateParams, $scope, AuthenticationService, CategoryService, ArticleService, SessionService) {
+  constructor($window, $stateParams, $state, $scope, AuthenticationService, CategoryService, ArticleService, SessionService, cancelBtn) {
     'ngInject';
 
     this.name = 'Welcome to KB';
     this.uncategoryId = 1;
     let self = this;
 
-    let id = 'I9WKUNVPGV';
-    let key = '5a6dbbf12e7c8d629d22ec3197fe0186';
     let index = SessionService.getSubdomain();
     this.algoliaResults = [];
 
-    this.index = new algoliasearch(id, key, {protocol: 'https:'}).initIndex(index);
+    this.cancelBtn = cancelBtn;
+    this.index = new algoliasearch(aloglia.id, aloglia.key, {protocol: 'https:'}).initIndex(index);
 
     this.$window = $window;
     this.$scope = $scope;
+    this.$state = $state;
     this.AuthenticationService = AuthenticationService;
     this.ArticleService = ArticleService;
     this.CategoryService = CategoryService;
@@ -64,16 +63,28 @@ class VisitorController {
   }
 
   getAllData(self, update) {
-    self.CategoryService.getAll(update)
-      .then((result) => {
-        let categoriesTree = parseTreeCategory(result);
-        self.categories = filterCategories(categoriesTree, self.currentCategory);
-      })
-    self.ArticleService.getAll(update)
-      .then(result => {
-        self.articles = filterArticles(result, self.currentCategory);
-      })
-  };
+    Promise.all([
+      self.CategoryService.getAll(update),
+      self.ArticleService.getAll(update)
+    ]).then(res => {
+      if (res.length != 2) {
+        return;
+      }
+      let categories = res[0];
+      let articles = res[1];
+
+      self.tree = buildTree(articles, categories, self.currentCategory);
+
+      self.$scope.$apply();
+    })
+  }
+
+  cancel() {
+    let previous = this.cancelBtn.getPreviousPage();
+    if(previous.stateName) {
+      this.$state.go(previous.stateName, previous.params);
+    }
+  }
 }
 
 export default VisitorController;

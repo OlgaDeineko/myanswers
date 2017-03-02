@@ -19,7 +19,7 @@
 </div>
 
 <div class="tree-update">
-  {{$ctrl.item.updated_at | date : "dd/MM/yy HH:mm:ss"}}
+  {{$ctrl.item.updated_at * 1000 | date : "dd/MM/yy HH:mm:ss"}}
 </div>
 
 <div class="tree-lang">

@@ -24,18 +24,6 @@ let faqModule = angular.module('faq', [
           }
         }
       });
-    $stateProvider
-      .state('faqVisitor', {
-        url: '/home/faq/{faqId}',
-        template: '<faq/>',
-        component: 'faq',
-        data: {
-          permissions: {
-            only: 'user',
-            redirectTo: 'chooseSubdomain'
-          }
-        }
-      });
   })
 
   .name;

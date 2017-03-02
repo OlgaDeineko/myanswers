@@ -66,6 +66,30 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
   };
 
   /**
+   * Get article(FAQ) by algolia id
+   * @param {integer} algoliaId
+   * @returns {*|Promise.<Article>}
+   */
+  let getByAlgoliaId = (algoliaId) => {
+    return $http({
+      method: 'GET',
+      url: `${SessionService.geApiUrl()}/faq/algolia/${algoliaId}`,
+    }).then(result => {
+      return faqHelper.responseToData(result.data.data);
+    }).then(article => {
+      return FilesService.getAll('faq', article.id)
+        .then(attachments => {
+          article.attachments = attachments.map(file => {
+            file.name = file.attachment_url.match(/.*\/faq\/\d+\/(.*)$/)[1];
+            return file;
+          });
+
+          return article;
+        });
+    });
+  };
+
+  /**
    * Create article(FAQ)
    * @param {Article} faq - new faq
    * @returns {Promise.<{Article}>}
@@ -123,7 +147,8 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
     getById,
     create,
     update,
-    remove
+    remove,
+    getByAlgoliaId,
   }
 }
 

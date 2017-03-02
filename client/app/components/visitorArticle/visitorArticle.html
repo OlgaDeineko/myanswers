@@ -1,0 +1,52 @@
+<div class="content visitor-faq">
+
+  <!--Content article-->
+  <div class="col-md-8 col-md-offset-2 faq-content">
+
+    <!--Question-->
+    <div class="faq-question">
+      <h2>{{$ctrl.faq.question}}</h2>
+    </div><!--END: Question-->
+
+    <!--Counts word-->
+    <div class="faq-counts">
+      <p>
+        {{$ctrl.faq.countWords}} word{{$ctrl.faq.countWords > 1 ? 's': ''}} {{$ctrl.faq.countChars}}
+        character{{$ctrl.faq.countChars > 1 ? 's': ''}}, {{$ctrl.faq.timeReads}} reading time
+      </p>
+    </div><!--END: Counts word-->
+
+    <!--Tags-->
+    <div class="faq-tags">
+      <div class="faq-tag" ng-repeat="item in $ctrl.faq.tags track by $index">
+        {{item.name}}
+      </div>
+    </div><!--END: Tags-->
+
+    <!--Answer-->
+    <div class="faq-answer">
+      <div ng-bind-html="$ctrl.convertHTML($ctrl.faq.answer)">
+      </div>
+    </div><!--END: Answer-->
+
+    <!--faq-attachment-->
+    <div class="faq-attachment" ng-if="$ctrl.faq.attachments.length">
+      <h4>Attachments:</h4>
+
+      <div class="files" ng-repeat="item in $ctrl.faq.attachments">
+        <a ng-href="{{item.attachment_url}}" target="_blank" class="files-name">
+          <i class="fa fa-file-{{item.type == 'pdf'? 'pdf': 'word'}}-o"></i>
+          <span>{{item.name}}</span>
+        </a>
+      </div>
+    </div><!--END: Attachments-->
+
+  </div><!--END: Content article-->
+
+  <div class="col-md-2">
+    <div class="button" ng-click="$ctrl.cancel()" ng-if="$ctrl.cancelBtn.isSetPrevious()">
+      Return
+    </div>
+  </div>
+
+</div>
