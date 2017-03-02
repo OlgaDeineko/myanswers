@@ -77,7 +77,7 @@
     <!--Action buttons-->
     <div class="row faq-actions">
       <div class="col-md-6">
-        <div class="button">
+        <div class="button" ng-click="$ctrl.cancel()" ng-if="$ctrl.cancelBtn.isSetPrevious()">
           Cancel
         </div>
       </div>

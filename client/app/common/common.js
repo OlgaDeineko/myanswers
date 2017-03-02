@@ -9,6 +9,7 @@ import Breadcrumbs from './breadcrumbs/breadcrumbs';
 import CreateCategoryModal from './createCategoryModal/createCategoryModal';
 import CreateUserModal from './createUserModal/createUserModal';
 import TreeItem from './treeItem/treeItem';
+import CancelBtn from './cancelBtn/cancelBtn';
 
 import User from './user/user';
 
@@ -22,9 +23,10 @@ let commonModule = angular.module('app.common', [
   CreateCategoryModal,
   CreateUserModal,
   TreeItem,
-  User
+  User,
+  CancelBtn
 ])
 
-.name;
+  .name;
 
 export default commonModule;

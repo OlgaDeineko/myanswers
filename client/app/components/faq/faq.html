@@ -57,7 +57,12 @@
 
     <!--Action buttons-->
     <div class="row faq-actions" ng-if="!$ctrl.visitor">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-6">
+        <div class="button" ng-click="$ctrl.cancel()" ng-if="$ctrl.cancelBtn.isSetPrevious()">
+          Return
+        </div>
+      </div>
+      <div class="col-md-6">
         <div class="button button-primary" ng-click="$ctrl.goTo()">
           Edit
         </div>

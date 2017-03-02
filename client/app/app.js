@@ -112,7 +112,7 @@ angular.module('app', [
     $httpProvider.defaults.headers.put = {};
     $httpProvider.defaults.headers.patch = {};
 
-    // $qProvider.errorOnUnhandledRejections(false);
+    $qProvider.errorOnUnhandledRejections(false);
 
     flowFactoryProvider.factory = function (opts) {
       let Flow = require('ng-flow/dist/ng-flow-standalone');
@@ -132,11 +132,15 @@ angular.module('app', [
   .service('FakeDataService', FakeDataService)
   .service('FilesService', FilesService)
   .component('app', AppComponent)
-  .run(($rootScope, AuthenticationService) => {
+  .run(($rootScope, $state, AuthenticationService, cancelBtn) => {
     "ngInject";
 
     $rootScope.$on('$stateChangeStart', (event, next) => {
       AuthenticationService.initPermission();
     });
+
+    $rootScope.$on('$stateChangeSuccess', (ev, to, toParams, from, fromParams) => {
+      cancelBtn.setPreviousPage(from, fromParams)
+    })
 
   });

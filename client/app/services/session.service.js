@@ -46,6 +46,18 @@ function SessionService($window) {
     $window.localStorage.removeItem('full_name');
   }
 
+  let setPreviousPage = (state, params) => {
+    $window.sessionStorage['previous_page'] = JSON.stringify({stateName: state, params: params});
+  }
+
+  let getPreviousPage = () => {
+    return JSON.parse($window.sessionStorage['previous_page']);
+  }
+
+  let removePreviousPage = () => {
+    $window.sessionStorage.removeItem('previous_page');
+  }
+
   return {
     create,
     hasToken,
@@ -55,6 +67,9 @@ function SessionService($window) {
     getRole,
     geApiUrl,
     getFullName,
+    setPreviousPage,
+    removePreviousPage,
+    getPreviousPage,
   }
 }
 
