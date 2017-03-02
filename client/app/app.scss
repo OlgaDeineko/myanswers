@@ -33,10 +33,17 @@ a:hover {
   padding: 20px 0;
 }
 
+.modal-footer{
+  .button{
+    width: initial;
+  }
+}
+
 .button {
   text-align: center;
   padding: 10px;
   color: $blueColor;
+  background: none;
   border: 1px solid $blueColor;
   border-radius: $buttonBorderRadius;
   cursor: pointer;

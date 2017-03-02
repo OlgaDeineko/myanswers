@@ -47,13 +47,22 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
     SessionService.destroy();
   }
 
+  let forgotPassword = (email) => {
+    return $http({
+      method: 'POST',
+      url: `${apiUrl}/auth/requestPasswordReset`,
+      data: {"email": email}
+    });
+  }
+
 
   return {
     register,
     login,
     logOut,
     isAuthenticated,
-    initPermission
+    initPermission,
+    forgotPassword
   }
 }
 

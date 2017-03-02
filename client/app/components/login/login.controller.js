@@ -1,7 +1,7 @@
 import config, {mainDomian} from '../../config';
 
 class LoginController {
-  constructor($window, $stateParams, $scope, toastr, AuthenticationService, SessionService, $state, $rootScope) {
+  constructor($window, $stateParams, $scope, $uibModal, toastr, AuthenticationService, SessionService, $state, $rootScope) {
     "ngInject";
 
     this.$scope = $scope;
@@ -9,8 +9,9 @@ class LoginController {
     this.$stateParams = $stateParams;
     this.$rootScope = $rootScope;
     this.$state = $state;
+    this.$uibModal = $uibModal;
     this.$window = $window;
-    this.name = 'login';
+    this.name = 'Login';
 
     this.toastr = toastr;
     this.SessionService = SessionService;
@@ -25,10 +26,13 @@ class LoginController {
           type: "string",
           title: "Email",
           minLength: 5,
-          "pattern": "^\\S+@\\S+$",
+          "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
           "x-schema-form": {
-            placeholder: "email"
-          }
+            placeholder: "email",
+          },
+          validationMessage: {
+            202: 'Invalid email'
+          },
         },
         // "subdomain": {
         //   type: "string",
@@ -72,6 +76,12 @@ class LoginController {
           });
         })
     }
+  }
+
+  forgot(){
+    this.$uibModal.open({
+      component: 'forgotPasswordModal'
+    });
   }
 
 }

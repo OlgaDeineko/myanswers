@@ -45,6 +45,10 @@ function ResponseObserver($q, $window, toastr, SessionService, FakeDataService) 
       }
       console.warn(errorResponse);
       switch (errorResponse.status) {
+
+        case 404:
+          return $q.resolve(errorResponse);
+          break;
         case 403:
         case 401:
           //$window.location = './403.html';
