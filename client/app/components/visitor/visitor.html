@@ -43,27 +43,39 @@
 
   </div>
 
-  <div class="col-md-10 col-md-offset-1 visitor-tree" ng-if="!$ctrl.searchModel">
-    <div class="visitor-tree-item visitor-tree-item-category"
-         ng-repeat="item in $ctrl.tree.categories">
-      <a ui-sref="visitor({categoryId: item.id})">
-        <i class="fa fa-folder"></i>
-        {{item.name}}
-      </a>
+  <div class="container-fluid" ng-if="!$ctrl.searchModel">
+    <div class="col-md-7 col-md-offset-1 visitor-tree">
+      <div class="visitor-tree-item visitor-tree-item-category"
+           ng-repeat="item in $ctrl.tree.categories">
+        <a ui-sref="visitor({categoryId: item.id})">
+          <i class="fa fa-folder"></i>
+          {{item.name}}
+        </a>
+      </div>
+
+      <div class="visitor-tree-item visitor-tree-item-category"
+           ng-repeat="item in $ctrl.tree.articles">
+        <a ui-sref="visitorArticle({faqId: item.id})">
+          <i class="fa fa-question-circle"></i>
+          {{item.question}}
+        </a>
+      </div>
+
+      <div ng-if="!$ctrl.tree.categories.length && !$ctrl.tree.articles.length">
+        <h3 class="text-center">
+          Empty
+        </h3>
+      </div>
     </div>
 
-    <div class="visitor-tree-item visitor-tree-item-category"
-         ng-repeat="item in $ctrl.tree.articles">
-      <a ui-sref="visitorArticle({faqId: item.id})">
-        <i class="fa fa-question-circle"></i>
-        {{item.question}}
-      </a>
-    </div>
-
-    <div ng-if="!$ctrl.tree.categories.length && !$ctrl.tree.articles.length">
-      <h3 class="text-center">
-        Empty
-      </h3>
+    <div class="col-md-3 visitor-last-created">
+      <h2>Last Created:</h2>
+      <div class="visitor-last-created-item" ng-repeat="item in $ctrl.articles | orderBy: '-created_at' | limitTo: 10">
+        <a ui-sref="visitorArticle({faqId: item.id})">
+          <i class="fa fa-question-circle"></i>
+          {{item.question}}
+        </a>
+      </div>
     </div>
   </div>
 

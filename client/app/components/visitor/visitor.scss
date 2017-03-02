@@ -96,7 +96,7 @@ $fontSize: 14;
     }
 
     &-tree{
-      padding: 20px 0;
+      padding: 20px 10px;
 
       &-item{
         padding: 15px;
@@ -109,6 +109,29 @@ $fontSize: 14;
         &:hover{
           background-color: rgba($blueColor, 0.6);
           color: white;
+        }
+      }
+    }
+
+    &-last-created{
+      h2{
+        padding: 10px;
+        margin: 0;
+        background-color: $blueColor;
+        color: #fff;
+      }
+      padding: 20px 10px;
+
+      &-item{
+        padding: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        a{
+          display: block;
+        }
+
+        &:hover{
+          background-color: rgba(#000, 0.1);
         }
       }
     }

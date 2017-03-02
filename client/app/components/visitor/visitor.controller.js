@@ -73,6 +73,7 @@ class VisitorController {
       let categories = res[0];
       let articles = res[1];
 
+      self.articles = articles;
       self.tree = buildTree(articles, categories, self.currentCategory);
 
       self.$scope.$apply();
