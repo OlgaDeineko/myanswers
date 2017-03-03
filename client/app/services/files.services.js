@@ -23,10 +23,13 @@ function FilesService($http, $q, $rootScope, SessionService) {
   let create = (files, type, objectId) => {
     files = files.map(file => {
       return {
+
         base64: file.base64.split(',')[1],
-        type: file.name.match(/.*\.(\w{3,4})$/)[1]
+        type: file.name.match(/.*\.(\w{3,4})$/)[1],
+        name: file.name.replace(/(\.\w{3,4})$/, '')
       }
     });
+    console.log(files);
 
     return $http({
       method: 'POST',

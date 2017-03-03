@@ -77,9 +77,9 @@ $fontSize: 14;
       }
     }
 
-    &-search{
+    &-search {
       margin: 0;
-      .form-control{
+      .form-control {
         font-size: 20px;
         height: auto;
         padding: 15px;
@@ -95,26 +95,35 @@ $fontSize: 14;
       }
     }
 
-    &-tree{
+    &-tree {
       padding: 20px 10px;
 
-      &-item{
+      &-prev {
+        padding: 10px;
+        margin: 0;
+        background-color: $blueColor;
+        color: #fff;
+        display: block;
+        font-size: 22px;
+      }
+
+      &-item {
         padding: 15px;
         cursor: pointer;
         font-size: 22px;
-        a{
+        a {
           display: block;
         }
 
-        &:hover{
+        &:hover {
           background-color: rgba($blueColor, 0.6);
           color: white;
         }
       }
     }
 
-    &-last-created{
-      h2{
+    &-last-created {
+      h2 {
         padding: 10px;
         margin: 0;
         background-color: $blueColor;
@@ -122,15 +131,15 @@ $fontSize: 14;
       }
       padding: 20px 10px;
 
-      &-item{
+      &-item {
         padding: 10px;
         cursor: pointer;
         font-size: 18px;
-        a{
+        a {
           display: block;
         }
 
-        &:hover{
+        &:hover {
           background-color: rgba(#000, 0.1);
         }
       }

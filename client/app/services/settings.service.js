@@ -1,6 +1,6 @@
 import config, {apiUrl} from '../config';
 
-function SettingsService($http, $q, SessionService) {
+function SettingsService($http, $rootScope, $q, SessionService) {
   "ngInject";
   let settings = null;
   let subdomains = null;

@@ -16,6 +16,8 @@ import UsersService from './services/users.service';
 import FakeDataService from './services/fakeData.service';
 import FilesService from './services/files.services';
 
+// import faqHelper from './helpers/faq';
+
 import settigns from './config.js';
 
 import 'angular-schema-form';
@@ -131,6 +133,7 @@ angular.module('app', [
   .service('UsersService', UsersService)
   .service('FakeDataService', FakeDataService)
   .service('FilesService', FilesService)
+  // .service('faqHelper', faqHelper)
   .component('app', AppComponent)
   .run(($rootScope, $state, AuthenticationService, cancelBtn) => {
     "ngInject";

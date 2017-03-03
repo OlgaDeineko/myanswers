@@ -1,7 +1,7 @@
 import config, {apiUrl} from '../config';
 import userHelper from '../helpers/user';
 
-function AuthenticationService(SessionService, PermPermissionStore, $http){
+function AuthenticationService(SessionService, PermPermissionStore, $http) {
   "ngInject";
 
   let login = (user, subdomain) => {
@@ -31,7 +31,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
   }
 
   let isAuthenticated = () => {
-    return SessionService.hasToken() && !!SessionService.getSubdomain();
+    return SessionService.hasToken();
   }
 
   let initPermission = () => {

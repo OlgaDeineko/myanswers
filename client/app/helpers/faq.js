@@ -1,18 +1,20 @@
+// function faqHelper($rootScope, SettingsService) {
+// 'ngInject';
 function faqHelper() {
 
   let responseToData = (faq) => {
 
     faq.category = faq.categories[0];
-    if(faq.categories.length)
-    faq.categoryId = faq.categories[0].id+"";
+    if (faq.categories.length)
+      faq.categoryId = faq.categories[0].id + "";
 
     //counting words and character in article answer
     faq.answerWithoutTags = String(faq.answer).replace(/<[^>]+>/gm, ' ');
     faq.countWords = faq.answerWithoutTags.trim().split(/\s+/).length;
     faq.countChars = (faq.answerWithoutTags.match(/\S/g)).length;
     //@see http://marketingland.com/estimated-reading-times-increase-engagement-79830
-    let time = (faq.countWords/200+"").split('.');
-    faq.timeReads = `${time[0]} min ${((('.'+time[1])*60).toFixed())} sec`;
+    let time = (faq.countWords / 200 + "").split('.');
+    faq.timeReads = `${time[0]} min ${((('.' + time[1]) * 60).toFixed())} sec`;
 
     return faq;
   };

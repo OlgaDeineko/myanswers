@@ -12,6 +12,17 @@ let categoryModule = angular.module('category', [
   "ngInject";
 
   $stateProvider
+    // .state('app', {
+    //   url: '/',
+    //   abstract: true,
+    //   template: '<ui-view/>',
+    //   resolve: {
+    //     settings: (SettingsService) => {
+    //       console.log('resolve');
+    //       return SettingsService.getSettings();
+    //     }
+    //   }
+    // })
     .state('category', {
       url: '/admin/category/{categoryId}',
       template: '<category/>',
