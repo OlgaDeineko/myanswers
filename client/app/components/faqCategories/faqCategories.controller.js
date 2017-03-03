@@ -1,5 +1,5 @@
 class CategoryController {
-  constructor($stateParams, $scope, ArticleService, SettingsService) {
+  constructor($stateParams, $scope, $uibModal, ArticleService, SettingsService) {
     "ngInject";
 
     this.status = $stateParams.status;
@@ -10,6 +10,7 @@ class CategoryController {
       this.name = `All FAQ`;
     }
     this.$scope = $scope;
+    this.$uibModal = $uibModal;
 
     this.currentCategory = 1;
     this.ArticleService = ArticleService;
@@ -26,6 +27,12 @@ class CategoryController {
   getCurentCategoryName() {
     return this.name;
   }
+
+  createCategory() {
+    this.$uibModal.open({
+      component: 'createCategoryModal'
+    });
+  };
 
   getAllData(self, update) {
     self.ArticleService.getAll(update)

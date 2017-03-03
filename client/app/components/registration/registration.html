@@ -29,11 +29,17 @@
     </div>
     <div class="col-md-4 text-center"
          ng-if="$ctrl.registrationDone">
-        <h2>
-          Thank you for registration. <br>
-          Please activate your account. <br>
-          Link sent to {{$ctrl.newUser.email}}
-        </h2>
+      <h2>
+        Thank you for registration. <br>
+        Please activate your account. <br>
+        Link sent to {{$ctrl.newUser.email}}
+      </h2>
+
+      <div class="text-center">
+        <button class="button" style="margin-top: 15px" ng-click="$ctrl.moteToLogin()">
+          Sign in {{$ctrl.isCreated}}
+        </button>
+      </div>
     </div>
     <div class="col-md-4">
     </div>
