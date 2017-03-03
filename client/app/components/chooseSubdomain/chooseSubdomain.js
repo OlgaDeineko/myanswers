@@ -32,12 +32,12 @@ let chooseSubdomainModule = angular.module('chooseSubdomain', [
         SessionService.create($state.params.t, $state.params.d, $state.params.r, $state.params.n);
         $state.go('category');
       },
-      data: {
-        permissions: {
-          only: 'superAdmin',
-          redirectTo: 'chooseSubdomain'
-        }
-      }
+      // data: {
+      //   permissions: {
+      //     only: 'superAdmin',
+      //     redirectTo: 'chooseSubdomain'
+      //   }
+      // }
     });
 })
 
