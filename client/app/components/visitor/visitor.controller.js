@@ -74,7 +74,7 @@ class VisitorController {
       let articles = res[1];
 
       self.articles = articles.filter(a => a.status == 'published');
-      self.tree = buildTree(articles, categories, self.currentCategory);
+      self.tree = buildTree(self.articles, categories, self.currentCategory);
 
       self.$scope.$apply();
     })
