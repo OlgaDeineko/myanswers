@@ -1,12 +1,12 @@
 import config, {apiUrl} from '../config';
 
-function SubdomainService($http) {
+function SubdomainService($http, SessionService) {
   "ngInject";
 
   let check = (subdomain) => {
     return $http({
       method: 'POST',
-      url: `${apiUrl}/auth/check-subdomain`,
+      url: `${SessionService.geApiUrl()}/auth/check-subdomain`,
       data: {
         "subdomain": subdomain
       }

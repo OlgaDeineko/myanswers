@@ -1,5 +1,5 @@
 class CreateCategoryModalController {
-  constructor($scope, $stateParams, toastr, CategoryService, SettingsService) {
+  constructor($scope, $stateParams, toastr, CategoryService, SettingsService, SessionService) {
     'ngInject';
     this.name = 'createCategoryModal';
     let self = this;
@@ -12,7 +12,11 @@ class CreateCategoryModalController {
 
     this.mode = 'create';
     this.type = $stateParams.categoryId ? 'Subcategory' : 'Category';
-    this.newCategory = {parent_id: $stateParams.categoryId || '1', lang: 'en'};
+    this.newCategory = {
+      parent_id: $stateParams.categoryId || '1',
+      lang: 'en',
+      author: SessionService.getFullName() || 'Anonim',
+    };
 
     if (this.$resolve.category) {
       this.newCategory = this.$resolve.category;
@@ -29,6 +33,7 @@ class CreateCategoryModalController {
         .then((result) => {
           self.form = [
             "name",
+            "author",
             {
               key: 'parent_id',
               type: "select",
@@ -60,6 +65,15 @@ class CreateCategoryModalController {
             placeholder: "Category title"
           }
         },
+        "author": {
+          type: "string",
+          title: "Author",
+          readonly: true,
+          minLength: 2,
+          "x-schema-form": {
+            placeholder: "Author"
+          }
+        },
         "parent_id": {
           type: "string",
         },
@@ -67,7 +81,7 @@ class CreateCategoryModalController {
           type: "string",
         }
       },
-      required: ["name", "parent_id", "lang"]
+      required: ["name", "author", "parent_id", "lang"]
     };
   }
 

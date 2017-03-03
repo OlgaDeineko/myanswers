@@ -7,7 +7,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
   let login = (user, subdomain) => {
     return $http({
       method: 'POST',
-      url: `${apiUrl}/auth/login`,
+      url: `${SessionService.geApiUrl()}/auth/login`,
       data: user
     }).then(result => {
       // let role = result.data.data.role;
@@ -25,7 +25,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
   let register = (newUser) => {
     return $http({
       method: 'POST',
-      url: `${apiUrl}/auth/register`,
+      url: `${SessionService.geApiUrl()}/auth/register`,
       data: newUser
     });
   }
@@ -62,7 +62,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
   let forgotPassword = (email) => {
     return $http({
       method: 'POST',
-      url: `${apiUrl}/auth/requestPasswordReset`,
+      url: `${SessionService.geApiUrl()}/auth/requestPasswordReset`,
       data: {"email": email}
     });
   }
@@ -70,7 +70,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
   let resetPassword = (hash, pass) => {
     return $http({
       method: 'POST',
-      url: `${apiUrl}/auth/resetPassword?resetToken=${hash}`,
+      url: `${SessionService.geApiUrl()}/auth/resetPassword?resetToken=${hash}`,
       data: {"new_password": pass}
     });
   }
@@ -78,7 +78,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
   let sendActivation = (hash) => {
     return $http({
       method: 'GET',
-      url: `${apiUrl}/auth/verifyEmail?token=${hash}`
+      url: `${SessionService.geApiUrl()}/auth/verifyEmail?token=${hash}`
     });
   }
 
