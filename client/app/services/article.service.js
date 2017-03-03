@@ -32,10 +32,13 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
         resolve(self.articles);
       })
     }
+
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq`,
     }).then(result => {
+      $rootScope.loading.splice(0, 1);
       self.articles = result.data.data.map(faqHelper.responseToData);
       return self.articles;
     });
@@ -47,10 +50,12 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
    * @returns {*|Promise.<Article>}
    */
   let getById = (faqId) => {
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq/${faqId}`,
     }).then(result => {
+      $rootScope.loading.splice(0, 1);
       return faqHelper.responseToData(result.data.data);
     }).then(article => {
       return FilesService.getAll('faq', article.id)
@@ -71,10 +76,12 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
    * @returns {*|Promise.<Article>}
    */
   let getByAlgoliaId = (algoliaId) => {
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq/algolia/${algoliaId}`,
     }).then(result => {
+      $rootScope.loading.splice(0, 1);
       return faqHelper.responseToData(result.data.data);
     }).then(article => {
       return FilesService.getAll('faq', article.id)
@@ -96,12 +103,14 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
    */
   let create = (faq) => {
     let self = this;
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/faq`,
       data: faqHelper.dataToRequest(faq)
     }).then(result => {
       self.articles = null;
+      $rootScope.loading.splice(0, 1);
       $rootScope.$broadcast('updateArticles');
       return faqHelper.responseToData(result.data.data);
     });
@@ -114,12 +123,14 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
    */
   let update = (faq) => {
     let self = this;
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/faq/${faq.id}`,
       data: faqHelper.dataToRequest(faq)
     }).then(result => {
       self.articles = null;
+      $rootScope.loading.splice(0, 1);
       $rootScope.$broadcast('updateArticles');
       return faqHelper.responseToData(result.data.data);
     });
@@ -132,11 +143,13 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
    */
   let remove = (faqId) => {
     let self = this;
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'DELETE',
       url: `${SessionService.geApiUrl()}/faq/${faqId}`,
     }).then(result => {
       self.articles = null;
+      $rootScope.loading.splice(0, 1);
       $rootScope.$broadcast('updateArticles');
       return result.data.data
     });

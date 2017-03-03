@@ -14,33 +14,39 @@ function UsersService($http, $rootScope, SessionService) {
       })
     }
 
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/users`,
     }).then(result => {
+      $rootScope.loading.splice(0, 1);
       self.users =  result.data.data.map(userHelper.responseToData);
       return self.users;
     });
   };
 
   let create = (newUser) => {
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/users`,
       data: userHelper.dataToRequest(newUser)
     }).then(result => {
       self.users=null;
+      $rootScope.loading.splice(0, 1);
       $rootScope.$broadcast('updateUsers');
       return userHelper.responseToData(result.data.data);
     });
   };
 
   let update = (user) => {
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/users/${user.id}`,
       data: userHelper.dataToRequest(user)
     }).then(result => {
+      $rootScope.loading.splice(0, 1);
       self.users=null;
       $rootScope.$broadcast('updateUsers');
       return userHelper.responseToData(result.data.data);

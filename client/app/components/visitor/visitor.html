@@ -77,8 +77,8 @@
     </div>
 
     <div class="col-md-3 visitor-last-created" ng-if="$ctrl.articles.length">
-      <h2>Last Created:</h2>
-      <div class="visitor-last-created-item" ng-repeat="item in $ctrl.articles | orderBy: '-created_at' | limitTo: 10">
+      <h2>Most Viewed FAQ:</h2>
+      <div class="visitor-last-created-item" ng-repeat="item in $ctrl.articles | orderBy: '-hits_count' | limitTo: 10">
         <a ui-sref="visitorArticle({faqId: item.id})">
           <i class="fa fa-question-circle"></i>
           {{item.question}}

@@ -16,6 +16,13 @@
       </p>
     </div><!--END: Counts word-->
 
+    <!--Counts views-->
+    <div class="faq-counts pull-right">
+      <p>
+        {{$ctrl.faq.hits_count}} wiew{{$ctrl.faq.hits_count > 1 ? 's': ''}}
+      </p>
+    </div><!--END: Counts views-->
+
     <!--Tags-->
     <div class="faq-tags">
       <div class="faq-tag" ng-repeat="item in $ctrl.faq.tags track by $index">

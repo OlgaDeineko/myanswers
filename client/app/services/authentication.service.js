@@ -1,16 +1,18 @@
 import config, {apiUrl} from '../config';
 import userHelper from '../helpers/user';
 
-function AuthenticationService(SessionService, PermPermissionStore, $http) {
+function AuthenticationService($rootScope, SessionService, PermPermissionStore, $http) {
   "ngInject";
 
   let login = (user, subdomain) => {
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/auth/login`,
       data: user
     }).then(result => {
       // let role = result.data.data.role;
+      $rootScope.loading.splice(0, 1);
       let user = userHelper.responseToData(result.data.data);
       SessionService.create(
         user.access_token,
@@ -23,10 +25,14 @@ function AuthenticationService(SessionService, PermPermissionStore, $http) {
   }
 
   let register = (newUser) => {
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/auth/register`,
       data: newUser
+    }).then((res) => {
+      $rootScope.loading.splice(0, 1);
+      return res;
     });
   }
 

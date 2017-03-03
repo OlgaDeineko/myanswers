@@ -15,12 +15,14 @@ function CategoryService($http, $q, $rootScope, SessionService) {
     if(self.deferred) return self.deferred.promise;
     this.deferred = $q.defer();
 
+    $rootScope.loading.push({method: 'get'});
     $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/categories`,
     }).then(result => {
       self.categories = result.data.data;
       self.deferred.resolve(result.data.data);
+      $rootScope.loading.splice(0, 1);
       delete self.deferred;
     });
     return self.deferred.promise;
@@ -28,6 +30,7 @@ function CategoryService($http, $q, $rootScope, SessionService) {
 
   let create = (newCategory) => {
     let self = this;
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/categories`,
@@ -35,12 +38,14 @@ function CategoryService($http, $q, $rootScope, SessionService) {
     }).then(result => {
       self.categories=null;
       $rootScope.$broadcast('updateCategories');
+      $rootScope.loading.splice(0, 1);
       return result.data.data || result.data
     });
   };
 
   let update = (category) => {
     let self = this;
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/categories/${category.id}`,
@@ -48,18 +53,21 @@ function CategoryService($http, $q, $rootScope, SessionService) {
     }).then(result => {
       self.categories=null;
       $rootScope.$broadcast('updateCategories');
+      $rootScope.loading.splice(0, 1);
       return result.data.data
     });
   };
 
   let remove = (categoryId) => {
     let self = this;
+    $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'DELETE',
       url: `${SessionService.geApiUrl()}/categories/${categoryId}`,
     }).then(result => {
       self.categories=null;
       $rootScope.$broadcast('updateCategories');
+      $rootScope.loading.splice(0, 1);
       return result.data.data
     });
   };

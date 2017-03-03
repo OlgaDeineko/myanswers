@@ -24,7 +24,8 @@ function FakeDataService() {
           "updated_at": "1487850702",
           "categories": [{"id": "1", "name": "Uncategorized", "slug": null, "description": "", "lang": "en"}],
           "tags": [{"tag_id": "1", "name": "test"}, {"tag_id": "2", "name": "new tag"},],
-          "remarks": []
+          "remarks": [],
+          "hits_count": 13,
         }, {
           "id": "2",
           "question": "fdhdfhfd",
@@ -40,7 +41,8 @@ function FakeDataService() {
           "updated_at": "1487850724",
           "categories": [],
           "tags": [],
-          "remarks": []
+          "remarks": [],
+          "hits_count": 547,
         }, {
           "id": "3",
           "question": "wwwwwwwwww",
@@ -56,7 +58,8 @@ function FakeDataService() {
           "updated_at": "1487927683",
           "categories": [{"id": "1", "name": "Uncategorized", "slug": null, "description": "", "lang": "en"}],
           "tags": [],
-          "remarks": []
+          "remarks": [],
+          "hits_count": 676,
         }, {
           "id": "4",
           "question": "sdfsdf",
@@ -72,7 +75,8 @@ function FakeDataService() {
           "updated_at": "1487930293",
           "categories": [{"id": "1", "name": "Uncategorized", "slug": null, "description": "", "lang": "en"}],
           "tags": [],
-          "remarks": []
+          "remarks": [],
+          "hits_count": 11,
         }, {
           "id": "5",
           "question": "cat2",
@@ -88,7 +92,8 @@ function FakeDataService() {
           "updated_at": "1487854965",
           "categories": [{"id": "2", "name": "Keyboard", "slug": "keyboard", "description": "", "lang": "en"}],
           "tags": [],
-          "remarks": []
+          "remarks": [],
+          "hits_count": 0,
         }, {
           "id": "6",
           "question": "test new",
@@ -104,7 +109,8 @@ function FakeDataService() {
           "updated_at": "1487925920",
           "categories": [{"id": "1", "name": "Uncategorized", "slug": null, "description": "", "lang": "en"}],
           "tags": [{"tag_id": "1", "name": "test"}],
-          "remarks": []
+          "remarks": [],
+          "hits_count": 45,
         }
       ],
       categories: [

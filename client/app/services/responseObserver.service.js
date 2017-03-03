@@ -1,8 +1,10 @@
 import {local} from '../config';
-function ResponseObserver($q, $injector, toastr, SessionService, FakeDataService) {
+function ResponseObserver($q, $injector, $rootScope, toastr, SessionService, FakeDataService) {
   "ngInject";
   return {
     'request': (config) => {
+      console.log('start', config)
+      // $rootScope.loading = true;
       //TODO: remove on production
       if (local && !(/html$/.test(config.url))) {
         return $q.reject({
@@ -35,10 +37,13 @@ function ResponseObserver($q, $injector, toastr, SessionService, FakeDataService
           response.config.method,
           response.config.url.match(/.*\/api\/(v1\/.*)$/)[1],
           response);
+        // $rootScope.$emit('endLoad');
       }
       return response;
     },
     'responseError': (errorResponse) => {
+      let rs = $injector.get('$rootScope');
+      rs.loading = [];
       //TODO: remove on production
       if (errorResponse.err == 'RejectForLocal') {
         return $q.resolve(FakeDataService.getData(errorResponse.url, errorResponse.method))

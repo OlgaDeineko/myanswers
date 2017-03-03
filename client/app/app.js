@@ -137,6 +137,7 @@ angular.module('app', [
   .component('app', AppComponent)
   .run(($rootScope, $state, AuthenticationService, cancelBtn) => {
     "ngInject";
+    $rootScope.loading = [];
 
     $rootScope.$on('$stateChangeStart', (event, next) => {
       AuthenticationService.initPermission();
