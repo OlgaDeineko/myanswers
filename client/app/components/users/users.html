@@ -6,7 +6,10 @@
         <h1 class="pull-left">{{$ctrl.name}}</h1>
       </div>
       <div class="col-md-1">
-        <button class="button button-primary pull-right" ng-click="$ctrl.create()">Add</button>
+        <button class="button button-primary pull-right"
+                ng-click="$ctrl.create()"
+                permission
+                permission-except="'user'">Add</button>
       </div>
     </div>
 
@@ -27,12 +30,14 @@
         <td title="'Role'" sortable="'role'">
           {{user.role}}
         </td>
-        <td title="" class="text-center">
+        <td title="" class="text-center" >
           <!-- start Action btn -->
           <button class="icon-button"
                   ng-click="$ctrl.edit(user)"
                   tooltip-placement="up"
-                  uib-tooltip="Edit user">
+                  uib-tooltip="Edit user"
+                  permission
+                  permission-except="'user'">
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </button>
 
@@ -40,7 +45,9 @@
                   ng-disabled="true"
                   ng-click="$ctrl.remove(user.id)"
                   tooltip-placement="up"
-                  uib-tooltip="Remove user">
+                  uib-tooltip="Remove user"
+                  permission
+                  permission-except="'user'">
             <i class="fa fa-trash" aria-hidden="true"></i>
           </button>
           <!-- end Action btn -->

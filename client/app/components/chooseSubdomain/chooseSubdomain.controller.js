@@ -1,12 +1,13 @@
 import {local} from '../../config';
 class ChooseSubdomainController {
-  constructor($window, toastr, SubdomainService) {
+  constructor($window, toastr, SubdomainService, SessionService) {
     "ngInject";
 
     this.SubdomainService = SubdomainService;
     this.$window = $window;
     this.toastr = toastr;
     this.name = 'Choose subdomain';
+    SessionService.destroy();
 
     //TODO remove on production
     let partsHost = $window.location.host.split('.');

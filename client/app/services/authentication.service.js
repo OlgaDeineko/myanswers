@@ -10,7 +10,7 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
       url: `${apiUrl}/auth/login`,
       data: user
     }).then(result => {
-      let role = 'ADMIN'// result.data.data.role;
+      let role = 'user'// result.data.data.role;
       let user = userHelper.responseToData(result.data.data);
       SessionService.create(
         user.access_token,
@@ -35,11 +35,23 @@ function AuthenticationService(SessionService, PermPermissionStore, $http){
   }
 
   let initPermission = () => {
+    PermPermissionStore.definePermission('any', () => {
+      return true;
+    });
     PermPermissionStore.definePermission('anonymous', () => {
       return !SessionService.hasToken();
     });
     PermPermissionStore.definePermission('user', () => {
-      return SessionService.hasToken();
+      return SessionService.getRole() == 'user';
+    });
+    PermPermissionStore.definePermission('admin', () => {
+      return SessionService.getRole() == 'admin' || SessionService.getRole() == 'ADMIN';
+    });
+    PermPermissionStore.definePermission('visitor', () => {
+      return SessionService.getRole() == 'visitor';
+    });
+    PermPermissionStore.definePermission('superAdmin', () => {
+      return SessionService.getRole() == 'Super Admin';
     });
   }
 

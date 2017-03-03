@@ -18,8 +18,8 @@ let usersModule = angular.module('users', [
         component: 'users',
         data: {
           permissions: {
-            only: 'user',
-            redirectTo: 'chooseSubdomain'
+            only: ['user', 'admin', 'superAdmin'],
+            redirectTo: 'category'
           }
         }
       });

@@ -16,7 +16,7 @@ let registrationModule = angular.module('registration', [
       component: 'registration',
       data: {
         permissions: {
-          only: 'anonymous',
+          only: 'any',
           redirectTo: 'category'
         }
       }

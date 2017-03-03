@@ -6,7 +6,7 @@
        target="_blank"
        tooltip-placement="right"
        uib-tooltip="View KB">
-      <i class="fa fa-home" aria-hidden="true"></i>
+      <i class="fa fa-eye" aria-hidden="true"></i>
     </a>
   </div>
 
@@ -28,7 +28,9 @@
     </a>
   </div>
 
-  <div class="navbar__item">
+  <div class="navbar__item"
+       permission
+       permission-only="'superAdmin'">
     <a ng-click="$ctrl.openChooseDomain()"
        tooltip-placement="right"
        uib-tooltip="Choose subdomain">

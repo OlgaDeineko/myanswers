@@ -19,7 +19,7 @@ let chooseSubdomainModule = angular.module('chooseSubdomain', [
       template: '<choose-subdomain/>',
       data: {
         permissions: {
-          only: 'anonymous',
+          only: ['anonymous', 'any'],
           redirectTo: 'category'
         }
       }
@@ -34,8 +34,8 @@ let chooseSubdomainModule = angular.module('chooseSubdomain', [
       },
       data: {
         permissions: {
-          only: 'anonymous',
-          redirectTo: 'category'
+          only: 'superAdmin',
+          redirectTo: 'chooseSubdomain'
         }
       }
     });

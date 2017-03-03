@@ -15,12 +15,12 @@ let loginModule = angular.module('login', [
       url: '/login/:subdomain',
       component: 'login',
       template: '<login/>',
-      data: {
-        permissions: {
-          only: 'anonymous',
-          redirectTo: 'category'
-        }
-      }
+      // data: {
+      //   permissions: {
+      //     only: 'anonymous',
+      //     redirectTo: 'category'
+      //   }
+      // }
     });
 })
 

@@ -18,7 +18,7 @@ let visitorArticleModule = angular.module('visitorArticle', [
         component: 'visitorArticle',
         data: {
           permissions: {
-            only: 'user',
+            only: ['visitor', 'user', 'admin', 'superAdmin'],
             redirectTo: 'chooseSubdomain'
           }
         }

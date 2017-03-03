@@ -18,7 +18,7 @@ let categoryModule = angular.module('category', [
       component: 'category',
       data: {
         permissions: {
-          only: 'user',
+          only: ['user', 'admin', 'superAdmin'],
           redirectTo: 'chooseSubdomain'
         }
       }

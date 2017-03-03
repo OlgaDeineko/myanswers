@@ -18,7 +18,7 @@ let editFaqModule = angular.module('editFaq', [
         component: 'editFaq',
         data: {
           permissions: {
-            only: 'user',
+            only: ['user', 'admin', 'superAdmin'],
             redirectTo: 'chooseSubdomain'
           }
         }
@@ -29,7 +29,7 @@ let editFaqModule = angular.module('editFaq', [
         component: 'editFaq',
         data: {
           permissions: {
-            only: 'user',
+            only: ['user', 'admin', 'superAdmin'],
             redirectTo: 'chooseSubdomain'
           }
         }
