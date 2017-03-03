@@ -98,7 +98,7 @@ function FakeDataService() {
           "is_open_comments": "1",
           "author": "Test User",
           "status": 'published',
-          "lang": "en",
+          "lang": "fr",
           "algolia_object_id": "357316872",
           "created_at": "1487925920",
           "updated_at": "1487925920",

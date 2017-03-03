@@ -1,5 +1,5 @@
 import {local} from '../config';
-function ResponseObserver($q, $window, toastr, SessionService, FakeDataService) {
+function ResponseObserver($q, $injector, toastr, SessionService, FakeDataService) {
   "ngInject";
   return {
     'request': (config) => {
@@ -50,9 +50,14 @@ function ResponseObserver($q, $window, toastr, SessionService, FakeDataService) 
           return $q.resolve(errorResponse);
           break;
         case 403:
+          break;
         case 401:
           //$window.location = './403.html';
-          toastr.error(errorResponse.text, `Server error ${errorResponse.status}:`);
+          toastr.error('Please login again', `Authorisation error:`);
+          SessionService.destroy();
+          //@see http://stackoverflow.com/a/25496219
+          let stateService = $injector.get('$state');
+          stateService.go('chooseSubdomain');
           break;
         case 500:
           //$window.location = './500.html';

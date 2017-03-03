@@ -3,27 +3,27 @@
 <div class="content-wrapper category">
 
   <div class="col-md-2">
-      <!-- start Split action -->
-        <!--<button type="button" class="btn btn-primary">Add</button>-->
+    <!-- start Split action -->
+    <!--<button type="button" class="btn btn-primary">Add</button>-->
     <div class="category-actions">
-        <button type="button"
-                class="button button-primary dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false">
-          Add
-        </button>
-        <ul class="dropdown-menu">
-          <li><a href='#' ng-click="$ctrl.createCategory()">Create {{$ctrl.currentCategory == 1 ? 'Category':
-            'Subcategory'}}</a></li>
-          <li>
-            <a ui-sref="createFaq({categoryId: $ctrl.currentCategory})">
+      <button type="button"
+              class="button button-primary dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false">
+        Add
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href='#' ng-click="$ctrl.createCategory()">Create {{$ctrl.currentCategory == 1 ? 'Category':
+          'Subcategory'}}</a></li>
+        <li>
+          <a ui-sref="createFaq({categoryId: $ctrl.currentCategory})">
             Create FAQ
-            </a>
-          </li>
-        </ul>
+          </a>
+        </li>
+      </ul>
     </div>
-      <!-- end Split action -->
+    <!-- end Split action -->
     <type-of-questions article-counts="$ctrl.articlesCounts"></type-of-questions>
   </div>
 
@@ -40,42 +40,10 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <input type="text" class="form-control" ng-model="$ctrl.searchModel" placeholder="Search">
-          </div>
-        </div>
-      </div>
+      <category-tree categories="$ctrl.tree"
+                     current="$ctrl.currentCategory"
+                     search="$ctrl.searchModel"></category-tree>
 
-      <div class="row">
-        <div class="col-md-12">
-          <!-- start Main content -->
-          <div class="category-table-header">
-            <div class="category-table-header-title">
-              Title
-            </div>
-            <div class="category-table-header-update">
-              Last edited
-            </div>
-            <div class="category-table-header-lang">
-              Language
-            </div>
-            <div class="category-table-header-author">
-              Author
-            </div>
-            <div class="category-table-header-actions">
-            </div>
-          </div>
-
-          <category-tree categories="$ctrl.tree"
-                         current="$ctrl.currentCategory"
-                         search="$ctrl.searchModel"></category-tree>
-
-          <!-- end Main content -->
-        </div>
-
-      </div>
 
     </div>
 

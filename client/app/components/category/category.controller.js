@@ -101,6 +101,15 @@ class CategoryController {
       let articles = res[1];
       let settings = res[2];
 
+      articles = articles.map((a) => {
+        a.langName = settings.languages.find((l) => l.code == a.lang).name;
+        return a;
+      })
+      categories = categories.map((c) => {
+        c.langName = settings.languages.find((l) => l.code == c.lang).name;
+        return c;
+      })
+
       self.articlesCounts = faqHelper.countsTypes(articles, settings.faq_statuses);
       self.tree = buildTree(articles, categories, self.currentCategory);
 
