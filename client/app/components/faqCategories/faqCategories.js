@@ -18,7 +18,7 @@ let faqCategoriesModule = angular.module('faqCategories', [
         component: 'faq-categories',
         data: {
           permissions: {
-            only: 'user',
+            only: ['user', 'admin', 'superAdmin'],
             redirectTo: 'chooseSubdomain'
           }
         }

@@ -3,22 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5819f230-d39c-489e-bc3e-a255b0d121ee" name="Default" comment="sort category tree">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/common/navbar/navbar.html" afterPath="$PROJECT_DIR$/client/app/common/navbar/navbar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/category/category.js" afterPath="$PROJECT_DIR$/client/app/components/category/category.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/chooseSubdomain/chooseSubdomain.controller.js" afterPath="$PROJECT_DIR$/client/app/components/chooseSubdomain/chooseSubdomain.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/chooseSubdomain/chooseSubdomain.js" afterPath="$PROJECT_DIR$/client/app/components/chooseSubdomain/chooseSubdomain.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/editFaq/editFaq.js" afterPath="$PROJECT_DIR$/client/app/components/editFaq/editFaq.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/faq/faq.js" afterPath="$PROJECT_DIR$/client/app/components/faq/faq.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/faqCategories/faqCategories.js" afterPath="$PROJECT_DIR$/client/app/components/faqCategories/faqCategories.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/login/login.controller.js" afterPath="$PROJECT_DIR$/client/app/components/login/login.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/login/login.js" afterPath="$PROJECT_DIR$/client/app/components/login/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/registration/registration.js" afterPath="$PROJECT_DIR$/client/app/components/registration/registration.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/users/users.html" afterPath="$PROJECT_DIR$/client/app/components/users/users.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/users/users.js" afterPath="$PROJECT_DIR$/client/app/components/users/users.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/visitor/visitor.js" afterPath="$PROJECT_DIR$/client/app/components/visitor/visitor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/components/visitorArticle/visitorArticle.js" afterPath="$PROJECT_DIR$/client/app/components/visitorArticle/visitorArticle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/services/authentication.service.js" afterPath="$PROJECT_DIR$/client/app/services/authentication.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/app/services/responseObserver.service.js" afterPath="$PROJECT_DIR$/client/app/services/responseObserver.service.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -118,7 +103,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="chooseSubdomain.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="chooseSubdomain.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/app/components/chooseSubdomain/chooseSubdomain.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="145">
@@ -177,7 +162,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="faqCategories.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="faqCategories.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/client/app/components/faqCategories/faqCategories.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="360">
@@ -871,7 +856,7 @@
       <workItem from="1488270324382" duration="31637000" />
       <workItem from="1488356070852" duration="35530000" />
       <workItem from="1488397769571" duration="64756000" />
-      <workItem from="1488528618484" duration="5189000" />
+      <workItem from="1488528618484" duration="5248000" />
     </task>
     <task id="LOCAL-00001" summary="refactoring: breadcrumbs component">
       <created>1487953636416</created>
@@ -1055,11 +1040,18 @@
       <option name="project" value="LOCAL" />
       <updated>1488500407759</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="permissions">
+      <created>1488533979183</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1488533979183</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174944000" />
+    <option name="totallyTimeSpent" value="175003000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1135,7 +1127,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
-    <MESSAGE value="refactoring: breadcrumbs component" />
     <MESSAGE value="refactoring: users" />
     <MESSAGE value="change webpack configuration" />
     <MESSAGE value="search article and categories on the dashboard" />
@@ -1160,7 +1151,8 @@
     <MESSAGE value="choose subdomain" />
     <MESSAGE value="last created article" />
     <MESSAGE value="sort category tree" />
-    <option name="LAST_COMMIT_MESSAGE" value="sort category tree" />
+    <MESSAGE value="permissions" />
+    <option name="LAST_COMMIT_MESSAGE" value="permissions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1540,16 +1532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/components/faqCategories/faqCategories.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="49" lean-forward="false" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/app/components/users/users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1646,9 +1628,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/app/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        <state relative-caret-position="90">
+          <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/app/components/faqCategories/faqCategories.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="49" lean-forward="false" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
