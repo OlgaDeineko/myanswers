@@ -1,31 +1,9 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
 import faqComponent from './faq.component';
 
 
-let faqModule = angular.module('faq', [
-  uiRouter
-])
-
+let faqModule = angular.module('faq', [])
   .component('faq', faqComponent)
-
-  .config(($stateProvider) => {
-    "ngInject";
-
-    $stateProvider
-      .state('faq', {
-        url: '/admin/faq/{faqId}',
-        template: '<faq/>',
-        component: 'faq',
-        data: {
-          permissions: {
-            only: ['user', 'admin', 'superAdmin'],
-            redirectTo: 'chooseSubdomain'
-          }
-        }
-      });
-  })
-
   .name;
 
 export default faqModule;

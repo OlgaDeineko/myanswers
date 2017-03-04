@@ -1,30 +1,8 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
 import usersComponent from './users.component';
 
-let usersModule = angular.module('users', [
-  uiRouter
-])
-
-.component('users', usersComponent)
-
-  .config(($stateProvider) => {
-    "ngInject";
-
-    $stateProvider
-      .state('users', {
-        url: '/admin/users',
-        template: '<users/>',
-        component: 'users',
-        data: {
-          permissions: {
-            only: ['user', 'admin', 'superAdmin'],
-            redirectTo: 'category'
-          }
-        }
-      });
-  })
-
-.name;
+let usersModule = angular.module('users', [])
+  .component('users', usersComponent)
+  .name;
 
 export default usersModule;

@@ -4,6 +4,7 @@ import {permission, uiPermission} from 'angular-permission';
 import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
+import Router from './router';
 
 import SessionService from './services/session.service';
 import AuthenticationService from './services/authentication.service';
@@ -89,6 +90,7 @@ angular.module('app', [
   uiPermission,
   Common,
   Components,
+  Router,
   'ui.bootstrap',
   'schemaForm',
   'ui.tree',
@@ -100,7 +102,7 @@ angular.module('app', [
   'toastr',
   'flow'
 ])
-  .config(($locationProvider, $httpProvider, $urlRouterProvider, flowFactoryProvider, $qProvider) => {
+  .config(($locationProvider, $httpProvider, flowFactoryProvider, $qProvider) => {
     "ngInject";
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
     // #how-to-configure-your-server-to-work-with-html5mode
@@ -120,8 +122,6 @@ angular.module('app', [
       let Flow = require('ng-flow/dist/ng-flow-standalone');
       return new Flow(opts)
     };
-
-    $urlRouterProvider.otherwise('/admin/category/');
   })
   .service('ResponseObserver', ResponseObserver)
   .service('SessionService', SessionService)

@@ -1,30 +1,8 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
 import visitorArticleComponent from './visitorArticle.component';
 
-let visitorArticleModule = angular.module('visitorArticle', [
-  uiRouter
-])
-
+let visitorArticleModule = angular.module('visitorArticle', [])
   .component('visitorArticle', visitorArticleComponent)
-
-  .config(($stateProvider) => {
-    "ngInject";
-
-    $stateProvider
-      .state('visitorArticle', {
-        url: '/home/faq/:faqId',
-        template: '<visitor-article/>',
-        component: 'visitorArticle',
-        data: {
-          permissions: {
-            only: ['visitor', 'user', 'admin', 'superAdmin'],
-            redirectTo: 'chooseSubdomain'
-          }
-        }
-      });
-  })
-
   .name;
 
 export default visitorArticleModule;

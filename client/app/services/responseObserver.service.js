@@ -3,8 +3,6 @@ function ResponseObserver($q, $injector, $rootScope, toastr, SessionService, Fak
   "ngInject";
   return {
     'request': (config) => {
-      console.log('start', config)
-      // $rootScope.loading = true;
       //TODO: remove on production
       if (local && !(/html$/.test(config.url))) {
         return $q.reject({
