@@ -1,5 +1,5 @@
 class EditFaqController {
-  constructor($state, $scope, toastr, CategoryService, ArticleService, SettingsService, SessionService, FilesService, cancelBtn) {
+  constructor($state, $scope, toastr, faqHelper, CategoryService, ArticleService, SettingsService, SessionService, FilesService, cancelBtn) {
     'ngInject';
     this.name = 'editFaq';
 
@@ -19,7 +19,7 @@ class EditFaqController {
     this.mode = 'create';
     this.loadingFileFlag = true;
     this.filesBase64 = [];
-    if ($state.current.name == 'editFaq') {
+    if ($state.current.name == 'admin.editFaq') {
       this.mode = 'update';
     }
 
@@ -66,20 +66,7 @@ class EditFaqController {
 
     //state can be in two states: createFaq or editFaq. for create - empty object, for edit - grab from server
     if (this.mode == 'create') {
-      this.faq = {
-        question: '',
-        answer: '',
-        categoryId: $state.params.categoryId || '1',
-        tags: [],
-        visibility: 'public',
-        author:SessionService.getFullName() || 'Anonim',
-        lang: 'en',
-        is_open_comments: true,
-        status: 'draft',
-        remarks: [],
-        countWords: 0,
-        countChars: 0
-      };
+      this.faq = faqHelper.newFaq($state.params.categoryId, SessionService.getFullName());
     } else {
       this.ArticleService.getById($state.params.faqId)
         .then((result) => {

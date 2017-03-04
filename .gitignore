@@ -5,5 +5,5 @@ node_modules
 .settings
 *.log
 dist/
-#.idea/
+.idea/
 /dist.zip

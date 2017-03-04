@@ -22,6 +22,7 @@ function SettingsService($http, $rootScope, $q, SessionService) {
       url: `${SessionService.geApiUrl()}/settings/common`,
     }).then(result => {
       self.settings = result.data.data;
+      $rootScope.settings = result.data.data;
       self.deferred.resolve(result.data.data);
       delete self.deferred;
     });

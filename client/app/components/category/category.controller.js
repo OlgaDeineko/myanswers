@@ -1,20 +1,3 @@
-// let parseTreeCategory = (categories) => {
-//   categories.forEach((category, i) => {
-//     categories[i].categories = categories.filter(c => c.parent_id == category.id);
-//   });
-//   return categories;
-// };
-//
-// let filterArticles = (articles, categoryId) => {
-//   return articles.filter(article => article.categories.find(c => c.id == categoryId));
-// };
-//
-// let filterCategories = (categories, categoryId) => {
-//   return categories.filter(c => c.id == categoryId);
-// };
-
-import faqHelper from '../../helpers/faq';
-
 let buildTree = (articles, categories, currentCategory ) => {
   categories.forEach((category, i) => {
     categories[i].categories = categories.filter(c => c.parent_id == category.id);
@@ -26,7 +9,7 @@ let buildTree = (articles, categories, currentCategory ) => {
 
 
 class CategoryController {
-  constructor($stateParams, $scope, $uibModal, CategoryService, ArticleService, SettingsService) {
+  constructor($stateParams, $scope, $uibModal, faqHelper, CategoryService, ArticleService, SettingsService) {
     "ngInject";
 
     this.name = 'Dashboard';
@@ -37,6 +20,7 @@ class CategoryController {
     this.ArticleService = ArticleService;
     this.CategoryService = CategoryService;
     this.SettingsService = SettingsService;
+    this.faqHelper = faqHelper;
 
     this.currentCategory = $stateParams.categoryId || this.uncategoryId;
     this.categories = [];
@@ -101,16 +85,12 @@ class CategoryController {
       let articles = res[1];
       let settings = res[2];
 
-      articles = articles.map((a) => {
-        a.langName = settings.languages.find((l) => l.code == a.lang).name;
-        return a;
-      })
       categories = categories.map((c) => {
-        c.langName = settings.languages.find((l) => l.code == c.lang).name;
+        c.language = settings.languages.find((l) => l.code == c.lang);
         return c;
       })
 
-      self.articlesCounts = faqHelper.countsTypes(articles, settings.faq_statuses);
+      self.articlesCounts = self.faqHelper.countsTypes(articles);
       self.tree = buildTree(articles, categories, self.currentCategory);
 
       self.$scope.$apply();

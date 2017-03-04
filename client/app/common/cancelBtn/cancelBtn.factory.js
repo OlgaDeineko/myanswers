@@ -2,7 +2,7 @@ let CancelBtnFactory = function (SessionService) {
   'ngInject';
 
   let setPreviousPage = (state, params) => {
-    if (state.name && state.name != 'editFaq' && state.name != 'faq' && state.name != 'createFaq') {
+    if (state.name && state.name != 'admin.editFaq' && state.name != 'admin.faq' && state.name != 'admin.createFaq') {
       SessionService.setPreviousPage(state.name, params);
     }
   };

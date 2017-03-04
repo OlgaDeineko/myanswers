@@ -1,29 +1,12 @@
 import config, {apiUrl} from '../config';
-import faqHelper from '../helpers/faq';
 
-/**
- * @typedef {object} Article
- * @property {integer} id - article id
- * @property {string} question - article question (title)
- * @property {string} answer - faq answer (text)
- * @property {string} slug - article slug
- * @property {string} visibility - article visibility (Public | Internal | Private)
- * @property {string} is_open_comments
- * @property {string} author - author full name
- * @property {string} status - article status published or no
- * @property {integer} algolia_object_id - algolia id
- * @property {timestamp} created_at
- * @property {timestamp} updated_at
- * @property {object[]} categories - categories article. now in array one element
- */
-
-function ArticleService($http, $rootScope, SessionService, FilesService) {
+function ArticleService($http, $rootScope, faqHelper, SessionService, FilesService) {
   "ngInject";
   let articles = null;
 
   /**
    * Get all articles(FAQ)
-   * @returns {*|Promise.<{Article[]}>}
+   * @returns {Promise.<Article[]>}
    */
   let getAll = (update) => {
     let self = this;
@@ -47,7 +30,7 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
   /**
    * Get article(FAQ) by id
    * @param {integer} faqId
-   * @returns {*|Promise.<Article>}
+   * @returns {Promise.<Article>}
    */
   let getById = (faqId) => {
     $rootScope.loading.push({method: 'get'});
@@ -73,7 +56,7 @@ function ArticleService($http, $rootScope, SessionService, FilesService) {
   /**
    * Get article(FAQ) by algolia id
    * @param {integer} algoliaId
-   * @returns {*|Promise.<Article>}
+   * @returns {Promise.<Article>}
    */
   let getByAlgoliaId = (algoliaId) => {
     $rootScope.loading.push({method: 'get'});

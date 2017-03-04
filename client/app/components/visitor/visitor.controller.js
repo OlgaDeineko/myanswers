@@ -1,7 +1,5 @@
 import config, {aloglia} from '../../config';
 
-import faqHelper from '../../helpers/faq';
-
 let buildTree = (articles, categories, currentCategory ) => {
   categories.forEach((category, i) => {
     categories[i].categories = categories.filter(c => c.parent_id == category.id);
