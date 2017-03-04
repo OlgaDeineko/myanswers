@@ -24,7 +24,7 @@ class VisitorArticleController {
         self.ArticleService.getByAlgoliaId($state.params.faqId.replace(/(-a)$/, ''))
           .then((result) => {
             if (!result.id) {
-              self.$state.go('category');
+              self.$state.go('admin.category');
             }
 
             result.lang = self.languages.find(l => l.code == result.lang).name;
@@ -36,7 +36,7 @@ class VisitorArticleController {
         self.ArticleService.getById($state.params.faqId)
           .then((result) => {
             if (!result.id) {
-              self.$state.go('category');
+              self.$state.go('admin.category');
             }
 
             result.lang = self.languages.find(l => l.code == result.lang).name;

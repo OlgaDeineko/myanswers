@@ -22,7 +22,7 @@ class FaqController {
       self.ArticleService.getById($state.params.faqId)
         .then((result) => {
           if (!result.id) {
-            self.$state.go('category');
+            self.$state.go('admin.category');
           }
 
           result.lang = self.languages.find(l => l.code == result.lang).name;
@@ -33,7 +33,7 @@ class FaqController {
   }
 
   goTo() {
-    this.$state.go("editFaq", this.$state.params);
+    this.$state.go("admin.editFaq", this.$state.params);
   }
 
   copyToClipboard() {

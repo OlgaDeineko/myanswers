@@ -1,6 +1,6 @@
 <div class="type-of-questions">
   <ul class="list-group">
-    <li class="list-group-item" ui-sref="faqCategories({status: key.toLowerCase()})" ng-repeat="(key, value) in $ctrl.articleCounts">
+    <li class="list-group-item" ui-sref="admin.faqCategories({status: key.toLowerCase()})" ng-repeat="(key, value) in $ctrl.articleCounts">
       <span class="badge">{{value}}</span>
       {{key}}
     </li>

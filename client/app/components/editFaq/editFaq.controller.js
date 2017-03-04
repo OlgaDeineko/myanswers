@@ -123,7 +123,7 @@ class EditFaqController {
         return result
       })
       .then(result => {
-        self.$state.go("faq", {'faqId': result.id});
+        self.$state.go("admin.faq", {'faqId': result.id});
         self.toastr.success(`FAQ ${self.mode}d successfully.`)
       })
   }
@@ -132,7 +132,7 @@ class EditFaqController {
     let self = this;
     this.ArticleService.remove(this.faq.id)
       .then((result) => {
-        self.$state.go("category");
+        self.$state.go("admin.category");
         self.toastr.success('FAQ removed successfully.')
       })
   }

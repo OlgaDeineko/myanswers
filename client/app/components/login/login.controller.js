@@ -71,7 +71,7 @@ class LoginController {
           if(self.SessionService.getRole() == 'visitor'){
             self.$state.go("visitor");
           }else {
-            self.$state.go("category");
+            self.$state.go("admin.category");
           }
         })
         .catch(error => {

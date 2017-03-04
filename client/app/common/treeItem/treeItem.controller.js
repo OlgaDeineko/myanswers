@@ -25,7 +25,7 @@ class TreeItemController {
     }
 
     this.stateConfigs = {
-      name: this.type,
+      name: `admin.${this.type}`,
       params: `${this.type}Id`
     }
 
@@ -34,6 +34,7 @@ class TreeItemController {
   goTo(id){
     let params = {};
     params[this.stateConfigs.params] = id;
+    console.log()
     this.$state.go(this.stateConfigs.name, params);
   }
 
@@ -54,7 +55,7 @@ class TreeItemController {
       case 'faq':
         let params = {};
         params[this.stateConfigs.params] = id;
-        this.$state.go("editFaq", params);
+        this.$state.go("admin.editFaq", params);
         break;
     }
   }

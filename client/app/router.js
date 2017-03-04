@@ -7,18 +7,6 @@ let routerModule = angular.module('routing', [
   .config(($stateProvider, $urlRouterProvider) => {
     "ngInject";
 
-    // .state('app', {
-    //   url: '/',
-    //   abstract: true,
-    //   template: '<ui-view/>',
-    //   resolve: {
-    //     settings: (SettingsService) => {
-    //       console.log('resolve');
-    //       return SettingsService.getSettings();
-    //     }
-    //   }
-    // })
-
     $stateProvider
 
       .state('chooseSubdomain', {
@@ -38,7 +26,7 @@ let routerModule = angular.module('routing', [
         controller: ($state, SessionService) => {
           'ngInject'
           SessionService.create($state.params.t, $state.params.d, $state.params.r, $state.params.n);
-          $state.go('category');
+          $state.go('admin.category');
         },
         // data: {
         //   permissions: {
@@ -96,8 +84,19 @@ let routerModule = angular.module('routing', [
         }
       })
 
-      .state('category', {
-        url: '/admin/category/{categoryId}',
+      .state('admin', {
+        url: '/admin',
+        abstract: true,
+        template: '<ui-view/>',
+        resolve: {
+          settings: (SettingsService) => {
+            return SettingsService.getSettings();
+          }
+        }
+      })
+
+      .state('admin.category', {
+        url: '/category/{categoryId}',
         template: '<category/>',
         component: 'category',
         data: {
@@ -108,8 +107,8 @@ let routerModule = angular.module('routing', [
         }
       })
 
-      .state('editFaq', {
-        url: '/admin/faq/edit/{faqId}',
+      .state('admin.editFaq', {
+        url: '/faq/edit/{faqId}',
         template: '<edit-faq/>',
         component: 'editFaq',
         data: {
@@ -120,8 +119,8 @@ let routerModule = angular.module('routing', [
         }
       })
 
-      .state('createFaq', {
-        url: '/admin/faq/create?categoryId',
+      .state('admin.createFaq', {
+        url: '/faq/create?categoryId',
         template: '<edit-faq/>',
         component: 'editFaq',
         data: {
@@ -132,8 +131,8 @@ let routerModule = angular.module('routing', [
         }
       })
 
-      .state('faq', {
-        url: '/admin/faq/{faqId}',
+      .state('admin.faq', {
+        url: '/faq/{faqId}',
         template: '<faq/>',
         component: 'faq',
         data: {
@@ -144,8 +143,8 @@ let routerModule = angular.module('routing', [
         }
       })
 
-      .state('faqCategories', {
-        url: '/admin/faq-statuses/{status}',
+      .state('admin.faqCategories', {
+        url: '/faq-statuses/{status}',
         template: '<faq-categories/>',
         component: 'faq-categories',
         data: {
@@ -156,8 +155,8 @@ let routerModule = angular.module('routing', [
         }
       })
 
-      .state('users', {
-        url: '/admin/users',
+      .state('admin.users', {
+        url: '/users',
         template: '<users/>',
         component: 'users',
         data: {
@@ -192,7 +191,7 @@ let routerModule = angular.module('routing', [
         }
       });
 
-    $urlRouterProvider.otherwise('/chooseSubdomain');
+    $urlRouterProvider.otherwise('/subdomain');
   })
   .name;
 
