@@ -1,5 +1,3 @@
-import config, {apiUrl} from '../config';
-
 function ArticleService($http, $rootScope, faqHelper, SessionService, FilesService) {
   "ngInject";
   let articles = null;

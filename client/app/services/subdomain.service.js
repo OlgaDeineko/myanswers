@@ -1,5 +1,3 @@
-import config, {apiUrl} from '../config';
-
 function SubdomainService($http, $rootScope, SessionService) {
   "ngInject";
 

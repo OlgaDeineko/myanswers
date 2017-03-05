@@ -1,5 +1,3 @@
-import config, {apiUrl} from '../config';
-
 function FilesService($http, $q, $rootScope, SessionService) {
   "ngInject";
 

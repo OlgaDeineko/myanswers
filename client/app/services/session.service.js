@@ -15,12 +15,8 @@ function SessionService($window) {
   }
 
   let geApiUrl = () => {
-    let userSubdomain = $window.localStorage['client_subdomain'];
-    let result = apiUrl;
-    if(userSubdomain){
-      result = `http://${userSubdomain}.${mainDomain}/api/v1`
-    }
-    return result;
+    let userSubdomain = $window.localStorage['client_subdomain'] || $window.location.host.match(/[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?/);;
+    return `http://${userSubdomain}.${apiUrl}`;
   }
 
   let getToken = () => {

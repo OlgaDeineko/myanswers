@@ -1,4 +1,3 @@
-
 function AuthenticationService($rootScope, userHelper, SessionService, PermPermissionStore, $http) {
   "ngInject";
 

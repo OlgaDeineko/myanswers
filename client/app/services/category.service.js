@@ -1,5 +1,3 @@
-import config, {apiUrl} from '../config';
-
 function CategoryService($http, $q, $rootScope, SessionService) {
   "ngInject";
   let categories = null;

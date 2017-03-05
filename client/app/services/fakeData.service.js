@@ -22,7 +22,7 @@ function FakeDataService() {
           "algolia_object_id": "379636340",
           "created_at": "1487884302",
           "updated_at": "1487850702",
-          "categories": [{"id": "1", "name": "Uncategorized", "slug": null, "description": "", "lang": "en"}],
+          "categories": [{"id": "3", "name": "Phone", "slug": null, "description": "", "lang": "en"}],
           "tags": [{"tag_id": "1", "name": "test"}, {"tag_id": "2", "name": "new tag"},],
           "remarks": [],
           "hits_count": 13,
