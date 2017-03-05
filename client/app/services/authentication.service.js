@@ -1,7 +1,5 @@
-import config, {apiUrl} from '../config';
-import userHelper from '../helpers/user';
 
-function AuthenticationService($rootScope, SessionService, PermPermissionStore, $http) {
+function AuthenticationService($rootScope, userHelper, SessionService, PermPermissionStore, $http) {
   "ngInject";
 
   let login = (user, subdomain) => {

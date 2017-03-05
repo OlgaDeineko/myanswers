@@ -1,13 +1,14 @@
-import config, {apiUrl} from '../config';
-import userHelper from '../helpers/user';
-
-function UsersService($http, $rootScope, SessionService) {
+function UsersService($http, $rootScope, userHelper, SessionService) {
   "ngInject";
   let users = null;
 
+  /**
+   * Get all users
+   * @returns {Promise.<User[]>}
+   */
   let getAll = (update) => {
-
     let self = this;
+
     if(self.users && !update){
       return new Promise((resolve, reject) => {
         resolve(self.users);
@@ -25,7 +26,13 @@ function UsersService($http, $rootScope, SessionService) {
     });
   };
 
+  /**
+   * Create user
+   * @param {object} newUser - new faq
+   * @returns {Promise.<{User}>}
+   */
   let create = (newUser) => {
+    let self = this;
     $rootScope.loading.push({method: 'get'});
     return $http({
       method: 'POST',
@@ -39,6 +46,11 @@ function UsersService($http, $rootScope, SessionService) {
     });
   };
 
+  /**
+   * Update user
+   * @param {User} user - new faq
+   * @returns {Promise.<{User}>}
+   */
   let update = (user) => {
     $rootScope.loading.push({method: 'get'});
     return $http({
@@ -53,6 +65,11 @@ function UsersService($http, $rootScope, SessionService) {
     });
   };
 
+  /**
+   * Remove user
+   * @param {integer} userId - faq ID
+   * @returns {Promise.<{User}>}
+   */
   let remove = (userId) => {
     // return $http({
     //   method: 'DELETE',
