@@ -20,6 +20,7 @@ import FilesService from './services/files.services';
 import FaqHelper from './helpers/faq';
 import UserHelper from './helpers/user';
 import CategoryHelper from './helpers/category';
+import FileHelper from './helpers/file';
 
 //
 import 'angular-schema-form';
@@ -138,7 +139,7 @@ angular.module('app', [
   .service('faqHelper', FaqHelper)
   .service('userHelper', UserHelper)
   .service('categoryHelper', CategoryHelper)
-
+  .service('fileHelper', FileHelper)
 
   .component('app', AppComponent)
   .run(($rootScope, $state, AuthenticationService, cancelBtn) => {
