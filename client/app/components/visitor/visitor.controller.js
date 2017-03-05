@@ -1,4 +1,4 @@
-import config, {aloglia} from '../../config';
+import {aloglia, mainDomain} from '../../config';
 
 let buildTree = (articles, categories, currentCategory ) => {
   categories.forEach((category, i) => {
@@ -40,10 +40,7 @@ class VisitorController {
 
   logout() {
     this.AuthenticationService.logOut();
-    if (this.$window.location.host.indexOf('localhost') != -1) {
-      this.$window.location.href = `http://main.localhost:3000/subdomain`;
-    } else
-      this.$window.location.href = `http://main.myanswers.io/subdomain`;
+    this.$window.location.href = `http://main.${mainDomain}/subdomain`;
   }
 
   search(text) {

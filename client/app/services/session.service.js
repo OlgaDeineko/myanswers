@@ -1,4 +1,4 @@
-import config, {apiUrl, mainDomian} from '../config';
+import config, {apiUrl, mainDomain} from '../config';
 
 function SessionService($window) {
   "ngInject";
@@ -18,7 +18,7 @@ function SessionService($window) {
     let userSubdomain = $window.localStorage['client_subdomain'];
     let result = apiUrl;
     if(userSubdomain){
-      result = `http://${userSubdomain}.${mainDomian}/api/v1`
+      result = `http://${userSubdomain}.${mainDomain}/api/v1`
     }
     return result;
   }

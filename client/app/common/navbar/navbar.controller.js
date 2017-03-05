@@ -1,3 +1,5 @@
+import {mainDomain} from '../../config';
+
 class NavbarController {
   constructor($state, $uibModal, $window, AuthenticationService) {
     "ngInject";
@@ -11,10 +13,7 @@ class NavbarController {
 
   logout() {
     this.AuthenticationService.logOut();
-    if(this.$window.location.host.indexOf('localhost') != -1){
-      this.$window.location.href = `http://main.localhost:3000/subdomain`;
-    }else
-    this.$window.location.href = `http://main.myanswers.io/subdomain`;
+    this.$window.location.href = `http://main.${mainDomain}/subdomain`;
   }
 
   openChooseDomain() {

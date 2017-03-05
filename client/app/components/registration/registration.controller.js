@@ -1,3 +1,5 @@
+import {mainDomain} from '../../config';
+
 class RegistrationController {
   constructor($scope, $window, $state, toastr, AuthenticationService) {
     "ngInject";
@@ -88,8 +90,7 @@ class RegistrationController {
   moteToLogin() {
     let self = this;
     if (self.isCreated) {
-      this.$window.location.href = `http://${self.isCreated}.myanswers.io/login/${self.isCreated}`;
-      // self.$state.go("login", {subdomain: self.isCreated});
+      this.$window.location.href = `http://${self.isCreated}.${mainDomain}/login/${self.isCreated}`;
     } else {
       self.$state.go("chooseSubdomain");
     }

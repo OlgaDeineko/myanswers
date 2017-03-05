@@ -1,4 +1,4 @@
-import {local} from '../../config';
+import {mainDomain, defaultSubdomain} from '../../config';
 class ChooseSubdomainController {
   constructor($window, toastr, SubdomainService, SessionService) {
     "ngInject";
@@ -9,10 +9,9 @@ class ChooseSubdomainController {
     this.name = 'Choose subdomain';
     SessionService.destroy();
 
-    //TODO remove on production
-    let partsHost = $window.location.host.split('.');
-    if ((partsHost.length > 2 || local) && partsHost[0] != 'main') {
-      this.subdomain = partsHost[0];
+    let locationSubdomain = $window.location.host.match(/[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?/);
+    if (locationSubdomain != defaultSubdomain) {
+      this.subdomain = locationSubdomain;
       this.moveTo(this.subdomain);
     }
   }
@@ -34,13 +33,8 @@ class ChooseSubdomainController {
             self.toastr.error(error.description, `Validation error:`);
           });
         } else {
-          //TODO remove on production
-          if (local) {
-            this.$window.location.href = `http://${subdomain}.localhost:3000/login/${subdomain}`;
-          } else
-            this.$window.location.href = `http://${subdomain}.myanswers.io/login/${subdomain}`;
+          this.$window.location.href = `http://${subdomain}.${mainDomain}/login/${subdomain}`;
         }
-
       })
   }
 }
