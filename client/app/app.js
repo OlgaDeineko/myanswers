@@ -3,6 +3,7 @@ import uiRouter from 'angular-ui-router';
 import {permission, uiPermission} from 'angular-permission';
 import Common from './common/common';
 import Components from './components/components';
+import Modals from './modals/modals';
 import AppComponent from './app.component';
 import Router from './router';
 
@@ -92,6 +93,7 @@ angular.module('app', [
   uiPermission,
   Common,
   Components,
+  Modals,
   Router,
   'ui.bootstrap',
   'schemaForm',

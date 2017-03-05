@@ -4,18 +4,15 @@ class ChooseSubdomainModalController {
   constructor($scope, $window, SettingsService, SessionService) {
     'ngInject';
 
-    this.name = 'Choose Subdomain ';
+    this.name = 'Choose Subdomain';
     let self = this;
 
-    this.subdomains = [];
-    this.$uibModalInstance = $scope.$parent.$uibModalInstance;
     this.$window = $window;
     this.SessionService = SessionService;
-    this.params = {
-      t: SessionService.getToken(),
-      r: SessionService.getRole(),
-      n: SessionService.getFullName(),
-    };
+
+    this.$uibModalInstance = $scope.$parent.$uibModalInstance;
+
+    this.subdomains = [];
 
     SettingsService.getAllSubdomains()
       .then((res) => {
@@ -24,14 +21,16 @@ class ChooseSubdomainModalController {
   }
 
   choose(subdomain) {
+    let token = `t=${this.SessionService.getToken()}`;
+    let role = `r=${this.SessionService.getRole()}`;
+    let name = `n=${this.SessionService.getFullName()}`;
     this.SessionService.destroy();
-    this.$window.location = `http://${subdomain}.${mainDomain}/superadmin/chooseSubdomain?t=${this.params.t}&r=${this.params.r}&n=${this.params.n}&d=${subdomain}`;
+    this.$window.location = `http://${subdomain}.${mainDomain}/superadmin/chooseSubdomain?${token}&${role}&${name}&d=${subdomain}`;
   }
 
   cancel() {
-    this.$uibModalInstance.dismiss({$value: 'cancel'});
+    this.$uibModalInstance.dismiss();
   }
-
 }
 
 export default ChooseSubdomainModalController;

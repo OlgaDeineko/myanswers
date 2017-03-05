@@ -4,10 +4,6 @@ import Navbar from './navbar/navbar';
 import TypeOfQuestions from './typeOfQuestions/typeOfQuestions';
 import CategoryTree from './categoryTree/categoryTree';
 import Breadcrumbs from './breadcrumbs/breadcrumbs';
-import CreateCategoryModal from './createCategoryModal/createCategoryModal';
-import CreateUserModal from './createUserModal/createUserModal';
-import ForgotPasswordModal from './forgotPasswordModal/forgotPasswordModal';
-import ChooseSubdomainModal from './chooseSubdomainModal/chooseSubdomainModal';
 import TreeItem from './treeItem/treeItem';
 import CancelBtn from './cancelBtn/cancelBtn';
 
@@ -18,10 +14,6 @@ let commonModule = angular.module('app.common', [
   TypeOfQuestions,
   CategoryTree,
   Navbar,
-  CreateCategoryModal,
-  CreateUserModal,
-  ForgotPasswordModal,
-  ChooseSubdomainModal,
   TreeItem,
   User,
   CancelBtn

@@ -1,13 +1,15 @@
 class CreateCategoryModalController {
   constructor($scope, $rootScope, $stateParams, toastr, categoryHelper, CategoryService, SessionService) {
     'ngInject';
+
     this.name = 'createCategoryModal';
     let self = this;
 
     this.$scope = $scope;
-    this.$rootScope = $rootScope;
     this.toastr = toastr;
+
     this.CategoryService = CategoryService;
+
     this.$uibModalInstance = $scope.$parent.$uibModalInstance;
     this.$resolve = $scope.$parent.$resolve;
 
@@ -22,6 +24,7 @@ class CreateCategoryModalController {
         this.type = 'Subcategory';
       }
     }
+
     CategoryService.getAll()
       .then((result) => {
         self.form = [
@@ -83,26 +86,18 @@ class CreateCategoryModalController {
     if (form.$valid) {
       self.CategoryService[self.mode](newCategory)
         .then((result) => {
-          if (result.status == 0) {
-            result.errors.forEach(error => {
-              self.toastr.error(error.description, `Validation error:`);
-            });
-          } else {
-            self.toastr.success(`${self.type} ${self.mode}d successfully`);
-            self.$uibModalInstance.close(result);
-          }
+          self.toastr.success(`${self.type} ${self.mode}d successfully`);
+          self.$uibModalInstance.close(result);
         }, (error) => {
           error.data.errors.forEach(error => {
-            error.data.errors.forEach(error => {
-              self.toastr.error(error.description, `Validation error:`);
-            });
+            self.toastr.error(error.description, `Validation error:`);
           });
         })
     }
   }
 
   cancel() {
-    this.$uibModalInstance.dismiss({$value: 'cancel'});
+    this.$uibModalInstance.dismiss();
   }
 }
 

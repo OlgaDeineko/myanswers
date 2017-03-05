@@ -1,15 +1,16 @@
 class ForgotPasswordModalController {
 
-  constructor($scope, UsersService, toastr, AuthenticationService, SettingsService) {
+  constructor($scope, toastr, AuthenticationService) {
     'ngInject';
     this.name = 'Forgot Password';
-    let self = this;
 
     this.$scope = $scope;
-    this.AuthenticationService = AuthenticationService;
     this.toastr = toastr;
 
+    this.AuthenticationService = AuthenticationService;
+
     this.$uibModalInstance = $scope.$parent.$uibModalInstance;
+
     this.forgotPassword = {};
 
     this.schema = {
@@ -30,7 +31,6 @@ class ForgotPasswordModalController {
       },
       required: ["email"]
     };
-
     this.form = [
       "*",
     ];
@@ -42,11 +42,11 @@ class ForgotPasswordModalController {
     if (form.$valid) {
       self.AuthenticationService.forgotPassword(newUser.email)
         .then((result) => {
-          self.toastr.success(`Email sent`);
+          self.toastr.success('Email sent');
           self.$uibModalInstance.close(result);
         }, (error) => {
           error.data.errors.forEach((error) => {
-            self.toastr.error(error.description, `Validation error:`);
+            self.toastr.error(error.description, 'Validation error:');
           });
         })
     }

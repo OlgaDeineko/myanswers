@@ -1,32 +1,18 @@
 class CreateUserModalController {
-  constructor($scope, UsersService, toastr, SettingsService) {
+  constructor($scope, $rootScope, toastr, UsersService) {
     'ngInject';
     this.name = 'createUserModal';
-    let self = this;
 
     this.$scope = $scope;
-    this.UsersService = UsersService;
     this.toastr = toastr;
 
-    this.mode = 'create';
-    SettingsService.getSettings().then(result => {
-      self.roles = result.roles;
+    this.UsersService = UsersService;
 
-      self.form = [
-        "email", "first_name", "last_name",
-        {
-          key: 'role',
-          type: "select",
-          title: "Role",
-          titleMap: self.roles.map((item) => {
-            return {value: item.code, name: item.name};
-          })
-        },
-      ];
-    });
+    this.mode = 'create';
 
     this.$uibModalInstance = $scope.$parent.$uibModalInstance;
     this.$resolve = $scope.$parent.$resolve;
+
     this.newUser = {};
 
     if (this.$resolve.user) {
@@ -41,10 +27,13 @@ class CreateUserModalController {
           type: "string",
           title: "Email",
           minLength: 5,
-          "pattern": "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",
+          "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
           "x-schema-form": {
             placeholder: "email"
-          }
+          },
+          validationMessage: {
+            202: 'Invalid email'
+          },
         },
         "first_name": {
           type: "string",
@@ -69,6 +58,17 @@ class CreateUserModalController {
       required: ["email", "first_name", "last_name", "role"]
     };
 
+    this.form = [
+      "email", "first_name", "last_name",
+      {
+        key: 'role',
+        type: "select",
+        title: "Role",
+        titleMap: $rootScope.settings.roles.map((item) => {
+          return {value: item.code, name: item.name};
+        })
+      },
+    ];
   }
 
   save(form, newUser) {
@@ -77,17 +77,11 @@ class CreateUserModalController {
     if (form.$valid) {
       self.UsersService[self.mode](newUser)
         .then((result) => {
-          if (result.status == 0) {
-            result.errors.forEach(error => {
-              self.toastr.error(error.description, `Validation error:`);
-            });
-          } else {
-            self.toastr.success(`User ${self.mode}d successfully`);
-            self.$uibModalInstance.close(result);
-          }
+          self.toastr.success(`User ${self.mode}d successfully`);
+          self.$uibModalInstance.close(result);
         }, (error) => {
           error.data.errors.forEach(error => {
-            self.toastr.error(error.description, `Validation error:`);
+            self.toastr.error(error.description, 'Validation error:');
           });
         })
     }
