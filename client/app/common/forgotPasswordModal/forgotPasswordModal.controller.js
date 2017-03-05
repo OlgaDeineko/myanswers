@@ -12,8 +12,6 @@ class ForgotPasswordModalController {
     this.$uibModalInstance = $scope.$parent.$uibModalInstance;
     this.forgotPassword = {};
 
-
-
     this.schema = {
       type: "object",
       properties: {
@@ -44,16 +42,10 @@ class ForgotPasswordModalController {
     if (form.$valid) {
       self.AuthenticationService.forgotPassword(newUser.email)
         .then((result) => {
-          if (result.status == 0 || result.status == 404) {
-            result.data.errors.forEach(error => {
-              self.toastr.error(error.description, `Validation error:`);
-            });
-          } else {
-            self.toastr.success(`Email sent`);
-            self.$uibModalInstance.close(result);
-          }
+          self.toastr.success(`Email sent`);
+          self.$uibModalInstance.close(result);
         }, (error) => {
-          error.data.errors.forEach(error => {
+          error.data.errors.forEach((error) => {
             self.toastr.error(error.description, `Validation error:`);
           });
         })

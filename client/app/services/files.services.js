@@ -13,7 +13,7 @@ function FilesService($http, $rootScope, fileHelper, SessionService) {
       url: `${SessionService.geApiUrl()}/attachments/${type}/${objectId}`,
     }).then((result) => {
       $rootScope.loading.splice(0, 1);
-      return fileHelper.responseToData(result.data.data);
+      return result.data.data.map(fileHelper.responseToData);
     });
   };
 

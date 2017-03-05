@@ -3,6 +3,10 @@ function SettingsService($http, $rootScope, $q, SessionService) {
   let settings = null;
   let subdomains = null;
 
+  /**
+   * get settings
+   * @returns {Promise<Object>}
+   */
   let getSettings = () => {
     let self = this;
 
@@ -18,7 +22,7 @@ function SettingsService($http, $rootScope, $q, SessionService) {
     $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/settings/common`,
-    }).then(result => {
+    }).then((result) => {
       self.settings = result.data.data;
       $rootScope.settings = result.data.data;
       self.deferred.resolve(result.data.data);
@@ -28,6 +32,10 @@ function SettingsService($http, $rootScope, $q, SessionService) {
     return self.deferred.promise;
   };
 
+  /**
+   * get all subdomains for superAdmin
+   * @returns {Promise<object>}
+   */
   let getAllSubdomains = () => {
     let self = this;
     if (this.subdomains) {
@@ -42,7 +50,7 @@ function SettingsService($http, $rootScope, $q, SessionService) {
     $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/settings/advanced`,
-    }).then(result => {
+    }).then((result) => {
       self.subdomains = result.data.data;
       self.deferred2.resolve(self.subdomains);
       delete self.subdomains;

@@ -1,6 +1,11 @@
 function SubdomainService($http, $rootScope, SessionService) {
   "ngInject";
 
+  /**
+   * check subdomain
+   * @param {string} subdomain
+   * @returns {Promise<Object>}
+   */
   let check = (subdomain) => {
     $rootScope.loading.push({method: 'get'});
     return $http({
@@ -11,9 +16,9 @@ function SubdomainService($http, $rootScope, SessionService) {
       }
     }).then(result => {
       $rootScope.loading.splice(0, 1);
-      return result.data
+      return result.data.data
     });
-  }
+  };
 
   return {
     check

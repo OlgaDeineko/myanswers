@@ -1,4 +1,4 @@
-function ArticleService($http, $rootScope, faqHelper, SessionService, FilesService) {
+function ArticleService($http, $q, $rootScope, faqHelper, SessionService, FilesService) {
   "ngInject";
   let articles = null;
 
@@ -9,21 +9,27 @@ function ArticleService($http, $rootScope, faqHelper, SessionService, FilesServi
    */
   let getAll = (update) => {
     let self = this;
+
     if (this.articles && !update) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         resolve(self.articles);
       })
     }
 
+    if (self.deferred) return self.deferred.promise;
+    this.deferred = $q.defer();
+
     $rootScope.loading.push({method: 'get'});
-    return $http({
+    $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq`,
-    }).then(result => {
+    }).then((result) => {
       $rootScope.loading.splice(0, 1);
       self.articles = result.data.data.map(faqHelper.responseToData);
-      return self.articles;
+      self.deferred.resolve(self.articles);
+      delete self.deferred;
     });
+    return self.deferred.promise;
   };
 
   /**
@@ -36,17 +42,14 @@ function ArticleService($http, $rootScope, faqHelper, SessionService, FilesServi
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq/${faqId}`,
-    }).then(result => {
+    }).then((result) => {
       $rootScope.loading.splice(0, 1);
+      console.log('ok')
       return faqHelper.responseToData(result.data.data);
-    }).then(article => {
+    }).then((article) => {
       return FilesService.getAll('faq', article.id)
-        .then(attachments => {
-          article.attachments = attachments.map(file => {
-            file.name = file.attachment_url.match(/.*\/faq\/\d+\/(.*)$/)[1];
-            return file;
-          });
-
+        .then((attachments) => {
+          article.attachments = attachments;
           return article;
         });
     });
@@ -62,17 +65,13 @@ function ArticleService($http, $rootScope, faqHelper, SessionService, FilesServi
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq/algolia/${algoliaId}`,
-    }).then(result => {
+    }).then((result) => {
       $rootScope.loading.splice(0, 1);
       return faqHelper.responseToData(result.data.data);
     }).then(article => {
       return FilesService.getAll('faq', article.id)
-        .then(attachments => {
-          article.attachments = attachments.map(file => {
-            file.name = file.attachment_url.match(/.*\/faq\/\d+\/(.*)$/)[1];
-            return file;
-          });
-
+        .then((attachments) => {
+          article.attachments = attachments;
           return article;
         });
     });
@@ -90,7 +89,7 @@ function ArticleService($http, $rootScope, faqHelper, SessionService, FilesServi
       method: 'POST',
       url: `${SessionService.geApiUrl()}/faq`,
       data: faqHelper.dataToRequest(faq)
-    }).then(result => {
+    }).then((result) => {
       self.articles = null;
       $rootScope.loading.splice(0, 1);
       $rootScope.$broadcast('updateArticles');
@@ -110,7 +109,7 @@ function ArticleService($http, $rootScope, faqHelper, SessionService, FilesServi
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/faq/${faq.id}`,
       data: faqHelper.dataToRequest(faq)
-    }).then(result => {
+    }).then((result) => {
       self.articles = null;
       $rootScope.loading.splice(0, 1);
       $rootScope.$broadcast('updateArticles');
@@ -129,7 +128,7 @@ function ArticleService($http, $rootScope, faqHelper, SessionService, FilesServi
     return $http({
       method: 'DELETE',
       url: `${SessionService.geApiUrl()}/faq/${faqId}`,
-    }).then(result => {
+    }).then((result) => {
       self.articles = null;
       $rootScope.loading.splice(0, 1);
       $rootScope.$broadcast('updateArticles');

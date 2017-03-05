@@ -28,13 +28,11 @@ class ChooseSubdomainController {
     let self = this;
     this.SubdomainService.check(subdomain)
       .then(result => {
-        if (result.status == 0 || result.status == 404) {
-          result.errors.forEach(error => {
-            self.toastr.error(error.description, `Validation error:`);
-          });
-        } else {
-          this.$window.location.href = `http://${subdomain}.${mainDomain}/login/${subdomain}`;
-        }
+        this.$window.location.href = `http://${subdomain}.${mainDomain}/login/${subdomain}`;
+      }, (error) => {
+        error.data.errors.forEach((error) => {
+          self.toastr.error(error.description, `Validation error:`);
+        });
       })
   }
 }

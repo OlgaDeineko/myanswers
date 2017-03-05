@@ -52,14 +52,8 @@ class ForgotPasswordController {
     if (form.$valid) {
       this.AuthenticationService.resetPassword(this.$state.params.resetToken, newPass.password)
         .then(result => {
-          if (result.status == 0 || result.status == 404) {
-            result.errors.forEach(error => {
-              self.toastr.error(error.description, `Validation error:`);
-            });
-          } else {
-            self.toastr.success('Password changed successfully');
-            this.$state.go('chooseSubdomain');
-          }
+          self.toastr.success('Password changed successfully');
+          this.$state.go('chooseSubdomain');
         }, err => {
           self.toastr.error(err.data.message, `Validation error:`);
         })

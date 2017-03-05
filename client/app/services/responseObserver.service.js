@@ -15,12 +15,6 @@ function ResponseObserver($q, $injector, $rootScope, toastr, SessionService, Fak
       switch (config.method) {
         case 'POST':
           config.headers['Content-Type'] = 'application/json; charset=UTF-8';
-          // config.transformRequest = (obj) => {
-          //   var str = [];
-          //   for(var p in obj)
-          //   str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-          //   return str.join("&");
-          // };
           break;
       }
       if (SessionService.getSubdomain()) {
@@ -35,7 +29,6 @@ function ResponseObserver($q, $injector, $rootScope, toastr, SessionService, Fak
           response.config.method,
           response.config.url.match(/.*\/api\/(v1\/.*)$/)[1],
           response);
-        // $rootScope.$emit('endLoad');
       }
       return response;
     },
@@ -46,17 +39,14 @@ function ResponseObserver($q, $injector, $rootScope, toastr, SessionService, Fak
       if (errorResponse.err == 'RejectForLocal') {
         return $q.resolve(FakeDataService.getData(errorResponse.url, errorResponse.method))
       }
-      console.warn(errorResponse);
-      switch (errorResponse.status) {
 
-        case 404:
-          return $q.resolve(errorResponse);
-          break;
+      console.warn(errorResponse);
+
+      switch (errorResponse.status) {
         case 403:
           toastr.error("You don't have access to this actions");
           break;
         case 401:
-          //$window.location = './403.html';
           toastr.error('Please login again', `Authorisation error:`);
           SessionService.destroy();
           //@see http://stackoverflow.com/a/25496219
@@ -64,7 +54,6 @@ function ResponseObserver($q, $injector, $rootScope, toastr, SessionService, Fak
           stateService.go('chooseSubdomain');
           break;
         case 500:
-          //$window.location = './500.html';
           toastr.error(errorResponse.data.message, `Server error ${errorResponse.status}:`);
           break;
       }
