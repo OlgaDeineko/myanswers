@@ -1,53 +1,53 @@
 /**
  * @name Article
- * @property {integer} id - article id
+ * @property {number} id - article id
  * @property {string} question - article question (title)
  * @property {string} answer - faq answer (text)
  * @property {string} slug - article slug
  * @property {string} visibility - article visibility (public | internal | private)
- * @property {integer} is_open_comments
+ * @property {number} is_open_comments
  * @property {string} lang - code article language
  * @property {string} author - author full name
  * @property {string} status - article status (draft, publish, etc.)
- * @property {integer} algolia_object_id - algolia id
+ * @property {number} algolia_object_id - algolia id
  * @property {timestamp} created_at
  * @property {timestamp} updated_at
  * @property {object[]} tags - article tags
- * @property {integer} tags.tag_id - tag id
+ * @property {number} tags.tag_id - tag id
  * @property {string} tags.name - tag name
- * @property {integer} hits_count - count article views
- * @property {object[]} categories - categories article. now in array one element
+ * @property {number} hits_count - count article views
+ * @property {CategoryResponse[]} categories - categories article. now in array one element
  *
- * @property {object} category - category article. remove array :)
- * @property {integer} categoryId - ID category article
+ * @property {CategoryResponse} category - category article. remove array :)
+ * @property {number} categoryId - ID category article
  * @property {object} language - language object
  * @property {string} language.code - language code
  * @property {string} language.name - language name
  * @property {string} answerWithoutTags - answer without tag
- * @property {integer} countWords - count answer words
- * @property {integer} countChars - count answer chars
+ * @property {number} countWords - count answer words
+ * @property {number} countChars - count answer chars
  * @property {string} timeReads - time to read the answer
  * @property {string[]} remarks - answer remarks
  */
 /**
  * @name ArticleResponse
- * @property {integer} id - article id
+ * @property {number} id - article id
  * @property {string} question - article question (title)
  * @property {string} answer - faq answer (text)
  * @property {string} slug - article slug
  * @property {string} visibility - article visibility (public | internal | private)
- * @property {integer} is_open_comments
+ * @property {number} is_open_comments
  * @property {string} lang - code article language
  * @property {string} author - author full name
  * @property {string} status - article status (draft, publish, etc.)
- * @property {integer} algolia_object_id - algolia id
+ * @property {number} algolia_object_id - algolia id
  * @property {timestamp} created_at
  * @property {timestamp} updated_at
  * @property {object[]} tags - article tags
- * @property {integer} tags.id - tag id
+ * @property {number} tags.id - tag id
  * @property {string} tags.name - tag name
- * @property {integer} hits_count - count article views
- * @property {object[]} categories - categories article. now in array one element
+ * @property {number} hits_count - count article views
+ * @property {CategoryResponse[]} categories - categories article. now in array one element
  */
 /**
  * @name ArticleRequest
@@ -63,8 +63,6 @@
  * @property {integer[]} category_ids - category ids
  */
 
-//TODO change doc: {object[]} categories =>  {category[]} categories
-
 function FaqHelper($rootScope) {
   'ngInject';
 
@@ -75,9 +73,14 @@ function FaqHelper($rootScope) {
    */
   let responseToData = (faq) => {
 
-    faq.category = (faq.categories && faq.categories.length) ? faq.categories[0] : '';
-    //TODO remove convert to string
-    faq.categoryId = (faq.categories && faq.categories.length) ? faq.categories[0].id + '' : '';
+    if(faq.categories && faq.categories.length){
+      faq.categories[0].id = +faq.categories[0].id;
+      faq.category = faq.categories[0];
+      faq.categoryId = faq.categories[0].id;
+    }else{
+      faq.category = '';
+      faq.categoryId = '';
+    }
 
     if ($rootScope.settings) {
       faq.language = $rootScope.settings.languages.find((l) => l.code == faq.lang);
@@ -131,7 +134,7 @@ function FaqHelper($rootScope) {
 
   /**
    * return new object of article
-   * @param {integer} categoryId - category id
+   * @param {number} categoryId - category id
    * @param {string} author - auuthor
    * @returns {object}
    */
@@ -139,7 +142,7 @@ function FaqHelper($rootScope) {
     return {
       question: '',
       answer: '',
-      categoryId: categoryId || '1',
+      categoryId: +categoryId || 1,
       tags: [],
       visibility: 'public',
       author: author || 'Unknown',

@@ -18,7 +18,7 @@ function FilesService($http, $q, $rootScope, SessionService) {
    * @param {string} files.name
    * @param {string} files.base64
    * @param {string} type
-   * @param {integer} objectId
+   * @param {number} objectId
    */
   let create = (files, type, objectId) => {
     files = files.map(file => {

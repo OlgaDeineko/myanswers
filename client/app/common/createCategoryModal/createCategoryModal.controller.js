@@ -1,10 +1,11 @@
 class CreateCategoryModalController {
-  constructor($scope, $stateParams, toastr, CategoryService, SettingsService, SessionService) {
+  constructor($scope, $rootScope, $stateParams, toastr, categoryHelper, CategoryService, SessionService) {
     'ngInject';
     this.name = 'createCategoryModal';
     let self = this;
 
     this.$scope = $scope;
+    this.$rootScope = $rootScope;
     this.toastr = toastr;
     this.CategoryService = CategoryService;
     this.$uibModalInstance = $scope.$parent.$uibModalInstance;
@@ -12,11 +13,7 @@ class CreateCategoryModalController {
 
     this.mode = 'create';
     this.type = $stateParams.categoryId ? 'Subcategory' : 'Category';
-    this.newCategory = {
-      parent_id: $stateParams.categoryId || '1',
-      lang: 'en',
-      author: SessionService.getFullName() || 'Anonim',
-    };
+    this.newCategory = categoryHelper.newCategory($stateParams.categoryId, SessionService.getFullName());
 
     if (this.$resolve.category) {
       this.newCategory = this.$resolve.category;
@@ -25,34 +22,29 @@ class CreateCategoryModalController {
         this.type = 'Subcategory';
       }
     }
-
-    SettingsService.getSettings().then(result => {
-      self.languages = result.languages;
-
-      self.CategoryService.getAll()
-        .then((result) => {
-          self.form = [
-            "name",
-            "author",
-            {
-              key: 'parent_id',
-              type: "select",
-              title: "Parent Category",
-              titleMap: result.map((item) => {
-                return {value: item.id, name: item.name};
-              })
-            },
-            {
-              key: 'lang',
-              type: "select",
-              title: "Language",
-              titleMap: self.languages.map((item) => {
-                return {value: item.code, name: item.name};
-              })
-            }
-          ]
-        });
-    });
+    CategoryService.getAll()
+      .then((result) => {
+        self.form = [
+          "name",
+          "author",
+          {
+            key: 'parent_id',
+            type: "select",
+            title: "Parent Category",
+            titleMap: result.map((item) => {
+              return {value: item.id, name: item.name};
+            })
+          },
+          {
+            key: 'lang',
+            type: "select",
+            title: "Language",
+            titleMap: $rootScope.settings.languages.map((item) => {
+              return {value: item.code, name: item.name};
+            })
+          }
+        ]
+      });
 
     this.schema = {
       type: "object",
@@ -75,7 +67,7 @@ class CreateCategoryModalController {
           }
         },
         "parent_id": {
-          type: "string",
+          type: "number",
         },
         "lang": {
           type: "string",

@@ -19,6 +19,7 @@ import FilesService from './services/files.services';
 
 import FaqHelper from './helpers/faq';
 import UserHelper from './helpers/user';
+import CategoryHelper from './helpers/category';
 
 //
 import 'angular-schema-form';
@@ -136,6 +137,7 @@ angular.module('app', [
 
   .service('faqHelper', FaqHelper)
   .service('userHelper', UserHelper)
+  .service('categoryHelper', CategoryHelper)
 
 
   .component('app', AppComponent)

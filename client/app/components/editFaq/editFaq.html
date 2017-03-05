@@ -102,8 +102,8 @@
     <!--Categories-->
     <div class="faq-category">
       <h4>Publish in section</h4>
-      <select class="form-control" ng-model="$ctrl.faq.categoryId">
-        <option ng-repeat="item in $ctrl.categories" value="{{item.id}}">{{item.name}}</option>
+      <select class="form-control" ng-model="$ctrl.faq.categoryId"
+              ng-options="item.id as item.name for item in $ctrl.categories">
       </select>
     </div><!--END: Categories-->
 

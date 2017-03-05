@@ -67,7 +67,7 @@ function UsersService($http, $rootScope, userHelper, SessionService) {
 
   /**
    * Remove user
-   * @param {integer} userId - faq ID
+   * @param {number} userId - faq ID
    * @returns {Promise.<{User}>}
    */
   let remove = (userId) => {

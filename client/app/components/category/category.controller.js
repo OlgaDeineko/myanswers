@@ -1,15 +1,5 @@
-let buildTree = (articles, categories, currentCategory ) => {
-  categories.forEach((category, i) => {
-    categories[i].categories = categories.filter(c => c.parent_id == category.id);
-    categories[i].articles = articles.filter(a => a.categories.find(c => c.id == category.id));
-  });
-
-  return categories.find(c => c.id == currentCategory)
-}
-
-
 class CategoryController {
-  constructor($stateParams, $scope, $uibModal, faqHelper, CategoryService, ArticleService, SettingsService) {
+  constructor($stateParams, $scope, $uibModal, faqHelper, categoryHelper, CategoryService, ArticleService) {
     "ngInject";
 
     this.name = 'Dashboard';
@@ -19,8 +9,8 @@ class CategoryController {
 
     this.ArticleService = ArticleService;
     this.CategoryService = CategoryService;
-    this.SettingsService = SettingsService;
     this.faqHelper = faqHelper;
+    this.categoryHelper = categoryHelper;
 
     this.currentCategory = $stateParams.categoryId || this.uncategoryId;
     this.categories = [];
@@ -45,53 +35,21 @@ class CategoryController {
   }
 
   createCategory() {
-    let modalInstance = this.$uibModal.open({
+    this.$uibModal.open({
       component: 'createCategoryModal'
     });
   };
 
   getAllData(self, update) {
-    // self.CategoryService.getAll(update)
-    //   .then((result) => {
-    //     let categoriesTree = parseTreeCategory(result);
-    //     self.categories = filterCategories(categoriesTree, self.currentCategory);
-    //   });
-    // self.ArticleService.getAll(update)
-    //   .then(result => {
-    //     self.articles = filterArticles(result, self.currentCategory);
-    //     return result;
-    //   })
-    //   .then(result => {
-    //     self.SettingsService.getSettings().then(settings => {
-    //
-    //       self.articlesCounts = {
-    //         All: result.length,
-    //       };
-    //       settings.faq_statuses.map(status => {
-    //         self.articlesCounts[status.name] = result.filter(article => article.status == status.code).length;
-    //       })
-    //     })
-    //   })
-
     Promise.all([
       self.CategoryService.getAll(update),
-      self.ArticleService.getAll(update),
-      self.SettingsService.getSettings()
-    ]).then(res => {
-      if(res.length != 3){
-        return;
-      }
+      self.ArticleService.getAll(update)
+    ]).then((res) => {
       let categories = res[0];
       let articles = res[1];
-      let settings = res[2];
-
-      categories = categories.map((c) => {
-        c.language = settings.languages.find((l) => l.code == c.lang);
-        return c;
-      })
 
       self.articlesCounts = self.faqHelper.countsTypes(articles);
-      self.tree = buildTree(articles, categories, self.currentCategory);
+      self.tree = self.categoryHelper.buildTree(articles, categories, self.currentCategory);
 
       self.$scope.$apply();
     })

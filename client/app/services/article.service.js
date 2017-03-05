@@ -4,6 +4,7 @@ function ArticleService($http, $rootScope, faqHelper, SessionService, FilesServi
 
   /**
    * Get all articles(FAQ)
+   * @params {boolean} update - need updated
    * @returns {Promise.<Article[]>}
    */
   let getAll = (update) => {
@@ -27,7 +28,7 @@ function ArticleService($http, $rootScope, faqHelper, SessionService, FilesServi
 
   /**
    * Get article(FAQ) by id
-   * @param {integer} faqId
+   * @param {number} faqId
    * @returns {Promise.<Article>}
    */
   let getById = (faqId) => {
@@ -53,7 +54,7 @@ function ArticleService($http, $rootScope, faqHelper, SessionService, FilesServi
 
   /**
    * Get article(FAQ) by algolia id
-   * @param {integer} algoliaId
+   * @param {number} algoliaId
    * @returns {Promise.<Article>}
    */
   let getByAlgoliaId = (algoliaId) => {
@@ -119,7 +120,7 @@ function ArticleService($http, $rootScope, faqHelper, SessionService, FilesServi
 
   /**
    * Remove article(FAQ)
-   * @param {integer} faqId - faq ID
+   * @param {number} faqId - faq ID
    * @returns {Promise.<{Article}>}
    */
   let remove = (faqId) => {

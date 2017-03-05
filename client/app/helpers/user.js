@@ -4,7 +4,7 @@
  * @property {string} access_token - user access token
  * @property {string} refresh_token
  * @property {string} token_type - user access token type
- * @property {integer} expires_in
+ * @property {number} expires_in
  * @property {string} stormpath_access_token_href
  * @property {string[]} role - user roles
  * @property {string} email - user email
@@ -19,7 +19,7 @@
  * @property {string} access_token - user access token
  * @property {string} refresh_token
  * @property {string} token_type - user access token type
- * @property {integer} expires_in
+ * @property {number} expires_in
  * @property {string} stormpath_access_token_href
  * @property {string} role - user roles
  * @property {string} email - user email
