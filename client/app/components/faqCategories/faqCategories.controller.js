@@ -10,12 +10,13 @@ class CategoryController {
       this.name = `All FAQ`;
     }
     this.$scope = $scope;
-    this.faqHelper = faqHelper;
     this.$uibModal = $uibModal;
 
-    this.currentCategory = 1;
     this.ArticleService = ArticleService;
     this.SettingsService = SettingsService;
+    this.faqHelper = faqHelper;
+
+    this.currentCategory = 1;
 
     $scope.$on('updateArticles', () => {
       console.log('$on: updateArticles');
@@ -23,10 +24,6 @@ class CategoryController {
     });
 
     this.getAllData(this);
-  }
-
-  getCurentCategoryName() {
-    return this.name;
   }
 
   createCategory() {

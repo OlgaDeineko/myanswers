@@ -56,6 +56,7 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
           toastr.error(errorResponse.data.message, `Server error ${errorResponse.status}:`);
           break;
       }
+      console.log('responseError', errorResponse)
       return $q.reject(errorResponse);
     }
   };

@@ -1,4 +1,4 @@
-<navbar ng-if="!$ctrl.visitor"></navbar>
+<navbar></navbar>
 <div class="content-wrapper faq">
 
   <!--Content article-->
@@ -43,7 +43,7 @@
     </div><!--END: Answer-->
 
     <!--Remarks-->
-    <div class="faq-remarks" ng-if="!$ctrl.visitor && $ctrl.faq.remarks.length">
+    <div class="faq-remarks" ng-if="$ctrl.faq.remarks.length">
       <h4>Remarks</h4>
       <div class="one-remark" ng-repeat="item in $ctrl.faq.remarks track by $index">
         {{item}}
@@ -56,7 +56,7 @@
   <div class="col-md-4 faq-left-sidebar">
 
     <!--Action buttons-->
-    <div class="row faq-actions" ng-if="!$ctrl.visitor">
+    <div class="row faq-actions">
       <div class="col-md-6">
         <cancel-btn title="'Return'"></cancel-btn>
       </div>
@@ -88,7 +88,7 @@
     <!--Language-->
     <div class="faq-language" ng-if="$ctrl.faq.lang">
       <h4>Language:</h4>
-      <div>{{$ctrl.faq.lang}}</div>
+      <div>{{$ctrl.faq.language.name}}</div>
     </div><!--END: Language-->
 
     <!--faq-attachment-->

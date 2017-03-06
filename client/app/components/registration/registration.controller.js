@@ -3,18 +3,26 @@ import {mainDomain} from '../../config';
 class RegistrationController {
   constructor($scope, $window, $state, toastr, AuthenticationService) {
     "ngInject";
+    this.name = 'Registration';
 
     this.$state = $state;
     this.$scope = $scope;
     this.$window = $window;
     this.toastr = toastr;
-    this.name = 'Registration';
+
     this.AuthenticationService = AuthenticationService;
+
     this.registrationDone = false;
-
     this.isCreated = '';
+    this.newUser = {
+      "first_name": "Sdfsd",
+      "last_name": "SFdsdf",
+      "email": "ssfsd@dsfsdf.sdf",
+      "subdomain": "sdfsdf",
+      "password": "sdfsfsSFSD234234",
+      "password_repeat": "sdfsafsafasdfs"
+    };
 
-    this.newUser = {};
     this.schema = {
       type: "object",
       properties: {
@@ -81,18 +89,17 @@ class RegistrationController {
         }
       },
       required: ["first_name", "last_name", "email", "subdomain", "password", "password_repeat"]
-    }
+    };
     this.form = [
       "*"
     ]
   }
 
   moteToLogin() {
-    let self = this;
-    if (self.isCreated) {
-      this.$window.location.href = `http://${self.isCreated}.${mainDomain}/login/${self.isCreated}`;
+    if (this.isCreated) {
+      this.$window.location.href = `http://${self.isCreated}.${mainDomain}/login`;
     } else {
-      self.$state.go("chooseSubdomain");
+      this.$state.go("chooseSubdomain");
     }
   }
 
@@ -101,13 +108,11 @@ class RegistrationController {
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
       this.AuthenticationService.register(newUser)
-        .then(result => {
+        .then((result) => {
           self.isCreated = newUser.subdomain.toLowerCase();
           self.toastr.success(`Registration done`);
-          // self.moteToLogin();
           self.registrationDone = true;
-        })
-        .catch(error => {
+        }, (error) => {
           error.data.errors.forEach(error => {
             self.toastr.error(error.description, `Validation error:`);
           });

@@ -33,9 +33,9 @@
 
       <div class="row category-title">
         <div class="col-md-12">
-          <h1>{{$ctrl.getCurentCategoryName()}}</h1>
+          <h1>{{$ctrl.currentCategory == 1 ? $ctrl.name : $ctrl.tree.name}}</h1>
 
-          <breadcrumbs home="'Dashboard'" current="$ctrl.currentCategory"></breadcrumbs>
+          <breadcrumbs home="$ctrl.name" current="$ctrl.currentCategory"></breadcrumbs>
 
         </div>
       </div>

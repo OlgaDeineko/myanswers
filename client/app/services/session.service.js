@@ -54,7 +54,7 @@ function SessionService($window) {
    * @returns {string}
    */
   let getSubdomain = () => {
-    return $window.localStorage['client_subdomain'];
+    return $window.localStorage['client_subdomain'] || $window.location.host.match(/[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?/)[0];
   };
 
   /**

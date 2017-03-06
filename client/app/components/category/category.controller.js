@@ -3,7 +3,7 @@ class CategoryController {
     "ngInject";
 
     this.name = 'Dashboard';
-    this.uncategoryId = 1;
+
     this.$uibModal = $uibModal;
     this.$scope = $scope;
 
@@ -12,6 +12,7 @@ class CategoryController {
     this.faqHelper = faqHelper;
     this.categoryHelper = categoryHelper;
 
+    this.uncategoryId = 1;
     this.currentCategory = $stateParams.categoryId || this.uncategoryId;
     this.categories = [];
     this.articles = [];
@@ -26,12 +27,6 @@ class CategoryController {
     });
 
     this.getAllData(this);
-  }
-
-  getCurentCategoryName() {
-    return (this.categories.length && this.currentCategory != this.uncategoryId)
-      ? this.categories.find(c => c.id == this.currentCategory).name
-      : this.name;
   }
 
   createCategory() {

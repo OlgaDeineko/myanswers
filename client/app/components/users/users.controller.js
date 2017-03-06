@@ -5,16 +5,18 @@ class UsersController {
 
     this.$uibModal = $uibModal;
     this.toastr = toastr;
+
     this.UsersService = UsersService;
+
     this.users = [];
     this.NgTableParams = NgTableParams;
-
-    this.getData(this)
 
     $scope.$on('updateUsers', () => {
       console.log('$on: updateUsers');
       this.getData(this, true);
     });
+
+    this.getData(this);
   }
 
   create() {
@@ -25,12 +27,12 @@ class UsersController {
 
   remove(userId) {
     console.log('remove', userId);
-    this.toastr.success('User removed successfully.');
+    //this.toastr.success('User removed successfully.');
     // this.UsersService.remove(userId)
   }
 
   edit(user) {
-    let modalInstance = this.$uibModal.open({
+    this.$uibModal.open({
       component: 'createUserModal',
       resolve: {
         user: user

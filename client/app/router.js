@@ -37,7 +37,7 @@ let routerModule = angular.module('routing', [
       })
 
       .state('login', {
-        url: '/login/:subdomain',
+        url: '/login',
         component: 'login',
         template: '<login/>',
         // data: {

@@ -1,38 +1,30 @@
 import {aloglia, mainDomain} from '../../config';
 
-let buildTree = (articles, categories, currentCategory ) => {
-  categories.forEach((category, i) => {
-    categories[i].categories = categories.filter(c => c.parent_id == category.id);
-    categories[i].articles = articles.filter(a => a.categories.find(c => c.id == category.id));
-  });
-
-  return categories.find(c => c.id == currentCategory)
-}
-
 let algoliasearch = require('algoliasearch');
+
 class VisitorController {
-  constructor($window, $stateParams, $state, $scope, AuthenticationService, CategoryService, ArticleService, SessionService) {
+  constructor($window, $stateParams, $state, $scope, categoryHelper, AuthenticationService, CategoryService, ArticleService, SessionService) {
     'ngInject';
 
     this.name = 'Welcome to KB';
-    this.uncategoryId = 1;
-    let self = this;
 
     let index = SessionService.getSubdomain();
-    this.algoliaResults = [];
 
     this.index = new algoliasearch(aloglia.id, aloglia.key, {protocol: 'https:'}).initIndex(index);
 
     this.$window = $window;
     this.$scope = $scope;
     this.$state = $state;
+
     this.AuthenticationService = AuthenticationService;
     this.ArticleService = ArticleService;
     this.CategoryService = CategoryService;
-    this.currentCategory = $stateParams.categoryId || this.uncategoryId;
+    this.categoryHelper = categoryHelper;
 
-    this.categories = [];
+    this.uncategoryId = 1;
+    this.currentCategory = $stateParams.categoryId || this.uncategoryId;
     this.articles = [];
+    this.algoliaResults = [];
 
     this.getAllData(this);
   }
@@ -42,17 +34,22 @@ class VisitorController {
     this.$window.location.href = `http://main.${mainDomain}/subdomain`;
   }
 
+  /**
+   * search in algolia
+   * @param text
+   */
   search(text) {
     let self = this;
     this.index.search({
       query: text,
-    }, (err, content) => {
-      self.algoliaResults = content.hits
-        .map(i => {
-          i._highlightResult.answer.value = String(i._highlightResult.answer.value).replace(/<(?!\/?em)[^>]+>/gm, '');
-          return i
+    }, (error, content) => {
+      if (!error) {
+        self.algoliaResults = content.hits.map((hit) => {
+          hit._highlightResult.answer.value = String(hit._highlightResult.answer.value).replace(/<(?!\/?em)[^>]+>/gm, '');
+          return hit
         });
-      self.$scope.$apply();
+        self.$scope.$apply();
+      }
     });
   }
 
@@ -60,15 +57,12 @@ class VisitorController {
     Promise.all([
       self.CategoryService.getAll(update),
       self.ArticleService.getAll(update)
-    ]).then(res => {
-      if (res.length != 2) {
-        return;
-      }
-      let categories = res[0];
-      let articles = res[1];
+    ]).then((result) => {
+      let categories = result[0];
+      let articles = result[1].filter((article) => article.status == 'published');
 
-      self.articles = articles.filter(a => a.status == 'published');
-      self.tree = buildTree(self.articles, categories, self.currentCategory);
+      self.articles = articles;
+      self.tree = self.categoryHelper.buildTree(articles, categories, self.currentCategory);
 
       self.$scope.$apply();
     })

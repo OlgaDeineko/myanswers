@@ -2,33 +2,27 @@ class FaqController {
   constructor($sce, $state, toastr, ArticleService, SettingsService, FilesService) {
     "ngInject";
     this.name = 'faq';
-
     let self = this;
+
     this.$state = $state;
     this.toastr = toastr;
-    this.convertHTML = $sce.trustAsHtml;
+
     this.SettingsService = SettingsService;
     this.ArticleService = ArticleService;
     this.FilesService = FilesService;
-    this.visitor = $state.current.name == 'faqVisitor';
 
-
+    this.convertHTML = $sce.trustAsHtml;
     this.faq = {};
 
-    this.SettingsService.getSettings().then(result => {
-      self.languages = result.languages;
-
-      self.ArticleService.getById($state.params.faqId)
-        .then((result) => {
-          if (!result.id) {
-            self.$state.go('admin.category');
-          }
-
-          result.lang = self.languages.find(l => l.code == result.lang).name;
-
-          self.faq = result;
-        })
-    })
+    this.ArticleService.getById($state.params.faqId)
+      .then((result) => {
+        self.faq = result;
+      }, (error) => {
+        error.data.errors.forEach((error) => {
+          self.toastr.error(error.description);
+          self.$state.go('admin.category');
+        });
+      })
   }
 
   goTo() {

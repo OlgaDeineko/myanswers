@@ -3,22 +3,21 @@ function AuthenticationService($http, spinnerFactory, PermPermissionStore, userH
 
   /**
    * login
-   * @param {User} user
-   * @param {string} subdomain
+   * @param {User} userData
    * @returns {Promise<Object>}
    */
-  let login = (user, subdomain) => {
+  let login = (userData) => {
     spinnerFactory.start();
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/auth/login`,
-      data: user
+      data: userData
     }).then((result) => {
       spinnerFactory.end();
       let user = userHelper.responseToData(result.data.data);
       SessionService.create(
         user.access_token,
-        subdomain,
+        userData.subdomain,
         user.role,
         user.fullName
       );

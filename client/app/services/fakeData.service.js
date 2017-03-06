@@ -358,6 +358,7 @@ function FakeDataService() {
         return {data: data.attachments};
         break;
     }
+    return {data: {data: []}}
   };
 
   return {

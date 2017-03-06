@@ -3,8 +3,9 @@ class ActivationUserController {
     'ngInject';
 
     this.name = 'activationUser';
-    this.toastr = toastr;
     let self = this;
+
+    this.toastr = toastr;
 
     AuthenticationService.sendActivation($state.params.token)
       .then((result) => {

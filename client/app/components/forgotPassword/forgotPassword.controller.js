@@ -6,6 +6,7 @@ class ForgotPasswordController {
     this.$state = $state;
     this.toastr = toastr;
     this.$scope = $scope;
+
     this.AuthenticationService = AuthenticationService;
 
     this.newPass = {};
@@ -40,7 +41,7 @@ class ForgotPasswordController {
         }
       },
       required: ["password", "password_repeat"]
-    }
+    };
     this.form = [
       "*"
     ]
@@ -51,11 +52,11 @@ class ForgotPasswordController {
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
       this.AuthenticationService.resetPassword(this.$state.params.resetToken, newPass.password)
-        .then(result => {
+        .then((result) => {
           self.toastr.success('Password changed successfully');
           this.$state.go('chooseSubdomain');
-        }, err => {
-          self.toastr.error(err.data.message, `Validation error:`);
+        }, (error) => {
+          self.toastr.error(error.data.message, `Validation error:`);
         })
     }
   }

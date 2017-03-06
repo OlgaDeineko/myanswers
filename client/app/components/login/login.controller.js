@@ -1,22 +1,20 @@
-import config, {mainDomian} from '../../config';
+import config, {mainDomian, defaultSubdomain} from '../../config';
 
 class LoginController {
-  constructor($window, $stateParams, $scope, $uibModal, toastr, AuthenticationService, SessionService, $state, $rootScope) {
+  constructor($scope, $state, $uibModal, toastr, AuthenticationService, SessionService) {
     "ngInject";
 
-    this.$scope = $scope;
-
-    this.$stateParams = $stateParams;
-    this.$rootScope = $rootScope;
-    this.$state = $state;
-    this.$uibModal = $uibModal;
-    this.$window = $window;
     this.name = 'Login';
 
+    this.$scope = $scope;
+    this.$state = $state;
+    this.$uibModal = $uibModal;
     this.toastr = toastr;
+
     this.SessionService = SessionService;
     this.AuthenticationService = AuthenticationService;
-    this.subdomain = this.$stateParams.subdomain || SessionService.getSubdomain();
+
+    this.subdomain = SessionService.getSubdomain();
 
     this.user = {};
     this.schema = {
@@ -34,22 +32,18 @@ class LoginController {
             202: 'Invalid email'
           },
         },
-        // "subdomain": {
-        //   type: "string",
-        //   title: "Subdomain",
-        //   minLength: 5,
-        //   "x-schema-form": {
-        //     "placeholder": "subdomain"
-        //   }
-        // },
         "password": {
-          minLength: 5,
+          minLength: 8,
           type: "string",
           title: "Password",
+          "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
           "x-schema-form": {
             "type": "password",
             "placeholder": "password"
-          }
+          },
+          validationMessage: {
+            202: 'Password must contain 1 uppercase letter, 1 lowercase letter and 1 number'
+          },
         }
       },
       required: ["subdomain", "email","password"]
@@ -58,7 +52,9 @@ class LoginController {
       "*"
     ];
 
-    if(this.subdomain == false) this.$state.go("chooseSubdomain");
+    if(this.subdomain == defaultSubdomain) {
+      this.$state.go("chooseSubdomain");
+    }
   }
 
   login(loginForm, user) {
@@ -66,15 +62,14 @@ class LoginController {
     this.$scope.$broadcast('schemaFormValidate');
     if(loginForm.$valid) {
       user.subdomain = self.subdomain;
-      this.AuthenticationService.login(user, self.subdomain)
-        .then(result => {
+      this.AuthenticationService.login(user)
+        .then((result) => {
           if(self.SessionService.getRole() == 'visitor'){
             self.$state.go("visitor");
           }else {
             self.$state.go("admin.category");
           }
-        })
-        .catch(error => {
+        }, (error) => {
           error.data.errors.forEach(error => {
             self.toastr.error(error.description, `Validation error:`);
           });
@@ -87,7 +82,6 @@ class LoginController {
       component: 'forgotPasswordModal'
     });
   }
-
 }
 
 export default LoginController;
