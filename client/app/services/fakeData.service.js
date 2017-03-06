@@ -348,8 +348,8 @@ function FakeDataService() {
         return data.checkSubdomain;
         break;
       case 'auth/login':
-        return {data: data.login};
-        // return {data: data.superAdmin};
+        // return {data: data.login};
+        return {data: data.superAdmin};
         break;
       case 'attachments/faq':
         if (method != 'GET') {

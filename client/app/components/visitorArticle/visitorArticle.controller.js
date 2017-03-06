@@ -1,5 +1,5 @@
 class VisitorArticleController {
-  constructor($sce, $state, toastr, ArticleService, SettingsService, FilesService, cancelBtn) {
+  constructor($sce, $state, toastr, ArticleService, SettingsService, FilesService) {
     "ngInject";
     this.name = 'faq';
 
@@ -10,7 +10,6 @@ class VisitorArticleController {
     this.SettingsService = SettingsService;
     this.ArticleService = ArticleService;
     this.FilesService = FilesService;
-    this.cancelBtn = cancelBtn;
     this.visitor = $state.current.name == 'faqVisitor';
 
 
@@ -49,13 +48,6 @@ class VisitorArticleController {
 
   copyToClipboard() {
     this.toastr.success('Answer copied to clipboard.');
-  }
-
-  cancel() {
-    let previous = this.cancelBtn.getPreviousPage();
-    if(previous.stateName) {
-      this.$state.go(previous.stateName, previous.params);
-    }
   }
 }
 

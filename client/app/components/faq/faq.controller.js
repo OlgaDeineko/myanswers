@@ -1,5 +1,5 @@
 class FaqController {
-  constructor($sce, $state, toastr, ArticleService, SettingsService, FilesService, cancelBtn) {
+  constructor($sce, $state, toastr, ArticleService, SettingsService, FilesService) {
     "ngInject";
     this.name = 'faq';
 
@@ -10,7 +10,6 @@ class FaqController {
     this.SettingsService = SettingsService;
     this.ArticleService = ArticleService;
     this.FilesService = FilesService;
-    this.cancelBtn = cancelBtn;
     this.visitor = $state.current.name == 'faqVisitor';
 
 
@@ -38,13 +37,6 @@ class FaqController {
 
   copyToClipboard() {
     this.toastr.success('Answer copied to clipboard.');
-  }
-
-  cancel() {
-    let previous = this.cancelBtn.getPreviousPage();
-    if(previous.stateName) {
-      this.$state.go(previous.stateName, previous.params);
-    }
   }
 }
 

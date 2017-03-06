@@ -1,5 +1,5 @@
 class CategoryController {
-  constructor($stateParams, $scope, $uibModal, ArticleService, SettingsService) {
+  constructor($stateParams, $scope, faqHelper, $uibModal, ArticleService, SettingsService) {
     "ngInject";
 
     this.status = $stateParams.status;
@@ -10,6 +10,7 @@ class CategoryController {
       this.name = `All FAQ`;
     }
     this.$scope = $scope;
+    this.faqHelper = faqHelper;
     this.$uibModal = $uibModal;
 
     this.currentCategory = 1;
@@ -36,21 +37,13 @@ class CategoryController {
 
   getAllData(self, update) {
     self.ArticleService.getAll(update)
-      .then(result => {
-        self.SettingsService.getSettings().then(settings => {
-
-          self.articlesCounts = {
-            All: result.length,
-          };
-          settings.faq_statuses.map(status => {
-            self.articlesCounts[status.name] = result.filter(a => a.status == status.code).length;
-          })
-        });
+      .then((result) => {
+        self.articlesCounts = self.faqHelper.countsTypes(result);
 
         self.tree = {
           articles: (self.status == 'all')
             ? result
-            : result.filter(a => a.status == self.status)
+            : result.filter((a) => a.status == self.status)
         };
 
       })

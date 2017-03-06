@@ -6,6 +6,7 @@ import CategoryTree from './categoryTree/categoryTree';
 import Breadcrumbs from './breadcrumbs/breadcrumbs';
 import TreeItem from './treeItem/treeItem';
 import CancelBtn from './cancelBtn/cancelBtn';
+import Spinner from './spinner/spinner';
 
 import User from './user/user';
 
@@ -16,7 +17,8 @@ let commonModule = angular.module('app.common', [
   Navbar,
   TreeItem,
   User,
-  CancelBtn
+  CancelBtn,
+  Spinner
 ])
 
   .name;

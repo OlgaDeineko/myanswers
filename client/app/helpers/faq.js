@@ -156,15 +156,22 @@ function FaqHelper($rootScope) {
   /**
    * counts types articles (publish, draft, trash, etc.)
    * @param {Article[]} faqs
-   * @returns {object<string, number>} counts
+   * @returns {object[]<{name: string, code: string, counts: number}>} counts
    */
   let countsTypes = (faqs) => {
-    let articlesCounts = {
-      All: faqs.length,
-    };
+    let articlesCounts =[];
+    articlesCounts.push({
+      name: "All",
+      code: "all",
+      counts: faqs.length
+    });
 
     $rootScope.settings.faq_statuses.map((status) => {
-      articlesCounts[status.name] = faqs.filter((faq) => faq.status == status.code).length;
+      articlesCounts.push({
+        name: status.name,
+        code: status.code,
+        counts: faqs.filter((faq) => faq.status == status.code).length
+      });
     });
 
     return articlesCounts;

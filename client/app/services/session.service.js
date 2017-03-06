@@ -81,7 +81,10 @@ function SessionService($window) {
    * @param {object} params
    */
   let setPreviousPage = (state, params) => {
-    $window.sessionStorage['previous_page'] = JSON.stringify({stateName: state, params: params});
+    let notReturn = ['admin.editFaq', 'admin.faq', 'admin.createFaq'];
+    if (state && notReturn.indexOf(state) == -1) {
+      $window.sessionStorage['previous_page'] = JSON.stringify({stateName: state, params: params});
+    }
   };
 
   /**

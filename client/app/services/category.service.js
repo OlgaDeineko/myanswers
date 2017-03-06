@@ -1,4 +1,4 @@
-function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) {
+function CategoryService($http, $q, $rootScope, spinnerFactory, categoryHelper, SessionService) {
   "ngInject";
   let categories = null;
 
@@ -19,14 +19,14 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
     if(self.deferred) return self.deferred.promise;
     this.deferred = $q.defer();
 
-    $rootScope.loading.push({method: 'get'});
+    spinnerFactory.start();
     $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/categories`,
     }).then(result => {
       self.categories = result.data.data.map(categoryHelper.responseToData);
       self.deferred.resolve(self.categories);
-      $rootScope.loading.splice(0, 1);
+      spinnerFactory.end();
       delete self.deferred;
     });
     return self.deferred.promise;
@@ -39,7 +39,7 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
    */
   let create = (newCategory) => {
     let self = this;
-    $rootScope.loading.push({method: 'get'});
+    spinnerFactory.start();
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/categories`,
@@ -47,7 +47,7 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
     }).then(result => {
       self.categories=null;
       $rootScope.$broadcast('updateCategories');
-      $rootScope.loading.splice(0, 1);
+      spinnerFactory.end();
       return categoryHelper.responseToData(result.data.data);
     });
   };
@@ -59,7 +59,7 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
    */
   let update = (category) => {
     let self = this;
-    $rootScope.loading.push({method: 'get'});
+    spinnerFactory.start();
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/categories/${category.id}`,
@@ -67,7 +67,7 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
     }).then(result => {
       self.categories=null;
       $rootScope.$broadcast('updateCategories');
-      $rootScope.loading.splice(0, 1);
+      spinnerFactory.end();
       return categoryHelper.responseToData(result.data.data);
     });
   };
@@ -79,14 +79,14 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
    */
   let remove = (categoryId) => {
     let self = this;
-    $rootScope.loading.push({method: 'get'});
+    spinnerFactory.start();
     return $http({
       method: 'DELETE',
       url: `${SessionService.geApiUrl()}/categories/${categoryId}`,
     }).then(result => {
       self.categories=null;
       $rootScope.$broadcast('updateCategories');
-      $rootScope.loading.splice(0, 1);
+      spinnerFactory.end();
       return result.data.data
     });
   };

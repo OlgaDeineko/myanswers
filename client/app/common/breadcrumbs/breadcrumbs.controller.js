@@ -1,24 +1,26 @@
 class BreadcrumbsController {
   constructor($state, CategoryService) {
     'ngInject';
-    this.name = 'breadcrumbs';
-    this.$state = $state;
-    this.breadcrumbs = [];
-    let self = this;
 
-    CategoryService.getAll().then(r => {
-      self.categories = r;
-      let id = this.current;
-      while(id != 1){
-        let category = self.categories.find(c => c.id == id);
-        self.breadcrumbs.unshift(category);
-        id = category.parent_id;
-      }
-    })
+    this.name = 'breadcrumbs';
+    let self = this;
+    this.$state = $state;
+
+    this.breadcrumbs = [];
+
+    CategoryService.getAll()
+      .then((result) => {
+        let id = this.current;
+        while (id != 1) {
+          let category = result.find((c) => c.id == id);
+          self.breadcrumbs.unshift(category);
+          id = category.parent_id;
+        }
+      })
   }
 
-  goTo(categoryId){
-    this.$state.go(this.$state.current.name, {"categoryId": categoryId });
+  goTo(categoryId) {
+    this.$state.go(this.$state.current.name, {"categoryId": categoryId});
   }
 }
 

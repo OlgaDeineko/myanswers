@@ -1,4 +1,4 @@
-function SubdomainService($http, $rootScope, SessionService) {
+function SubdomainService($http, spinnerFactory, SessionService) {
   "ngInject";
 
   /**
@@ -7,7 +7,7 @@ function SubdomainService($http, $rootScope, SessionService) {
    * @returns {Promise<Object>}
    */
   let check = (subdomain) => {
-    $rootScope.loading.push({method: 'get'});
+    spinnerFactory.start();
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/auth/check-subdomain`,
@@ -15,7 +15,7 @@ function SubdomainService($http, $rootScope, SessionService) {
         "subdomain": subdomain
       }
     }).then(result => {
-      $rootScope.loading.splice(0, 1);
+      spinnerFactory.end();
       return result.data.data
     });
   };

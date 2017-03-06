@@ -1,19 +1,20 @@
-import {mainDomain} from '../../config';
+import {mainDomain, defaultSubdomain} from '../../config';
 
 class NavbarController {
-  constructor($state, $uibModal, $window, AuthenticationService) {
+  constructor($uibModal, $window, AuthenticationService) {
     "ngInject";
 
     this.name = 'navbar';
-    this.$state = $state;
+
     this.$window = $window;
     this.$uibModal = $uibModal;
+
     this.AuthenticationService = AuthenticationService;
   }
 
   logout() {
     this.AuthenticationService.logOut();
-    this.$window.location.href = `http://main.${mainDomain}/subdomain`;
+    this.$window.location.href = `http://${defaultSubdomain}.${mainDomain}/subdomain`;
   }
 
   openChooseDomain() {

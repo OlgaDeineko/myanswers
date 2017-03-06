@@ -1,10 +1,8 @@
 class CategoryTreeController {
-  constructor($state, $scope) {
-    "ngInject";
+  constructor() {
 
-    this.$scope = $scope;
-    this.$state = $state;
     this.name = 'categoryTree';
+
     this.searchModel = "";
     this.sort = {
       cat: "",

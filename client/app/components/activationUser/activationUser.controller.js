@@ -7,17 +7,15 @@ class ActivationUserController {
     let self = this;
 
     AuthenticationService.sendActivation($state.params.token)
-      .then(res => {
+      .then((result) => {
         self.toastr.success('Account has been activated!');
         $state.go('chooseSubdomain');
-      }, err => {
-
-        err.data.errors.forEach(error => {
+      }, (error) => {
+        error.data.errors.forEach(error => {
           self.toastr.error(error.description, `Validation error:`);
           $state.go('chooseSubdomain');
         });
       })
-
   }
 }
 

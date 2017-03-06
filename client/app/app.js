@@ -144,16 +144,17 @@ angular.module('app', [
   .service('fileHelper', FileHelper)
 
   .component('app', AppComponent)
-  .run(($rootScope, $state, AuthenticationService, cancelBtn) => {
+  .run(($rootScope, $state, AuthenticationService, SessionService) => {
     "ngInject";
-    $rootScope.loading = [];
 
     $rootScope.$on('$stateChangeStart', (event, next) => {
       AuthenticationService.initPermission();
     });
 
     $rootScope.$on('$stateChangeSuccess', (ev, to, toParams, from, fromParams) => {
-      cancelBtn.setPreviousPage(from, fromParams)
+      if(from.name){
+        SessionService.setPreviousPage(from.name, fromParams)
+      }
     })
 
   });

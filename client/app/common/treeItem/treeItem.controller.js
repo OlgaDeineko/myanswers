@@ -2,12 +2,12 @@ class TreeItemController {
   constructor($scope, $state, $uibModal, CategoryService, ArticleService) {
     'ngInject';
     this.name = 'treeItem';
+
     this.$state = $state;
     this.$uibModal = $uibModal;
+
     this.CategoryService = CategoryService;
     this.ArticleService = ArticleService;
-
-
   }
 
   $onInit() {
@@ -34,7 +34,6 @@ class TreeItemController {
   goTo(id){
     let params = {};
     params[this.stateConfigs.params] = id;
-    console.log()
     this.$state.go(this.stateConfigs.name, params);
   }
 

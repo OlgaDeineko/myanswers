@@ -11,7 +11,7 @@ let buildTree = (articles, categories, currentCategory ) => {
 
 let algoliasearch = require('algoliasearch');
 class VisitorController {
-  constructor($window, $stateParams, $state, $scope, AuthenticationService, CategoryService, ArticleService, SessionService, cancelBtn) {
+  constructor($window, $stateParams, $state, $scope, AuthenticationService, CategoryService, ArticleService, SessionService) {
     'ngInject';
 
     this.name = 'Welcome to KB';
@@ -21,7 +21,6 @@ class VisitorController {
     let index = SessionService.getSubdomain();
     this.algoliaResults = [];
 
-    this.cancelBtn = cancelBtn;
     this.index = new algoliasearch(aloglia.id, aloglia.key, {protocol: 'https:'}).initIndex(index);
 
     this.$window = $window;
@@ -73,13 +72,6 @@ class VisitorController {
 
       self.$scope.$apply();
     })
-  }
-
-  cancel() {
-    let previous = this.cancelBtn.getPreviousPage();
-    if(previous.stateName) {
-      this.$state.go(previous.stateName, previous.params);
-    }
   }
 }
 

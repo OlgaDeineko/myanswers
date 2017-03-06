@@ -1,5 +1,5 @@
 import {local} from '../config';
-function ResponseObserver($q, $injector, $rootScope, toastr, SessionService, FakeDataService) {
+function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, SessionService, FakeDataService) {
   "ngInject";
   return {
     'request': (config) => {
@@ -33,8 +33,7 @@ function ResponseObserver($q, $injector, $rootScope, toastr, SessionService, Fak
       return response;
     },
     'responseError': (errorResponse) => {
-      let rs = $injector.get('$rootScope');
-      rs.loading = [];
+      spinnerFactory.reject();
       //TODO: remove on production
       if (errorResponse.err == 'RejectForLocal') {
         return $q.resolve(FakeDataService.getData(errorResponse.url, errorResponse.method))

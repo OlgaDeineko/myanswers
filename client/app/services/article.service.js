@@ -1,4 +1,4 @@
-function ArticleService($http, $q, $rootScope, faqHelper, SessionService, FilesService) {
+function ArticleService($http, $q, $rootScope, spinnerFactory, faqHelper, SessionService, FilesService) {
   "ngInject";
   let articles = null;
 
@@ -19,12 +19,12 @@ function ArticleService($http, $q, $rootScope, faqHelper, SessionService, FilesS
     if (self.deferred) return self.deferred.promise;
     this.deferred = $q.defer();
 
-    $rootScope.loading.push({method: 'get'});
+    spinnerFactory.start();
     $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq`,
     }).then((result) => {
-      $rootScope.loading.splice(0, 1);
+      spinnerFactory.end();
       self.articles = result.data.data.map(faqHelper.responseToData);
       self.deferred.resolve(self.articles);
       delete self.deferred;
@@ -38,13 +38,12 @@ function ArticleService($http, $q, $rootScope, faqHelper, SessionService, FilesS
    * @returns {Promise.<Article>}
    */
   let getById = (faqId) => {
-    $rootScope.loading.push({method: 'get'});
+    spinnerFactory.start();
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq/${faqId}`,
     }).then((result) => {
-      $rootScope.loading.splice(0, 1);
-      console.log('ok')
+      spinnerFactory.end();
       return faqHelper.responseToData(result.data.data);
     }).then((article) => {
       return FilesService.getAll('faq', article.id)
@@ -61,12 +60,12 @@ function ArticleService($http, $q, $rootScope, faqHelper, SessionService, FilesS
    * @returns {Promise.<Article>}
    */
   let getByAlgoliaId = (algoliaId) => {
-    $rootScope.loading.push({method: 'get'});
+    spinnerFactory.start();
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq/algolia/${algoliaId}`,
     }).then((result) => {
-      $rootScope.loading.splice(0, 1);
+      spinnerFactory.end();
       return faqHelper.responseToData(result.data.data);
     }).then(article => {
       return FilesService.getAll('faq', article.id)
@@ -84,14 +83,14 @@ function ArticleService($http, $q, $rootScope, faqHelper, SessionService, FilesS
    */
   let create = (faq) => {
     let self = this;
-    $rootScope.loading.push({method: 'get'});
+    spinnerFactory.start();
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/faq`,
       data: faqHelper.dataToRequest(faq)
     }).then((result) => {
       self.articles = null;
-      $rootScope.loading.splice(0, 1);
+      spinnerFactory.end();
       $rootScope.$broadcast('updateArticles');
       return faqHelper.responseToData(result.data.data);
     });
@@ -104,14 +103,14 @@ function ArticleService($http, $q, $rootScope, faqHelper, SessionService, FilesS
    */
   let update = (faq) => {
     let self = this;
-    $rootScope.loading.push({method: 'get'});
+    spinnerFactory.start();
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/faq/${faq.id}`,
       data: faqHelper.dataToRequest(faq)
     }).then((result) => {
       self.articles = null;
-      $rootScope.loading.splice(0, 1);
+      spinnerFactory.end();
       $rootScope.$broadcast('updateArticles');
       return faqHelper.responseToData(result.data.data);
     });
@@ -124,13 +123,13 @@ function ArticleService($http, $q, $rootScope, faqHelper, SessionService, FilesS
    */
   let remove = (faqId) => {
     let self = this;
-    $rootScope.loading.push({method: 'get'});
+    spinnerFactory.start();
     return $http({
       method: 'DELETE',
       url: `${SessionService.geApiUrl()}/faq/${faqId}`,
     }).then((result) => {
       self.articles = null;
-      $rootScope.loading.splice(0, 1);
+      spinnerFactory.end();
       $rootScope.$broadcast('updateArticles');
       return result.data.data
     });

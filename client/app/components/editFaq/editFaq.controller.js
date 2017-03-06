@@ -1,5 +1,5 @@
 class EditFaqController {
-  constructor($state, $scope, toastr, faqHelper, CategoryService, ArticleService, SettingsService, SessionService, FilesService, cancelBtn) {
+  constructor($state, $scope, toastr, faqHelper, CategoryService, ArticleService, SettingsService, SessionService, FilesService) {
     'ngInject';
     this.name = 'editFaq';
 
@@ -12,7 +12,6 @@ class EditFaqController {
     this.ArticleService = ArticleService;
     this.SettingsService = SettingsService;
     this.FilesService = FilesService;
-    this.cancelBtn = cancelBtn;
 
     this.faq = {};
     this.categories = [];
@@ -150,13 +149,6 @@ class EditFaqController {
   removeFile(idx, $flow){
     $flow.files.splice(idx, 1);
     this.filesBase64.splice(idx, 1)
-  }
-
-  cancel() {
-    let previous = this.cancelBtn.getPreviousPage();
-    if(previous.stateName) {
-      this.$state.go(previous.stateName, previous.params);
-    }
   }
 
 }

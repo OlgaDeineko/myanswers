@@ -1,10 +1,8 @@
 import angular from 'angular';
-import CancelBtn from './cancelBtn.factory';
+import cancelBtnComponent from './cancelBtn.component';
 
-let CancelBtnModule = angular.module('cancelBtn', [])
-
-  .factory('cancelBtn', CancelBtn)
-
+let cancelBtnModule = angular.module('cancelBtn', [])
+  .component('cancelBtn', cancelBtnComponent)
   .name;
 
-export default CancelBtnModule;
+export default cancelBtnModule;
