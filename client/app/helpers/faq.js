@@ -16,6 +16,7 @@
  * @property {number} tags.tag_id - tag id
  * @property {string} tags.name - tag name
  * @property {number} hits_count - count article views
+ * @property {string} remarks - article internal comment
  * @property {CategoryResponse[]} categories - categories article. now in array one element
  *
  * @property {CategoryResponse} category - category article. remove array :)
@@ -27,7 +28,6 @@
  * @property {number} countWords - count answer words
  * @property {number} countChars - count answer chars
  * @property {string} timeReads - time to read the answer
- * @property {string[]} remarks - answer remarks
  */
 /**
  * @name ArticleResponse
@@ -47,6 +47,7 @@
  * @property {number} tags.id - tag id
  * @property {string} tags.name - tag name
  * @property {number} hits_count - count article views
+ * @property {string} remarks - article internal comment
  * @property {CategoryResponse[]} categories - categories article. now in array one element
  */
 /**
@@ -61,6 +62,8 @@
  * @property {string[]} new_tags - array of new tags
  * @property {integer[]} tag_ids - array of old tags
  * @property {integer[]} category_ids - category ids
+ * @property {string} remarks - article internal comment
+ * @property {string} author_href - user stormpath href
  */
 
 function FaqHelper($rootScope) {
@@ -94,7 +97,6 @@ function FaqHelper($rootScope) {
     //@see http://marketingland.com/estimated-reading-times-increase-engagement-79830
     let time = (faq.countWords / 200 + "").split('.');
     faq.timeReads = `${time[0]} min ${((('.' + time[1]) * 60).toFixed())} sec`;
-    faq.remarks = []
 
     return faq;
   };
@@ -129,6 +131,9 @@ function FaqHelper($rootScope) {
       new_tags: new_tags,
       tag_ids: tag_ids,
       category_ids: category_ids,
+      remarks: faq.remarks,
+      author_href: ''
+
     };
   };
 

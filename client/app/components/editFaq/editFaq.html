@@ -52,22 +52,7 @@
     <!--Remarks-->
     <div class="faq-remarks">
       <h4>Add internal comments</h4>
-      <div class="row">
-        <div class="col-md-10">
-          <textarea class="form-control remarks" ng-model="remarkModel" rows="4"></textarea>
-        </div>
-        <div class="col-md-2">
-          <button class="button button-primary"
-                  ng-disabled="!remarkModel.length"
-                  ng-click="$ctrl.addRemark(remarkModel); remarkModel=null">
-            Add
-          </button>
-        </div>
-      </div>
-
-      <div class="one-remark" ng-repeat="item in $ctrl.faq.remarks track by $index">
-        {{item}}
-      </div>
+      <textarea class="form-control remarks" ng-model="$ctrl.faq.remarks" rows="4"></textarea>
     </div><!--END: Remarks-->
 
   </div><!--END: Content article-->

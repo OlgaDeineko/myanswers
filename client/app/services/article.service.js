@@ -126,7 +126,7 @@ function ArticleService($http, $q, $rootScope, spinnerFactory, faqHelper, Sessio
     spinnerFactory.start();
     return $http({
       method: 'DELETE',
-      url: `${SessionService.geApiUrl()}/faq/${faqId}`,
+      url: `${SessionService.geApiUrl()}/faq/${faqId}/trash`,
     }).then((result) => {
       self.articles = null;
       spinnerFactory.end();

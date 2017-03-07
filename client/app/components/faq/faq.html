@@ -43,10 +43,10 @@
     </div><!--END: Answer-->
 
     <!--Remarks-->
-    <div class="faq-remarks" ng-if="$ctrl.faq.remarks.length">
-      <h4>Remarks</h4>
-      <div class="one-remark" ng-repeat="item in $ctrl.faq.remarks track by $index">
-        {{item}}
+    <div class="faq-remarks" ng-if="$ctrl.faq.remarks">
+      <h4>Internal Comment:</h4>
+      <div class="one-remark">
+        {{$ctrl.faq.remarks}}
       </div>
     </div><!--END: Remarks-->
 
