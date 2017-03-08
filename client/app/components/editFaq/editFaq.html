@@ -38,18 +38,22 @@
 
     <!--Answer-->
     <div class="faq-answer">
+      <label>Content</label>
       <textarea ui-tinymce="$ctrl.tinymceOptions" ng-model="$ctrl.faq.answer"></textarea>
     </div><!--END:Answer-->
 
     <!--Tags-->
-    <tags-input ng-model="$ctrl.faq.tags"
-                display-property="name"
-                placeholder="Add keywords separated by comma">
-    </tags-input><!--END: Tags-->
+    <div class="faq-tags">
+      <label>Keywords</label>
+      <tags-input ng-model="$ctrl.faq.tags"
+                  display-property="name"
+                  placeholder="Add keywords separated by comma">
+      </tags-input><!--END: Tags-->
+    </div>
 
     <!--Remarks-->
     <div class="faq-remarks">
-      <h4>Add internal comments</h4>
+      <label>Internal comments</label>
       <textarea class="form-control remarks" ng-model="$ctrl.faq.remarks" rows="4"></textarea>
     </div><!--END: Remarks-->
 
@@ -82,19 +86,11 @@
 
     <!--Categories-->
     <div class="faq-category">
-      <h4>Publish in section</h4>
+      <h4>Publish in category</h4>
       <select class="form-control" ng-model="$ctrl.faq.categoryId"
               ng-options="item.id as item.name for item in $ctrl.categories">
       </select>
     </div><!--END: Categories-->
-
-    <!--open for comments-->
-    <div class="checkbox faq-open-comments">
-      <label>
-        <input type="checkbox" ng-model="$ctrl.faq.is_open_comments">
-        Open for comments <br> Promote article
-      </label>
-    </div><!--END:open for comments-->
 
     <!--Author-->
     <div class="faq-author">

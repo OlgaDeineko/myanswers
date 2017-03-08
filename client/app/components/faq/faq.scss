@@ -58,8 +58,7 @@
 
     &:after {
       content: " ";
-      border-right: 1px solid;
-      opacity: 0.4;
+      border-right: 1px solid $dividerColor;
       position: absolute;
       height: 100%;
       right: 0;
@@ -72,15 +71,32 @@
         margin: 10px 0;
       }
 
-      &-question {
+
+      &-question,
+      &-answer,
+      &-remarks,
+      &-tags {
         position: relative;
+
+        &:hover {
+          label {
+            left: -215px;
+            opacity: 1;
+          }
+
+        }
         label {
           position: absolute;
-          left: -60px;
-          top: 40%;
-          font-size: 16px;
-          opacity: 0.4;
+          left: -300px;
+          white-space: nowrap;
+          top: 0;
+          width: 200px;
+          text-align: right;
+          font-size: 1.6rem;
+          color: #808080;
+          opacity: 0;
           font-weight: normal;
+          transition: all 0.3s ease;
 
           &:after {
             content: "";
@@ -89,6 +105,12 @@
             opacity: 0.4;
             margin-left: 10px;
           }
+        }
+      }
+
+      &-question {
+        label {
+          top: 40%;
         }
         .form-control,
         h2 {
