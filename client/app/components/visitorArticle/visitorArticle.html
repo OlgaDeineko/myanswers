@@ -50,9 +50,18 @@
 
   </div><!--END: Content article-->
 
-  <div class="col-md-2">
-    <cancel-btn title="'Return'"></cancel-btn>
-  </div>
-</div>
+  <div class="col-md-2 visitor-faq-actions">
+    <cancel-btn title="'Return'" btn-class="'button-full'"></cancel-btn>
 
+    <!--Copy To Clipboard-->
+    <button class="button button-primary button-full"
+            clipboard
+            uib-tooltip="Copy to clipboard"
+            tooltip-placement="up"
+            text="$ctrl.faq.answerWithoutTags"
+            ng-click="$ctrl.copyToClipboard()">
+      <i class="fa fa-clipboard"></i>
+      Copy to clipboard
+    </button><!--END: Copy To Clipboard-->
+  </div>
 </div>

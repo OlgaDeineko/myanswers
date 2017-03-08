@@ -144,7 +144,7 @@
       &-attachment{
         .files {
           position: relative;
-          font-size: 16px;
+          font-size: 1.6rem;
           margin: 10px 0;
           color: inherit;
 
@@ -154,7 +154,7 @@
             text-overflow: ellipsis;
             -webkit-line-clamp: 1;
             margin-right: 20px;
-            color: inherit;
+            //color: $primaryColor;
           }
 
           i {

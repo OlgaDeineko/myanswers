@@ -19,20 +19,20 @@
     </div><!--END: Counts word-->
 
     <!--Copy To Clipboard-->
-    <div class="row">
-      <div class="col-md-3 col-md-offset-9">
-        <div class="button button-primary"
-             clipboard
-             text="$ctrl.faq.answerWithoutTags"
-             ng-click="$ctrl.copyToClipboard()">
-          Copy to clipboard
-        </div>
-      </div>
+    <div class="container-fluid">
+      <button class="button button-primary pull-right"
+              clipboard
+              uib-tooltip="Copy to clipboard"
+              tooltip-placement="up"
+              text="$ctrl.faq.answerWithoutTags"
+              ng-click="$ctrl.copyToClipboard()">
+        <i class="fa fa-clipboard"></i>
+        Copy to clipboard
+      </button>
     </div><!--END: Copy To Clipboard-->
 
     <!--Question-->
     <div class="faq-question">
-      <label>Title</label>
       <h2>{{$ctrl.faq.question}}</h2>
     </div><!--END: Question-->
 
@@ -56,11 +56,8 @@
   <div class="col-md-4 faq-right-sidebar">
 
     <!--Action buttons-->
-    <div class="row faq-actions">
-      <div class="col-md-6">
-        <cancel-btn title="'Return'" btn-class="'button-full'"></cancel-btn>
-      </div>
-      <div class="col-md-6">
+    <div class="row faq-actions" >
+      <div class="col-md-6 col-md-offset-3">
         <button class="button button-primary button-full" ng-click="$ctrl.goTo()">
           Edit
         </button>

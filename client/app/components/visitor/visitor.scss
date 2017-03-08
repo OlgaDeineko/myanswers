@@ -68,11 +68,7 @@ $fontSize: 14;
     }
 
     &-actions {
-      .button {
-        width: initial;
-      }
       .icon-button {
-
         vertical-align: middle;
       }
     }
@@ -98,6 +94,11 @@ $fontSize: 14;
     &-tree {
       padding: 20px 10px;
 
+
+      a,
+      a:hover {
+        color: $darkTextColor;
+      }
       &-prev {
         padding: 10px;
         margin: 0;

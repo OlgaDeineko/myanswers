@@ -3,6 +3,11 @@
 category-tree{
   display: block;
 
+  a,
+  a:hover {
+    color: $darkTextColor;
+  }
+
   .tree{
     position: relative;
 
