@@ -4,9 +4,10 @@
   padding-left: 0;
   background: none;
   font-size: $fontSm;
+  color: $primaryColor;
   li:last-child {
     a{
-      color: #777;
+      color: $greyTextColor;
       cursor: default;
       text-decoration: none;
     }
