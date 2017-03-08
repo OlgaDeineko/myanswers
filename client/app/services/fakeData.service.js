@@ -39,7 +39,7 @@ function FakeDataService() {
           "algolia_object_id": "379636380",
           "created_at": "1486540724",
           "updated_at": "1487850724",
-          "categories": [],
+          "categories": [{"id": "3", "name": "Phone", "slug": null, "description": "", "lang": "en"}],
           "tags": [],
           "remarks": "internal comment",
           "hits_count": 547,
@@ -192,7 +192,6 @@ function FakeDataService() {
         ],
         "faq_statuses": [
           {"code": "published", "name": "Published"},
-          {"code": "unpublished", "name": "Unpublished"},
           {"code": "draft", "name": "Draft"},
           {"code": "trash", "name": "Trash"}
         ],

@@ -168,7 +168,7 @@ function FaqHelper($rootScope) {
     articlesCounts.push({
       name: "All",
       code: "all",
-      counts: faqs.length
+      counts: faqs.filter((faq) => faq.status != 'trash').length
     });
 
     $rootScope.settings.faq_statuses.map((status) => {

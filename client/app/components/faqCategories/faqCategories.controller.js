@@ -39,7 +39,7 @@ class CategoryController {
 
         self.tree = {
           articles: (self.status == 'all')
-            ? result
+            ? result.filter((a) => a.status != 'trash')
             : result.filter((a) => a.status == self.status)
         };
 

@@ -71,6 +71,7 @@ function CategoryHelper($rootScope) {
    * @returns {Object}
    */
   let buildTree = (articles, categories, currentCategory ) => {
+    articles = articles.filter((article) => article.status != 'trash');
     categories.forEach((category, i) => {
       categories[i].categories = categories.filter(c => c.parent_id == category.id);
       categories[i].articles = articles.filter(a => a.categories.find(c => c.id == category.id));

@@ -9,7 +9,10 @@
       </i>
     </a>
 
-    <a ng-click="$ctrl.goTo($ctrl.item.id)">{{$ctrl.item[$ctrl.title]}}</a>
+    <a ng-click="$ctrl.goTo($ctrl.item.id)">
+      <span ng-if="$ctrl.item.status && $ctrl.item.status == 'draft'">DRAFT</span>
+      {{$ctrl.item[$ctrl.title]}}
+    </a>
 
   </div>
 

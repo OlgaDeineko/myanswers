@@ -8,7 +8,7 @@
   &:hover {
     background-color: rgba(#000, 0.1);
 
-    .tree-actions {
+    .tree-item-actions {
       visibility: visible;
     }
   }
@@ -18,6 +18,10 @@
     margin: 10px 0;
     cursor: pointer;
     font-size: 1.6rem;
+    span{
+      text-transform: uppercase;
+      color: $lightGreyTextColor;
+    }
   }
 
   &-update,
