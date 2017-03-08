@@ -5,7 +5,8 @@ import './cancelBtn.scss';
 let cancelBtnComponent = {
   restrict: 'E',
   bindings: {
-    title: '='
+    title: '=',
+    btnClass: '='
   },
   template,
   controller

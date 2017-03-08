@@ -2,15 +2,14 @@
 
 <div class="content-wrapper category">
 
-  <div class="col-md-2">
-    <!-- start Split action -->
-    <!--<button type="button" class="btn btn-primary">Add</button>-->
+  <div class="col-md-2 category-left-sidebar">
     <div class="category-actions">
       <button type="button"
               class="button button-primary dropdown-toggle"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false">
+        <i class="fa fa-plus"></i>
         Add
       </button>
       <ul class="dropdown-menu">
@@ -23,16 +22,15 @@
         </li>
       </ul>
     </div>
-    <!-- end Split action -->
     <type-of-questions article-counts="$ctrl.articlesCounts"></type-of-questions>
   </div>
 
   <div class="col-md-10 category-content">
-
     <div class="container-fluid">
 
       <div class="row category-title">
         <div class="col-md-12">
+
           <h1>{{$ctrl.currentCategory == 1 ? $ctrl.name : $ctrl.tree.name}}</h1>
 
           <breadcrumbs home="$ctrl.name" current="$ctrl.currentCategory"></breadcrumbs>
@@ -44,9 +42,7 @@
                      current="$ctrl.currentCategory"
                      search="$ctrl.searchModel"></category-tree>
 
-
     </div>
-
   </div>
 
 </div>

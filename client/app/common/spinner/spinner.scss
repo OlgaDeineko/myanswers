@@ -1,3 +1,5 @@
+@import "../../styles/variabels";
+
 .spinner{
   height: 100%;
   position: fixed;
@@ -9,9 +11,9 @@
 
   .sk-circle {
     top: 50%;
-    margin: -40px auto 0;
-    width: 80px;
-    height: 80px;
+    margin: -($spinnerSize/2) auto 0;
+    width: $spinnerSize;
+    height: $spinnerSize;
     position: relative;
   }
   .sk-circle .sk-child {

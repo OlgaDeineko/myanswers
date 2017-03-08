@@ -3,7 +3,8 @@
   <div ui-tree-handle>
     <tree-item
         item="item"
-        type="'category'"></tree-item>
+        type="'category'">
+    </tree-item>
   </div>
 
   <div ui-tree-nodes="treeOptions"
@@ -20,67 +21,62 @@
 
 </script>
 
+<!--search-->
+<div class="form-group">
+  <input type="text"
+         class="form-control"
+         ng-model="$ctrl.searchModel"
+         placeholder="Search">
+</div><!--END: search-->
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="form-group">
-      <input type="text" class="form-control" ng-model="$ctrl.searchModel" placeholder="Search">
-    </div>
+<!-- tree header -->
+<div class="tree-header">
+  <div class="tree-header-title" ng-click="$ctrl.changeOrder('name')">
+    Title
+    <i ng-if="$ctrl.sort.cat == 'name'" class="fa fa-sort-{{$ctrl.sort.order == '-'? 'desc': 'asc'}}"></i>
   </div>
-</div>
+  <div class="tree-header-update" ng-click="$ctrl.changeOrder('updated_at')">
+    Last edited
+    <i ng-if="$ctrl.sort.cat == 'updated_at'" class="fa fa-sort-{{$ctrl.sort.order == '-'? 'desc': 'asc'}}"></i>
+  </div>
+  <div class="tree-header-lang" ng-click="$ctrl.changeOrder('lang')">
+    Language
+    <i ng-if="$ctrl.sort.cat == 'lang'" class="fa fa-sort-{{$ctrl.sort.order == '-'? 'desc': 'asc'}}"></i>
+  </div>
+  <div class="tree-header-author" ng-click="$ctrl.changeOrder('author')">
+    Author
+    <i ng-if="$ctrl.sort.cat == 'author'" class="fa fa-sort-{{$ctrl.sort.order == '-'? 'desc': 'asc'}}"></i>
+  </div>
+  <div class="tree-header-actions">
+  </div>
+</div> <!--END: tree header-->
 
-<div class="row">
-  <div class="col-md-12">
-    <!-- start Main content -->
-    <div class="category-table-header">
-      <div class="category-table-header-title" ng-click="$ctrl.changeOrder('name')">
-        Title
-        <i ng-if="$ctrl.sort.cat == 'name'" class="fa fa-sort-{{$ctrl.sort.order == '-'? 'desc': 'asc'}}"></i>
+<!--tree-->
+<div class="tree">
+  <div ui-tree="$ctrl.treeOptions"
+       data-empty-placeholder-enabled="false"
+       data-nodrop-enabled="false"
+       data-drag-enabled="false">
+    <div ui-tree-nodes
+         ng-model="$ctrl.categories.categories">
+
+      <!--categories-->
+      <div ng-repeat="item in $ctrl.categories.categories | filter:{name: $ctrl.searchModel} | orderBy: $ctrl.sort.order+$ctrl.sort.cat"
+           ui-tree-node
+           ng-include="'tree_children_renderer.html'"
+           data-collapsed="!item.expanded">
       </div>
-      <div class="category-table-header-update" ng-click="$ctrl.changeOrder('updated_at')">
-        Last edited
-        <i ng-if="$ctrl.sort.cat == 'updated_at'" class="fa fa-sort-{{$ctrl.sort.order == '-'? 'desc': 'asc'}}"></i>
-      </div>
-      <div class="category-table-header-lang" ng-click="$ctrl.changeOrder('lang')">
-        Language
-        <i ng-if="$ctrl.sort.cat == 'lang'" class="fa fa-sort-{{$ctrl.sort.order == '-'? 'desc': 'asc'}}"></i>
-      </div>
-      <div class="category-table-header-author" ng-click="$ctrl.changeOrder('author')">
-        Author
-        <i ng-if="$ctrl.sort.cat == 'author'" class="fa fa-sort-{{$ctrl.sort.order == '-'? 'desc': 'asc'}}"></i>
-      </div>
-      <div class="category-table-header-actions">
-      </div>
-    </div>
 
-    <div class="tree">
-      <div ui-tree="$ctrl.treeOptions"
-           id="admin-tree-root"
-           data-empty-placeholder-enabled="false"
-           data-nodrop-enabled="false"
-           data-drag-enabled="false">
-        <div ui-tree-nodes
-             ng-model="$ctrl.categories.categories">
-          <div ng-repeat="item in $ctrl.categories.categories | filter:{name: $ctrl.searchModel} | orderBy: $ctrl.sort.order+$ctrl.sort.cat"
-               ui-tree-node
-               ng-include="'tree_children_renderer.html'"
-               data-collapsed="!item.expanded">
-          </div>
-
-          <div ng-repeat="article in $ctrl.categories.articles | filter:{question: $ctrl.searchModel} | orderBy: $ctrl.sort.order+$ctrl.sort.faq">
-
-            <div>
-              <tree-item
-                  item="article"
-                  type="'faq'">
-              </tree-item>
-            </div>
-
-          </div>
-
+      <!--articles-->
+      <div ng-repeat="article in $ctrl.categories.articles | filter:{question: $ctrl.searchModel} | orderBy: $ctrl.sort.order+$ctrl.sort.faq">
+        <div>
+          <tree-item
+              item="article"
+              type="'faq'">
+          </tree-item>
         </div>
       </div>
 
     </div>
   </div>
-</div>
+</div><!--END:tree-->

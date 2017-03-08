@@ -1,144 +1,51 @@
-@import "../common";
-
-$teeLangWidth: 100px;
-$teeAuthorWidth: 200px;
-$teeUpdatedWidth: 150px;
-
-.category-table-header{
-  display: table;
-  width: 100%;
-  //padding: 10px 0;
-  opacity: 0.6;
-
-  &-title,
-  &-update,
-  &-author,
-  &-lang{
-    display: table-cell;
-    font-size: 14px;
-    padding: 10px 5px;
-    cursor: pointer;
-    //padding-right: 5px;
-
-    &:hover{
-      background-color: rgba(#000, 0.1);
-    }
-  }
-
-  &-update{
-    width: $teeUpdatedWidth;
-  }
-  &-author{
-    width: $teeAuthorWidth;
-  }
-  &-lang{
-    width: $teeLangWidth;
-  }
-
-  &-title{
-    display: table-cell;
-  }
-  &-actions{
-    display: table-cell;
-    width: $iconButtonsSize*2+10;
-  }
-}
-
+@import "../../styles/variabels";
 
 category-tree{
-  position: relative;
   display: block;
-}
-tree-item {
-  font-size: 16px;
-  padding: 5px 0 5px 15px;
-  display: table;
-  width: 100%;
-
-  &:after{
-    content: "";
-    border-bottom: 1px solid;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    margin: -5px 0;
-  }
-
-  &:hover{
-    background-color: rgba(#000, 0.1);
-
-    .tree-actions{
-      visibility: visible;
-    }
-  }
 
   .tree{
-    &-update,
-    &-author,
-    &-lang{
-      display: table-cell;
-      font-size: 14px;
-      padding-left: 5px;
-      padding-right: 5px;
-    }
+    position: relative;
 
-    &-update{
-      width: $teeUpdatedWidth;
-      max-width: $teeUpdatedWidth;
-      overflow: hidden;
-    }
-    &-author{
-      width: $teeAuthorWidth;
-      max-width: $teeAuthorWidth;
-      overflow: hidden;
-    }
-    &-lang{
-      width: $teeLangWidth;
-      max-width: $teeLangWidth;
-      overflow: hidden;
-    }
+    &-header{
+      display: table;
+      width: 100%;
+      color: $greyTextColor;
+      border-bottom: 3px solid $dividerColor;
 
-    &-title{
-      display: table-cell;
-      margin: 10px 0;
-      cursor: pointer;
-    }
+      &-title,
+      &-update,
+      &-author,
+      &-lang{
+        display: table-cell;
+        padding: 10px 5px;
+        cursor: pointer;
 
-    &-icon-folder{
-      margin-right: 5px;
-    }
-    &-icon{
-      &:hover{
-        text-decoration: none;
+        &:hover{
+          background-color: rgba(#000, 0.1);
+        }
+      }
+
+      &-update{
+        width: $teeUpdatedWidth;
+      }
+      &-author{
+        width: $teeAuthorWidth;
+      }
+      &-lang{
+        width: $teeLangWidth;
+      }
+
+      &-title{
+        display: table-cell;
+      }
+      &-actions{
+        display: table-cell;
+        width: $iconButtonsSize*2+10;
       }
     }
 
-    //&-icon-has-sub-category{
-    //  position: absolute;
-    //  bottom: -3px;
-    //  top: initial;
-    //  opacity: 0.7;
-    //  font-size: 80%;
-    //  left: 26px;
-    //}
-
-    &-actions{
-      display: table-cell;
-      width: $iconButtonsSize*2+10;
-      visibility: hidden;
-    }
-
-    &-type-category{
-      font-weight: bold;
+    &-row{
+      margin-left: $treeCollapseMargin;
     }
   }
-
-}
-
-.tree{
-  position: relative;
-}
-
-.tree-row{
-  margin-left: 20px;
 }

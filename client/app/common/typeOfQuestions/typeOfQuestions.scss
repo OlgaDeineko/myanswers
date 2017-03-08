@@ -1,9 +1,11 @@
+@import "../../styles/variabels";
+
 .type-of-questions {
   .list-group-item{
     cursor: pointer;
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid rgba(#000, 0.3);
+    border-bottom: 1px solid $dividerColor;
     background: none;
 
     &:last-child{

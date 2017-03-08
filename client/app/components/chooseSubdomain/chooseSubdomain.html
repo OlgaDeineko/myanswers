@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid choose-subdomain">
   <div class="row">
     <div class="col-md-4">
     </div>
@@ -15,16 +15,16 @@
                  ng-model="$ctrl.subdomain">
         </div>
       </form>
-      <div class="row">
+      <div class="row choose-subdomain-actions">
         <div class="col-md-6 col-md-offset-3">
           <button type="button"
-                  class="button button-primary"
+                  class="button button-primary button-full"
                   ng-click="$ctrl.moveTo($ctrl.subdomain)"
                   ng-disabled="!$ctrl.subdomain.length">
             Choose
           </button>
 
-          <button class="button" style="margin-top: 15px" ui-sref="registration">Registration</button>
+          <button class="button button-full" ui-sref="registration">Registration</button>
         </div>
       </div>
 

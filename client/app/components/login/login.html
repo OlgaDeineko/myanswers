@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid login">
   <div class="row">
     <div class="col-md-4">
     </div>
@@ -25,20 +25,20 @@
 
   <div class="row">
     <div class="col-md-4"></div>
-    <div class="col-md-4">
+    <div class="col-md-4 login-actions">
       <button
           type="button"
-          class="button button-primary"
+          class="button button-primary button-full"
           ng-disabled="loginForm.$invalid"
           ng-click="$ctrl.login(loginForm, $ctrl.user)">Sign in
       </button>
 
-      <div class="row" style="margin-top: 15px">
+      <div class="row">
         <div class="col-md-6">
-          <button class="button" ng-click="$ctrl.forgot()">Forgot password?</button>
+          <button class="button button-full" ng-click="$ctrl.forgot()">Forgot password?</button>
         </div>
         <div class="col-md-6">
-          <button class="button" ui-sref="registration">Registration</button>
+          <button class="button button-full" ui-sref="registration">Registration</button>
         </div>
       </div>
     </div>

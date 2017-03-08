@@ -1,13 +1,12 @@
-@import "../../common/common";
-.category{
+@import "../../styles/variabels";
 
+.category{
   &-content{
     min-height: 100%;
 
     &:after {
       content: " ";
-      border-right: 1px solid;
-      opacity: 0.4;
+      border-left: 1px solid $dividerColor;
       position: absolute;
       height: 100%;
       left: 0;
@@ -18,7 +17,7 @@
   &-title{
     h1{
       font-weight: bold;
-      font-size: 24px;
+      font-size: $fontLg;
       margin: 0;
     }
 

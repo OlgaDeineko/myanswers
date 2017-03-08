@@ -14,14 +14,7 @@ class RegistrationController {
 
     this.registrationDone = false;
     this.isCreated = '';
-    this.newUser = {
-      "first_name": "Sdfsd",
-      "last_name": "SFdsdf",
-      "email": "ssfsd@dsfsdf.sdf",
-      "subdomain": "sdfsdf",
-      "password": "sdfsfsSFSD234234",
-      "password_repeat": "sdfsafsafasdfs"
-    };
+    this.newUser = {};
 
     this.schema = {
       type: "object",

@@ -1,3 +1,9 @@
+@import "../../styles/variabels";
+
 .registration {
-  color: red;
+  &-actions{
+    button:last-child{
+      margin-top: 15px;
+    }
+  }
 }

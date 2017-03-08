@@ -1,0 +1,119 @@
+@import "variabels";
+
+.modal-title {
+  text-transform: capitalize;
+}
+
+.tooltip-inner {
+  white-space: pre;
+  max-width: none;
+}
+
+.content-wrapper {
+  width: calc(100% - #{$navbar-width});
+  right: 0;
+  position: absolute;
+  height: 100%;
+  padding: $contentPadding;
+}
+
+//buttons
+.button {
+  text-align: center;
+  padding: 3px 10px;
+  color: $buttonBg;
+  background: none;
+  border: 1px solid $buttonBg;
+  border-radius: $buttonBorderRadius;
+  font-size: $buttonFontSize;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  text-transform: capitalize;
+  width: initial;
+
+  i {
+    margin-right: 7px;
+    font-weight: bold;
+    transform: scale(1.1);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  &[disabled] {
+    border: 1px solid rgba(#fff, 0.5);
+
+    &:after,
+    &:hover:after {
+      background-color: rgba(#fff, 0.5);
+    }
+  }
+
+  &:hover:after {
+    background-color: rgba(#000, 0.05);
+  }
+
+  &:active:after {
+    background-color: rgba(#000, 0.15);
+  }
+
+  &-primary {
+    color: $buttonColor;
+    background-color: $buttonBg;
+  }
+}
+
+.icon-button {
+  width: $iconButtonsSize;
+  height: $iconButtonsSize;
+  font-size: $buttonFontSize;
+  background: none;
+  border-radius: 50%;
+  border:none;
+  color: $iconButtonsColor;
+  position: relative;
+  outline: none;
+
+  i {
+    margin: 0;
+    transform: scale(1.4);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  &[disabled] {
+    color: mix($buttonBg, #fff);
+    &:after,
+    &:hover:after {
+      background: none;
+    }
+  }
+
+  &:hover:after {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &:active:after {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+.button-full {
+  width: 100%;
+}
+//end button

@@ -46,7 +46,7 @@ import './styles/font-awesome-4.7.0/css/font-awesome.min.css';
 import 'ng-flow/dist/ng-flow-standalone';
 
 import 'tinymce/skins/lightgray/skin.min.css';
-import 'tinymce/skins/lightgray/content.min.css';
+// import 'tinymce/skins/lightgray/content.min.css';
 import 'tinymce/plugins/codesample/css/prism.css';
 import 'tinymce/plugins/visualblocks/css/visualblocks.css';
 

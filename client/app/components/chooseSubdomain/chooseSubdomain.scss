@@ -1,3 +1,9 @@
-.chooseSubdomain {
-  color: red;
+@import "../../styles/variabels";
+
+.choose-subdomain {
+  &-actions{
+    button:last-child{
+      margin-top: 15px;
+    }
+  }
 }

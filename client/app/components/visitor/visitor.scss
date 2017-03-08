@@ -1,4 +1,4 @@
-@import "../../common/common";
+@import "../../styles/variabels";
 
 $lineHeight: 1.2;
 $lines: 5;
@@ -19,7 +19,7 @@ $fontSize: 14;
 
     &-question {
       h3 {
-        color: $blueColor;
+        color: $primaryColor;
         margin: 10px 0;
         font-size: 30px;
         display: inline-block;
@@ -58,7 +58,7 @@ $fontSize: 14;
   .visitor {
     &-bg-heading {
       padding: 20px 0 50px;
-      background-color: $bgColor;
+      background-color: $lightGreyTextColor;
     }
 
     &-title {
@@ -101,7 +101,7 @@ $fontSize: 14;
       &-prev {
         padding: 10px;
         margin: 0;
-        background-color: $blueColor;
+        background-color: $primaryColor;
         color: #fff;
         display: block;
         font-size: 22px;
@@ -116,7 +116,7 @@ $fontSize: 14;
         }
 
         &:hover {
-          background-color: rgba($blueColor, 0.6);
+          background-color: rgba($primaryColor, 0.6);
           color: white;
         }
       }
@@ -126,7 +126,7 @@ $fontSize: 14;
       h2 {
         padding: 10px;
         margin: 0;
-        background-color: $blueColor;
+        background-color: $primaryColor;
         color: #fff;
       }
       padding: 20px 10px;

@@ -2,14 +2,12 @@
 <div class="content-wrapper faq">
 
   <!--right sidebar article-->
-  <div class="col-md-2 faq-right-sidebar">
+  <div class="col-md-2 faq-left-sidebar">
     <!--Action buttons-->
-    <div class="text-center" ng-if="$ctrl.mode == 'update'">
-      <div class="button button-primary" ng-click="$ctrl.remove()">
-        <i class="fa fa-trash-o"></i>
-        Delete
-      </div>
-    </div><!--END: Action buttons-->
+    <button class="button button-primary" ng-if="$ctrl.mode == 'update'" ng-click="$ctrl.remove()">
+      <i class="fa fa-trash-o"></i>
+      Delete
+    </button><!--END: Action buttons-->
   </div><!--END: right sidebar article-->
 
   <!--Content article-->
@@ -58,14 +56,14 @@
   </div><!--END: Content article-->
 
   <!--left sidebar article-->
-  <div class="col-md-3 faq-left-sidebar edit">
+  <div class="col-md-3 faq-right-sidebar edit">
     <!--Action buttons-->
     <div class="row faq-actions">
       <div class="col-md-6">
-        <cancel-btn title="'Cancel'"></cancel-btn>
+        <cancel-btn title="'Cancel'" btn-class="'button-full'"></cancel-btn>
       </div>
       <div class="col-md-6">
-        <button class="button button-primary" ng-click="$ctrl.save();"
+        <button class="button button-primary button-full" ng-click="$ctrl.save();"
                 ng-disabled="!$ctrl.faq.question || !$ctrl.faq.answer">
           {{$ctrl.mode }}
         </button>

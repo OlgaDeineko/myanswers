@@ -1,47 +1,45 @@
-<div class="tree-title tree-type-{{$ctrl.type}}">
+<div class="tree-item">
+  <div class="tree-item-title tree-item-type-{{$ctrl.type}}">
 
-  <a class="tree-icon"
-     data-nodrag
-     ng-click="$ctrl.toggleChildren($parent)">
-    <span class="tree-icon-folder fa {{$ctrl.icon + ($parent.collapsed === false?'-open':'') }}"
-          aria-hidden="true">
-    </span>
-  </a>
+    <a class="tree-item-icon"
+       data-nodrag
+       ng-click="$ctrl.toggleChildren($parent)">
+      <i class="tree-icon-folder fa {{$ctrl.icon + ($parent.collapsed === false?'-open':'') }}"
+            aria-hidden="true">
+      </i>
+    </a>
 
-  <!--<span class="glyphicon tree-icon-has-sub-category"-->
-  <!--ng-class="{'glyphicon-arrow-down': (item.categories.length > 0 && !!item.expanded),-->
-  <!--'glyphicon-arrow-right': (item.categories.length > 0 && !item.expanded),-->
-  <!--'glyphicon-remove': item.categories.length == 0}">-->
-  <!--</span>-->
+    <a ng-click="$ctrl.goTo($ctrl.item.id)">{{$ctrl.item[$ctrl.title]}}</a>
 
-  <a ng-click="$ctrl.goTo($ctrl.item.id)">{{$ctrl.item[$ctrl.title]}}</a>
+  </div>
 
+  <div class="tree-item-update">
+    {{$ctrl.item.updated_at * 1000 | date : "dd/MM/yy HH:mm:ss"}}
+  </div>
+
+  <div class="tree-item-lang">
+    {{$ctrl.item.language.name}}
+  </div>
+
+  <div class="tree-item-author">
+    {{$ctrl.item.author}}
+  </div>
+
+  <div class="tree-item-actions" ng-if="$ctrl.$state.current.name != 'visitor'">
+    <button class="icon-button"
+            ng-click="$ctrl.edit($ctrl.item.id)"
+            tooltip-placement="up"
+            uib-tooltip="Edit {{$ctrl.type}}">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    </button>
+
+    <button class="icon-button"
+            ng-click="$ctrl.remove($ctrl.item.id)"
+            tooltip-placement="up"
+            uib-tooltip="Remove {{$ctrl.type}}">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    </button>
+  </div>
 </div>
 
-<div class="tree-update">
-  {{$ctrl.item.updated_at * 1000 | date : "dd/MM/yy HH:mm:ss"}}
-</div>
-
-<div class="tree-lang">
-  {{$ctrl.item.language.name}}
-</div>
-
-<div class="tree-author">
-  {{$ctrl.item.author}}
-</div>
-
-<div class="tree-actions" ng-if="$ctrl.$state.current.name != 'visitor'">
-  <button class="icon-button"
-          ng-click="$ctrl.edit($ctrl.item.id)"
-          tooltip-placement="up"
-          uib-tooltip="Edit {{$ctrl.type}}">
-    <i class="fa fa-pencil" aria-hidden="true"></i>
-  </button>
-
-  <button class="icon-button"
-          ng-click="$ctrl.remove($ctrl.item.id)"
-          tooltip-placement="up"
-          uib-tooltip="Remove {{$ctrl.type}}">
-    <i class="fa fa-trash" aria-hidden="true"></i>
-  </button>
-</div>
+<div class="tree-item-divider"></div>

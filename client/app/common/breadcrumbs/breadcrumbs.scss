@@ -1,6 +1,9 @@
+@import "../../styles/variabels";
+
 .breadcrumb {
   padding-left: 0;
   background: none;
+  font-size: $fontSm;
   li:last-child {
     a{
       color: #777;

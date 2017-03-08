@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid registration">
   <div class="row">
     <div class="col-md-4">
     </div>
@@ -13,15 +13,16 @@
           sf-model="$ctrl.newUser">
       </form>
 
-      <div class="text-center">
+      <div class="text-center registration-actions">
         <button
             type="button"
-            class="button button-primary"
+            class="button button-primary button-full"
             ng-disabled="registrationForm.$invalid"
-            ng-click="$ctrl.register(registrationForm, $ctrl.newUser)">Create
+            ng-click="$ctrl.register(registrationForm, $ctrl.newUser)">
+          Create
         </button>
 
-        <button class="button" style="margin-top: 15px" ng-click="$ctrl.moteToLogin()">
+        <button class="button button-full" ng-click="$ctrl.moteToLogin()">
           Sign in {{$ctrl.isCreated}}
         </button>
       </div>
@@ -35,8 +36,8 @@
         Link sent to {{$ctrl.newUser.email}}
       </h2>
 
-      <div class="text-center">
-        <button class="button" style="margin-top: 15px" ng-click="$ctrl.moteToLogin()">
+      <div class="text-center registration-actions">
+        <button class="button button-full" ng-click="$ctrl.moteToLogin()">
           Sign in {{$ctrl.isCreated}}
         </button>
       </div>

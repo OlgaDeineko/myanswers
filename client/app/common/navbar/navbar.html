@@ -1,6 +1,6 @@
 <nav class="navbar">
 
-  <div class="navbar__item">
+  <div class="navbar-item">
     <a ui-sref="visitor"
        ui-sref-active="active"
        target="_blank"
@@ -10,7 +10,7 @@
     </a>
   </div>
 
-  <div class="navbar__item">
+  <div class="navbar-item">
     <a ui-sref="admin.category({categoryId: ''})"
        ui-sref-active="active"
        tooltip-placement="right"
@@ -19,7 +19,7 @@
     </a>
   </div>
 
-  <div class="navbar__item">
+  <div class="navbar-item">
     <a ui-sref="admin.users"
        ui-sref-active="active"
        tooltip-placement="right"
@@ -28,7 +28,7 @@
     </a>
   </div>
 
-  <div class="navbar__item"
+  <div class="navbar-item"
        permission
        permission-only="'superAdmin'">
     <a ng-click="$ctrl.openChooseDomain()"
@@ -38,7 +38,7 @@
     </a>
   </div>
 
-  <div class="navbar__item logout">
+  <div class="navbar-item logout">
     <a ng-click="$ctrl.logout()"
        tooltip-placement="right"
        uib-tooltip="Log Out">

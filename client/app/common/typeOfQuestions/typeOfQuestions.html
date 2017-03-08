@@ -1,9 +1,13 @@
 <div class="type-of-questions">
   <ul class="list-group">
-    <li class="list-group-item" ui-sref="admin.faqCategories({status: item.code})" ng-repeat="item in $ctrl.articleCounts">
-      <span class="badge">{{item.counts}}</span>
+    <li class="list-group-item"
+        ui-sref="admin.faqCategories({status: item.code})"
+        ng-repeat="item in $ctrl.articleCounts">
+      <span class="badge">
+        {{item.counts}}
+      </span>
+
       {{item.name}}
     </li>
   </ul>
-
 </div>

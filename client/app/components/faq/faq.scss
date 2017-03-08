@@ -1,4 +1,4 @@
-@import "../../common/common";
+@import "../../styles/variabels";
 
 .faq {
   .mce-panel,
@@ -120,7 +120,8 @@
     }
   }
 
-  & &-left-sidebar {
+  & &-right-sidebar {
+    overflow: hidden;
     padding-bottom: 20px;
     padding-top: 20px;
 
@@ -172,7 +173,7 @@
     }
   }
 
-  & &-right-sidebar {
+  & &-left-sidebar {
     padding-bottom: 20px;
     padding-top: 20px;
   }
