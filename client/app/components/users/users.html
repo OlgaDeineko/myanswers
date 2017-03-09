@@ -15,13 +15,18 @@
 
     <table ng-table="$ctrl.tableParams" class="table table-condensed table-bordered table-striped">
       <colgroup>
-        <col width="50%"/>
+        <col width="45%"/>
         <col width="30%"/>
         <col width="10%"/>
-        <col width="10%"/>
+        <col width="15%"/>
       </colgroup>
       <tr ng-repeat="user in $data">
         <td title="'User Name'" sortable="'first_name'">
+          <i class="fa fa-user-times"
+             aria-hidden="true"
+             tooltip-placement="up"
+             uib-tooltip="This user disabled"
+             ng-if="user.status == 'DISABLED'"></i>
           {{user.fullName}}
         </td>
         <td title="'Email'" sortable="'email'">
@@ -42,7 +47,26 @@
           </button>
 
           <button class="icon-button"
-                  ng-disabled="true"
+                  ng-if="user.status == 'ENABLED'"
+                  ng-click="$ctrl.disabled(user, 0)"
+                  tooltip-placement="up"
+                  uib-tooltip="Disable user"
+                  permission
+                  permission-except="'user'">
+            <i class="fa fa-user-times" aria-hidden="true"></i>
+          </button>
+
+          <button class="icon-button"
+                  ng-if="user.status == 'DISABLED'"
+                  ng-click="$ctrl.disabled(user, 1)"
+                  tooltip-placement="up"
+                  uib-tooltip="Enable user"
+                  permission
+                  permission-except="'user'">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+          </button>
+
+          <button class="icon-button"
                   ng-click="$ctrl.remove(user.id)"
                   tooltip-placement="up"
                   uib-tooltip="Remove user"

@@ -34,7 +34,7 @@ function UsersService($http, $q, $rootScope, spinnerFactory, userHelper, Session
   /**
    * Create user
    * @param {object} newUser - new faq
-   * @returns {Promise.<{User}>}
+   * @returns {Promise.<User>}
    */
   let create = (newUser) => {
     let self = this;
@@ -54,7 +54,7 @@ function UsersService($http, $q, $rootScope, spinnerFactory, userHelper, Session
   /**
    * Update user
    * @param {User} user - new faq
-   * @returns {Promise.<{User}>}
+   * @returns {Promise.<User>}
    */
   let update = (user) => {
     spinnerFactory.start();
@@ -73,17 +73,19 @@ function UsersService($http, $q, $rootScope, spinnerFactory, userHelper, Session
   /**
    * Remove user
    * @param {number} userId - faq ID
-   * @returns {Promise.<{User}>}
+   * @returns {Promise.<User>}
    */
   let remove = (userId) => {
-    // return $http({
-    //   method: 'DELETE',
-    //   url: `${SessionService.geApiUrl()}/users/${userId}`,
-    // }).then((result) => {
-    //   self.users = null;
-    //   $rootScope.$broadcast('updateUsers');
-    //   return result.data.data
-    // });
+    spinnerFactory.start();
+    return $http({
+      method: 'DELETE',
+      url: `${SessionService.geApiUrl()}/users/${userId}`,
+    }).then((result) => {
+      spinnerFactory.end();
+      self.users = null;
+      $rootScope.$broadcast('updateUsers');
+      return result.data.data;
+    });
   };
 
   return {

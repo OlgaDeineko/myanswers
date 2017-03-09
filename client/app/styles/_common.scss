@@ -98,7 +98,7 @@
   }
 
   &[disabled] {
-    color: mix($buttonBg, #fff);
+    color: mix($iconButtonsColor, #fff);
     &:after,
     &:hover:after {
       background: none;

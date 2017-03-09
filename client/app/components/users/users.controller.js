@@ -20,15 +20,18 @@ class UsersController {
   }
 
   create() {
-    let modalInstance = this.$uibModal.open({
+    this.$uibModal.open({
       component: 'createUserModal'
     });
   };
 
   remove(userId) {
+    let self = this;
     console.log('remove', userId);
-    //this.toastr.success('User removed successfully.');
-    // this.UsersService.remove(userId)
+    this.UsersService.remove(userId)
+      .then((result) => {
+        self.toastr.success('User removed successfully.');
+      })
   }
 
   edit(user) {
@@ -38,6 +41,15 @@ class UsersController {
         user: user
       }
     });
+  }
+
+  disabled(user, status) {
+    let self = this;
+    user.status = status;
+    this.UsersService.update(user)
+      .then((result) => {
+        self.toastr.success('User status changed successfully.');
+      })
   }
 
   getData(self, update) {

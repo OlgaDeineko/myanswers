@@ -83,7 +83,7 @@ function ArticleService($http, $q, $rootScope, spinnerFactory, faqHelper, Sessio
   /**
    * Create article(FAQ)
    * @param {Article} faq - new faq
-   * @returns {Promise.<{Article}>}
+   * @returns {Promise.<Article>}
    */
   let create = (faq) => {
     let self = this;
@@ -103,7 +103,7 @@ function ArticleService($http, $q, $rootScope, spinnerFactory, faqHelper, Sessio
   /**
    * Update article(FAQ)
    * @param {Article} faq - new faq
-   * @returns {Promise.<{Article}>}
+   * @returns {Promise.<Article>}
    */
   let update = (faq) => {
     let self = this;
@@ -123,7 +123,7 @@ function ArticleService($http, $q, $rootScope, spinnerFactory, faqHelper, Sessio
   /**
    * Remove article(FAQ)
    * @param {number} faqId - faq ID
-   * @returns {Promise.<{Article}>}
+   * @returns {Promise.<Article>}
    */
   let remove = (faqId) => {
     let self = this;

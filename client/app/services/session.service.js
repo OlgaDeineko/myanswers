@@ -12,6 +12,7 @@ function SessionService($window) {
    */
   let create = (accessToken, subdomain, role, fullName) => {
     $window.localStorage['access_token'] = accessToken;
+    // $window.localStorage['user_name'] = userName;
     $window.localStorage['client_subdomain'] = subdomain;
     $window.localStorage['role'] = role;
     $window.localStorage['full_name'] = fullName;
@@ -70,6 +71,7 @@ function SessionService($window) {
    */
   let destroy = () => {
     $window.localStorage.removeItem('access_token');
+    // $window.localStorage.removeItem('user_name');
     $window.localStorage.removeItem('client_subdomain');
     $window.localStorage.removeItem('role');
     $window.localStorage.removeItem('full_name');

@@ -8,6 +8,7 @@
  * @property {string} stormpath_access_token_href
  * @property {string[]} role - user roles
  * @property {string} email - user email
+ * @property {string} status
  * @property {string} username - username
  * @property {string} first_name - user first name
  * @property {string} last_name - user last name
@@ -20,6 +21,7 @@
  * @property {string} refresh_token
  * @property {string} token_type - user access token type
  * @property {number} expires_in
+ * @property {string} status
  * @property {string} stormpath_access_token_href
  * @property {string} role - user roles
  * @property {string} email - user email
