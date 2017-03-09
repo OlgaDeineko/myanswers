@@ -1,8 +1,10 @@
 <navbar></navbar>
 <div class="content-wrapper faq">
 
+  <div class="col-md-2"></div>
+
   <!--Content article-->
-  <div class="col-md-8 faq-content">
+  <div class="col-md-7 faq-content">
     <!--Tags-->
     <div class="faq-tags">
       <div class="faq-tag" ng-repeat="item in $ctrl.faq.tags track by $index">
@@ -20,14 +22,13 @@
 
     <!--Copy To Clipboard-->
     <div class="container-fluid">
-      <button class="button button-primary pull-right"
+      <button class="button button-primary pull-right faq-copy"
               clipboard
               uib-tooltip="Copy to clipboard"
               tooltip-placement="up"
               text="$ctrl.faq.answerWithoutTags"
               ng-click="$ctrl.copyToClipboard()">
         <i class="fa fa-clipboard"></i>
-        Copy to clipboard
       </button>
     </div><!--END: Copy To Clipboard-->
 
@@ -53,7 +54,7 @@
   </div><!--END: Content article-->
 
   <!--left right article-->
-  <div class="col-md-4 faq-right-sidebar">
+  <div class="col-md-3 faq-right-sidebar">
 
     <!--Action buttons-->
     <div class="row faq-actions" >

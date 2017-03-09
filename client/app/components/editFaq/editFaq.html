@@ -76,7 +76,7 @@
 
     <!--Visibility-->
     <div class="faq-visibility">
-      <h4>Visibility</h4>
+      <h4>Visibility:</h4>
       <select class="form-control" ng-model="$ctrl.faq.visibility">
         <option ng-repeat="item in $ctrl.faqVisibility" value="{{item.code}}">
           {{item.name}}
@@ -86,7 +86,7 @@
 
     <!--Categories-->
     <div class="faq-category">
-      <h4>Publish in category</h4>
+      <h4>Publish in category:</h4>
       <select class="form-control" ng-model="$ctrl.faq.categoryId"
               ng-options="item.id as item.name for item in $ctrl.categories">
       </select>

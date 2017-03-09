@@ -23,7 +23,8 @@
       input.input {
         float: none;
         display: block;
-        width: 98% !important;
+        width: 100% !important;
+        margin: 0;
         color: #555;
         padding: 6px 12px;
         background-color: #fff;
@@ -58,7 +59,7 @@
 
     &:after {
       content: " ";
-      border-right: 1px solid $dividerColor;
+      border-right: 1px solid $dividerDarkColor;
       position: absolute;
       height: 100%;
       right: 0;
@@ -68,9 +69,8 @@
     .faq {
       &-counts {
         color: rgba($darkTextColor, 0.5);
-        margin: 10px 0;
+        margin: 0 0 10px;
       }
-
 
       &-question,
       &-answer,
@@ -139,6 +139,12 @@
           border-radius: 4px;
         }
       }
+
+      &-copy{
+        i{
+          margin: 0;
+        }
+      }
     }
   }
 
@@ -148,7 +154,8 @@
     padding-top: 20px;
 
     h4 {
-      font-size: 15px;
+      font-size: $fontSize;
+      font-weight: bold;
     }
 
     .faq {
