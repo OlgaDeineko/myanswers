@@ -1,64 +1,12 @@
 @import "../../styles/variabels";
 
-$lineHeight: 1.2;
-$lines: 5;
-$fontSize: 14;
-
 .visitor {
   height: 100%;
-
-  em {
-    font-weight: bold;
-    font-style: normal;
-    text-decoration: underline;
-  }
-  .algolia {
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 25px;
-
-    &-question {
-      h3 {
-        color: $primaryColor;
-        margin: 10px 0;
-        font-size: 30px;
-        display: inline-block;
-      }
-    }
-
-    &-tags .one-tag {
-      display: inline-block;
-      margin: 0 5px;
-      background: $tagsBgColor;
-      padding: 5px 10px;
-      border-radius: 4px;
-    }
-  }
-
-  .algolia-category {
-    font-size: 14px;
-    margin: 0 0 5px 0;
-  }
-
-  .algolia-answer {
-    font-size: $fontSize+px;
-    display: block;
-    display: -webkit-box;
-    height: $fontSize*$lineHeight*$lines+5+px;
-    line-height: $lineHeight;
-    -webkit-line-clamp: $lines;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    padding: 5px;
-    margin-bottom: 5px;
-  }
 
   .visitor {
     &-bg-heading {
       padding: 20px 0 50px;
-      background-color: #f7f9fc;
+      background-color: #efefef;
     }
 
     &-title {
@@ -70,24 +18,6 @@ $fontSize: 14;
     &-actions {
       .icon-button {
         vertical-align: middle;
-      }
-    }
-
-    &-search {
-      margin: 0;
-      .form-control {
-        font-size: 20px;
-        height: auto;
-        padding: 15px;
-        border-radius: 50px;
-        padding-left: 60px;
-      }
-      i {
-        position: absolute;
-        top: 14px;
-        left: 31px;
-        font-size: 30px;
-        opacity: 0.4;
       }
     }
 
@@ -128,7 +58,7 @@ $fontSize: 14;
         padding: 10px;
         margin: 0;
         background-color: $primaryColor;
-        color: #fff;
+        color: $lightTextColor;
       }
       padding: 20px 10px;
 
@@ -145,5 +75,23 @@ $fontSize: 14;
         }
       }
     }
+  }
+}
+
+.algolia-search-input {
+  margin: 0;
+  .form-control {
+    font-size: 20px;
+    height: auto;
+    padding: 15px;
+    border-radius: 50px;
+    padding-left: 60px;
+  }
+  i {
+    position: absolute;
+    top: 14px;
+    left: 31px;
+    font-size: 30px;
+    opacity: 0.4;
   }
 }

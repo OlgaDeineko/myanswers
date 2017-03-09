@@ -1,40 +1,31 @@
 class VisitorArticleController {
-  constructor($sce, $state, toastr, ArticleService, SettingsService, FilesService) {
+  constructor($sce, $state, toastr, ArticleService, SettingsService) {
     "ngInject";
     this.name = 'faq';
     let self = this;
 
     this.$state = $state;
     this.toastr = toastr;
+
+    this.currentCategoryId = $state.params.categoryId || 1;
+
     this.convertHTML = $sce.trustAsHtml;
 
     this.SettingsService = SettingsService;
     this.ArticleService = ArticleService;
-    this.FilesService = FilesService;
 
     this.faq = {};
 
-    if (/(-a)$/.test($state.params.faqId)) {
-      this.ArticleService.getByAlgoliaId($state.params.faqId.replace(/(-a)$/, ''))
-        .then((result) => {
-          self.faq = result;
-        }, (error) => {
-          error.data.errors.forEach((error) => {
-            self.toastr.error(error.description);
-            self.$state.go('visitor');
-          });
-        })
-    } else {
-      this.ArticleService.getById($state.params.faqId)
-        .then((result) => {
-          self.faq = result;
-        }, (error) => {
-          error.data.errors.forEach((error) => {
-            self.toastr.error(error.description);
-            self.$state.go('visitor');
-          });
-        })
-    }
+    let isAlgoliaObject = $state.current.name == 'visitorArticleAlgolia';
+    this.ArticleService.getById($state.params.faqId, isAlgoliaObject)
+      .then((result) => {
+        self.faq = result;
+      }, (error) => {
+        error.data.errors.forEach((error) => {
+          self.toastr.error(error.description);
+          self.$state.go('visitor');
+        });
+      });
   }
 
   copyToClipboard() {

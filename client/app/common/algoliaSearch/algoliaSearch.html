@@ -1,0 +1,24 @@
+<div ng-if="$ctrl.searchModel">
+  <div class="algolia col-md-8 col-md-offset-2 " ng-repeat="item in $ctrl.algoliaResults">
+    <div class="algolia-question">
+      <h3>
+        <a ui-sref="visitorArticleAlgolia({faqId: item.objectID})"
+           ng-bind-html="item._highlightResult.question.value"></a>
+      </h3>
+      in category: <span class="algolia-category" ng-bind-html="item._highlightResult.categories[0].value"></span>
+    </div>
+
+    <div class="algolia-tags">
+      <div class="one-tag" ng-repeat="tag in item._highlightResult.tags" ng-bind-html="tag.value"></div>
+    </div>
+
+    <div class="algolia-answer" ng-bind-html="item._highlightResult.answer.value">
+    </div>
+  </div>
+</div>
+
+<div ng-if="$ctrl.searchModel && $ctrl.algoliaResults.length == 0">
+  <h3 class="text-center">
+    Not found
+  </h3>
+</div>

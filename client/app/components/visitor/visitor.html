@@ -3,14 +3,6 @@
 
     <div class="col-md-12">
       <div class="visitor-actions pull-right">
-        <!--<button class="button"-->
-        <!--ng-click="$ctrl.cancel()"-->
-        <!--ng-if="$ctrl.cancelBtn.isSetPrevious()"-->
-        <!--tooltip-placement="bottom"-->
-        <!--uib-tooltip="Back">-->
-        <!--Back-->
-        <!--</button>-->
-
         <button class="button button-primary"
                 ui-sref="visitor({categoryId: ''})"
                 tooltip-placement="bottom"
@@ -33,11 +25,10 @@
       <h1>{{ $ctrl.name }}</h1>
     </div>
 
-    <div class="row visitor-search">
+    <div class="row algolia-search-input">
       <div class="col-md-10 col-md-offset-1">
         <i class=" fa fa-search"></i>
-        <input class="form-control" placeholder="Search FAQ by Algolia" ng-model="$ctrl.searchModel"
-               ng-change="$ctrl.search($ctrl.searchModel)">
+        <input class="form-control" placeholder="Search FAQ by Algolia" ng-model="$ctrl.searchModel">
       </div>
     </div>
 
@@ -63,7 +54,7 @@
 
       <div class="visitor-tree-item visitor-tree-item-category"
            ng-repeat="item in $ctrl.tree.articles">
-        <a ui-sref="visitorArticle({faqId: item.id})">
+        <a ui-sref="visitorArticle({faqId: item.id, categoryId: $ctrl.currentCategory})">
           <i class="fa fa-question-circle"></i>
           {{item.question}}
         </a>
@@ -79,7 +70,7 @@
     <div class="col-md-3 visitor-last-created" ng-if="$ctrl.articles.length">
       <h2>Most Viewed FAQ:</h2>
       <div class="visitor-last-created-item" ng-repeat="item in $ctrl.articles | orderBy: '-hits_count' | limitTo: 10">
-        <a ui-sref="visitorArticle({faqId: item.id})">
+        <a ui-sref="visitorArticle({faqId: item.id, categoryId: item.categoryId})">
           <i class="fa fa-question-circle"></i>
           {{item.question}}
         </a>
@@ -87,30 +78,6 @@
     </div>
   </div>
 
-  <div ng-if="$ctrl.searchModel">
-    <div class="algolia col-md-8 col-md-offset-2 " ng-repeat="item in $ctrl.algoliaResults">
-      <div class="algolia-question">
-        <h3>
-          <a ui-sref="visitorArticle({faqId: item.objectID+'-a'})"
-             ng-bind-html="item._highlightResult.question.value"></a>
-        </h3>
-        in category: <span class="algolia-category" ng-bind-html="item._highlightResult.categories[0].value"></span>
-      </div>
-
-      <div class="algolia-tags">
-        <div class="one-tag" ng-repeat="tag in item._highlightResult.tags" ng-bind-html="tag.value"></div>
-      </div>
-
-
-      <div class="algolia-answer" ng-bind-html="item._highlightResult.answer.value">
-      </div>
-    </div>
-  </div>
-
-  <div ng-if="$ctrl.searchModel && $ctrl.algoliaResults.length == 0">
-    <h3 class="text-center">
-      Not found
-    </h3>
-  </div>
+  <algolia-search search-model="$ctrl.searchModel"></algolia-search>
 </div>
 

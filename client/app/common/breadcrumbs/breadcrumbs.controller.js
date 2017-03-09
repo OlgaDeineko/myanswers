@@ -20,7 +20,8 @@ class BreadcrumbsController {
   }
 
   goTo(categoryId) {
-    this.$state.go(this.$state.current.name, {"categoryId": categoryId});
+    let stateName = (/^admin\./.test(this.$state.current.name) ? 'admin.category': 'visitor');
+    this.$state.go(stateName, {"categoryId": categoryId});
   }
 }
 

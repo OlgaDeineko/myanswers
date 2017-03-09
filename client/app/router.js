@@ -180,6 +180,18 @@ let routerModule = angular.module('routing', [
       })
 
       .state('visitorArticle', {
+        url: '/home/faq/:categoryId/:faqId',
+        template: '<visitor-article/>',
+        component: 'visitorArticle',
+        data: {
+          permissions: {
+            only: ['visitor', 'user', 'admin', 'superAdmin'],
+            redirectTo: 'chooseSubdomain'
+          }
+        }
+      })
+
+      .state('visitorArticleAlgolia', {
         url: '/home/faq/:faqId',
         template: '<visitor-article/>',
         component: 'visitorArticle',

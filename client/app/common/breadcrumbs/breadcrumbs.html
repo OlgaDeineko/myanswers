@@ -9,4 +9,9 @@
       {{item.name}}
     </a>
   </li>
+  <li ng-if="$ctrl.last && $ctrl.last.length">
+    <a href="#" >
+      {{$ctrl.last}}
+    </a>
+  </li>
 </ol>

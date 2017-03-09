@@ -35,10 +35,6 @@
       border-radius: 4px;
     }
 
-    &-answer{
-      margin-top: 60px;
-    }
-
     &-attachment{
       margin-top: 60px;
       i{
@@ -52,11 +48,28 @@
         margin: 15px 0;
       }
     }
+
+
+    &-remarks {
+      margin-top: 40px;
+      .one-remark {
+        margin-top: 20px;
+        padding: 20px 10px;
+        background: $tagsBgColor;
+        border-radius: 4px;
+      }
+    }
   }
 
   &-actions{
     button{
       margin-top: 15px;
     }
+  }
+
+
+  &-bg-heading {
+    padding: 20px 0;
+    background-color: #efefef;
   }
 }

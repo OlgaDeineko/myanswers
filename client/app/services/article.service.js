@@ -35,9 +35,13 @@ function ArticleService($http, $q, $rootScope, spinnerFactory, faqHelper, Sessio
   /**
    * Get article(FAQ) by id
    * @param {number} faqId
+   * @param {boolean} isAlgolia
    * @returns {Promise.<Article>}
    */
-  let getById = (faqId) => {
+  let getById = (faqId, isAlgolia) => {
+    if(isAlgolia){
+      return getByAlgoliaId(faqId);
+    }
     spinnerFactory.start();
     return $http({
       method: 'GET',
