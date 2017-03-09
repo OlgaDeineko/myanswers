@@ -8,6 +8,7 @@ $primaryColor:            #4aa3df;
 
 $darkTextColor:           #212121;
 $lightTextColor:          #f5f5f5;
+$darkGreyTextColor:       #6f6f6f;
 $greyTextColor:           #808080;
 $lightGreyTextColor:      #bfbfbf;
 
@@ -23,7 +24,7 @@ $buttonBorderRadius:      4px;
 $buttonBg:                $primaryColor;
 $buttonColor:             $lightTextColor;
 $iconButtonsSize:         40px;
-$iconButtonsColor:        $primaryColor;
+$iconButtonsColor:        $darkGreyTextColor;
 $buttonFontSize:          1.9rem;
 
 //tree

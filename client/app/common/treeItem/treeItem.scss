@@ -57,7 +57,9 @@
   }
 
   &-icon {
+    color: $iconButtonsColor;
     &:hover {
+      color: $iconButtonsColor;
       text-decoration: none;
     }
     i {

@@ -5,15 +5,16 @@
     cursor: pointer;
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid $dividerColor;
     background: none;
-
-    &:last-child{
-      border: none;
-    }
+    color: $greyTextColor;
 
     &:hover{
       background-color: rgba(#000, 0.1);
+    }
+
+    .badge{
+      background: none;
+      color: inherit;
     }
   }
 
