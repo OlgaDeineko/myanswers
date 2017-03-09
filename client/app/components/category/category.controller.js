@@ -2,7 +2,7 @@ class CategoryController {
   constructor($stateParams, $scope, $uibModal, faqHelper, categoryHelper, CategoryService, ArticleService) {
     "ngInject";
 
-    this.name = 'Home';
+    this.name = 'Dashboard';
 
     this.$uibModal = $uibModal;
     this.$scope = $scope;
