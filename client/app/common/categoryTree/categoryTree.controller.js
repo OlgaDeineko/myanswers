@@ -1,28 +1,57 @@
 class CategoryTreeController {
-  constructor() {
+  constructor($rootScope) {
+    'ngInject';
 
     this.name = 'categoryTree';
 
-    this.searchModel = "";
+    this.sorting = [
+      {
+        name: 'Name[A-Z]',
+        cat: 'name',
+        faq: 'question'
+      },
+      {
+        name: 'Name[Z-a]',
+        cat: '-name',
+        faq: '-question'
+      },
+      {
+        name: 'Author[A-Z]',
+        cat: 'author',
+        faq: 'author'
+      },
+      {
+        name: 'Author[Z-a]',
+        cat: '-author',
+        faq: '-author'
+      },
+      {
+        name: 'Last Created',
+        cat: '-crated_at',
+        faq: '-crated_at'
+      },
+      {
+        name: 'Last Updated',
+        cat: '-updated_at',
+        faq: '-updated_at'
+      },
+    ];
+    this.languages = $rootScope.settings.languages;
+
+    this.language = {"code": "en", "name": "English"};
     this.sort = {
-      cat: "",
-      faq: "",
-      order: ""
+      name: 'Name[A-Z]',
+      cat: 'name',
+      faq: 'question'
     };
+
+
+    this.searchModel = "";
   }
 
-  changeOrder(field)  {
-    if(field == this.sort.cat){
-      this.sort.order = this.sort.order == "-"? "": "-";
-    }else{
-      this.sort = {
-        cat: field,
-        faq: field == 'name'? 'question' : field,
-        order: ""
-      };
-    }
-
-  }
+  changeOrder(item){
+    this.sort = item;
+}
 }
 
 export default CategoryTreeController;
