@@ -31,9 +31,15 @@
 
 <!-- tree header -->
 <div class="tree-header">
-  <div class="tree-header-title">
+  <div class="tree-header-title"  ng-if="!$ctrl.searchModel.length || $ctrl.categories.parent_id == 1">
     {{($ctrl.categories.categories | filter:{name: $ctrl.searchModel, lang: $ctrl.language.code}).length + ($ctrl.categories.articles | filter:{question: $ctrl.searchModel, lang: $ctrl.language.code}).length}}
     result{{($ctrl.categories.categories.length + $ctrl.categories.articles.length)>1 ? 's' : ''}}
+  </div>
+
+
+  <div class="tree-header-title"  ng-if="$ctrl.searchModel.length && $ctrl.categories.parent_id != 1">
+    {{($ctrl.categories.allCategories | filter:{name: $ctrl.searchModel, lang: $ctrl.language.code}).length + ($ctrl.categories.allArticles | filter:{question: $ctrl.searchModel, lang: $ctrl.language.code}).length}}
+    result{{($ctrl.categories.allCategories.length + $ctrl.categories.allArticles.length)>1 ? 's' : ''}}
   </div>
 
   <div class="tree-header-update">
@@ -68,7 +74,7 @@
 </div> <!--END: tree header-->
 
 <!--tree-->
-<div class="tree">
+<div class="tree" ng-if="!$ctrl.searchModel.length || $ctrl.categories.parent_id == 1 || !$ctrl.categories.allArticles">
   <div ui-tree="$ctrl.treeOptions"
        data-empty-placeholder-enabled="false"
        data-nodrop-enabled="false"
@@ -85,6 +91,37 @@
 
       <!--articles-->
       <div ng-repeat="article in $ctrl.categories.articles | filter:{question: $ctrl.searchModel, lang: $ctrl.language.code} | orderBy: $ctrl.sort.faq">
+        <div>
+          <tree-item
+              item="article"
+              type="'faq'">
+          </tree-item>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!--END:tree-->
+
+
+<!--tree-->
+<div class="tree" ng-if="$ctrl.searchModel.length && $ctrl.categories.parent_id != 1">
+  <div ui-tree="$ctrl.treeOptions"
+       data-empty-placeholder-enabled="false"
+       data-nodrop-enabled="false"
+       data-drag-enabled="false">
+    <div ui-tree-nodes
+         ng-model="$ctrl.categories.categories">
+
+      <!--categories-->
+      <div ng-repeat="item in $ctrl.categories.allCategories | filter:{name: $ctrl.searchModel, lang: $ctrl.language.code} | orderBy: $ctrl.sort.cat"
+           ui-tree-node
+           ng-include="'tree_children_renderer.html'"
+           data-collapsed="!item.expanded">
+      </div>
+
+      <!--articles-->
+      <div ng-repeat="article in $ctrl.categories.allArticles | filter:{question: $ctrl.searchModel, lang: $ctrl.language.code} | orderBy: $ctrl.sort.faq">
         <div>
           <tree-item
               item="article"

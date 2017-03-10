@@ -75,6 +75,8 @@ function CategoryHelper($rootScope) {
     categories.forEach((category, i) => {
       categories[i].categories = categories.filter(c => c.parent_id == category.id);
       categories[i].articles = articles.filter(a => a.categories.find(c => c.id == category.id));
+      categories[i].allArticles = articles;
+      categories[i].allCategories = categories.filter(c => c.parent_id != 0);
     });
 
     return categories.find(c => c.id == currentCategory)

@@ -13,8 +13,11 @@
         Add
       </button>
       <ul class="dropdown-menu">
-        <li><a href='#' ng-click="$ctrl.createCategory()">Create {{$ctrl.currentCategory == 1 ? 'Category':
-          'Subcategory'}}</a></li>
+        <li ng-if="$ctrl.tree.parent_id == 0 || $ctrl.tree.parent_id == 1">
+          <a href='#' ng-click="$ctrl.createCategory()">
+            Create {{$ctrl.currentCategory == 1 ? 'Category': 'Subcategory'}}
+          </a>
+        </li>
         <li>
           <a ui-sref="admin.createFaq({categoryId: $ctrl.currentCategory})">
             Create FAQ

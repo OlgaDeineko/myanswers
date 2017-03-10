@@ -84,6 +84,8 @@ function FaqHelper($rootScope) {
       faq.category = '';
       faq.categoryId = '';
     }
+    // faq.nodrop = true;
+    //   faq.nodes = [];
 
     if ($rootScope.settings) {
       faq.language = $rootScope.settings.languages.find((l) => l.code == faq.lang);
@@ -154,7 +156,7 @@ function FaqHelper($rootScope) {
       lang: 'en',
       is_open_comments: true,
       status: 'draft',
-      remarks: []
+      remarks: ''
     };
   };
 

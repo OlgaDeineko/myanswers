@@ -30,23 +30,25 @@ class CreateCategoryModalController {
         self.form = [
           "name",
           "author",
-          {
-            key: 'parent_id',
-            type: "select",
-            title: "Parent Category",
-            titleMap: result.map((item) => {
-              return {value: item.id, name: item.name};
-            })
-          },
-          {
-            key: 'lang',
-            type: "select",
-            title: "Language",
-            titleMap: $rootScope.settings.languages.map((item) => {
-              return {value: item.code, name: item.name};
-            })
-          }
-        ]
+        ];
+        // if (self.type == 'Subcategory' && self.mode == 'create') {
+        self.form.push({
+          key: 'parent_id',
+          type: "select",
+          title: "Parent Category",
+          titleMap: result.filter((cat) => cat.parent_id == 1 || cat.parent_id == 0).map((item) => {
+            return {value: item.id, name: item.name};
+          })
+        });
+        // }
+        self.form.push({
+          key: 'lang',
+          type: "select",
+          title: "Language",
+          titleMap: $rootScope.settings.languages.map((item) => {
+            return {value: item.code, name: item.name};
+          })
+        });
       });
 
     this.schema = {

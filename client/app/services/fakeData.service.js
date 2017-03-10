@@ -144,7 +144,7 @@ function FakeDataService() {
         {
           "id": "4",
           "parent_id": "2",
-          "name": "test1 sd dgfdsfg dsgdsgs  sdgdfgdg  sggsd sdgsd ds dsfd fgsd ds fg",
+          "name": "test1",
           "lang": "en",
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
@@ -152,8 +152,8 @@ function FakeDataService() {
         },
         {
           "id": "5",
-          "parent_id": "4",
-          "name": "test2  sdgdfg sd dfsg ss dgdsf gsdgdsf gdsfgsd gdfg",
+          "parent_id": "2",
+          "name": "test2",
           "lang": "en",
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
@@ -161,8 +161,8 @@ function FakeDataService() {
         },
         {
           "id": "6",
-          "parent_id": "5",
-          "name": "test3 dfgdfgsd sd fgds gsddsdsfg sd sdgd sgd sgdfg s dfgsdg sdg d sdg ds sddsfgsd  g",
+          "parent_id": "2",
+          "name": "test3",
           "lang": "en",
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
