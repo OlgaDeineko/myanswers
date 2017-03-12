@@ -1,26 +1,3 @@
-<script type="text/ng-template" id="tree_children_renderer.html">
-
-  <div ui-tree-handle>
-    <tree-item
-        item="item"
-        type="'category'">
-    </tree-item>
-  </div>
-
-  <div ui-tree-nodes="treeOptions"
-       ng-model="item.categories"
-       ng-class="{hidden: collapsed}">
-    <div class="tree-row">
-      <div ng-repeat="item in item.categories"
-           ui-tree-node
-           ng-include="'tree_children_renderer.html'"
-           data-collapsed="!item.expanded">
-      </div>
-    </div>
-  </div>
-
-</script>
-
 <!--search-->
 <div class="form-group">
   <input type="text"
@@ -31,15 +8,16 @@
 
 <!-- tree header -->
 <div class="tree-header">
-  <div class="tree-header-title"  ng-if="!$ctrl.searchModel.length || $ctrl.categories.parent_id == 1">
-    {{($ctrl.categories.categories | filter:{name: $ctrl.searchModel, lang: $ctrl.language.code}).length + ($ctrl.categories.articles | filter:{question: $ctrl.searchModel, lang: $ctrl.language.code}).length}}
+  <div class="tree-header-title" ng-if="!$ctrl.searchModel.length && $ctrl.sort.name == 'Custom'">
+    {{($ctrl.categories.categories | filter:{lang: $ctrl.language.code}).length +
+    ($ctrl.categories.articles | filter:{lang: $ctrl.language.code}).length}}
     result{{($ctrl.categories.categories.length + $ctrl.categories.articles.length)>1 ? 's' : ''}}
   </div>
 
 
-  <div class="tree-header-title"  ng-if="$ctrl.searchModel.length && $ctrl.categories.parent_id != 1">
-    {{($ctrl.categories.allCategories | filter:{name: $ctrl.searchModel, lang: $ctrl.language.code}).length + ($ctrl.categories.allArticles | filter:{question: $ctrl.searchModel, lang: $ctrl.language.code}).length}}
-    result{{($ctrl.categories.allCategories.length + $ctrl.categories.allArticles.length)>1 ? 's' : ''}}
+  <div class="tree-header-title" ng-if="$ctrl.searchModel.length || $ctrl.sort.name != 'Custom'">
+    {{$ctrl.countC + $ctrl.countA}}
+    result{{($ctrl.countC + $ctrl.countA)>1 ? 's' : ''}}
   </div>
 
   <div class="tree-header-update">
@@ -50,7 +28,7 @@
     </div>
 
     <ul class="dropdown-menu">
-      <li ng-repeat="item in $ctrl.sorting" ng-click="$ctrl.changeOrder(item)">{{item.name}}</li>
+      <li ng-repeat="item in $ctrl.sorting" ng-click="$ctrl.sort = item">{{item.name}}</li>
     </ul>
   </div>
 
@@ -74,62 +52,67 @@
 </div> <!--END: tree header-->
 
 <!--tree-->
-<div class="tree" ng-if="!$ctrl.searchModel.length || $ctrl.categories.parent_id == 1 || !$ctrl.categories.allArticles">
-  <div ui-tree="$ctrl.treeOptions"
-       data-empty-placeholder-enabled="false"
-       data-nodrop-enabled="false"
-       data-drag-enabled="false">
-    <div ui-tree-nodes
-         ng-model="$ctrl.categories.categories">
+<div class="tree" ng-if="!$ctrl.searchModel.length && $ctrl.sort.name == 'Custom'">
 
-      <!--categories-->
-      <div ng-repeat="item in $ctrl.categories.categories | filter:{name: $ctrl.searchModel, lang: $ctrl.language.code} | orderBy: $ctrl.sort.cat"
-           ui-tree-node
-           ng-include="'tree_children_renderer.html'"
-           data-collapsed="!item.expanded">
+  <div dnd-list="$ctrl.categories.categories">
+    <!--categories-->
+    <div ng-repeat="item in $ctrl.categories.categories | filter:{name: $ctrl.searchModel} | orderBy: $ctrl.sort.cat"
+
+         ng-hide="item.lang != $ctrl.language.code"
+         dnd-draggable="item"
+         dnd-effect-allowed="move"
+    dnd-moved="$ctrl.moved($index, item)">
+      <!--dnd-moved="$ctrl.categories.categories.splice($index, 1)">-->
+
+      <tree-item item="item" type="'category'"></tree-item>
+
+      <div class="tree-row"
+           ng-if="item.expanded"
+           ng-repeat="subcat in item.categories">
+        <tree-item item="subcat" type="'category'"></tree-item>
       </div>
-
-      <!--articles-->
-      <div ng-repeat="article in $ctrl.categories.articles | filter:{question: $ctrl.searchModel, lang: $ctrl.language.code} | orderBy: $ctrl.sort.faq">
-        <div>
-          <tree-item
-              item="article"
-              type="'faq'">
-          </tree-item>
-        </div>
-      </div>
-
     </div>
   </div>
+  <!--articles-->
+  <div ng-hide="article.lang != $ctrl.language.code"
+       ng-repeat="article in $ctrl.categories.articles | filter:{question: $ctrl.searchModel} | orderBy: $ctrl.sort.faq">
+    <div>
+      q
+      <tree-item
+          item="article"
+          type="'faq'">
+      </tree-item>
+    </div>
+  </div>
+
 </div><!--END:tree-->
 
 
 <!--tree-->
-<div class="tree" ng-if="$ctrl.searchModel.length && $ctrl.categories.parent_id != 1">
-  <div ui-tree="$ctrl.treeOptions"
-       data-empty-placeholder-enabled="false"
-       data-nodrop-enabled="false"
-       data-drag-enabled="false">
-    <div ui-tree-nodes
-         ng-model="$ctrl.categories.categories">
+<div class="tree" ng-if="$ctrl.searchModel.length || $ctrl.sort.name != 'Custom'">
 
-      <!--categories-->
-      <div ng-repeat="item in $ctrl.categories.allCategories | filter:{name: $ctrl.searchModel, lang: $ctrl.language.code} | orderBy: $ctrl.sort.cat"
-           ui-tree-node
-           ng-include="'tree_children_renderer.html'"
-           data-collapsed="!item.expanded">
+  <div>
+    <!--categories-->
+    <div ng-repeat="item in $ctrl.getCategories()  | orderBy: $ctrl.sort.cat"
+         ng-hide="item.lang != $ctrl.language.code">
+
+      <tree-item item="item" type="'category'"></tree-item>
+
+      <div class="tree-row"
+           ng-if="item.expanded"
+           ng-repeat="subcat in item.categories">
+        <tree-item item="subcat" type="'category'"></tree-item>
       </div>
-
-      <!--articles-->
-      <div ng-repeat="article in $ctrl.categories.allArticles | filter:{question: $ctrl.searchModel, lang: $ctrl.language.code} | orderBy: $ctrl.sort.faq">
-        <div>
-          <tree-item
-              item="article"
-              type="'faq'">
-          </tree-item>
-        </div>
-      </div>
-
+    </div>
+  </div>
+  <!--articles-->
+  <div ng-hide="article.lang != $ctrl.language.code"
+       ng-repeat="article in $ctrl.getArticles() | orderBy: $ctrl.sort.faq">
+    <div>
+      <tree-item
+          item="article"
+          type="'faq'">
+      </tree-item>
     </div>
   </div>
 </div><!--END:tree-->

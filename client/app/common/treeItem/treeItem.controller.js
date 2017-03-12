@@ -59,21 +59,23 @@ class TreeItemController {
     }
   }
 
-  toggleChildren(scope) {
+  toggleChildren(item) {
     if(this.type == 'faq') return;
+    if(item.categories.length)
+      item.expanded = !item.expanded
 
-    if (!scope.$nodeScope.$modelValue.categories) {
-      scope.$nodeScope.$modelValue.getList("categories").then(function(data) {
-        scope.$nodeScope.$modelValue.categories = data;
-        if (scope.$nodeScope.$modelValue.categories.length > 0) {
-          scope.toggle();
-        }
-      });
-    } else {
-      if (scope.$nodeScope.$modelValue.categories.length > 0) {
-        scope.toggle();
-      }
-    }
+    // if (!scope.$nodeScope.$modelValue.categories) {
+    //   scope.$nodeScope.$modelValue.getList("categories").then(function(data) {
+    //     scope.$nodeScope.$modelValue.categories = data;
+    //     if (scope.$nodeScope.$modelValue.categories.length > 0) {
+    //       scope.toggle();
+    //     }
+    //   });
+    // } else {
+    //   if (scope.$nodeScope.$modelValue.categories.length > 0) {
+    //     scope.toggle();
+    //   }
+    // }
   }
 }
 

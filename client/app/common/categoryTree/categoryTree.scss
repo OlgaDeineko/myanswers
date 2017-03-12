@@ -84,3 +84,14 @@ category-tree{
     }
   }
 }
+
+.dndDraggingSource {
+  display: none;
+}
+li.dndPlaceholder {
+  border: 1px dashed;
+  margin: 3px 0;
+  height: 30px;
+  background: #f4f4f4;
+  list-style-type: none;
+}

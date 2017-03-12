@@ -40,6 +40,8 @@ function CategoryHelper($rootScope) {
    */
   let responseToData = (category) => {
     category.id = +category.id;
+    category.sort_order = +category.sort_order;
+    category.old_sort_order = +category.sort_order;
     category.parent_id = +category.parent_id;
 
     if ($rootScope.settings) {
@@ -60,6 +62,7 @@ function CategoryHelper($rootScope) {
       parent_id: category.parent_id,
       lang: category.lang,
       author: category.author,
+      sort_order: category.sort_order,
     };
   };
 
@@ -73,10 +76,10 @@ function CategoryHelper($rootScope) {
   let buildTree = (articles, categories, currentCategory ) => {
     articles = articles.filter((article) => article.status != 'trash');
     categories.forEach((category, i) => {
-      categories[i].categories = categories.filter(c => c.parent_id == category.id);
+      categories[i].categories = categories.filter(c => c.parent_id == category.id).sort((a, b)=> a.sort_order - b.sort_order);
       categories[i].articles = articles.filter(a => a.categories.find(c => c.id == category.id));
       categories[i].allArticles = articles;
-      categories[i].allCategories = categories.filter(c => c.parent_id != 0);
+      // categories[i].allCategories = categories.filter(c => c.parent_id != 0);
     });
 
     return categories.find(c => c.id == currentCategory)
@@ -94,6 +97,7 @@ function CategoryHelper($rootScope) {
       parent_id: +parentCategoryId || 1,
       lang: 'en',
       author: author || 'Unknown',
+      sort_order: 0
     };
   };
 

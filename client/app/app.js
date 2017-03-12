@@ -45,6 +45,8 @@ import 'angular-toastr/dist/angular-toastr.min.css';
 import './styles/font-awesome-4.7.0/css/font-awesome.min.css';
 import 'ng-flow/dist/ng-flow-standalone';
 
+import 'angular-drag-and-drop-lists';
+
 import 'tinymce/skins/lightgray/skin.min.css';
 // import 'tinymce/skins/lightgray/content.min.css';
 import 'tinymce/plugins/codesample/css/prism.css';
@@ -104,7 +106,8 @@ angular.module('app', [
   'ngTable',
   'ngSanitize',
   'toastr',
-  'flow'
+  'flow',
+  'dndLists'
 ])
   .config(($locationProvider, $httpProvider, flowFactoryProvider, $qProvider) => {
     "ngInject";

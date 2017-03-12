@@ -71,6 +71,17 @@ function CategoryService($http, $q, $rootScope, spinnerFactory, categoryHelper, 
       return categoryHelper.responseToData(result.data.data);
     });
   };
+  let update2 = (category) => {
+    // spinnerFactory.start();
+    return $http({
+      method: 'PUT',
+      url: `${SessionService.geApiUrl()}/categories/${category.id}`,
+      data: categoryHelper.dataToRequest(category)
+    }).then(result => {
+      // $rootScope.$broadcast('updateCategories');
+      // return categoryHelper.responseToData(result.data.data);
+    });
+  };
   
   /**
    * Remove category
@@ -95,7 +106,8 @@ function CategoryService($http, $q, $rootScope, spinnerFactory, categoryHelper, 
     getAll,
     create,
     update,
-    remove
+    remove,
+    update2
   }
 }
 

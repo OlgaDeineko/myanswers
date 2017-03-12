@@ -3,8 +3,8 @@
 
     <a class="tree-item-icon"
        data-nodrag
-       ng-click="$ctrl.toggleChildren($parent)">
-      <i class="tree-icon-folder fa {{$ctrl.icon + ($parent.collapsed === false?'-open':'') }}"
+       ng-click="$ctrl.toggleChildren($ctrl.item)">
+      <i class="tree-icon-folder fa {{$ctrl.icon + ($ctrl.item.expanded ?'-open':'') }}"
             aria-hidden="true">
       </i>
     </a>
