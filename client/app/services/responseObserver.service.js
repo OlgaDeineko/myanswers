@@ -21,6 +21,7 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
         config.headers['Client-Subdomain'] = SessionService.getSubdomain();
         config.headers['Authorization'] = 'Bearer ' + SessionService.getToken();
       }
+      spinnerFactory.start();
       return config;
     },
     'response': (response) => {
@@ -35,6 +36,8 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
         spinnerFactory.reject();
         return $q.reject(response);
       }
+
+      spinnerFactory.end();
       return response;
     },
     'responseError': (errorResponse) => {

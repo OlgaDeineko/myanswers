@@ -1,4 +1,4 @@
-function CategoryService($http, $q, $rootScope, spinnerFactory, categoryHelper, SessionService) {
+function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) {
   "ngInject";
   let categories = null;
 
@@ -19,14 +19,12 @@ function CategoryService($http, $q, $rootScope, spinnerFactory, categoryHelper, 
     if(self.deferred) return self.deferred.promise;
     this.deferred = $q.defer();
 
-    spinnerFactory.start();
     $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/categories`,
     }).then(result => {
       self.categories = result.data.data.map(categoryHelper.responseToData);
       self.deferred.resolve(self.categories);
-      spinnerFactory.end();
       delete self.deferred;
     });
     return self.deferred.promise;
@@ -39,7 +37,6 @@ function CategoryService($http, $q, $rootScope, spinnerFactory, categoryHelper, 
    */
   let create = (newCategory) => {
     let self = this;
-    spinnerFactory.start();
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/categories`,
@@ -47,7 +44,6 @@ function CategoryService($http, $q, $rootScope, spinnerFactory, categoryHelper, 
     }).then(result => {
       self.categories=null;
       $rootScope.$broadcast('updateCategories');
-      spinnerFactory.end();
       return categoryHelper.responseToData(result.data.data);
     });
   };
@@ -59,7 +55,6 @@ function CategoryService($http, $q, $rootScope, spinnerFactory, categoryHelper, 
    */
   let update = (category) => {
     let self = this;
-    spinnerFactory.start();
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/categories/${category.id}`,
@@ -67,12 +62,10 @@ function CategoryService($http, $q, $rootScope, spinnerFactory, categoryHelper, 
     }).then(result => {
       self.categories=null;
       $rootScope.$broadcast('updateCategories');
-      spinnerFactory.end();
       return categoryHelper.responseToData(result.data.data);
     });
   };
   let update2 = (category) => {
-    // spinnerFactory.start();
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/categories/${category.id}`,
@@ -90,14 +83,12 @@ function CategoryService($http, $q, $rootScope, spinnerFactory, categoryHelper, 
    */
   let remove = (categoryId) => {
     let self = this;
-    spinnerFactory.start();
     return $http({
       method: 'DELETE',
       url: `${SessionService.geApiUrl()}/categories/${categoryId}`,
     }).then(result => {
       self.categories=null;
       $rootScope.$broadcast('updateCategories');
-      spinnerFactory.end();
       return result.data.data
     });
   };

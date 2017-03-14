@@ -121,12 +121,12 @@ function FaqHelper($rootScope) {
     let category_ids = [faq.categoryId];
 
     return {
-      // question: faq.question,
-      // answer: faq.answer,
-      // visibility: faq.visibility,
-      // is_open_comments: faq.is_open_comments,
-      // lang: faq.lang,
-      // author: faq.author,
+      question: faq.question,
+      answer: faq.answer,
+      visibility: faq.visibility,
+      is_open_comments: faq.is_open_comments,
+      lang: faq.lang,
+      author: faq.author,
       status: faq.status,
       new_tags: new_tags,
       tag_ids: tag_ids,

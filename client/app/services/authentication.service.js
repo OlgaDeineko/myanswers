@@ -1,4 +1,4 @@
-function AuthenticationService($http, spinnerFactory, PermPermissionStore, userHelper, SessionService) {
+function AuthenticationService($http, PermPermissionStore, userHelper, SessionService) {
   "ngInject";
 
   /**
@@ -7,13 +7,11 @@ function AuthenticationService($http, spinnerFactory, PermPermissionStore, userH
    * @returns {Promise<Object>}
    */
   let login = (userData) => {
-    spinnerFactory.start();
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/auth/login`,
       data: userData
     }).then((result) => {
-      spinnerFactory.end();
       let user = userHelper.responseToData(result.data.data);
       SessionService.create(
         user.access_token,
@@ -31,20 +29,18 @@ function AuthenticationService($http, spinnerFactory, PermPermissionStore, userH
    * @returns {Promise<Object>}
    */
   let register = (newUser) => {
-    spinnerFactory.start();
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/auth/register`,
       data: newUser
     }).then((result) => {
-      spinnerFactory.end();
       return result.data.data;
     });
   };
 
   /**
    * is authorized
-   * @returns {boo;ean}
+   * @returns {boolean}
    */
   let isAuthenticated = () => {
     return SessionService.hasToken();

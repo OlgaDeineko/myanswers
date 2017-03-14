@@ -1,4 +1,4 @@
-function UsersService($http, $q, $rootScope, spinnerFactory, userHelper, SessionService) {
+function UsersService($http, $q, $rootScope, userHelper, SessionService) {
   "ngInject";
   let users = null;
 
@@ -18,12 +18,10 @@ function UsersService($http, $q, $rootScope, spinnerFactory, userHelper, Session
     if (self.deferred) return self.deferred.promise;
     this.deferred = $q.defer();
 
-    spinnerFactory.start();
     $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/users`,
     }).then((result) => {
-      spinnerFactory.end();
       self.users = result.data.data.map(userHelper.responseToData);
       self.deferred.resolve(self.users);
       delete self.deferred;
@@ -38,14 +36,12 @@ function UsersService($http, $q, $rootScope, spinnerFactory, userHelper, Session
    */
   let create = (newUser) => {
     let self = this;
-    spinnerFactory.start();
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/users`,
       data: userHelper.dataToRequest(newUser)
     }).then((result) => {
       self.users = null;
-      spinnerFactory.end();
       $rootScope.$broadcast('updateUsers');
       return userHelper.responseToData(result.data.data);
     });
@@ -57,13 +53,11 @@ function UsersService($http, $q, $rootScope, spinnerFactory, userHelper, Session
    * @returns {Promise.<User>}
    */
   let update = (user) => {
-    spinnerFactory.start();
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/users/${user.id}`,
       data: userHelper.dataToRequest(user)
     }).then((result) => {
-      spinnerFactory.end();
       self.users = null;
       $rootScope.$broadcast('updateUsers');
       return userHelper.responseToData(result.data.data);
@@ -76,12 +70,10 @@ function UsersService($http, $q, $rootScope, spinnerFactory, userHelper, Session
    * @returns {Promise.<User>}
    */
   let remove = (userId) => {
-    spinnerFactory.start();
     return $http({
       method: 'DELETE',
       url: `${SessionService.geApiUrl()}/users/${userId}`,
     }).then((result) => {
-      spinnerFactory.end();
       self.users = null;
       $rootScope.$broadcast('updateUsers');
       return result.data.data;

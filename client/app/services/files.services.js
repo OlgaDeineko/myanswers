@@ -1,4 +1,4 @@
-function FilesService($http, spinnerFactory, fileHelper, SessionService) {
+function FilesService($http, fileHelper, SessionService) {
   "ngInject";
 
   /**
@@ -7,12 +7,10 @@ function FilesService($http, spinnerFactory, fileHelper, SessionService) {
    * @param {number} objectId
    */
   let getAll = (type, objectId) => {
-    spinnerFactory.start();
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/attachments/${type}/${objectId}`,
     }).then((result) => {
-      spinnerFactory.end();
       return result.data.data.map(fileHelper.responseToData);
     });
   };
@@ -24,13 +22,11 @@ function FilesService($http, spinnerFactory, fileHelper, SessionService) {
    * @param {number} objectId
    */
   let create = (files, type, objectId) => {
-    spinnerFactory.start();
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/attachments/${type}/${objectId}`,
       data: {files: files.map(fileHelper.dataToRequest)}
     }).then((result) => {
-      spinnerFactory.end();
       return fileHelper.responseToData(result.data.data);
     });
   };
