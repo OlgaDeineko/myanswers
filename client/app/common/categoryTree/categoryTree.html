@@ -77,7 +77,6 @@
   <div ng-hide="article.lang != $ctrl.language.code"
        ng-repeat="article in $ctrl.categories.articles | filter:{question: $ctrl.searchModel} | orderBy: $ctrl.sort.faq">
     <div>
-      q
       <tree-item
           item="article"
           type="'faq'">

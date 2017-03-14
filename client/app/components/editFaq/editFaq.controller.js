@@ -54,7 +54,7 @@ class EditFaqController {
           self.faq = result;
         }, (error) => {
           error.data.errors.forEach((error) => {
-            self.toastr.error(error.description);
+            self.toastr.error(error.message);
             self.$state.go('admin.category');
           });
         })
@@ -93,7 +93,7 @@ class EditFaqController {
       })
       .catch((error) => {
         error.data.errors.forEach(error => {
-          self.toastr.error(error.description, 'Validation error:');
+          self.toastr.error(error.message, 'Validation error:');
         });
       })
   }

@@ -46,7 +46,7 @@ class ForgotPasswordModalController {
           self.$uibModalInstance.close(result);
         }, (error) => {
           error.data.errors.forEach((error) => {
-            self.toastr.error(error.description, 'Validation error:');
+            self.toastr.error(error.message, 'Validation error:');
           });
         })
     }

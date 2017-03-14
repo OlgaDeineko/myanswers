@@ -30,6 +30,11 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
           response.config.url.match(/.*\/api\/(v1\/.*)$/)[1],
           response);
       }
+
+      if(response.data.status == 0){
+        spinnerFactory.reject();
+        return $q.reject(response);
+      }
       return response;
     },
     'responseError': (errorResponse) => {
