@@ -24,9 +24,18 @@
     <!--Status-->
     <div class="row faq-status">
       <div class="col-md-3 col-md-offset-9">
-        <select class="form-control" ng-model="$ctrl.faq.status"
-                ng-options="item.code as item.name for item in $ctrl.faqStatuses">
-        </select>
+        <div class="ma-select"
+             uib-dropdown>
+          <div class="dropdown-toggle form-control"
+               uib-dropdown-toggle>
+            <i class="fa fa-angle-down dropdown-angle"></i>
+            {{($ctrl.faqStatuses | filter: {code: $ctrl.faq.status})[0].name}}
+          </div>
+
+          <ul class="dropdown-menu">
+            <li ng-repeat="item in $ctrl.faqStatuses" ng-click="$ctrl.faq.status = item.code">{{item.name}}</li>
+          </ul>
+        </div>
       </div>
     </div><!--END: Status-->
 
@@ -54,7 +63,11 @@
     <!--Remarks-->
     <div class="faq-remarks">
       <label>Internal comments</label>
-      <textarea class="form-control remarks" ng-model="$ctrl.faq.remarks" rows="4"></textarea>
+      <textarea class="form-control remarks"
+                ng-model="$ctrl.faq.remarks"
+                rows="4"
+                placeholder="Add your comments here">
+      </textarea>
     </div><!--END: Remarks-->
 
   </div><!--END: Content article-->
@@ -77,47 +90,80 @@
     <!--Visibility-->
     <div class="faq-visibility">
       <h4>Visibility:</h4>
-      <select class="form-control" ng-model="$ctrl.faq.visibility">
-        <option ng-repeat="item in $ctrl.faqVisibility" value="{{item.code}}">
-          {{item.name}}
-        </option>
-      </select>
+      <div class="ma-select"
+           uib-dropdown>
+        <div class="dropdown-toggle form-control"
+             uib-dropdown-toggle>
+          <i class="fa fa-angle-down dropdown-angle"></i>
+
+          <i class="fa {{($ctrl.faqVisibility | filter: {code: $ctrl.faq.visibility})[0].icon}}"></i>
+          {{($ctrl.faqVisibility | filter: {code: $ctrl.faq.visibility})[0].name}}
+        </div>
+
+        <ul class="dropdown-menu">
+          <li ng-repeat="item in $ctrl.faqVisibility" ng-click="$ctrl.faq.visibility = item.code">
+            <i class="fa {{item.icon}}"></i>
+            {{item.name}}
+          </li>
+        </ul>
+      </div>
     </div><!--END: Visibility-->
 
     <!--Categories-->
     <div class="faq-category">
       <h4>Publish in category:</h4>
-      <select class="form-control" ng-model="$ctrl.faq.categoryId"
-              ng-options="item.id as item.name for item in $ctrl.categories">
-      </select>
+      <div class="ma-select"
+           uib-dropdown>
+        <div class="dropdown-toggle form-control"
+             uib-dropdown-toggle>
+          <i class="fa fa-angle-down dropdown-angle"></i>
+          {{($ctrl.categories | filter: {id: $ctrl.faq.categoryId})[0].name}}
+        </div>
+
+        <ul class="dropdown-menu">
+          <li ng-repeat="item in $ctrl.categories" ng-click="$ctrl.faq.categoryId = item.id">{{item.name}}</li>
+        </ul>
+      </div>
     </div><!--END: Categories-->
 
     <!--Author-->
     <div class="faq-author">
       <h4>Author:</h4>
-      <select class="form-control" disabled ng-model="$ctrl.faq.author">
-        <option value="{{$ctrl.faq.author}}">
+      <div class="ma-select"
+           uib-dropdown>
+        <div class="dropdown-toggle form-control"
+             uib-dropdown-toggle
+             ng-disabled="true">
+          <i class="fa fa-angle-down dropdown-angle"></i>
           {{$ctrl.faq.author}}
-        </option>
-      </select>
-      <!--<input class="form-control" type="text" ng-disabled="true" ng-model="$ctrl.faq.author">-->
+        </div>
+      </div>
     </div><!--END: Author-->
 
     <!--Language-->
     <div class="faq-language">
       <h4>Language:</h4>
-      <select class="form-control" ng-model="$ctrl.faq.lang"
-              ng-options="item.code as item.name for item in $ctrl.languages">
-      </select>
+      <div class="ma-select"
+           uib-dropdown>
+        <div class="dropdown-toggle form-control"
+             uib-dropdown-toggle>
+          <i class="fa fa-angle-down dropdown-angle"></i>
+          <span class="flag-icon {{($ctrl.languages | filter: {code: $ctrl.faq.lang})[0].icon}}"></span>
+          {{($ctrl.languages | filter: {code: $ctrl.faq.lang})[0].name}}
+        </div>
+
+        <ul class="dropdown-menu">
+          <li ng-repeat="item in $ctrl.languages" ng-click="$ctrl.faq.lang = item.code">
+            <span class="flag-icon {{item.icon}}"></span>
+            {{item.name}}
+          </li>
+        </ul>
+      </div>
     </div><!--END: Language-->
 
     <!--Attachments-->
     <div class="faq-attachment">
       <h4>Attachments:</h4>
-
-      <div class="files" ng-repeat="item in $ctrl.faq.attachments">
-        <a ng-href="{{item.attachment_url}}" target="_blank" class="files-name">{{item.name}}</a>
-      </div>
 
       <div flow-init
            flow-attrs="{accept:'image/*'}"
@@ -125,12 +171,18 @@
            flow-file-added="$ctrl.addedNewFile($file, $event, $flow )"
            class="faq-uploader">
 
-        <button class="button button-primary"
-                flow-btn
-                ng-disapbled="$ctrl.loadingFileFlag"
-                flow-attrs="{accept:'image/*'}">
-          {{$flow.files.length ? 'Add': 'Upload'}} File
+        <button
+            class="upload-button"
+           flow-btn
+           ng-disapbled="$ctrl.loadingFileFlag"
+           flow-attrs="{accept:'image/*'}">
+          <a>Upload attachment (max 20MB)</a>
         </button>
+
+        <div class="files" ng-repeat="item in $ctrl.faq.attachments">
+          <a ng-href="{{item.attachment_url}}" target="_blank" class="files-name">{{item.name}}</a>
+          <i class="fa fa-remove" ng-click="$ctrl.removeOldFile(item, $index)"></i>
+        </div>
 
         <div class="files" ng-repeat="item in $flow.files">
           <div class="files-name">{{item.name}}</div>

@@ -20,6 +20,9 @@ class VisitorArticleController {
     this.ArticleService.getById($state.params.faqId, isAlgoliaObject)
       .then((result) => {
         self.faq = result;
+        if(isAlgoliaObject){
+          self.currentCategoryId = result.categoryId;
+        }
       }, (error) => {
         error.data.errors.forEach((error) => {
           self.toastr.error(error.message);

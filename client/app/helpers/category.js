@@ -43,6 +43,17 @@ function CategoryHelper($rootScope) {
     category.sort_order = +category.sort_order;
     category.old_sort_order = +category.sort_order;
     category.parent_id = +category.parent_id;
+    switch(category.parent_id){
+      case 0:
+        category.type = 'root';
+        break;
+      case 1:
+        category.type = 'category';
+        break;
+      default:
+        category.type = 'subcategory';
+        break;
+    }
 
     if ($rootScope.settings) {
       category.language = $rootScope.settings.languages.find((l) => l.code == category.lang);

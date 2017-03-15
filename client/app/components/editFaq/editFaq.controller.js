@@ -23,6 +23,7 @@ class EditFaqController {
     this.mode = 'create';
     this.loadingFileFlag = true;
     this.filesBase64 = [];
+    this.removedFiles = [];
 
     if ($state.current.name == 'admin.editFaq') {
       this.mode = 'update';
@@ -36,7 +37,7 @@ class EditFaqController {
       resize: false,
       plugins: [
         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-        'searchreplace wordcount visualblocks visualchars code fullscreen',
+        'searchreplace visualblocks visualchars code fullscreen',
         'insertdatetime media nonbreaking save table contextmenu directionality',
         'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
       ],
@@ -88,6 +89,16 @@ class EditFaqController {
         return result
       })
       .then((result) => {
+        if (self.removedFiles.length) {
+          Promise.all(
+            self.removedFiles.map((file) => {
+              return self.FilesService.remove(file.name, file.model, file.model_id);
+            })
+          )
+        }
+        return result
+      })
+      .then((result) => {
         self.$state.go("admin.faq", {'faqId': result.id});
         self.toastr.success(`FAQ ${self.mode}d successfully.`)
       })
@@ -133,6 +144,15 @@ class EditFaqController {
   removeFile(idx, $flow) {
     $flow.files.splice(idx, 1);
     this.filesBase64.splice(idx, 1)
+  }
+
+  removeOldFile(file, index) {
+    this.faq.attachments.splice(index, 1);
+    this.removedFiles.push({
+      name: file.name,
+      model: file.model,
+      model_id: file.model_id
+    })
   }
 
 }

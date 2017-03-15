@@ -1,3 +1,5 @@
+import config, {langIcons, visibilityIcons} from '../config';
+
 function SettingsService($http, $rootScope, $q, SessionService) {
   "ngInject";
   let settings = null;
@@ -24,8 +26,14 @@ function SettingsService($http, $rootScope, $q, SessionService) {
       url: `${SessionService.geApiUrl()}/settings/common`,
     }).then((result) => {
       self.settings = result.data.data;
-      $rootScope.settings = result.data.data;
-      self.deferred.resolve(result.data.data);
+      self.settings.languages.map((lang) => {
+        lang.icon = langIcons[lang.code];
+      });
+      self.settings.faq_visibility.map((vis) => {
+        vis.icon = visibilityIcons[vis.code];
+      });
+      $rootScope.settings = self.settings;
+      self.deferred.resolve(self.settings);
       delete self.deferred;
     });
 

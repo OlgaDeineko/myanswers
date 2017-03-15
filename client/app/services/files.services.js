@@ -31,9 +31,24 @@ function FilesService($http, fileHelper, SessionService) {
     });
   };
 
+  /**
+   * Remove file
+   * @param {string} fileName - filename
+   * @param {string} type - object type (article, category, etc.)
+   * @param {number} objectId
+   */
+  let remove = (fileName, type, objectId) => {
+    return $http({
+      method: 'DELETE',
+      url: `${SessionService.geApiUrl()}/attachments/${type}/${objectId}/${fileName}`,
+    }).then(result => {
+      return result.data.data
+    });
+  };
   return {
     getAll,
     create,
+    remove
   }
 }
 

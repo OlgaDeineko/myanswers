@@ -2,6 +2,19 @@ export const apiUrl = 'myanswers.io/api/v1';
 
 export const defaultSubdomain = 'main';
 
+export const langIcons = {
+  "en": "flag-icon-gb",
+  "nl": "flag-icon-de",
+  "de": "flag-icon-de",
+  "fr": "flag-icon-fr"
+};
+
+export const visibilityIcons = {
+  "public": "fa-unlock-alt",
+  "internal": "fa-building",
+  "private": "fa-lock"
+};
+
 export const aloglia = {
   id: 'I9WKUNVPGV',
   key: '5a6dbbf12e7c8d629d22ec3197fe0186'

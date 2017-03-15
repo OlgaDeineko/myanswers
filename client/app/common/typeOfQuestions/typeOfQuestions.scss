@@ -7,12 +7,16 @@
     border: none;
     background: none;
     color: $greyTextColor;
+    font-size: $fontSize;
+    font-weight: normal;
 
     &:hover{
       background-color: rgba(#000, 0.1);
     }
 
     .badge{
+      font-size: $fontSize;
+      font-weight: normal;
       background: none;
       color: inherit;
     }

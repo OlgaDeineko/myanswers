@@ -44,6 +44,7 @@ import 'angular-toastr';
 import 'angular-toastr/dist/angular-toastr.min.css';
 import './styles/font-awesome-4.7.0/css/font-awesome.min.css';
 import 'ng-flow/dist/ng-flow-standalone';
+import 'flag-icon-css/css/flag-icon.min.css';
 
 import 'angular-drag-and-drop-lists';
 

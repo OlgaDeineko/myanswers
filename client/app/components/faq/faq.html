@@ -1,5 +1,5 @@
 <navbar></navbar>
-<div class="content-wrapper faq">
+<div class="content-wrapper faq faq-view">
 
   <div class="col-md-2"></div>
 
@@ -20,18 +20,6 @@
       </p>
     </div><!--END: Counts word-->
 
-    <!--Copy To Clipboard-->
-    <div class="container-fluid">
-      <button class="button button-primary pull-right faq-copy"
-              clipboard
-              uib-tooltip="Copy to clipboard"
-              tooltip-placement="up"
-              text="$ctrl.faq.answerWithoutTags"
-              ng-click="$ctrl.copyToClipboard()">
-        <i class="fa fa-clipboard"></i>
-      </button>
-    </div><!--END: Copy To Clipboard-->
-
     <!--Question-->
     <div class="faq-question">
       <h2>{{$ctrl.faq.question}}</h2>
@@ -45,7 +33,7 @@
 
     <!--Remarks-->
     <div class="faq-remarks" ng-if="$ctrl.faq.remarks">
-      <h4>Internal Comment:</h4>
+      <h4>Internal comment:</h4>
       <div class="one-remark">
         {{$ctrl.faq.remarks}}
       </div>
@@ -74,7 +62,7 @@
     <!--Visibility-->
     <div class="faq-visibility" ng-if="$ctrl.faq.visibility">
       <h4>Visibility:</h4>
-      <div>{{$ctrl.faq.visibility}}</div>
+      <div class="text-capitalize">{{$ctrl.faq.visibility}}</div>
     </div><!--END: Visibility-->
 
     <!--Author-->

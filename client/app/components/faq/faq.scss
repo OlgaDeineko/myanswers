@@ -5,6 +5,9 @@
   .mce-btn {
     background: none;
   }
+  .mce-tinymce.mce-container.mce-panel{
+    border: none !important;
+  }
 
   tags-input {
     .tags {
@@ -115,7 +118,7 @@
         .form-control,
         h2 {
           border: none;
-          font-size: 50px;
+          font-size: 4rem;
           height: auto;
           box-shadow: none;
           padding: 0;
@@ -133,9 +136,8 @@
 
       &-remarks {
         .one-remark {
-          margin-top: 20px;
           padding: 20px 10px;
-          background: $tagsBgColor;
+          background: $lightTextColor;
           border-radius: 4px;
         }
       }
@@ -173,9 +175,9 @@
       &-attachment{
         .files {
           position: relative;
-          font-size: 1.6rem;
           margin: 10px 0;
           color: inherit;
+          overflow: hidden;
 
           .files-name {
             white-space: nowrap;
@@ -183,6 +185,7 @@
             text-overflow: ellipsis;
             -webkit-line-clamp: 1;
             margin-right: 20px;
+            display: block;
             //color: $primaryColor;
           }
 
@@ -193,6 +196,13 @@
             margin: 2px;
             cursor: pointer;
           }
+        }
+        .upload-button{
+          border: none;
+          background: none;
+          box-shadow: none;
+          outline: none;
+          padding: 0;
         }
       }
     }
@@ -205,6 +215,12 @@
   & &-left-sidebar {
     padding-bottom: 20px;
     padding-top: 20px;
+  }
+
+  &.faq-view {
+    .faq-remarks {
+      margin-top: 40px;
+    }
   }
 
   textarea {

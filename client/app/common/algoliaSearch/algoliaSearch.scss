@@ -5,7 +5,7 @@ $lines: 5;
 $fontSize: 14;
 
 .algolia {
-  padding: 10px;
+  padding: 0 10px;
   border-radius: 4px;
   margin-top: 25px;
 
@@ -19,7 +19,7 @@ $fontSize: 14;
     h3 {
       color: $primaryColor;
       margin: 10px 0;
-      font-size: 30px;
+      font-size: 2rem;
       display: inline-block;
     }
   }
@@ -38,12 +38,13 @@ $fontSize: 14;
   }
 
   &-answer {
-    font-size: $fontSize+px;
+    font-size: 16px;
     display: block;
     display: -webkit-box;
-    height: $fontSize*$lineHeight*$lines+5+px;
-    line-height: $lineHeight;
-    -webkit-line-clamp: $lines;
+    height: auto;
+    //height: $fontSize*$lineHeight*$lines+5+px;
+    //line-height: $lineHeight;
+    //-webkit-line-clamp: $lines;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -32,14 +32,14 @@
     <button class="icon-button"
             ng-click="$ctrl.edit($ctrl.item.id)"
             tooltip-placement="up"
-            uib-tooltip="Edit {{$ctrl.type}}">
+            uib-tooltip="Edit {{$ctrl.type == 'faq' ? ($ctrl.type | uppercase) : $ctrl.type}}">
       <i class="fa fa-pencil" aria-hidden="true"></i>
     </button>
 
     <button class="icon-button"
             ng-click="$ctrl.remove($ctrl.item.id)"
             tooltip-placement="up"
-            uib-tooltip="Remove {{$ctrl.type}}">
+            uib-tooltip="Remove {{$ctrl.type == 'faq' ? ($ctrl.type | uppercase) : $ctrl.type}}">
       <i class="fa fa-trash" aria-hidden="true"></i>
     </button>
   </div>

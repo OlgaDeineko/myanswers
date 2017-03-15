@@ -18,12 +18,28 @@
     cursor: pointer;
 
     a {
-      color: inherit;
+      color: $navbarColor;
       display: block;
-      padding: $navbar-width/4;
-      font-size: $navbar-width/2;
+      padding: 20px 3px;
+      font-size: ($navbar-width*3)/4;
       line-height: 1;
+
+      &.active{
+        color: white;
+        background-color: $navbarActive;
+
+        &:hover{
+          color: white;
+          background: none;
+        }
+      }
+
+      &:hover{
+        color: white;
+        background: none;
+      }
     }
+
     &.logout{
       position: absolute;
       bottom: 0;

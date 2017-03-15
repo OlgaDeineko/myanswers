@@ -6,7 +6,7 @@
   width: 100%;
 
   &:hover {
-    background-color: rgba(#000, 0.1);
+    background-color: $lightTextColor;
 
     .tree-item-actions {
       visibility: visible;
@@ -50,6 +50,9 @@
     display: table-cell;
     width: $iconButtonsSize*2+10;
     visibility: hidden;
+    .icon-button{
+      font-size: 1.5rem;
+    }
   }
 
   &-type-category{

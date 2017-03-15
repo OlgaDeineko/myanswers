@@ -5,7 +5,7 @@
         <a ui-sref="visitorArticleAlgolia({faqId: item.objectID})"
            ng-bind-html="item._highlightResult.question.value"></a>
       </h3>
-      in category: <span class="algolia-category" ng-bind-html="item._highlightResult.categories[0].value"></span>
+      in <span class="algolia-category" ng-bind-html="item._highlightResult.categories[0].value"></span>
     </div>
 
     <div class="algolia-tags">

@@ -91,6 +91,8 @@ function FaqHelper($rootScope) {
 
     //counting words and character in article answer
     faq.answerWithoutTags = String(faq.answer).replace(/<[^>]+>/gm, ' ');
+    faq.answerWithoutTags = faq.answerWithoutTags.replace(/\s{2,}/g, ' ');
+    faq.answerWithoutTags = faq.answerWithoutTags.replace(/^\s+|\s+$/g, '');
     faq.countWords = faq.answerWithoutTags.trim().split(/\s+/).length;
     faq.countChars = (faq.answerWithoutTags.match(/\S/g)).length;
 

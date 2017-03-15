@@ -9,7 +9,7 @@
     &-question{
       h2 {
         border: none;
-        font-size: 50px;
+        font-size: 3rem;
         height: auto;
         box-shadow: none;
         padding: 0;
@@ -52,10 +52,12 @@
 
     &-remarks {
       margin-top: 40px;
+      h4 {
+        margin-top: 40px;
+      }
       .one-remark {
-        margin-top: 20px;
         padding: 20px 10px;
-        background: $tagsBgColor;
+        background: $lightTextColor;
         border-radius: 4px;
       }
     }
