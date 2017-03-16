@@ -90,7 +90,7 @@ class RegistrationController {
 
   moteToLogin() {
     if (this.isCreated) {
-      this.$window.location.href = `http://${self.isCreated}.${mainDomain}/login`;
+      this.$window.location.href = `http://${this.isCreated}.${mainDomain}/login`;
     } else {
       this.$state.go("chooseSubdomain");
     }
