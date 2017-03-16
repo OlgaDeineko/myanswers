@@ -117,7 +117,7 @@
         <div class="dropdown-toggle form-control"
              uib-dropdown-toggle>
           <i class="fa fa-angle-down dropdown-angle"></i>
-          {{($ctrl.categories | filter: {id: $ctrl.faq.categoryId})[0].name}}
+          {{($ctrl.categories | filter: {id: $ctrl.faq.categoryId}:true)[0].name}}
         </div>
 
         <ul class="dropdown-menu">
