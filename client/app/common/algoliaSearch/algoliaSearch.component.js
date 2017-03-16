@@ -5,7 +5,8 @@ import './algoliaSearch.scss';
 let algoliaSearchComponent = {
   restrict: 'E',
   bindings: {
-    searchModel: '='
+    searchModel: '=',
+    category: '='
   },
   template,
   controller

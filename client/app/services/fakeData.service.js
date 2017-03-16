@@ -117,7 +117,7 @@ function FakeDataService() {
         {
           "id": "1",
           "parent_id": "0",
-          "name": "Uncategorized",
+          "name": "Root",
           "sort_order": "0",
           "lang": "en",
           "author": 'Oleg Skiba',

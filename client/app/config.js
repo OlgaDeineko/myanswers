@@ -15,7 +15,7 @@ export const visibilityIcons = {
   "private": "fa-lock"
 };
 
-export const aloglia = {
+export const algolia = {
   id: 'I9WKUNVPGV',
   key: '5a6dbbf12e7c8d629d22ec3197fe0186'
 };
