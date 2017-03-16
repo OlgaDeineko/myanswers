@@ -29,6 +29,32 @@ class EditFaqController {
       this.mode = 'update';
     }
 
+    let uploadFileForTinimce = (callback, value, meta) => {
+      if (meta.filetype == 'image') {
+        $('#tinymceUploader').trigger('click');
+        $('#tinymceUploader').on('change', function() {
+          let file = this.files[0];
+          if (!/\.(jpeg|jpg|png)$/.test(file.name)) {
+            self.toastr.error("File must be image jpeg, *.jpg, *.png))");
+            $('#tinymceUploader').unbind('change');
+            return false;
+          }
+          let reader = new FileReader();
+          let fileName = `${Math.random().toString(36).substring(2)}${file.name.match(/.*(\.\w{3,4})$/)[1]}`;
+          reader.onload = (event) => {
+            self.FilesService.create([{name: fileName, base64: event.target.result}], 'faq_editor', '0')
+              .then((result) => {
+                callback(result.attachment_url, {
+                  alt: ''
+                });
+                $('#tinymceUploader').unbind('change')
+              });
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+    };
+
     // configs for tinyMCE editor @see https://www.tinymce.com/docs/
     this.tinymceOptions = {
       themes: "modern",
@@ -44,6 +70,9 @@ class EditFaqController {
       toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
       toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
       image_advtab: true,
+
+      paste_data_images: true,
+      file_picker_callback: uploadFileForTinimce
     };
 
     //state can be in two states: createFaq or editFaq. for create - empty object, for edit - grab from server
@@ -53,11 +82,6 @@ class EditFaqController {
       this.ArticleService.getById($state.params.faqId)
         .then((result) => {
           self.faq = result;
-        }, (error) => {
-          error.data.errors.forEach((error) => {
-            self.toastr.error(error.message);
-            self.$state.go('admin.category');
-          });
         })
     }
 
@@ -154,7 +178,6 @@ class EditFaqController {
       model_id: file.model_id
     })
   }
-
 }
 
 export default EditFaqController;

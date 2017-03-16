@@ -34,7 +34,8 @@ function FileHelper() {
    * @returns {File}
    */
   let responseToData = (file) => {
-    file.name = file.attachment_url.match(/.*\/faq\/\d+\/(.*)$/)[1];
+    let reg = new RegExp(`.*\\\/${file.model}\/\\d+\/(.*)$`);
+    file.name = file.attachment_url.match(reg)[1];
     return file;
   };
 

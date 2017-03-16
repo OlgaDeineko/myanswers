@@ -94,7 +94,7 @@ function FaqHelper($rootScope) {
     faq.answerWithoutTags = faq.answerWithoutTags.replace(/\s{2,}/g, ' ');
     faq.answerWithoutTags = faq.answerWithoutTags.replace(/^\s+|\s+$/g, '');
     faq.countWords = faq.answerWithoutTags.trim().split(/\s+/).length;
-    faq.countChars = (faq.answerWithoutTags.match(/\S/g)).length;
+    faq.countChars = (faq.answerWithoutTags.match(/\S/g) || []).length;
 
     //@see http://marketingland.com/estimated-reading-times-increase-engagement-79830
     let time = (faq.countWords / 200 + "").split('.');
