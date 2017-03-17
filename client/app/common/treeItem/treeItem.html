@@ -38,6 +38,7 @@
 
     <button class="icon-button"
             ng-click="$ctrl.remove($ctrl.item.id)"
+            ng-disabled="$ctrl.item.status == 'trash'"
             tooltip-placement="up"
             uib-tooltip="Remove {{$ctrl.type == 'faq' ? ($ctrl.type | uppercase) : $ctrl.type}}">
       <i class="fa fa-trash" aria-hidden="true"></i>

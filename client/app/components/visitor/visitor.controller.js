@@ -43,8 +43,10 @@ class VisitorController {
 
       let id = self.currentCategory;
       self.categoryForAlgolia = '';
+      self.categoriesArray = [];
       while (id != 0) {
         let category = categories.find((c) => c.id == id);
+        self.categoriesArray.unshift(category.name);
         if(category.parent_id == 0){
           self.categoryForAlgolia = `${category.name}${self.categoryForAlgolia}`;
         }else{
@@ -55,7 +57,12 @@ class VisitorController {
 
       self.tree = self.categoryHelper.buildTree(articles, categories, self.currentCategory);
 
-      self.getArticles(self, self.categoryForAlgolia.match(/Root(\s>\s\w*)?/)[0])
+      if(self.categoriesArray.length == 1){
+        self.getArticles(self, self.categoriesArray[0]);
+      }else{
+        self.getArticles(self, `${self.categoriesArray[0]} > ${self.categoriesArray[1]}`);
+      }
+
 
       self.$scope.$apply();
     })

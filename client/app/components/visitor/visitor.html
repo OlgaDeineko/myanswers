@@ -68,7 +68,7 @@
     </div>
 
     <div class="col-md-3 visitor-last-created" ng-if="$ctrl.articles.length">
-      <h2>Most Viewed FAQ:</h2>
+      <h2>Most viewed FAQs within {{$ctrl.categoriesArray.length == 1 ? $ctrl.categoriesArray[0] : $ctrl.categoriesArray[1]}}:</h2>
       <div class="visitor-last-created-item" ng-repeat="item in $ctrl.articles | orderBy: '-hits_count' | limitTo: 10">
         <a ui-sref="visitorArticleAlgolia({faqId: item.objectID})">
           <i class="fa fa-question-circle"></i>
