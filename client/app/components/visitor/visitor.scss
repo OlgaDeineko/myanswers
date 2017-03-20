@@ -42,8 +42,6 @@
         padding: 15px;
         cursor: pointer;
         font-size: 22px;
-        float: left;
-        width: 50%;
         a {
           display: block;
         }
@@ -52,7 +50,13 @@
           background-color: rgba($primaryColor, 0.6);
           color: white;
         }
+        &.item-column{
+          float: left;
+          width: 50%;
+        }
       }
+
+
     }
 
     &-last-created {

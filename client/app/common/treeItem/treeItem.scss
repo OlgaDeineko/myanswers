@@ -8,8 +8,19 @@
   &:hover {
     background-color: $lightTextColor;
 
-    .tree-item-actions {
+    .tree-item-actions,
+    .tree-item-drag {
       visibility: visible;
+    }
+  }
+
+  &-drag {
+    width: 25px;
+    display: table-cell;
+    color: $iconButtonsColor;
+    visibility: hidden;
+    i{
+      cursor: move;
     }
   }
 

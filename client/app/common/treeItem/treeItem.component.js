@@ -6,6 +6,7 @@ let treeItemComponent = {
   restrict: 'EA',
   bindings: {
     type: "=",
+    dragIcon: "=",
     item: "="
   },
   template,

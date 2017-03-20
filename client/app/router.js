@@ -55,7 +55,7 @@ let routerModule = angular.module('routing', [
         data: {
           permissions: {
             only: 'any',
-            redirectTo: 'category'
+            redirectTo: 'admin.category'
           }
         }
       })
@@ -161,8 +161,8 @@ let routerModule = angular.module('routing', [
         component: 'users',
         data: {
           permissions: {
-            only: ['user', 'admin', 'superAdmin'],
-            redirectTo: 'category'
+            only: ['admin', 'superAdmin'],
+            redirectTo: 'admin.category'
           }
         }
       })

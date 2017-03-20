@@ -20,8 +20,8 @@
     a {
       color: $navbarColor;
       display: block;
-      padding: 20px 3px;
-      font-size: ($navbar-width*3)/4;
+      padding: $navbar-width/4;
+      font-size: $navbar-width/2;
       line-height: 1;
 
       &.active{

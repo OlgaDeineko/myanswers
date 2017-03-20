@@ -4,7 +4,7 @@ export const defaultSubdomain = 'main';
 
 export const langIcons = {
   "en": "flag-icon-gb",
-  "nl": "flag-icon-de",
+  "nl": "flag-icon-nl",
   "de": "flag-icon-de",
   "fr": "flag-icon-fr"
 };
