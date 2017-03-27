@@ -44,7 +44,7 @@ class EditFaqController {
           reader.onload = (event) => {
             self.FilesService.create([{name: fileName, base64: event.target.result}], 'faq_editor', '0')
               .then((result) => {
-                callback(result.attachment_url, {
+                callback(result[0].attachment_url, {
                   alt: ''
                 });
                 $('#tinymceUploader').unbind('change')

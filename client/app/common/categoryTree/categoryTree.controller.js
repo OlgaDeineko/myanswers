@@ -49,9 +49,9 @@ class CategoryTreeController {
 
     this.language = {"code": "en", "name": "English"};
     this.sort = {
-      name: 'Custom',
-      cat: '',
-      faq: ''
+      name: 'Name[A-Z]',
+      cat: 'name',
+      faq: 'question'
     };
 
     Promise.all([
@@ -67,7 +67,8 @@ class CategoryTreeController {
   }
 
   getCategories() {
-    if(this.categories && this.categories.parent_id != 1 && this.searchModel.length && this.$state.current.name != 'admin.faqCategories') {
+    if(!this.categories) return;
+    if(this.categories.parent_id != 1 && this.searchModel.length && this.$state.current.name != 'admin.faqCategories') {
       let cat = this.$filter(this.allCategories, {name: this.searchModel}) || [];
       this.countC = cat.length;
       return cat
@@ -79,7 +80,8 @@ class CategoryTreeController {
   }
 
   getArticles() {
-    if(this.categories && this.categories.parent_id != 1 && this.searchModel.length && this.$state.current.name != 'admin.faqCategories') {
+    if(!this.categories) return;
+    if(this.categories.parent_id != 1 && this.searchModel.length && this.$state.current.name != 'admin.faqCategories') {
       let art = this.$filter(this.allArticles, {question: this.searchModel}) || [];
       this.countA = art.length;
       return art

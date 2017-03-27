@@ -27,7 +27,7 @@ function FilesService($http, fileHelper, SessionService) {
       url: `${SessionService.geApiUrl()}/attachments/${type}/${objectId}`,
       data: {files: files.map(fileHelper.dataToRequest)}
     }).then((result) => {
-      return fileHelper.responseToData(result.data.data);
+      return result.data.data.map(fileHelper.responseToData);
     });
   };
 
