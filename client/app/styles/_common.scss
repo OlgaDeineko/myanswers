@@ -55,6 +55,19 @@
   }
 }
 
+.coming-soon{
+  border-radius: 10px;
+  background: #ffaa00;
+  color: black;
+  margin: 0 10px;
+  padding: 2px 10px;
+  font-weight: normal;
+  font-size: 1.2rem;
+  &:after{
+    content: 'Coming soon';
+  }
+}
+
 //buttons
 .button {
   text-align: center;
