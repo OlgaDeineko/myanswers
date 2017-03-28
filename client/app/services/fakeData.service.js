@@ -30,7 +30,7 @@ function FakeDataService() {
         {
           "id": "2",
           "question": "fdhdfhfd",
-          "answer": "<p>hfdhfgh</p>",
+          "answer": "Einen Moment bitte. Ich schau mal kurz nach.\n\nSuchen Sie eine bestimmte Lagerhalle?\n\nBij alle producten: Welche Maße brauchen Sie?\nBij Lagerzelte ook: Aus welchem Material soll die Plane bestehen? PVC oder PE?\n\nAuf welchen Untergrund möchten Sie die Halle stellen?\n\n\n\nMöchten Sie ein unverbindliches Angebot empfangen?\nDanke. Darf ich bitte Ihre Kontaktdaten notieren, so daß mein Kollege mit Ihnen Kontakt aufnehmen kann?\n\nDanke. Darf ich bitte Ihre Kontaktdaten notieren, so daß mein Kollege Ihnen ein unverbindliches Angebot schicken kann?\n\nIch möchte auch gern Ihre Telefonnummer und E-Mail-Adresse notieren.\n\nIch hätte auch gerne Ihren Namen, den Firmennamen, die PLZ und Telefonnummer.\n\nDann hätte ich gerne Ihren Namen, den Firmennamen, die PLZ, Telefonnummer und E-Mail-Adresse.\n\nDanke schön! Wie ist der Firmenname?\n\nDann hätte ich auch noch gerne Ihren eigenen Namen.\n\nWie ist Ihr Name?\n\nUnd wie ist Ihr eigener Name?\n\nWie lautet Ihre PLZ? [PLZ is postcode in het Duits]\n\nDann hätte ich gerne Ihren Firmennamen und die PLZ.\n\nVielen Dank. Mein Kollege wird Sie innerhalb von 2 Werktagen kontaktieren.\n\nHaben Sie noch weitere Fragen?\n\nIch wünsche Ihnen einen schönen Tag/Abend!\n\nIch wünsche Ihnen ein schönes Wochenende!\n\nWenn Sie keine weiteren Fragen haben, beende ich diesen Chat.\n\nJa, schauen Sie sich in aller Ruhe um.\n\nWenn Sie Preisinformationen brauchen, dann helfe ich Ihnen gerne weiter.\n\nWenn Sie unverbindliche Preisinformationen brauchen, dann können Sie sich gerne wieder bei mir melden.\n\nFalls Sie später noch Fragen haben, zögern Sie nicht um mit uns über den Chat in Kontakt zu treten. Wir sind täglich bis 23 Uhr online.Sollten Sie später doch noch eine Frage haben, wir sind hier täglich von 7.00 - 23.00 Uhr über den Chat zu erreichen.\n\nDas weiß ich nicht. Ich werde meinen Kollegen fragen. Darf ich bitte Ihre Kontaktdaten notieren? Er wird Sie dann kontaktieren.\n\nDie Frage kann ich Ihnen leider nicht beantworten. Ich kann es aber gerne für Sie nachfragen. Dürfte ich Ihre Kontaktdaten notieren? Mein Kollege wird sich dann mit Ihnen in Verbindung setzen.\n\nGern geschehen!\n\nKeine Ursache!\n\nWünschen Sie ein Angebot inkl. Transportkosten?\n\nMöchten Sie ein Angebot inkl. Transport- und Montagekosten erhalten?\n\nBauen Sie die Lagerhalle selbst auf?\n\nWollen Sie die Lagerhalle selbst aufbauen, oder sollen wir Ihnen auch ein Angebot machen für die Montagekosten?\n\nWie wollen Sie die Lagerhalle am Boden befestigen? Mit Erdnägeln oder mit Betonankern?\n\n(Wenn Kunde es nicht weiß)\nAuf welchen Untergrund wollen Sie die Lagerhalle stellen?\n\nFundament = Betonanker\n\nSchotter, Asphalt oder Pflastersteine, zeitlich begrenzter Aufbau, Fliegender Bau = Erdnägel",
           "slug": "fdhdfhfd",
           "visibility": 'public',
           "is_open_comments": "1",
@@ -320,14 +320,14 @@ function FakeDataService() {
         ]
       },
       domains: {
-          "subdomains": [
-            {"code": "annatest", "name": "annatest"},
-            {"code": "skiba", "name": "skiba"},
-            {"code": "skiba2", "name": "skiba2"},
-            {"code": "annam", "name": "annam"},
-            {"code": "max-oni", "name": "max-oni"},
-            {"code": "anna1", "name": "anna1"}]
-        }
+        "subdomains": [
+          {"code": "annatest", "name": "annatest"},
+          {"code": "skiba", "name": "skiba"},
+          {"code": "skiba2", "name": "skiba2"},
+          {"code": "annam", "name": "annam"},
+          {"code": "max-oni", "name": "max-oni"},
+          {"code": "anna1", "name": "anna1"}]
+      }
     };
     console.info('getLocalData', url);
 

@@ -89,6 +89,9 @@ function FaqHelper($rootScope) {
       faq.language = $rootScope.settings.languages.find((l) => l.code == faq.lang);
     }
 
+    //replace all new line symbol to <br>
+    faq.answer = String(faq.answer).replace(/(\r\n|\n)/g, '<br>');
+
     //counting words and character in article answer
     faq.answerWithoutTags = String(faq.answer).replace(/<[^>]+>/gm, ' ');
     faq.answerWithoutTags = faq.answerWithoutTags.replace(/\s{2,}/g, ' ');
