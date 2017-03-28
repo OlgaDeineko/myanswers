@@ -25,8 +25,7 @@ category-tree{
         padding: 10px 5px;
       }
 
-      &-update{
-        width: $teeUpdatedWidth;
+      .select{
         position: relative;
         cursor: pointer;
         i{
@@ -37,19 +36,14 @@ category-tree{
         &:hover{
           background-color: rgba(#000, 0.1);
         }
+
+      }
+
+      &-update{
+        width: $teeUpdatedWidth;
       }
       &-lang{
         width: $teeLangWidth;
-        position: relative;
-        cursor: pointer;
-        i{
-          margin-top: 2px;
-          margin-right: 5px;
-        }
-
-        &:hover{
-          background-color: rgba(#000, 0.1);
-        }
       }
 
       &-author{

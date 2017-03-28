@@ -1,5 +1,5 @@
 class CategoryTreeController {
-  constructor($rootScope, CategoryService, ArticleService, $filter, $state) {
+  constructor(CategoryService, ArticleService, $filter, $state) {
     'ngInject';
 
     this.name = 'categoryTree';
@@ -45,9 +45,7 @@ class CategoryTreeController {
         faq: '-updated_at'
       },
     ];
-    this.languages = $rootScope.settings.languages;
 
-    this.language = {"code": "en", "name": "English"};
     this.sort = {
       name: 'Name[A-Z]',
       cat: 'name',
@@ -60,8 +58,7 @@ class CategoryTreeController {
     ]).then((result) => {
       self.allCategories = result[0].filter((category) => category.parent_id != 0);
       self.allArticles = result[1].filter((article) => article.status != 'trash');
-    })
-
+    });
 
     this.searchModel = "";
   }

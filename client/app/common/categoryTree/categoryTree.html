@@ -9,18 +9,16 @@
 <!-- tree header -->
 <div class="tree-header">
   <div class="tree-header-title" ng-if="!$ctrl.searchModel.length && $ctrl.sort.name == 'Custom'">
-    {{($ctrl.categories.categories | filter:{lang: $ctrl.language.code}).length +
-    ($ctrl.categories.articles | filter:{lang: $ctrl.language.code}).length}}
+    {{$ctrl.categories.categories.length + $ctrl.categories.articles.length}}
     result{{($ctrl.categories.categories.length + $ctrl.categories.articles.length)>1 ? 's' : ''}}
   </div>
-
 
   <div class="tree-header-title" ng-if="$ctrl.searchModel.length || $ctrl.sort.name != 'Custom'">
     {{$ctrl.countC + $ctrl.countA}}
     result{{($ctrl.countC + $ctrl.countA)>1 ? 's' : ''}}
   </div>
 
-  <div class="tree-header-update">
+  <div class="tree-header-update select">
     <div class="dropdown-toggle"
          data-toggle="dropdown">
       <i class="fa fa-angle-down pull-right"></i>
@@ -33,22 +31,12 @@
   </div>
 
   <div class="tree-header-lang">
-    <div class="dropdown-toggle"
-         data-toggle="dropdown">
-      <i class="fa fa-angle-down pull-right"></i>
-      Language: <span class="sort">{{$ctrl.language.name}}</span>
-    </div>
-
-    <ul class="dropdown-menu">
-      <li ng-repeat="item in $ctrl.languages" ng-click="$ctrl.language = item">{{item.name}}</li>
-    </ul>
+    Language
   </div>
-
   <div class="tree-header-author">
     Author
   </div>
-  <div class="tree-header-actions">
-  </div>
+  <div class="tree-header-actions"></div>
 </div> <!--END: tree header-->
 
 <!--tree-->
@@ -58,10 +46,9 @@
     <!--categories-->
     <div ng-repeat="item in $ctrl.categories.categories | filter:{name: $ctrl.searchModel} | orderBy: $ctrl.sort.cat"
 
-         ng-hide="item.lang != $ctrl.language.code"
          dnd-draggable="item"
          dnd-effect-allowed="move"
-    dnd-moved="$ctrl.moved($index, item)">
+         dnd-moved="$ctrl.moved($index, item)">
       <!--dnd-moved="$ctrl.categories.categories.splice($index, 1)">-->
 
       <tree-item item="item" type="'category'" drag-icon="true"></tree-item>
@@ -74,8 +61,7 @@
     </div>
   </div>
   <!--articles-->
-  <div ng-hide="article.lang != $ctrl.language.code"
-       ng-repeat="article in $ctrl.categories.articles | filter:{question: $ctrl.searchModel} | orderBy: $ctrl.sort.faq">
+  <div ng-repeat="article in $ctrl.categories.articles | filter:{question: $ctrl.searchModel} | orderBy: $ctrl.sort.faq">
     <div>
       <tree-item
           item="article"
@@ -92,8 +78,7 @@
 
   <div>
     <!--categories-->
-    <div ng-repeat="item in $ctrl.getCategories()  | orderBy: $ctrl.sort.cat"
-         ng-hide="item.lang != $ctrl.language.code">
+    <div ng-repeat="item in $ctrl.getCategories()  | orderBy: $ctrl.sort.cat">
 
       <tree-item item="item" type="'category'"></tree-item>
 
@@ -105,8 +90,7 @@
     </div>
   </div>
   <!--articles-->
-  <div ng-hide="article.lang != $ctrl.language.code"
-       ng-repeat="article in $ctrl.getArticles() | orderBy: $ctrl.sort.faq">
+  <div ng-repeat="article in $ctrl.getArticles() | orderBy: $ctrl.sort.faq">
     <div>
       <tree-item
           item="article"

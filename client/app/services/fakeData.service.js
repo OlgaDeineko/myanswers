@@ -26,7 +26,8 @@ function FakeDataService() {
           "tags": [{"tag_id": "1", "name": "test"}, {"tag_id": "2", "name": "new tag"},],
           "remarks": "internal comment",
           "hits_count": 13,
-        }, {
+        },
+        {
           "id": "2",
           "question": "fdhdfhfd",
           "answer": "<p>hfdhfgh</p>",
@@ -43,7 +44,8 @@ function FakeDataService() {
           "tags": [],
           "remarks": "internal comment",
           "hits_count": 547,
-        }, {
+        },
+        {
           "id": "3",
           "question": "wwwwwwwwww",
           "answer": "<p>sdgdfgdgsdg</p>",
@@ -60,7 +62,8 @@ function FakeDataService() {
           "tags": [],
           "remarks": "internal comment",
           "hits_count": 676,
-        }, {
+        },
+        {
           "id": "4",
           "question": "sdfsdf",
           "answer": "<p>sdfsdfsd</p>",
@@ -77,7 +80,8 @@ function FakeDataService() {
           "tags": [],
           "remarks": "internal comment",
           "hits_count": 11,
-        }, {
+        },
+        {
           "id": "5",
           "question": "cat2",
           "answer": "<p>dfgdsfg</p>",
@@ -94,7 +98,8 @@ function FakeDataService() {
           "tags": [],
           "remarks": "internal comment",
           "hits_count": 0,
-        }, {
+        },
+        {
           "id": "6",
           "question": "test new",
           "answer": "<p>dfsdgsdfgsdfg sfdgsdf&nbsp;</p>",
