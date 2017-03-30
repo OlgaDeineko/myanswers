@@ -5,11 +5,11 @@
         <a ui-sref="visitorArticleAlgolia({faqId: item.objectID})"
            ng-bind-html="item._highlightResult.question.value"></a>
       </h3>
-      in <span class="algolia-category"  ng-bind-html="item._highlightResult.hierarchicalCategories.lvl2.value ?
-      item._highlightResult.hierarchicalCategories.lvl2.value :
-      item._highlightResult.hierarchicalCategories.lvl1.value ?
-      item._highlightResult.hierarchicalCategories.lvl1.value :
-      item._highlightResult.hierarchicalCategories.lvl0.value">
+      in <span class="algolia-category"  ng-bind-html="item.hierarchicalCategories.lvl2 ?
+      item.hierarchicalCategories.lvl2 :
+      item.hierarchicalCategories.lvl1 ?
+      item.hierarchicalCategories.lvl1 :
+      item.hierarchicalCategories.lvl0">
     </span>
     </div>
 
