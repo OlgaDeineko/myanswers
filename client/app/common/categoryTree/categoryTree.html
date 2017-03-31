@@ -8,14 +8,9 @@
 
 <!-- tree header -->
 <div class="tree-header">
-  <div class="tree-header-title" ng-if="!$ctrl.searchModel.length && $ctrl.sort.name == 'Custom'">
-    {{$ctrl.categories.categories.length + $ctrl.categories.articles.length}}
-    result{{($ctrl.categories.categories.length + $ctrl.categories.articles.length)>1 ? 's' : ''}}
-  </div>
-
-  <div class="tree-header-title" ng-if="$ctrl.searchModel.length || $ctrl.sort.name != 'Custom'">
-    {{$ctrl.countC + $ctrl.countA}}
-    result{{($ctrl.countC + $ctrl.countA)>1 ? 's' : ''}}
+  <div class="tree-header-title">
+    {{filteredCategories.length + filteredArticles.length}}
+    result{{(filteredCategories.length + filteredArticles.length)>1 ? 's' : ''}}
   </div>
 
   <div class="tree-header-update select">
@@ -40,18 +35,18 @@
 </div> <!--END: tree header-->
 
 <!--tree-->
-<div class="tree" ng-if="!$ctrl.searchModel.length && $ctrl.sort.name == 'Custom'">
-
-  <div dnd-list="$ctrl.categories.categories">
-    <!--categories-->
-    <div ng-repeat="item in $ctrl.categories.categories | filter:{name: $ctrl.searchModel} | orderBy: $ctrl.sort.cat"
+<div class="tree" ng-if="!$ctrl.searchModel.length && $ctrl.tree !== null">
+  <!--categories-->
+  <div dnd-list="$ctrl.tree.categories">
+    <div ng-repeat="item in $parent.filteredCategories = ($ctrl.tree.categories | orderBy: $ctrl.sort.cat)"
 
          dnd-draggable="item"
          dnd-effect-allowed="move"
+         dnd-dragstart="$ctrl.dragStart(item)"
          dnd-moved="$ctrl.moved($index, item)">
-      <!--dnd-moved="$ctrl.categories.categories.splice($index, 1)">-->
+      <!--dnd-moved="$ctrl.tree.categories.splice($index, 1)">-->
 
-      <tree-item item="item" type="'category'" drag-icon="true"></tree-item>
+      <tree-item item="item" type="'category'" drag-icon="$ctrl.sort.name == 'Custom'"></tree-item>
 
       <div class="tree-row"
            ng-if="item.expanded"
@@ -61,7 +56,7 @@
     </div>
   </div>
   <!--articles-->
-  <div ng-repeat="article in $ctrl.categories.articles | filter:{question: $ctrl.searchModel} | orderBy: $ctrl.sort.faq">
+  <div ng-repeat="article in $parent.filteredArticles = ($ctrl.tree.articles | orderBy: $ctrl.sort.faq)">
     <div>
       <tree-item
           item="article"
@@ -69,16 +64,13 @@
       </tree-item>
     </div>
   </div>
-
 </div><!--END:tree-->
 
-
-<!--tree-->
-<div class="tree" ng-if="$ctrl.searchModel.length || $ctrl.sort.name != 'Custom'">
-
-  <div>
-    <!--categories-->
-    <div ng-repeat="item in $ctrl.getCategories()  | orderBy: $ctrl.sort.cat">
+<!--tree search result-->
+<div class="tree" ng-if="$ctrl.searchModel.length || $ctrl.tree === null">
+  <!--categories-->
+  <div ng-if="$ctrl.tree !== null">
+    <div ng-repeat="item in $parent.filteredCategories = ($ctrl.allCategories | filter: {parent_id: (($ctrl.tree.type == 'category' )? $ctrl.tree.id:''), name: $ctrl.searchModel } | orderBy: $ctrl.sort.cat)">
 
       <tree-item item="item" type="'category'"></tree-item>
 
@@ -90,7 +82,7 @@
     </div>
   </div>
   <!--articles-->
-  <div ng-repeat="article in $ctrl.getArticles() | orderBy: $ctrl.sort.faq">
+  <div ng-repeat="article in $parent.filteredArticles = ($ctrl.allArticles | filter: {categoryId: (($ctrl.tree.type == 'category' )? $ctrl.tree.id:''), question: $ctrl.searchModel } | orderBy: $ctrl.sort.faq)">
     <div>
       <tree-item
           item="article"
@@ -98,4 +90,4 @@
       </tree-item>
     </div>
   </div>
-</div><!--END:tree-->
+</div><!--END:tree search result-->

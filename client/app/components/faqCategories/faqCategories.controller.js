@@ -1,11 +1,11 @@
 class CategoryController {
-  constructor($stateParams, $scope, faqHelper, $uibModal, ArticleService, SettingsService) {
+  constructor($stateParams, $scope, faqHelper, categoryHelper, $uibModal, ArticleService, SettingsService) {
     "ngInject";
 
-    this.status = $stateParams.status;
+    this.articleType = $stateParams.status;
 
-    if (this.status && this.status != 'all') {
-      this.name = `All ${this.status}s FAQ`;
+    if (this.articleType && this.articleType != 'all') {
+      this.name = `All ${this.articleType}s FAQ`;
     } else {
       this.name = `All FAQ`;
     }
@@ -14,6 +14,7 @@ class CategoryController {
 
     this.ArticleService = ArticleService;
     this.SettingsService = SettingsService;
+    this.categoryHelper = categoryHelper;
     this.faqHelper = faqHelper;
 
     this.currentCategory = 1;
@@ -36,13 +37,7 @@ class CategoryController {
     self.ArticleService.getAll(update)
       .then((result) => {
         self.articlesCounts = self.faqHelper.countsTypes(result);
-
-        self.tree = {
-          articles: (self.status == 'all')
-            ? result.filter((a) => a.status != 'trash')
-            : result.filter((a) => a.status == self.status)
-        };
-
+        self.tree = null;
       })
 
   };

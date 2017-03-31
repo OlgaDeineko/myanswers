@@ -16,6 +16,7 @@ class CategoryController {
     this.currentCategory = $stateParams.categoryId || this.uncategoryId;
     this.categories = [];
     this.articles = [];
+    this.articleType = 'all';
 
     $scope.$on('updateArticles', () => {
       console.log('$on: updateArticles');

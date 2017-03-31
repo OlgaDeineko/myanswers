@@ -1,6 +1,9 @@
-<div class="tree-item">
+<div class="tree-item" dnd-nodrag>
   <div class="tree-item-drag">
-    <i class="fa fa-bars" ng-if="$ctrl.dragIcon"></i>
+    <i class="fa fa-bars"
+       dnd-handle
+       ng-if="$ctrl.dragIcon">
+    </i>
   </div>
 
   <div class="tree-item-title tree-item-type-{{$ctrl.type}}">

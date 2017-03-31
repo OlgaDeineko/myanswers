@@ -65,7 +65,8 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
       return categoryHelper.responseToData(result.data.data);
     });
   };
-  let update2 = (category) => {
+
+  let changeOrder = (category) => {
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/categories/${category.id}`,
@@ -75,7 +76,7 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
       // return categoryHelper.responseToData(result.data.data);
     });
   };
-  
+
   /**
    * Remove category
    * @param {number} categoryId - category ID
@@ -98,7 +99,7 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
     create,
     update,
     remove,
-    update2
+    changeOrder
   }
 }
 

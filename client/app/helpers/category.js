@@ -11,6 +11,10 @@
  * @property {object} language - language object
  * @property {string} language.code - language code
  * @property {string} language.name - language name
+ * @property {number} sort_order - number of order category
+ * @property {Article[]} articles - category articles
+ * @property {Category[]} categories - child categories
+ * @property {string} type - category type (root || category || subcategory)
  */
 /**
  * @name CategoryResponse
@@ -19,6 +23,7 @@
  * @property {number} parent_id - article slug
  * @property {string} lang - code article language
  * @property {string} author - author full name
+ * @property {number} sort_order - number of order category
  * @property {timestamp} created_at
  * @property {timestamp} updated_at
  */
@@ -28,6 +33,7 @@
  * @property {number} parent_id - article slug
  * @property {string} lang - code article language
  * @property {string} author - author full name
+ * @property {number} sort_order - number of order category
  */
 
 function CategoryHelper($rootScope) {
@@ -41,9 +47,8 @@ function CategoryHelper($rootScope) {
   let responseToData = (category) => {
     category.id = +category.id;
     category.sort_order = +category.sort_order;
-    category.old_sort_order = +category.sort_order;
     category.parent_id = +category.parent_id;
-    switch(category.parent_id){
+    switch (category.parent_id) {
       case 0:
         category.type = 'root';
         break;
@@ -84,22 +89,20 @@ function CategoryHelper($rootScope) {
    * @param {Number} currentCategory
    * @returns {Object}
    */
-  let buildTree = (articles, categories, currentCategory ) => {
+  let buildTree = (articles, categories, currentCategory) => {
     articles = articles.filter((article) => article.status != 'trash');
     categories.forEach((category, i) => {
       categories[i].categories = categories.filter(c => c.parent_id == category.id).sort((a, b)=> a.sort_order - b.sort_order);
       categories[i].articles = articles.filter(a => a.categories.find(c => c.id == category.id));
-      categories[i].allArticles = articles;
-      // categories[i].allCategories = categories.filter(c => c.parent_id != 0);
     });
 
-    return categories.find(c => c.id == currentCategory)
+    return categories.find(c => c.id == currentCategory);
   };
 
   /**
    * return new object of category
    * @param {number} parentCategoryId - parent category id
-   * @param {string} author - auuthor
+   * @param {string} author - author
    * @returns {object}
    */
   let newCategory = (parentCategoryId, author) => {
