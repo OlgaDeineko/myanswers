@@ -127,7 +127,7 @@ function FaqHelper($rootScope) {
 
     return {
       question: faq.question,
-      answer: faq.answer,
+      answer: String(faq.answer).replace(/\n/g, ''),
       visibility: faq.visibility,
       is_open_comments: faq.is_open_comments,
       lang: faq.lang,

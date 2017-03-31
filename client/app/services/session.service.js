@@ -96,7 +96,12 @@ function SessionService($window) {
    *  {object} state.params
    */
   let getPreviousPage = () => {
-    return JSON.parse($window.sessionStorage['previous_page']);
+    let previous = $window.sessionStorage['previous_page'];
+    if(previous){
+      return JSON.parse(previous);
+    } else {
+      return null;
+    }
   };
 
   /**
