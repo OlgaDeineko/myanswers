@@ -8,44 +8,44 @@ class CategoryTreeController {
 
     this.sorting = [
       {
-        name: 'Custom',
+        name: 'CUSTOM',
         cat: '',
         faq: ''
       },
       {
-        name: 'Name[A-Z]',
+        name: 'NAME_ASC',
         cat: 'name',
         faq: 'question'
       },
       {
-        name: 'Name[Z-a]',
+        name: 'NAME_DESC',
         cat: '-name',
         faq: '-question'
       },
       {
-        name: 'Author[A-Z]',
+        name: 'AUTHOR_ASC',
         cat: 'author',
         faq: 'author'
       },
       {
-        name: 'Author[Z-a]',
+        name: 'AUTHOR_DESC',
         cat: '-author',
         faq: '-author'
       },
       {
-        name: 'Last Created',
+        name: 'LAST_CREATED',
         cat: '-crated_at',
         faq: '-crated_at'
       },
       {
-        name: 'Last Updated',
+        name: 'LAST_UPDATED',
         cat: '-updated_at',
         faq: '-updated_at'
       },
     ];
 
     this.sort = {
-      name: 'Name[A-Z]',
+      name: 'NAME_ASC',
       cat: 'name',
       faq: 'question'
     };

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h3 class="modal-title" id="modal-title">{{$ctrl.name}}</h3>
+  <h3 class="modal-title" id="modal-title">{{$ctrl.name | translate}}</h3>
 </div>
 
 <div class="modal-body choose-subdomain-modal" id="modal-body">
@@ -20,6 +20,6 @@
 
 <div class="modal-footer">
   <button class="button" ng-click="$ctrl.cancel()">
-    Cancel
+    {{'BUTTON.CANCEL' | translate}}
   </button>
 </div>

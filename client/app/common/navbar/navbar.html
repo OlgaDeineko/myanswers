@@ -5,7 +5,7 @@
        ui-sref-active="active"
        target="_blank"
        tooltip-placement="right"
-       uib-tooltip="View KB">
+       uib-tooltip="{{'NAV.VIEW' | translate}}">
       <i class="fa fa-eye" aria-hidden="true"></i>
     </a>
   </div>
@@ -14,7 +14,7 @@
     <a ui-sref="admin.category({categoryId: ''})"
        ui-sref-active="active"
        tooltip-placement="right"
-       uib-tooltip="Dashboard">
+       uib-tooltip="{{'DASHBOARD.TITLE' | translate}}">
       <i class="fa fa-tachometer" aria-hidden="true"></i>
     </a>
   </div>
@@ -25,7 +25,7 @@
     <a ui-sref="admin.users"
        ui-sref-active="active"
        tooltip-placement="right"
-       uib-tooltip="Users">
+       uib-tooltip="{{'USERS.TITLE' | translate}}">
       <i class="fa fa-users" aria-hidden="true"></i>
     </a>
   </div>
@@ -35,7 +35,7 @@
        permission-only="'superAdmin'">
     <a ng-click="$ctrl.openChooseDomain()"
        tooltip-placement="right"
-       uib-tooltip="Choose subdomain">
+       uib-tooltip="{{'NAV.CHOOSE_SUBDOMAIN' | translate}}">
       <i class="fa fa-key" aria-hidden="true"></i>
     </a>
   </div>
@@ -43,7 +43,7 @@
   <div class="navbar-item logout">
     <a ng-click="$ctrl.logout()"
        tooltip-placement="right"
-       uib-tooltip="Log Out">
+       uib-tooltip="{{'NAV.LOG_OUT' | translate}}">
       <i class="fa fa-sign-out" aria-hidden="true"></i>
     </a>
   </div>

@@ -6,7 +6,7 @@
     <!--Action buttons-->
     <button class="button button-primary" ng-if="$ctrl.mode == 'update'" ng-click="$ctrl.remove()">
       <i class="fa fa-trash-o"></i>
-      Delete
+      {{'BUTTON.DELETE' | translate}}
     </button><!--END: Action buttons-->
   </div><!--END: left sidebar article-->
 
@@ -16,8 +16,8 @@
     <!--Counts word-->
     <div class="text-right faq-counts" ng-if="$ctrl.faq.countWords">
       <p>
-        {{$ctrl.faq.countWords}} word{{$ctrl.faq.countWords > 1 ? 's': ''}} {{$ctrl.faq.countChars}}
-        character{{$ctrl.faq.countChars > 1 ? 's': ''}}, {{$ctrl.faq.timeReads}} reading time
+        {{$ctrl.faq.countWords}} {{$ctrl.faq.countWords > 1 ? 'FAQ.WORDS': 'FAQ.WORD' | translate}} {{$ctrl.faq.countChars}}
+        {{$ctrl.faq.countChars > 1 ? 'FAQ.CHARACTERS': 'FAQ.CHARACTER' | translate}}, {{$ctrl.faq.timeReads}} {{'FAQ.READING_TIME' | translate}}
       </p>
     </div><!--END: Counts word-->
 
@@ -29,11 +29,11 @@
           <div class="dropdown-toggle form-control"
                uib-dropdown-toggle>
             <i class="fa fa-angle-down dropdown-angle"></i>
-            {{($ctrl.faqStatuses | filter: {code: $ctrl.faq.status})[0].name}}
+            {{ 'FAQ.STATUSES.'+(($ctrl.faqStatuses | filter: {code: $ctrl.faq.status})[0].name | uppercase) | translate}}
           </div>
 
           <ul class="dropdown-menu">
-            <li ng-repeat="item in $ctrl.faqStatuses" ng-click="$ctrl.faq.status = item.code">{{item.name}}</li>
+            <li ng-repeat="item in $ctrl.faqStatuses" ng-click="$ctrl.faq.status = item.code">{{'FAQ.STATUSES.'+item.name | uppercase | translate}}</li>
           </ul>
         </div>
       </div>
@@ -41,33 +41,33 @@
 
     <!--Question-->
     <div class="faq-question">
-      <label>Title</label>
+      <label>{{'FAQ.LABEL_TITLE' | translate}}</label>
       <input class="form-control" placeholder="Title FAQ" ng-model="$ctrl.faq.question">
     </div><!--END: Question-->
 
     <!--Answer-->
     <div class="faq-answer">
-      <label>Content</label>
+      <label>{{'FAQ.CONTENT' | translate}}</label>
       <textarea ui-tinymce="$ctrl.tinymceOptions" ng-model="$ctrl.faq.answer"></textarea>
       <input name="image" type="file" id="tinymceUploader" class="hidden" onchange="">
     </div><!--END:Answer-->
 
     <!--Tags-->
-    <div class="faq-tags">
-      <label>Keywords</label>
+    <div class="faq-tags" ng-if="$ctrl.loadedTranslate">
+      <label>{{'FAQ.KEYWORDS' | translate}}</label>
       <tags-input ng-model="$ctrl.faq.tags"
                   display-property="name"
-                  placeholder="Add keywords separated by comma">
+                  placeholder="{{'FAQ.KEYWORDS_PLACEHOLDER' | translate}}">
       </tags-input><!--END: Tags-->
     </div>
 
     <!--Remarks-->
     <div class="faq-remarks">
-      <label>Internal comments</label>
+      <label>{{'FAQ.INTERNAL_COMMENT' | translate}}</label>
       <textarea class="form-control remarks"
                 ng-model="$ctrl.faq.remarks"
                 rows="4"
-                placeholder="Add your comments here">
+                placeholder="{{'FAQ.INTERNAL_COMMENT_PLACEHOLDER' | translate}}">
       </textarea>
     </div><!--END: Remarks-->
 
@@ -78,19 +78,19 @@
     <!--Action buttons-->
     <div class="row faq-actions">
       <div class="col-md-6">
-        <cancel-btn title="'Cancel'" btn-class="'button-full'"></cancel-btn>
+        <cancel-btn title="'BUTTON.CANCEL'" btn-class="'button-full'"></cancel-btn>
       </div>
       <div class="col-md-6">
         <button class="button button-primary button-full" ng-click="$ctrl.save();"
                 ng-disabled="!$ctrl.faq.question || !$ctrl.faq.answer">
-          {{$ctrl.mode }}
+          {{'BUTTON.'+$ctrl.mode | uppercase | translate}}
         </button>
       </div>
     </div><!--END: Action buttons-->
 
     <!--Visibility-->
     <div class="faq-visibility">
-      <h4>Visibility:<span class="coming-soon"></span></h4>
+      <h4>{{'FAQ.VISIBILITY' | translate}}<span class="coming-soon"></span></h4>
       <div class="ma-select"
            uib-dropdown>
         <div class="dropdown-toggle form-control"
@@ -112,7 +112,7 @@
 
     <!--Categories-->
     <div class="faq-category">
-      <h4>Publish in category:</h4>
+      <h4>{{'FAQ.PUBLISH' | translate}}</h4>
       <div class="ma-select"
            uib-dropdown>
         <div class="dropdown-toggle form-control"
@@ -129,7 +129,7 @@
 
     <!--Author-->
     <div class="faq-author">
-      <h4>Author:</h4>
+      <h4>{{'FAQ.AUTHOR' | translate}}</h4>
       <div class="ma-select"
            uib-dropdown>
         <div class="dropdown-toggle form-control"
@@ -143,20 +143,20 @@
 
     <!--Language-->
     <div class="faq-language">
-      <h4>Language:</h4>
+      <h4>{{'FAQ.LANGUAGE' | translate}}</h4>
       <div class="ma-select"
            uib-dropdown>
         <div class="dropdown-toggle form-control"
              uib-dropdown-toggle>
           <i class="fa fa-angle-down dropdown-angle"></i>
           <span class="flag-icon {{($ctrl.languages | filter: {code: $ctrl.faq.lang})[0].icon}}"></span>
-          {{($ctrl.languages | filter: {code: $ctrl.faq.lang})[0].name}}
+          {{'LANGUAGES.'+(($ctrl.languages | filter: {code: $ctrl.faq.lang})[0].name) | uppercase | translate}}
         </div>
 
         <ul class="dropdown-menu">
           <li ng-repeat="item in $ctrl.languages" ng-click="$ctrl.faq.lang = item.code">
             <span class="flag-icon {{item.icon}}"></span>
-            {{item.name}}
+            {{'LANGUAGES.'+item.name | uppercase | translate}}
           </li>
         </ul>
       </div>
@@ -164,7 +164,7 @@
 
     <!--Attachments-->
     <div class="faq-attachment">
-      <h4>Attachments:</h4>
+      <h4>{{'FAQ.ATTACHMENTS' | translate}}</h4>
 
       <div flow-init
            flow-attrs="{accept:'image/*'}"
@@ -177,7 +177,7 @@
            flow-btn
            ng-disapbled="$ctrl.loadingFileFlag"
            flow-attrs="{accept:'image/*'}">
-          <a>Upload attachment (max 20MB)</a>
+          <a>{{'BUTTON.UPLOAD_ATTACHMENT' | translate}}</a>
         </button>
 
         <div class="files" ng-repeat="item in $ctrl.faq.attachments">

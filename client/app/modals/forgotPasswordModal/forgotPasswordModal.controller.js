@@ -1,11 +1,12 @@
 class ForgotPasswordModalController {
 
-  constructor($scope, toastr, AuthenticationService) {
+  constructor($scope, $filter, toastr, AuthenticationService) {
     'ngInject';
-    this.name = 'Forgot Password';
+    this.name = 'REGISTRATION.FORGOT_PASSWORD';
 
     this.$scope = $scope;
     this.toastr = toastr;
+    this.translate = $filter('translate');
 
     this.AuthenticationService = AuthenticationService;
 
@@ -18,14 +19,14 @@ class ForgotPasswordModalController {
       properties: {
         "email": {
           type: "string",
-          title: "Email",
+          title: this.translate('REGISTRATION.EMAIL'),
           minLength: 5,
           "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
           "x-schema-form": {
-            placeholder: "email",
+            placeholder: this.translate('REGISTRATION.EMAIL'),
           },
           validationMessage: {
-            202: 'Invalid email'
+            202: this.translate('MESSAGES.EMAIL_INVALID')
           },
         },
       },
@@ -42,11 +43,11 @@ class ForgotPasswordModalController {
     if (form.$valid) {
       self.AuthenticationService.forgotPassword(newUser.email)
         .then((result) => {
-          self.toastr.success('Email sent');
+          self.toastr.success(self.translate('MESSAGES.EMAIL_SENT'));
           self.$uibModalInstance.close(result);
         }, (error) => {
           error.data.errors.forEach((error) => {
-            self.toastr.error(error.message, 'Validation error:');
+            self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
           });
         })
     }

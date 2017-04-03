@@ -1,5 +1,5 @@
 class CreateCategoryModalController {
-  constructor($scope, $rootScope, $stateParams, toastr, categoryHelper, CategoryService, SessionService) {
+  constructor($scope, $rootScope, $filter, $stateParams, toastr, categoryHelper, CategoryService, SessionService) {
     'ngInject';
 
     this.name = 'createCategoryModal';
@@ -7,6 +7,7 @@ class CreateCategoryModalController {
 
     this.$scope = $scope;
     this.toastr = toastr;
+    this.translate = $filter('translate');
 
     this.CategoryService = CategoryService;
 
@@ -35,7 +36,7 @@ class CreateCategoryModalController {
         self.form.push({
           key: 'parent_id',
           type: "select",
-          title: "Parent Category",
+          title: self.translate('CATEGORY.PARENT_CATEGORY'),
           titleMap: result.filter((cat) => cat.parent_id == 1 || cat.parent_id == 0).map((item) => {
             return {value: item.id, name: item.name};
           })
@@ -44,7 +45,7 @@ class CreateCategoryModalController {
         self.form.push({
           key: 'lang',
           type: "select",
-          title: "Language",
+          title: self.translate('CATEGORY.LANGUAGE'),
           titleMap: $rootScope.settings.languages.map((item) => {
             return {value: item.code, name: item.name};
           })
@@ -56,19 +57,19 @@ class CreateCategoryModalController {
       properties: {
         "name": {
           type: "string",
-          title: "Title",
+          title: self.translate('CATEGORY.LABEL_TITLE'),
           minLength: 2,
           "x-schema-form": {
-            placeholder: "Category title"
+            placeholder: self.translate('CATEGORY.LABEL_TITLE')
           }
         },
         "author": {
           type: "string",
-          title: "Author",
+          title: self.translate('CATEGORY.AUTHOR'),
           readonly: true,
           minLength: 2,
           "x-schema-form": {
-            placeholder: "Author"
+            placeholder: self.translate('CATEGORY.AUTHOR')
           }
         },
         "parent_id": {
@@ -88,11 +89,11 @@ class CreateCategoryModalController {
     if (form.$valid) {
       self.CategoryService[self.mode](newCategory)
         .then((result) => {
-          self.toastr.success(`${self.type} ${self.mode}d successfully`);
+          self.toastr.success(self.translate(`MESSAGES.${self.type.toUpperCase()}_${self.mode.toUpperCase()}`));
           self.$uibModalInstance.close(result);
         }, (error) => {
           error.data.errors.forEach(error => {
-            self.toastr.error(error.message, `Validation error:`);
+            self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
           });
         })
     }

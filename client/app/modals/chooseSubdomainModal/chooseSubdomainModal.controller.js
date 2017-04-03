@@ -4,7 +4,7 @@ class ChooseSubdomainModalController {
   constructor($scope, $window, SettingsService, SessionService) {
     'ngInject';
 
-    this.name = 'Choose Subdomain';
+    this.name = 'SUBDOMAIN.TITLE';
     let self = this;
 
     this.$window = $window;

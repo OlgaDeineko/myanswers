@@ -1,7 +1,7 @@
 class FaqController {
   constructor($sce, $state, toastr, ArticleService, SettingsService, FilesService) {
     "ngInject";
-    this.name = 'faq';
+    this.name = 'FAQ.TITLE';
     let self = this;
 
     this.$state = $state;
@@ -27,10 +27,6 @@ class FaqController {
 
   goTo() {
     this.$state.go("admin.editFaq", this.$state.params);
-  }
-
-  copyToClipboard() {
-    this.toastr.success('Answer copied to clipboard.');
   }
 }
 

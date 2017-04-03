@@ -4,7 +4,7 @@
     </div>
     <div class="col-md-4"
          ng-if="!$ctrl.registrationDone">
-      <h1 class="text-center">{{ $ctrl.name }}</h1>
+      <h1 class="text-center">{{ $ctrl.name |translate}}</h1>
 
       <form
           name="registrationForm"
@@ -19,11 +19,11 @@
             class="button button-primary button-full"
             ng-disabled="registrationForm.$invalid"
             ng-click="$ctrl.register(registrationForm, $ctrl.newUser)">
-          Create
+          {{"BUTTON.CREATE" | translate}}
         </button>
 
         <button class="button button-full" ng-click="$ctrl.moteToLogin()">
-          Sign in {{$ctrl.isCreated}}
+          {{"BUTTON.SIGNIN" | translate}} {{$ctrl.isCreated}}
         </button>
       </div>
 
@@ -31,14 +31,12 @@
     <div class="col-md-4 text-center"
          ng-if="$ctrl.registrationDone">
       <h2>
-        Thank you for registration. <br>
-        Please activate your account. <br>
-        Link sent to {{$ctrl.newUser.email}}
+        {{"MESSAGES.REGISTRATION_DONE" | translate}} {{$ctrl.newUser.email}}
       </h2>
 
       <div class="text-center registration-actions">
         <button class="button button-full" ng-click="$ctrl.moteToLogin()">
-          Sign in {{$ctrl.isCreated}}
+          {{"BUTTON.SIGNIN" | translate}} {{$ctrl.isCreated}}
         </button>
       </div>
     </div>

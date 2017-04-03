@@ -171,14 +171,14 @@ function FaqHelper($rootScope) {
   let countsTypes = (faqs) => {
     let articlesCounts =[];
     articlesCounts.push({
-      name: "All",
+      name: "ALL",
       code: "all",
       counts: faqs.filter((faq) => faq.status != 'trash').length
     });
 
     $rootScope.settings.faq_statuses.map((status) => {
       articlesCounts.push({
-        name: status.name,
+        name: status.name.toUpperCase(),
         code: status.code,
         counts: faqs.filter((faq) => faq.status == status.code).length
       });

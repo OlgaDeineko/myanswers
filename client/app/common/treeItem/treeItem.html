@@ -17,7 +17,7 @@
     </a>
 
     <a ng-click="$ctrl.goTo($ctrl.item.id)">
-      <span ng-if="$ctrl.item.status && $ctrl.item.status == 'draft'">DRAFT</span>
+      <span ng-if="$ctrl.item.status && $ctrl.item.status == 'draft'">{{'FAQ.STATUSES.DRAFT' | translate | uppercase}}</span>
       {{$ctrl.item[$ctrl.title]}}
     </a>
 
@@ -28,7 +28,7 @@
   </div>
 
   <div class="tree-item-lang">
-    {{$ctrl.item.language.name}}
+    {{'LANGUAGES.'+($ctrl.item.language.name | uppercase) | translate}}
   </div>
 
   <div class="tree-item-author">
@@ -39,7 +39,7 @@
     <button class="icon-button"
             ng-click="$ctrl.edit($ctrl.item.id)"
             tooltip-placement="up"
-            uib-tooltip="Edit {{$ctrl.type == 'faq' ? ($ctrl.type | uppercase) : $ctrl.type}}">
+            uib-tooltip="{{$ctrl.type == 'faq' ? 'FAQ.EDIT' : ('CATEGORY.EDIT_'+$ctrl.item.type | uppercase) | translate}}">
       <i class="fa fa-pencil" aria-hidden="true"></i>
     </button>
 
@@ -47,7 +47,7 @@
             ng-click="$ctrl.remove($ctrl.item.id)"
             ng-disabled="$ctrl.item.status == 'trash'"
             tooltip-placement="up"
-            uib-tooltip="Remove {{$ctrl.type == 'faq' ? ($ctrl.type | uppercase) : $ctrl.type}}">
+            uib-tooltip="{{$ctrl.type == 'faq' ? 'FAQ.REMOVE' : ('CATEGORY.REMOVE_'+$ctrl.item.type | uppercase) | translate}}">
       <i class="fa fa-trash" aria-hidden="true"></i>
     </button>
   </div>

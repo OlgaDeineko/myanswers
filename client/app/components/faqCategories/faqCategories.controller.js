@@ -3,12 +3,8 @@ class CategoryController {
     "ngInject";
 
     this.articleType = $stateParams.status;
+    this.name = 'FAQ.STATUSES_PAGE.' +  this.articleType.toUpperCase();
 
-    if (this.articleType && this.articleType != 'all') {
-      this.name = `All ${this.articleType}s FAQ`;
-    } else {
-      this.name = `All FAQ`;
-    }
     this.$scope = $scope;
     this.$uibModal = $uibModal;
 

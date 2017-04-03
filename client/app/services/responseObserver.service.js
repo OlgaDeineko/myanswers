@@ -4,7 +4,7 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
   return {
     'request': (config) => {
       //TODO: remove on production
-      if (local && !(/html$/.test(config.url))) {
+      if (local && !(/(html|json)$/.test(config.url))) {
         return $q.reject({
           err: 'RejectForLocal',
           url: config.url.replace(/http.*\/api\/v1\//, ''),
@@ -25,7 +25,7 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
       return config;
     },
     'response': (response) => {
-      if (!(/html$/.test(response.config.url))) {
+      if (!(/(html|json)$/.test(response.config.url))) {
         console.info(
           response.config.method,
           response.config.url.match(/.*\/api\/(v1\/.*)$/)[1],

@@ -1,10 +1,11 @@
 class CreateUserModalController {
-  constructor($scope, $rootScope, toastr, UsersService) {
+  constructor($scope, $rootScope, $filter, toastr, UsersService) {
     'ngInject';
     this.name = 'createUserModal';
 
     this.$scope = $scope;
     this.toastr = toastr;
+    this.translate = $filter('translate');
 
     this.UsersService = UsersService;
 
@@ -25,30 +26,30 @@ class CreateUserModalController {
       properties: {
         "email": {
           type: "string",
-          title: "Email",
+          title: this.translate('REGISTRATION.EMAIL'),
           minLength: 5,
           "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
           "x-schema-form": {
-            placeholder: "email"
+            placeholder: this.translate('REGISTRATION.EMAIL')
           },
           validationMessage: {
-            202: 'Invalid email'
+            202: this.translate('MESSAGES.EMAIL_INVALID')
           },
         },
         "first_name": {
           type: "string",
-          title: "First Name",
+          title: this.translate('REGISTRATION.FIRST_NAME'),
           minLength: 3,
           "x-schema-form": {
-            placeholder: "First Name"
+            placeholder: this.translate('REGISTRATION.FIRST_NAME')
           }
         },
         "last_name": {
           type: "string",
-          title: "Last Name",
+          title: this.translate('REGISTRATION.LAST_NAME'),
           minLength: 3,
           "x-schema-form": {
-            placeholder: "Last Name"
+            placeholder: this.translate('REGISTRATION.LAST_NAME')
           }
         },
         "role": {
@@ -63,7 +64,7 @@ class CreateUserModalController {
       {
         key: 'role',
         type: "select",
-        title: "Role",
+        title: this.translate('USERS.ROLE'),
         titleMap: $rootScope.settings.roles.map((item) => {
           return {value: item.code, name: item.name};
         })
@@ -77,11 +78,11 @@ class CreateUserModalController {
     if (form.$valid) {
       self.UsersService[self.mode](newUser)
         .then((result) => {
-          self.toastr.success(`User ${self.mode}d successfully`);
+          self.toastr.success(self.translate(`MESSAGES.USER_${self.mode.toUpperCase()}`));
           self.$uibModalInstance.close(result);
         }, (error) => {
           error.data.errors.forEach(error => {
-            self.toastr.error(error.message, 'Validation error:');
+            self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
           });
         })
     }

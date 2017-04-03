@@ -1,5 +1,5 @@
 class EditFaqController {
-  constructor($state, $scope, $rootScope, toastr, faqHelper, CategoryService,
+  constructor($state, $scope, $rootScope, $filter, toastr, faqHelper, CategoryService,
               ArticleService, SettingsService, SessionService, FilesService) {
     'ngInject';
     this.name = 'editFaq';
@@ -8,6 +8,7 @@ class EditFaqController {
     this.$state = $state;
     this.$scope = $scope;
     this.toastr = toastr;
+    this.translate = $filter('translate');
 
     this.CategoryService = CategoryService;
     this.SessionService = SessionService;
@@ -29,13 +30,18 @@ class EditFaqController {
       this.mode = 'update';
     }
 
+    this.loadedTranslate = false;
+    $scope.$root.$on('$translateChangeSuccess', function () {
+      self.loadedTranslate = true;
+    });
+
     let uploadFileForTinimce = (callback, value, meta) => {
       if (meta.filetype == 'image') {
         $('#tinymceUploader').trigger('click');
         $('#tinymceUploader').on('change', function() {
           let file = this.files[0];
           if (!/\.(jpeg|jpg|png)$/.test(file.name)) {
-            self.toastr.error("File must be image jpeg, *.jpg, *.png))");
+            self.toastr.error(self.translate('MESSAGES.ERROR_IMAGE_TYPE'));
             $('#tinymceUploader').unbind('change');
             return false;
           }
@@ -124,11 +130,11 @@ class EditFaqController {
       })
       .then((result) => {
         self.$state.go("admin.faq", {'faqId': result.id});
-        self.toastr.success(`FAQ ${self.mode}d successfully.`)
+        self.toastr.success(self.translate(`MESSAGES.FAQ_${self.mode.toUpperCase()}`))
       })
       .catch((error) => {
         error.data.errors.forEach(error => {
-          self.toastr.error(error.message, 'Validation error:');
+          self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
         });
       })
   }
@@ -146,7 +152,7 @@ class EditFaqController {
     let self = this;
 
     if (!/\.(doc|docx|pdf)$/.test(file.file.name)) {
-      this.toastr.error("File must be document (*.doc, *.docx, *.pdf)");
+      this.toastr.error(self.translate('MESSAGES.ERROR_DOCUMENT_TYPE'));
       return false;
     }
     this.loadingFileFlag = true;

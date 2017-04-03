@@ -1,50 +1,55 @@
 class ForgotPasswordController {
-  constructor($scope, $state, toastr, AuthenticationService) {
+  constructor($scope, $state, $filter, toastr, AuthenticationService) {
     'ngInject';
 
-    this.name = 'Reset password';
+    this.name = 'REGISTRATION.RESET_PASSWORD';
+    let self = this;
+
     this.$state = $state;
     this.toastr = toastr;
     this.$scope = $scope;
+    this.translate = $filter('translate');
 
     this.AuthenticationService = AuthenticationService;
 
     this.newPass = {};
-
-    this.schema = {
-      type: "object",
-      properties: {
-        "password": {
-          minLength: 8,
-          type: "string",
-          title: "Password",
-          "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
-          "x-schema-form": {
-            "type": "password",
-            "placeholder": "password"
+    $scope.$root.$on('$translateChangeSuccess', function () {
+      self.schema = {
+        type: "object",
+        properties: {
+          "password": {
+            minLength: 8,
+            type: "string",
+            title: self.translate('REGISTRATION.PASSWORD'),
+            "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+            "x-schema-form": {
+              "type": "password",
+              "placeholder": self.translate('REGISTRATION.PASSWORD')
+            },
+            validationMessage: {
+              202: self.translate('MESSAGES.PASSWORD_INVALID')
+            },
           },
-          validationMessage: {
-            202: 'Password must contain 1 uppercase letter, 1 lowercase letter and 1 number'
-          },
-        },
-        "password_repeat": {
-          minLength: 8,
-          type: "string",
-          title: "Password repeat",
-          constant: {
-            "$data": "1/password"
-          },
-          "x-schema-form": {
-            "type": "password",
-            "placeholder": "password repeat"
+          "password_repeat": {
+            minLength: 8,
+            type: "string",
+            title: self.translate('REGISTRATION.REPEAT_PASSWORD'),
+            constant: {
+              "$data": "1/password"
+            },
+            "x-schema-form": {
+              "type": "password",
+              "placeholder": self.translate('REGISTRATION.REPEAT_PASSWORD')
+            }
           }
-        }
-      },
-      required: ["password", "password_repeat"]
-    };
-    this.form = [
-      "*"
-    ]
+        },
+        required: ["password", "password_repeat"]
+      };
+
+      self.form = [
+        "*"
+      ]
+    })
   }
 
   save(form, newPass) {
@@ -53,10 +58,10 @@ class ForgotPasswordController {
     if (form.$valid) {
       this.AuthenticationService.resetPassword(this.$state.params.resetToken, newPass.password)
         .then((result) => {
-          self.toastr.success('Password changed successfully');
+          self.toastr.success(self.translate('MESSAGES.PASSWORD_CHANGED'));
           this.$state.go('chooseSubdomain');
         }, (error) => {
-          self.toastr.error(error.data.message, `Validation error:`);
+          self.toastr.error(error.data.message, self.translate('MESSAGES.VALIDATION_ERROR'));
         })
     }
   }

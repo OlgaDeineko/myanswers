@@ -3,33 +3,33 @@
   <input type="text"
          class="form-control"
          ng-model="$ctrl.searchModel"
-         placeholder="Search">
+         placeholder="{{'SEARCH' | translate}}">
 </div><!--END: search-->
 
 <!-- tree header -->
 <div class="tree-header">
   <div class="tree-header-title">
     {{filteredCategories.length + filteredArticles.length}}
-    result{{(filteredCategories.length + filteredArticles.length)>1 ? 's' : ''}}
+    {{(filteredCategories.length + filteredArticles.length)>1 ? 'RESULTS' : 'RESULT' | translate}}
   </div>
 
   <div class="tree-header-update select">
     <div class="dropdown-toggle"
          data-toggle="dropdown">
       <i class="fa fa-angle-down pull-right"></i>
-      Sort by: <span class="sort">{{$ctrl.sort.name}}</span>
+      {{'CATEGORY.SORT_BY' | translate}} <span class="sort">{{'CATEGORY.SORT_FILTER.'+$ctrl.sort.name | translate}}</span>
     </div>
 
     <ul class="dropdown-menu">
-      <li ng-repeat="item in $ctrl.sorting" ng-click="$ctrl.sort = item">{{item.name}}</li>
+      <li ng-repeat="item in $ctrl.sorting" ng-click="$ctrl.sort = item">{{'CATEGORY.SORT_FILTER.'+item.name | translate}}</li>
     </ul>
   </div>
 
   <div class="tree-header-lang">
-    Language
+    {{'CATEGORY.LANGUAGE' | translate}}
   </div>
   <div class="tree-header-author">
-    Author
+    {{'CATEGORY.AUTHOR' | translate}}
   </div>
   <div class="tree-header-actions"></div>
 </div> <!--END: tree header-->
@@ -46,7 +46,7 @@
          dnd-moved="$ctrl.moved($index, item)">
       <!--dnd-moved="$ctrl.tree.categories.splice($index, 1)">-->
 
-      <tree-item item="item" type="'category'" drag-icon="$ctrl.sort.name == 'Custom'"></tree-item>
+      <tree-item item="item" type="'category'" drag-icon="$ctrl.sort.name == 'CUSTOM'"></tree-item>
 
       <div class="tree-row"
            ng-if="item.expanded"
@@ -70,7 +70,7 @@
 <div class="tree" ng-if="$ctrl.searchModel.length || $ctrl.tree === null">
   <!--categories-->
   <div ng-if="$ctrl.tree !== null">
-    <div ng-repeat="item in $parent.filteredCategories = ($ctrl.allCategories | filter: {parent_id: (($ctrl.tree.type == 'category' )? $ctrl.tree.id:''), name: $ctrl.searchModel } | orderBy: $ctrl.sort.cat)">
+    <div ng-repeat="item in $parent.$parent.filteredCategories = ($ctrl.allCategories | filter: {parent_id: (($ctrl.tree.type == 'category' )? $ctrl.tree.id:''), name: $ctrl.searchModel } | orderBy: $ctrl.sort.cat)">
 
       <tree-item item="item" type="'category'"></tree-item>
 

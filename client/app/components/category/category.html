@@ -10,17 +10,17 @@
               aria-haspopup="true"
               aria-expanded="false">
         <i class="fa fa-plus"></i>
-        Add
+        {{'BUTTON.ADD' | translate}}
       </button>
       <ul class="dropdown-menu">
         <li ng-if="$ctrl.tree.parent_id == 0 || $ctrl.tree.parent_id == 1">
           <a href='#' ng-click="$ctrl.createCategory()">
-            Create {{$ctrl.currentCategory == 1 ? 'Category': 'Subcategory'}}
+            {{$ctrl.currentCategory == 1 ? 'CATEGORY.CREATE_CATEGORY': 'CATEGORY.CREATE_SUBCATEGORY' | translate}}
           </a>
         </li>
         <li>
           <a ui-sref="admin.createFaq({categoryId: $ctrl.currentCategory})">
-            Create FAQ
+            {{'FAQ.CREATE' | translate}}
           </a>
         </li>
       </ul>
@@ -34,9 +34,9 @@
       <div class="row category-title">
         <div class="col-md-12">
 
-          <h1>{{$ctrl.currentCategory == 1 ? $ctrl.name : $ctrl.tree.name}}</h1>
+          <h1>{{$ctrl.currentCategory == 1 ? ($ctrl.name | translate) : $ctrl.tree.name}}</h1>
 
-          <breadcrumbs home="'Home'" current="$ctrl.currentCategory"></breadcrumbs>
+          <breadcrumbs home="'DASHBOARD.HOME'" current="$ctrl.currentCategory"></breadcrumbs>
 
         </div>
       </div>

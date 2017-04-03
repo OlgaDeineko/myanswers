@@ -1,0 +1,160 @@
+{
+  "BUTTON":{
+    "ADD": "Add",
+    "CHOOSE": "Choose",
+    "REGISTRATION": "Registration",
+    "RESET_PASSWORD": "Reset password",
+    "SIGNIN": "Sign in",
+    "FORGOT": "Forgot password?",
+    "CREATE": "Create",
+    "UPDATE": "Update",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "SEND": "Send",
+    "UPLOAD_ATTACHMENT": "Upload attachment (max 20MB)"
+  },
+
+  "CATEGORY":{
+    "CREATE_CATEGORY": "Create Category",
+    "CREATE_SUBCATEGORY": "Create Subcategory",
+    "UPDATE_CATEGORY": "Update Category",
+    "UPDATE_SUBCATEGORY": "Update Subcategory",
+    "EDIT_CATEGORY": "Edit Category",
+    "EDIT_SUBCATEGORY": "Edit Subcategory",
+    "REMOVE_CATEGORY": "Remove Category",
+    "REMOVE_SUBCATEGORY": "Remove Subcategory",
+    "SORT_BY": "Sort by:",
+    "SORT_FILTER":{
+      "CUSTOM": "Custom",
+      "NAME_ASC": "Name[A-Z]",
+      "NAME_DESC": "Name[Z-a]",
+      "AUTHOR_ASC": "Author[A-Z]",
+      "AUTHOR_DESC": "Author[Z-a]",
+      "LAST_CREATED": "Last Created",
+      "LAST_UPDATED": "Last Updated"
+    },
+    "LANGUAGE": "Language",
+    "AUTHOR": "Author",
+    "PARENT_CATEGORY": "Parent Category",
+    "LABEL_TITLE": "Category title"
+  },
+
+  "FAQ":{
+    "TITLE": "FAQ",
+    "CREATE": "Create FAQ",
+    "EDIT": "Edit FAQ",
+    "REMOVE": "Remove FAQ",
+    "WORD": "word",
+    "WORDS": "words",
+    "CHARACTER": "character",
+    "CHARACTERS":  "characters",
+    "READING_TIME": "reading time",
+    "INTERNAL_COMMENT": "Internal comment",
+    "INTERNAL_COMMENT_PLACEHOLDER": "Add your comments here",
+    "CATEGORIES": "Categories:",
+    "AUTHOR": "Author:",
+    "VISIBILITY": "Visibility:",
+    "LANGUAGE": "Language:",
+    "ATTACHMENTS": "Attachments:",
+    "LABEL_TITLE": "Title",
+    "CONTENT": "Content",
+    "KEYWORDS": "Keywords",
+    "KEYWORDS_PLACEHOLDER": "Add keywords separated by comma",
+    "PUBLISH": "Publish in category:",
+
+    "STATUSES":{
+      "DRAFT": "Draft",
+      "PUBLISHED": "Published",
+      "TRASH": "Trash",
+      "ALL": "All"
+    },
+    "STATUSES_PAGE": {
+      "DRAFT": "All drafts FAQ",
+      "PUBLISHED": "All published FAQ",
+      "TRASH": "All trash FAQ",
+      "ALL": "All FAQ"
+    }
+  },
+
+  "DASHBOARD":{
+    "TITLE": "Dashboard",
+    "HOME": "Home"
+  },
+
+  "USERS":{
+    "TITLE": "Users",
+    "USER_NAME": "User name",
+    "EMAIL": "Email",
+    "ROLE": "Role",
+    "EDIT": "Edit user",
+    "DISABLE": "Disable user",
+    "DISABLED": "This user disabled",
+    "ENABLE": "Enable user",
+    "REMOVE": "Remove user",
+    "UPDATE": "Update user",
+    "CREATE": "Create user"
+  },
+
+  "SUBDOMAIN": {
+    "TITLE": "Choose subdomain",
+    "SUBDOMAIN": "Subdomain",
+    "NAME": "Subdomain name"
+  },
+
+  "REGISTRATION": {
+    "TITLE": "Registration",
+    "RESET_PASSWORD": "Reset password",
+    "PASSWORD": "Password",
+    "REPEAT_PASSWORD": "Repeat password",
+    "FORGOT_PASSWORD": "Forgot Password",
+    "LOGIN": "Login",
+    "REMEMBER": "Remember me",
+    "EMAIL": "Email",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "SUBDOMAIN": "Subdomain"
+  },
+
+  "NAV":{
+    "VIEW": "View KB",
+    "CHOOSE_SUBDOMAIN": "Choose subdomain",
+    "LOG_OUT": "Log Out"
+  },
+
+  "LANGUAGES": {
+    "TITLE": "Language",
+    "ENGLISH": "English",
+    "DUTCH": "Dutch",
+    "FRENCH": "French",
+    "GERMAN": "German"
+  },
+
+  "SEARCH": "Search",
+  "RESULT": "result",
+  "RESULTS": "results",
+
+  "MESSAGES": {
+    "VALIDATION_ERROR": "Validation error:",
+    "ACCOUNT_ACTIVATED": "Account has been activated!",
+    "PASSWORD_CHANGED": "Password changed successfully",
+    "PASSWORD_INVALID": "Password must contain 1 uppercase letter, 1 lowercase letter and 1 number",
+    "EMAIL_INVALID": "Invalid email",
+    "REGISTRATION_DONE": "Thank you for registration. <br>Please activate your account. <br>Link sent to",
+    "REGISTRATION_DONE_MSG": "Registration done",
+    "USER_REMOVED": "User removed successfully.",
+    "USER_STATUS_CHANGED": "User status changed successfully.",
+    "ERROR_IMAGE_TYPE": "File must be image jpeg, *.jpg, *.png",
+    "ERROR_DOCUMENT_TYPE": "File must be document (*.doc, *.docx, *.pdf)",
+    "FAQ_UPDATE": "FAQ updated successfully.",
+    "FAQ_CREATE": "FAQ created successfully.",
+    "CATEGORY_CREATE": "Category created successfully.",
+    "SUBCATEGORY_CREATE": "Subcategory created successfully.",
+    "CATEGORY_UPDATE": "Category updated successfully.",
+    "SUBCATEGORY_UPDATE": "Subcategory updated successfully.",
+    "USER_UPDATE": "User updated successfully.",
+    "USER_CREATE": "User created successfully.",
+    "EMAIL_SENT": "Email sent"
+  }
+}

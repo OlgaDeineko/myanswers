@@ -3,7 +3,7 @@
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-      <h1 class="text-center">{{ $ctrl.name }}</h1>
+      <h1 class="text-center">{{ $ctrl.name | translate}}</h1>
 
       <form
         name="loginForm"
@@ -14,7 +14,7 @@
 
       <div class="checkbox">
         <label>
-          <input type="checkbox"> Remember me
+          <input type="checkbox"> {{'REGISTRATION.REMEMBER' | translate }}
         </label>
       </div>
 
@@ -30,15 +30,20 @@
           type="button"
           class="button button-primary button-full"
           ng-disabled="loginForm.$invalid"
-          ng-click="$ctrl.login(loginForm, $ctrl.user)">Sign in
+          ng-click="$ctrl.login(loginForm, $ctrl.user)">
+        {{"BUTTON.SIGNIN" | translate}}
       </button>
 
       <div class="row">
         <div class="col-md-6">
-          <button class="button button-full" ng-click="$ctrl.forgot()">Forgot password?</button>
+          <button class="button button-full" ng-click="$ctrl.forgot()">
+            {{"BUTTON.FORGOT" | translate}}
+          </button>
         </div>
         <div class="col-md-6">
-          <button class="button button-full" ui-sref="registration">Registration</button>
+          <button class="button button-full" ui-sref="registration">
+            {{"BUTTON.REGISTRATION" | translate}}
+          </button>
         </div>
       </div>
     </div>

@@ -1,14 +1,16 @@
 import {mainDomain} from '../../config';
 
 class RegistrationController {
-  constructor($scope, $window, $state, toastr, AuthenticationService) {
+  constructor($scope, $window, $filter, $state, toastr, AuthenticationService) {
     "ngInject";
-    this.name = 'Registration';
+    this.name = 'REGISTRATION.TITLE';
+    let self = this;
 
     this.$state = $state;
     this.$scope = $scope;
     this.$window = $window;
     this.toastr = toastr;
+    this.translate = $filter('translate');
 
     this.AuthenticationService = AuthenticationService;
 
@@ -16,76 +18,78 @@ class RegistrationController {
     this.isCreated = '';
     this.newUser = {};
 
-    this.schema = {
-      type: "object",
-      properties: {
-        "first_name": {
-          minLength: 3,
-          type: "string",
-          title: "First name",
-          "x-schema-form": {
-            "placeholder": "First name"
+    $scope.$root.$on('$translateChangeSuccess', function () {
+      self.schema = {
+        type: "object",
+        properties: {
+          "first_name": {
+            minLength: 3,
+            type: "string",
+            title: self.translate('REGISTRATION.FIRST_NAME'),
+            "x-schema-form": {
+              "placeholder": self.translate('REGISTRATION.FIRST_NAME')
+            }
+          },
+          "last_name": {
+            minLength: 3,
+            type: "string",
+            title: self.translate('REGISTRATION.LAST_NAME'),
+            "x-schema-form": {
+              "placeholder": self.translate('REGISTRATION.LAST_NAME')
+            }
+          },
+          "email": {
+            type: "string",
+            title: self.translate('REGISTRATION.EMAIL'),
+            minLength: 5,
+            "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
+            "x-schema-form": {
+              placeholder: self.translate('REGISTRATION.EMAIL'),
+            },
+            validationMessage: {
+              202: self.translate('MESSAGES.EMAIL_INVALID')
+            },
+          },
+          "subdomain": {
+            minLength: 5,
+            type: "string",
+            title: self.translate('REGISTRATION.SUBDOMAIN'),
+            "x-schema-form": {
+              "placeholder": self.translate('REGISTRATION.SUBDOMAIN')
+            }
+          },
+          "password": {
+            minLength: 8,
+            type: "string",
+            title: self.translate('REGISTRATION.PASSWORD'),
+            "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+            "x-schema-form": {
+              "type": "password",
+              "placeholder": self.translate('REGISTRATION.PASSWORD')
+            },
+            validationMessage: {
+              202: self.translate('MESSAGES.PASSWORD_INVALID')
+            },
+          },
+          "password_repeat": {
+            minLength: 8,
+            type: "string",
+            title: self.translate('REGISTRATION.REPEAT_PASSWORD'),
+            constant: {
+              "$data": "1/password"
+            },
+            "x-schema-form": {
+              "type": "password",
+              "placeholder": self.translate('REGISTRATION.REPEAT_PASSWORD')
+            }
           }
         },
-        "last_name": {
-          minLength: 3,
-          type: "string",
-          title: "Last name",
-          "x-schema-form": {
-            "placeholder": "Last name"
-          }
-        },
-        "email": {
-          type: "string",
-          title: "Email",
-          minLength: 5,
-          "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
-          "x-schema-form": {
-            placeholder: "email",
-          },
-          validationMessage: {
-            202: 'Invalid email'
-          },
-        },
-        "subdomain": {
-          minLength: 5,
-          type: "string",
-          title: "Subdomain",
-          "x-schema-form": {
-            "placeholder": "subdomain"
-          }
-        },
-        "password": {
-          minLength: 8,
-          type: "string",
-          title: "Password",
-          "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
-          "x-schema-form": {
-            "type": "password",
-            "placeholder": "password"
-          },
-          validationMessage: {
-            202: 'Password must contain 1 uppercase letter, 1 lowercase letter and 1 number'
-          },
-        },
-        "password_repeat": {
-          minLength: 8,
-          type: "string",
-          title: "Password repeat",
-          constant: {
-            "$data": "1/password"
-          },
-          "x-schema-form": {
-            "type": "password",
-            "placeholder": "password repeat"
-          }
-        }
-      },
-      required: ["first_name", "last_name", "email", "subdomain", "password", "password_repeat"]
-    };
-    this.form = [
-      "*"
-    ]
+        required: ["first_name", "last_name", "email", "subdomain", "password", "password_repeat"]
+      };
+      self.form = [
+        "*"
+      ]
+    })
   }
 
   moteToLogin() {
@@ -103,11 +107,11 @@ class RegistrationController {
       this.AuthenticationService.register(newUser)
         .then((result) => {
           self.isCreated = newUser.subdomain.toLowerCase();
-          self.toastr.success(`Registration done`);
+          self.toastr.success(self.translate('MESSAGES.REGISTRATION_DONE_MSG'));
           self.registrationDone = true;
         }, (error) => {
           error.data.errors.forEach(error => {
-            self.toastr.error(error.message, `Validation error:`);
+            self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
           });
         })
     }

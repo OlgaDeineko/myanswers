@@ -1,15 +1,17 @@
 import config, {mainDomian, defaultSubdomain} from '../../config';
 
 class LoginController {
-  constructor($scope, $state, $uibModal, toastr, AuthenticationService, SessionService) {
+  constructor($scope, $state, $filter, $uibModal, toastr, AuthenticationService, SessionService) {
     "ngInject";
 
-    this.name = 'Login';
+    this.name = 'REGISTRATION.LOGIN';
+    let self = this;
 
     this.$scope = $scope;
     this.$state = $state;
     this.$uibModal = $uibModal;
     this.toastr = toastr;
+    this.translate = $filter('translate');
 
     this.SessionService = SessionService;
     this.AuthenticationService = AuthenticationService;
@@ -17,40 +19,42 @@ class LoginController {
     this.subdomain = SessionService.getSubdomain();
 
     this.user = {};
-    this.schema = {
-      type: "object",
-      properties: {
-        "email": {
-          type: "string",
-          title: "Email",
-          minLength: 5,
-          "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
-          "x-schema-form": {
-            placeholder: "email",
+    $scope.$root.$on('$translateChangeSuccess', function () {
+      self.schema = {
+        type: "object",
+        properties: {
+          "email": {
+            type: "string",
+            title: self.translate('REGISTRATION.EMAIL'),
+            minLength: 5,
+            "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
+            "x-schema-form": {
+              placeholder: self.translate('REGISTRATION.EMAIL'),
+            },
+            validationMessage: {
+              202: self.translate('MESSAGES.EMAIL_INVALID')
+            },
           },
-          validationMessage: {
-            202: 'Invalid email'
-          },
+          "password": {
+            minLength: 8,
+            type: "string",
+            title: self.translate('REGISTRATION.PASSWORD'),
+            "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+            "x-schema-form": {
+              "type": "password",
+              "placeholder": self.translate('REGISTRATION.PASSWORD')
+            },
+            validationMessage: {
+              202: self.translate('MESSAGES.PASSWORD_INVALID')
+            },
+          }
         },
-        "password": {
-          minLength: 8,
-          type: "string",
-          title: "Password",
-          "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
-          "x-schema-form": {
-            "type": "password",
-            "placeholder": "password"
-          },
-          validationMessage: {
-            202: 'Password must contain 1 uppercase letter, 1 lowercase letter and 1 number'
-          },
-        }
-      },
-      required: ["subdomain", "email","password"]
-    };
-    this.form = [
-      "*"
-    ];
+        required: ["subdomain", "email", "password"]
+      };
+      self.form = [
+        "*"
+      ];
+    });
 
     if(this.subdomain == defaultSubdomain) {
       this.$state.go("chooseSubdomain");
@@ -71,7 +75,7 @@ class LoginController {
           }
         }, (error) => {
           error.data.errors.forEach(error => {
-            self.toastr.error(error.message, `Validation error:`);
+            self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
           });
         })
     }

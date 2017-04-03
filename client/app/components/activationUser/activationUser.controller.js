@@ -1,19 +1,23 @@
 class ActivationUserController {
-  constructor($state, toastr, AuthenticationService) {
+  constructor($state, $filter, toastr, AuthenticationService) {
     'ngInject';
 
     this.name = 'activationUser';
     let self = this;
 
     this.toastr = toastr;
+    this.translate = $filter('translate');
 
     AuthenticationService.sendActivation($state.params.token)
       .then((result) => {
-        self.toastr.success('Account has been activated!');
+        self.toastr.success(self.translate('MESSAGES.ACCOUNT_ACTIVATED'));
         $state.go('chooseSubdomain');
       }, (error) => {
         error.data.errors.forEach(error => {
-          self.toastr.error(error.message, `Validation error:`);
+          self.toastr.error(
+            error.message,
+            self.translate('MESSAGES.VALIDATION_ERROR')
+          );
           $state.go('chooseSubdomain');
         });
       })

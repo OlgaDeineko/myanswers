@@ -3,15 +3,15 @@
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-      <h1 class=" text-center">{{ $ctrl.name }}</h1>
+      <h1 class="text-center">{{ $ctrl.name | translate}}</h1>
 
       <form class="form">
         <div class="form-group">
-          <label for="inputPassword2">Subdomain</label>
+          <label for="inputPassword2">{{'SUBDOMAIN.SUBDOMAIN' | translate}}</label>
           <input type="text"
                  class="form-control"
                  id="inputPassword2"
-                 placeholder="subdomain name"
+                 placeholder="{{'SUBDOMAIN.NAME' | translate}}"
                  ng-model="$ctrl.subdomain">
         </div>
       </form>
@@ -21,10 +21,12 @@
                   class="button button-primary button-full"
                   ng-click="$ctrl.moveTo($ctrl.subdomain)"
                   ng-disabled="!$ctrl.subdomain.length">
-            Choose
+            {{'BUTTON.CHOOSE' | translate}}
           </button>
 
-          <button class="button button-full" ui-sref="registration">Registration</button>
+          <button class="button button-full" ui-sref="registration">
+            {{'BUTTON.REGISTRATION' | translate}}
+          </button>
         </div>
       </div>
 

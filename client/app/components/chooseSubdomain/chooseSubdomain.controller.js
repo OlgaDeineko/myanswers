@@ -1,11 +1,12 @@
 import {mainDomain, defaultSubdomain} from '../../config';
 class ChooseSubdomainController {
-  constructor($window, toastr, SubdomainService, SessionService) {
+  constructor($window, $filter, toastr, SubdomainService, SessionService) {
     "ngInject";
-    this.name = 'Choose subdomain';
+    this.name = 'SUBDOMAIN.TITLE';
 
     this.$window = $window;
     this.toastr = toastr;
+    this.translate = $filter('translate');
     this.SubdomainService = SubdomainService;
 
     SessionService.destroy();
@@ -24,7 +25,7 @@ class ChooseSubdomainController {
         this.$window.location.href = `http://${subdomain}.${mainDomain}/login`;
       }, (error) => {
         error.data.errors.forEach((error) => {
-          self.toastr.error(error.message, `Validation error:`);
+          self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
         });
       })
   }

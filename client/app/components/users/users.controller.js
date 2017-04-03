@@ -1,10 +1,12 @@
 class UsersController {
-  constructor($scope, $uibModal, NgTableParams, toastr, UsersService) {
+  constructor($scope, $uibModal, $filter, NgTableParams, toastr, UsersService) {
     'ngInject';
-    this.name = 'Users';
+    this.name = 'USERS.TITLE';
+    let self = this;
 
     this.$uibModal = $uibModal;
     this.toastr = toastr;
+    this.translate = $filter('translate');
 
     this.UsersService = UsersService;
 
@@ -30,7 +32,7 @@ class UsersController {
     console.log('remove', userId);
     this.UsersService.remove(userId)
       .then((result) => {
-        self.toastr.success('User removed successfully.');
+        self.toastr.success(self.translate('MESSAGES.USER_REMOVED'));
       })
   }
 
@@ -48,7 +50,7 @@ class UsersController {
     user.status = status;
     this.UsersService.update(user)
       .then((result) => {
-        self.toastr.success('User status changed successfully.');
+        self.toastr.success(self.translate('MESSAGES.USER_STATUS_CHANGED'));
       })
   }
 

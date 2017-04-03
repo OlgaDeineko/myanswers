@@ -47,6 +47,8 @@ import 'ng-flow/dist/ng-flow-standalone';
 import 'flag-icon-css/css/flag-icon.min.css';
 
 import 'angular-drag-and-drop-lists';
+import 'angular-translate';
+import 'angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files';
 
 import 'tinymce/skins/lightgray/skin.min.css';
 // import 'tinymce/skins/lightgray/content.min.css';
@@ -88,6 +90,8 @@ import 'tinymce/plugins/textpattern/plugin';
 import 'tinymce/plugins/imagetools/plugin';
 import 'tinymce/plugins/codesample/plugin';
 import 'tinymce/plugins/toc/plugin';
+//
+import './i18n/en.json';
 
 
 angular.module('app', [
@@ -108,9 +112,10 @@ angular.module('app', [
   'ngSanitize',
   'toastr',
   'flow',
-  'dndLists'
+  'dndLists',
+  'pascalprecht.translate'
 ])
-  .config(($locationProvider, $httpProvider, flowFactoryProvider, $qProvider) => {
+  .config(($locationProvider, $httpProvider, flowFactoryProvider, $translateProvider, $qProvider) => {
     "ngInject";
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
     // #how-to-configure-your-server-to-work-with-html5mode
@@ -125,6 +130,14 @@ angular.module('app', [
     $httpProvider.defaults.headers.patch = {};
 
     //$qProvider.errorOnUnhandledRejections(false);
+
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'i18n/',
+      suffix: '.json'
+    });
+
+    $translateProvider.preferredLanguage('en');
+    $translateProvider.useSanitizeValueStrategy('escape');
 
     flowFactoryProvider.factory = function (opts) {
       let Flow = require('ng-flow/dist/ng-flow-standalone');

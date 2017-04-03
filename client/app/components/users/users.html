@@ -3,13 +3,15 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-11">
-        <h1 class="pull-left">{{$ctrl.name}}</h1>
+        <h1 class="pull-left">{{$ctrl.name | translate}}</h1>
       </div>
       <div class="col-md-1">
         <button class="button button-primary pull-right"
                 ng-click="$ctrl.create()"
                 permission
-                permission-except="'user'">Add</button>
+                permission-except="'user'">
+          {{'BUTTON.ADD' | translate}}
+        </button>
       </div>
     </div>
 
@@ -21,18 +23,18 @@
         <col width="15%"/>
       </colgroup>
       <tr ng-repeat="user in $data">
-        <td title="'User Name'" sortable="'first_name'">
+        <td title="'USERS.USER_NAME' | translate" sortable="'first_name'">
           <i class="fa fa-user-times"
              aria-hidden="true"
              tooltip-placement="up"
-             uib-tooltip="This user disabled"
+             uib-tooltip="{{'USERS.DISABLED' | translate}}"
              ng-if="user.status == 'DISABLED'"></i>
           {{user.fullName}}
         </td>
-        <td title="'Email'" sortable="'email'">
+        <td title="'USERS.EMAIL' | translate" sortable="'email'">
           {{user.email}}
         </td>
-        <td title="'Role'" sortable="'role'">
+        <td title="'USERS.ROLE' | translate" sortable="'role'">
           {{user.role}}
         </td>
         <td title="" class="text-center" >
@@ -40,7 +42,7 @@
           <button class="icon-button"
                   ng-click="$ctrl.edit(user)"
                   tooltip-placement="up"
-                  uib-tooltip="Edit user"
+                  uib-tooltip="{{'USERS.USER_NAME' | translate}}"
                   permission
                   permission-except="'user'">
             <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -50,7 +52,7 @@
                   ng-if="user.status == 'ENABLED'"
                   ng-click="$ctrl.disabled(user, 0)"
                   tooltip-placement="up"
-                  uib-tooltip="Disable user"
+                  uib-tooltip="{{'USERS.DISABLE' | translate}}"
                   permission
                   permission-except="'user'">
             <i class="fa fa-user-times" aria-hidden="true"></i>
@@ -60,7 +62,7 @@
                   ng-if="user.status == 'DISABLED'"
                   ng-click="$ctrl.disabled(user, 1)"
                   tooltip-placement="up"
-                  uib-tooltip="Enable user"
+                  uib-tooltip="{{'USERS.ENABLE' | translate}}"
                   permission
                   permission-except="'user'">
             <i class="fa fa-user-plus" aria-hidden="true"></i>
@@ -69,7 +71,7 @@
           <button class="icon-button"
                   ng-click="$ctrl.remove(user.id)"
                   tooltip-placement="up"
-                  uib-tooltip="Remove user"
+                  uib-tooltip="{{'USERS.REMOVE' | translate}}"
                   permission
                   permission-except="'user'">
             <i class="fa fa-trash" aria-hidden="true"></i>
