@@ -8,6 +8,7 @@ import TreeItem from './treeItem/treeItem';
 import CancelBtn from './cancelBtn/cancelBtn';
 import Spinner from './spinner/spinner';
 import AlgoliaSearch from './algoliaSearch/algoliaSearch';
+import RoleAccesses from './roleAccesses/roleAccesses';
 
 import User from './user/user';
 
@@ -20,7 +21,8 @@ let commonModule = angular.module('app.common', [
   User,
   CancelBtn,
   Spinner,
-  AlgoliaSearch
+  AlgoliaSearch,
+  RoleAccesses
 ])
 
   .name;

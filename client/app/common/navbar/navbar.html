@@ -20,19 +20,18 @@
   </div>
 
   <div class="navbar-item"
-       permission
-       permission-only="['admin','superAdmin']">
+       role-accesses="{only: ['admin','user']}">
     <a ui-sref="admin.users"
        ui-sref-active="active"
        tooltip-placement="right"
+       ng-disabled="true"
        uib-tooltip="{{'USERS.TITLE' | translate}}">
       <i class="fa fa-users" aria-hidden="true"></i>
     </a>
   </div>
 
   <div class="navbar-item"
-       permission
-       permission-only="'superAdmin'">
+       role-accesses="{only: ['superAdmin']}">
     <a ng-click="$ctrl.openChooseDomain()"
        tooltip-placement="right"
        uib-tooltip="{{'NAV.CHOOSE_SUBDOMAIN' | translate}}">
