@@ -49,15 +49,16 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
 
       console.warn(errorResponse);
 
+      //@see http://stackoverflow.com/a/25496219
+      let stateService = $injector.get('$state');
       switch (errorResponse.status) {
         case 403:
           toastr.error("You don't have access to this actions");
+          stateService.go('chooseSubdomain');
           break;
         case 401:
           toastr.error('Please login again', `Authorisation error:`);
           SessionService.destroy();
-          //@see http://stackoverflow.com/a/25496219
-          let stateService = $injector.get('$state');
           stateService.go('chooseSubdomain');
           break;
         case 500:
