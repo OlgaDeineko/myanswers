@@ -27,6 +27,7 @@
         <div class="ma-select"
              uib-dropdown>
           <div class="dropdown-toggle form-control"
+               role-accesses="{disabled:['contributor']}"
                uib-dropdown-toggle>
             <i class="fa fa-angle-down dropdown-angle"></i>
             {{ 'FAQ.STATUSES.'+(($ctrl.faqStatuses | filter: {code: $ctrl.faq.status})[0].name | uppercase) | translate}}

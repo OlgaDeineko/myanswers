@@ -101,7 +101,7 @@ let routerModule = angular.module('routing', [
         component: 'category',
         data: {
           permissions: {
-            only: ['user', 'admin', 'superAdmin'],
+            only: ['user', 'admin', 'superAdmin', 'contributor'],
             redirectTo: 'chooseSubdomain'
           }
         }
@@ -113,7 +113,7 @@ let routerModule = angular.module('routing', [
         component: 'editFaq',
         data: {
           permissions: {
-            only: ['user', 'admin', 'superAdmin'],
+            only: ['user', 'admin', 'superAdmin', 'contributor'],
             redirectTo: 'chooseSubdomain'
           }
         }
@@ -125,7 +125,7 @@ let routerModule = angular.module('routing', [
         component: 'editFaq',
         data: {
           permissions: {
-            only: ['user', 'admin', 'superAdmin'],
+            only: ['user', 'admin', 'superAdmin', 'contributor'],
             redirectTo: 'chooseSubdomain'
           }
         }
@@ -137,7 +137,7 @@ let routerModule = angular.module('routing', [
         component: 'faq',
         data: {
           permissions: {
-            only: ['user', 'admin', 'superAdmin'],
+            only: ['user', 'admin', 'superAdmin', 'contributor'],
             redirectTo: 'chooseSubdomain'
           }
         }
@@ -149,7 +149,7 @@ let routerModule = angular.module('routing', [
         component: 'faq-categories',
         data: {
           permissions: {
-            only: ['user', 'admin', 'superAdmin'],
+            only: ['user', 'admin', 'superAdmin', 'contributor'],
             redirectTo: 'chooseSubdomain'
           }
         }
@@ -173,7 +173,7 @@ let routerModule = angular.module('routing', [
         component: 'visitor',
         data: {
           permissions: {
-            only: ['visitor', 'user', 'admin', 'superAdmin'],
+            only: ['visitor', 'user', 'admin', 'superAdmin', 'contributor'],
             redirectTo: 'chooseSubdomain'
           }
         }
@@ -185,7 +185,7 @@ let routerModule = angular.module('routing', [
         component: 'visitorArticle',
         data: {
           permissions: {
-            only: ['visitor', 'user', 'admin', 'superAdmin'],
+            only: ['visitor', 'user', 'admin', 'superAdmin', 'contributor'],
             redirectTo: 'chooseSubdomain'
           }
         }
@@ -197,7 +197,7 @@ let routerModule = angular.module('routing', [
         component: 'visitorArticle',
         data: {
           permissions: {
-            only: ['visitor', 'user', 'admin', 'superAdmin'],
+            only: ['visitor', 'user', 'admin', 'superAdmin', 'contributor'],
             redirectTo: 'chooseSubdomain'
           }
         }

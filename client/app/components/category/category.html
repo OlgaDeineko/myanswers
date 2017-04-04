@@ -14,7 +14,7 @@
       </button>
       <ul class="dropdown-menu">
         <li ng-if="$ctrl.tree.parent_id == 0 || $ctrl.tree.parent_id == 1">
-          <a href='#' ng-click="$ctrl.createCategory()">
+          <a href='#' ng-click="$ctrl.createCategory()" role-accesses="{excluded: ['contributor']}">
             {{$ctrl.currentCategory == 1 ? 'CATEGORY.CREATE_CATEGORY': 'CATEGORY.CREATE_SUBCATEGORY' | translate}}
           </a>
         </li>

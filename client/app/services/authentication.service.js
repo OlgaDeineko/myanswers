@@ -57,7 +57,7 @@ function AuthenticationService($http, PermPermissionStore, userHelper, SessionSe
       return !SessionService.hasToken();
     });
     PermPermissionStore.definePermission('user', () => {
-      return SessionService.getRole() == 'user';
+      return SessionService.getRole() == 'user' || SessionService.getRole() == 'editor';
     });
     PermPermissionStore.definePermission('admin', () => {
       return SessionService.getRole() == 'admin' || SessionService.getRole() == 'ADMIN';
@@ -67,6 +67,9 @@ function AuthenticationService($http, PermPermissionStore, userHelper, SessionSe
     });
     PermPermissionStore.definePermission('superAdmin', () => {
       return SessionService.getRole() == 'Super Admin';
+    });
+    PermPermissionStore.definePermission('contributor', () => {
+      return SessionService.getRole() == 'contributor';
     });
   };
 
