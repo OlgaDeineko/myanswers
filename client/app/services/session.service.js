@@ -1,4 +1,4 @@
-import config, {apiUrl, defaultSubdomain} from '../config';
+import config, {apiUrl, defaultSubdomain, protocol} from '../config';
 
 function SessionService($window) {
   "ngInject";
@@ -31,7 +31,7 @@ function SessionService($window) {
    */
   let geApiUrl = () => {
     let userSubdomain = $window.localStorage['client_subdomain'] || $window.location.host.match(/[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?/) || defaultSubdomain;
-    return `http://${userSubdomain}.${apiUrl}`;
+    return `${protocol}${userSubdomain}.${apiUrl}`;
   };
 
   /**

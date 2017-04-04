@@ -21,5 +21,7 @@ export const algolia = {
 };
 
 export const mainDomain = 'myanswers.io';
+export const protocol = 'http://';
+// export const protocol = 'https://';
 // export const mainDomain = 'localhost:3000';
 // export const local = true;

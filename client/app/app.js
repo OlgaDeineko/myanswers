@@ -172,6 +172,11 @@ angular.module('app', [
       if(from.name){
         SessionService.setPreviousPage(from.name, fromParams)
       }
-    })
+    });
+
+    $rootScope.loadedTranslate = false;
+    $rootScope.$on('$translateChangeSuccess', function () {
+      $rootScope.loadedTranslate = true;
+    });
 
   });

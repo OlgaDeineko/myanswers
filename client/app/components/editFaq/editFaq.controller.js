@@ -30,11 +30,6 @@ class EditFaqController {
       this.mode = 'update';
     }
 
-    this.loadedTranslate = false;
-    $scope.$root.$on('$translateChangeSuccess', function () {
-      self.loadedTranslate = true;
-    });
-
     let uploadFileForTinimce = (callback, value, meta) => {
       if (meta.filetype == 'image') {
         $('#tinymceUploader').trigger('click');
