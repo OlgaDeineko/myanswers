@@ -1,4 +1,4 @@
-function ArticleService($http, $q, $rootScope, faqHelper, SessionService, FilesService) {
+function ArticleService($http, $q, $rootScope, faqHelper,  SessionService) {
   "ngInject";
   let articles = null;
 
@@ -45,12 +45,6 @@ function ArticleService($http, $q, $rootScope, faqHelper, SessionService, FilesS
       url: `${SessionService.geApiUrl()}/faq/${faqId}`,
     }).then((result) => {
       return faqHelper.responseToData(result.data.data);
-    }).then((article) => {
-      return FilesService.getAll('faq', article.id)
-        .then((attachments) => {
-          article.attachments = attachments;
-          return article;
-        });
     });
   };
 
@@ -65,12 +59,6 @@ function ArticleService($http, $q, $rootScope, faqHelper, SessionService, FilesS
       url: `${SessionService.geApiUrl()}/faq/algolia/${algoliaId}`,
     }).then((result) => {
       return faqHelper.responseToData(result.data.data);
-    }).then(article => {
-      return FilesService.getAll('faq', article.id)
-        .then((attachments) => {
-          article.attachments = attachments;
-          return article;
-        });
     });
   };
 

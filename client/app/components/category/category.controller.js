@@ -44,6 +44,7 @@ class CategoryController {
       let categories = res[0];
       let articles = res[1];
 
+      //TODO: move article counting to the service
       self.articlesCounts = self.faqHelper.countsTypes(articles);
       self.tree = self.categoryHelper.buildTree(articles, categories, self.currentCategory);
 

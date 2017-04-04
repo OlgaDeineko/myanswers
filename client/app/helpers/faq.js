@@ -48,6 +48,7 @@
  * @property {string} tags.name - tag name
  * @property {number} hits_count - count article views
  * @property {string} remarks - article internal comment
+ * @property {FileResponse} attachments - article internal comment
  * @property {CategoryResponse[]} categories - categories article. now in array one element
  */
 /**
@@ -66,7 +67,7 @@
  * @property {string} author_href - user stormpath href
  */
 
-function FaqHelper($rootScope) {
+function FaqHelper($rootScope, fileHelper) {
   'ngInject';
 
   /**
@@ -87,6 +88,10 @@ function FaqHelper($rootScope) {
 
     if ($rootScope.settings) {
       faq.language = $rootScope.settings.languages.find((l) => l.code == faq.lang);
+    }
+
+    if (faq.hasOwnProperty('attachments')) {
+      faq.attachments.map(fileHelper.responseToData);
     }
 
     //replace all new line symbol to <br>

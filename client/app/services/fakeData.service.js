@@ -26,6 +26,26 @@ function FakeDataService() {
           "tags": [{"tag_id": "1", "name": "test"}, {"tag_id": "2", "name": "new tag"},],
           "remarks": "internal comment",
           "hits_count": 13,
+          "attachments": [
+            {
+              "id": "3",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            },
+            {
+              "id": "4",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            }
+          ]
         },
         {
           "id": "2",

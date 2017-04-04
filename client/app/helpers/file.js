@@ -1,6 +1,7 @@
 /**
  * @name File
- * @property {number} model_id - file id
+ * @property {number} id - file id
+ * @property {number} model_id - object id
  * @property {string} model - object type (article, category, etc.)
  * @property {string} attachment_url - file url
  * @property {string} size - size
@@ -11,7 +12,8 @@
  */
 /**
  * @name FileResponse
- * @property {number} model_id - file id
+ * @property {number} id - file id
+ * @property {number} model_id - object id
  * @property {string} model - object type (article, category, etc.)
  * @property {string} attachment_url - file url
  * @property {string} size - size
