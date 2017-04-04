@@ -63,6 +63,7 @@ class RoleAccessesDirective {
 
       if (check) {
         $element.attr('disabled', 'disabled');
+        $element.addClass('disabled');
       }
     }
   }
