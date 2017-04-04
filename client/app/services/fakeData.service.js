@@ -204,6 +204,7 @@ function FakeDataService() {
         "languages": [
           {"code": "en", "name": "English"},
           {"code": "nl", "name": "Dutch"},
+          {"code": "de", "name": "German"},
           {"code": "fr", "name": "French"}
         ],
         "roles": [
