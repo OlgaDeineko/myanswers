@@ -18,78 +18,86 @@ class RegistrationController {
     this.isCreated = '';
     this.newUser = {};
 
-    $scope.$root.$on('$translateChangeSuccess', function () {
-      self.schema = {
-        type: "object",
-        properties: {
-          "first_name": {
-            minLength: 3,
-            type: "string",
-            title: self.translate('REGISTRATION.FIRST_NAME'),
-            "x-schema-form": {
-              "placeholder": self.translate('REGISTRATION.FIRST_NAME')
-            }
-          },
-          "last_name": {
-            minLength: 3,
-            type: "string",
-            title: self.translate('REGISTRATION.LAST_NAME'),
-            "x-schema-form": {
-              "placeholder": self.translate('REGISTRATION.LAST_NAME')
-            }
-          },
-          "email": {
-            type: "string",
-            title: self.translate('REGISTRATION.EMAIL'),
-            minLength: 5,
-            "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
-            "x-schema-form": {
-              placeholder: self.translate('REGISTRATION.EMAIL'),
-            },
-            validationMessage: {
-              202: self.translate('MESSAGES.EMAIL_INVALID')
-            },
-          },
-          "subdomain": {
-            minLength: 5,
-            type: "string",
-            title: self.translate('REGISTRATION.SUBDOMAIN'),
-            "x-schema-form": {
-              "placeholder": self.translate('REGISTRATION.SUBDOMAIN')
-            }
-          },
-          "password": {
-            minLength: 8,
-            type: "string",
-            title: self.translate('REGISTRATION.PASSWORD'),
-            "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
-            "x-schema-form": {
-              "type": "password",
-              "placeholder": self.translate('REGISTRATION.PASSWORD')
-            },
-            validationMessage: {
-              202: self.translate('MESSAGES.PASSWORD_INVALID')
-            },
-          },
-          "password_repeat": {
-            minLength: 8,
-            type: "string",
-            title: self.translate('REGISTRATION.REPEAT_PASSWORD'),
-            constant: {
-              "$data": "1/password"
-            },
-            "x-schema-form": {
-              "type": "password",
-              "placeholder": self.translate('REGISTRATION.REPEAT_PASSWORD')
-            }
+    if ($scope.$root.translateIsReady) {
+      self.initForm();
+    } else {
+      $scope.$root.$on('$translateChangeSuccess', function () {
+        self.initForm();
+      })
+    }
+  }
+
+  initForm() {
+    this.schema = {
+      type: "object",
+      properties: {
+        "first_name": {
+          minLength: 3,
+          type: "string",
+          title: this.translate('REGISTRATION.FIRST_NAME'),
+          "x-schema-form": {
+            "placeholder": this.translate('REGISTRATION.FIRST_NAME')
           }
         },
-        required: ["first_name", "last_name", "email", "subdomain", "password", "password_repeat"]
-      };
-      self.form = [
-        "*"
-      ]
-    })
+        "last_name": {
+          minLength: 3,
+          type: "string",
+          title: this.translate('REGISTRATION.LAST_NAME'),
+          "x-schema-form": {
+            "placeholder": this.translate('REGISTRATION.LAST_NAME')
+          }
+        },
+        "email": {
+          type: "string",
+          title: this.translate('REGISTRATION.EMAIL'),
+          minLength: 5,
+          "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
+          "x-schema-form": {
+            placeholder: this.translate('REGISTRATION.EMAIL'),
+          },
+          validationMessage: {
+            202: this.translate('MESSAGES.EMAIL_INVALID')
+          },
+        },
+        "subdomain": {
+          minLength: 5,
+          type: "string",
+          title: this.translate('REGISTRATION.SUBDOMAIN'),
+          "x-schema-form": {
+            "placeholder": this.translate('REGISTRATION.SUBDOMAIN')
+          }
+        },
+        "password": {
+          minLength: 8,
+          type: "string",
+          title: this.translate('REGISTRATION.PASSWORD'),
+          "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+          "x-schema-form": {
+            "type": "password",
+            "placeholder": this.translate('REGISTRATION.PASSWORD')
+          },
+          validationMessage: {
+            202: this.translate('MESSAGES.PASSWORD_INVALID')
+          },
+        },
+        "password_repeat": {
+          minLength: 8,
+          type: "string",
+          title: this.translate('REGISTRATION.REPEAT_PASSWORD'),
+          constant: {
+            "$data": "1/password"
+          },
+          "x-schema-form": {
+            "type": "password",
+            "placeholder": this.translate('REGISTRATION.REPEAT_PASSWORD')
+          }
+        }
+      },
+      required: ["first_name", "last_name", "email", "subdomain", "password", "password_repeat"]
+    };
+    this.form = [
+      "*"
+    ]
   }
 
   moteToLogin() {

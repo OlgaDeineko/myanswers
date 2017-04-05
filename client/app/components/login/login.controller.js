@@ -19,46 +19,56 @@ class LoginController {
     this.subdomain = SessionService.getSubdomain();
 
     this.user = {};
-    $scope.$root.$on('$translateChangeSuccess', function () {
-      self.schema = {
-        type: "object",
-        properties: {
-          "email": {
-            type: "string",
-            title: self.translate('REGISTRATION.EMAIL'),
-            minLength: 5,
-            "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
-            "x-schema-form": {
-              placeholder: self.translate('REGISTRATION.EMAIL'),
-            },
-            validationMessage: {
-              202: self.translate('MESSAGES.EMAIL_INVALID')
-            },
-          },
-          "password": {
-            minLength: 8,
-            type: "string",
-            title: self.translate('REGISTRATION.PASSWORD'),
-            "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
-            "x-schema-form": {
-              "type": "password",
-              "placeholder": self.translate('REGISTRATION.PASSWORD')
-            },
-            validationMessage: {
-              202: self.translate('MESSAGES.PASSWORD_INVALID')
-            },
-          }
-        },
-        required: ["subdomain", "email", "password"]
-      };
-      self.form = [
-        "*"
-      ];
-    });
+
+    if ($scope.$root.translateIsReady) {
+      self.initForm();
+    } else {
+      $scope.$root.$on('$translateChangeSuccess', function () {
+        self.initForm();
+      })
+    }
 
     if(this.subdomain == defaultSubdomain) {
       this.$state.go("chooseSubdomain");
     }
+  }
+
+  initForm() {
+    let self = this;
+    this.schema = {
+      type: "object",
+      properties: {
+        "email": {
+          type: "string",
+          title: this.translate('REGISTRATION.EMAIL'),
+          minLength: 5,
+          "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
+          "x-schema-form": {
+            placeholder: this.translate('REGISTRATION.EMAIL'),
+          },
+          validationMessage: {
+            202: this.translate('MESSAGES.EMAIL_INVALID')
+          },
+        },
+        "password": {
+          minLength: 8,
+          type: "string",
+          title: this.translate('REGISTRATION.PASSWORD'),
+          "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+          "x-schema-form": {
+            "type": "password",
+            "placeholder": this.translate('REGISTRATION.PASSWORD')
+          },
+          validationMessage: {
+            202: this.translate('MESSAGES.PASSWORD_INVALID')
+          },
+        }
+      },
+      required: ["subdomain", "email", "password"]
+    };
+    this.form = [
+      "*"
+    ];
   }
 
   login(loginForm, user) {

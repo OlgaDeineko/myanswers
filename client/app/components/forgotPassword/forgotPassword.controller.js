@@ -13,43 +13,50 @@ class ForgotPasswordController {
     this.AuthenticationService = AuthenticationService;
 
     this.newPass = {};
-    $scope.$root.$on('$translateChangeSuccess', function () {
-      self.schema = {
-        type: "object",
-        properties: {
-          "password": {
-            minLength: 8,
-            type: "string",
-            title: self.translate('REGISTRATION.PASSWORD'),
-            "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
-            "x-schema-form": {
-              "type": "password",
-              "placeholder": self.translate('REGISTRATION.PASSWORD')
-            },
-            validationMessage: {
-              202: self.translate('MESSAGES.PASSWORD_INVALID')
-            },
-          },
-          "password_repeat": {
-            minLength: 8,
-            type: "string",
-            title: self.translate('REGISTRATION.REPEAT_PASSWORD'),
-            constant: {
-              "$data": "1/password"
-            },
-            "x-schema-form": {
-              "type": "password",
-              "placeholder": self.translate('REGISTRATION.REPEAT_PASSWORD')
-            }
-          }
-        },
-        required: ["password", "password_repeat"]
-      };
+    if ($scope.$root.translateIsReady) {
+      self.initForm();
+    } else {
+      $scope.$root.$on('$translateChangeSuccess', function () {
+        self.initForm();
+      })
+    }
+  }
 
-      self.form = [
-        "*"
-      ]
-    })
+  initForm() {
+    this.schema = {
+      type: "object",
+      properties: {
+        "password": {
+          minLength: 8,
+          type: "string",
+          title: this.translate('REGISTRATION.PASSWORD'),
+          "pattern": /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+          "x-schema-form": {
+            "type": "password",
+            "placeholder": this.translate('REGISTRATION.PASSWORD')
+          },
+          validationMessage: {
+            202: this.translate('MESSAGES.PASSWORD_INVALID')
+          },
+        },
+        "password_repeat": {
+          minLength: 8,
+          type: "string",
+          title: this.translate('REGISTRATION.REPEAT_PASSWORD'),
+          constant: {
+            "$data": "1/password"
+          },
+          "x-schema-form": {
+            "type": "password",
+            "placeholder": this.translate('REGISTRATION.REPEAT_PASSWORD')
+          }
+        }
+      },
+      required: ["password", "password_repeat"]
+    };
+    this.form = [
+      "*"
+    ]
   }
 
   save(form, newPass) {

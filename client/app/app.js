@@ -174,9 +174,9 @@ angular.module('app', [
       }
     });
 
-    $rootScope.loadedTranslate = false;
+    $rootScope.translateIsReady = false;
     $rootScope.$on('$translateChangeSuccess', function () {
-      $rootScope.loadedTranslate = true;
+      $rootScope.translateIsReady = true;
     });
 
   });
