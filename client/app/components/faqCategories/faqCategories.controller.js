@@ -16,7 +16,6 @@ class CategoryController {
     this.currentCategory = 1;
 
     $scope.$on('updateArticles', () => {
-      console.log('$on: updateArticles');
       this.getAllData(this, true);
     });
 

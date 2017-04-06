@@ -1,9 +1,10 @@
 import config, {langIcons, visibilityIcons} from '../config';
 
-function SettingsService($http, $rootScope, $q, SessionService) {
+function SettingsService($http, $rootScope, $q, $translate, SessionService) {
   "ngInject";
   let settings = null;
   let subdomains = null;
+  let currentLanguage = null;
 
   /**
    * get settings
@@ -67,9 +68,37 @@ function SettingsService($http, $rootScope, $q, SessionService) {
     return self.deferred2.promise;
   };
 
+  /**
+   * change current language
+   * @param language
+   */
+  let changeLanguage = (language) => {
+    if(!language){
+      language = getCurrentLanguage();
+    }
+    SessionService.setLanguage(language);
+    this.currentLanguage = language;
+    $translate.use(language);
+  };
+
+  /**
+   * get current language
+   * @returns {string} language code
+   */
+  let getCurrentLanguage = () => {
+    let lang = this.currentLanguage || SessionService.getLanguage();
+    if(!lang){
+      lang = 'en';
+    }
+    this.currentLanguage = lang;
+    return lang;
+  };
+
   return {
     getSettings,
     getAllSubdomains,
+    changeLanguage,
+    getCurrentLanguage
   }
 }
 

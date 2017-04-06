@@ -92,6 +92,7 @@ import 'tinymce/plugins/codesample/plugin';
 import 'tinymce/plugins/toc/plugin';
 //
 import './i18n/en.json';
+import './i18n/nl.json';
 
 
 angular.module('app', [
@@ -161,7 +162,7 @@ angular.module('app', [
   .service('fileHelper', FileHelper)
 
   .component('app', AppComponent)
-  .run(($rootScope, $state, AuthenticationService, SessionService) => {
+  .run(($rootScope, $state, AuthenticationService, SessionService, SettingsService) => {
     "ngInject";
 
     $rootScope.$on('$stateChangeStart', (event, next) => {
@@ -173,6 +174,8 @@ angular.module('app', [
         SessionService.setPreviousPage(from.name, fromParams)
       }
     });
+
+    SettingsService.changeLanguage();
 
     $rootScope.translateIsReady = false;
     $rootScope.$on('$translateChangeSuccess', function () {

@@ -105,6 +105,22 @@ function SessionService($window) {
   };
 
   /**
+   * get language
+   * @returns {string} - language code
+   */
+  let getLanguage = () => {
+    return $window.localStorage['lang'];
+  };
+
+  /**
+   * set language
+   * @param {language} languageCode - language code
+   */
+  let setLanguage = (languageCode) => {
+    $window.localStorage['lang'] = languageCode;
+  };
+
+  /**
    * remove previous page
    */
   let removePreviousPage = () => {
@@ -123,6 +139,8 @@ function SessionService($window) {
     setPreviousPage,
     removePreviousPage,
     getPreviousPage,
+    getLanguage,
+    setLanguage
   }
 }
 

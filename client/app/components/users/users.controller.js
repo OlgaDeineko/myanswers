@@ -14,7 +14,6 @@ class UsersController {
     this.NgTableParams = NgTableParams;
 
     $scope.$on('updateUsers', () => {
-      console.log('$on: updateUsers');
       this.getData(this, true);
     });
 
@@ -29,7 +28,6 @@ class UsersController {
 
   remove(userId) {
     let self = this;
-    console.log('remove', userId);
     this.UsersService.remove(userId)
       .then((result) => {
         self.toastr.success(self.translate('MESSAGES.USER_REMOVED'));

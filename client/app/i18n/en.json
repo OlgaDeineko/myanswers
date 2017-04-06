@@ -125,6 +125,7 @@
 
   "LANGUAGES": {
     "TITLE": "Language",
+    "CHOOSE_LANGUAGE": "Choose language",
     "ENGLISH": "English",
     "DUTCH": "Dutch",
     "FRENCH": "French",
@@ -158,6 +159,7 @@
     "EMAIL_SENT": "Email sent",
     "AUTHORIZATION_ERROR": "Authorisation error:",
     "LOGIN_AGAIN": "Please login again",
-    "NOT_ACCESS": "You don't have access to this actions"
+    "NOT_ACCESS": "You don't have access to this actions",
+    "LANGUAGE_CHANGED": "Language changed"
   }
 }

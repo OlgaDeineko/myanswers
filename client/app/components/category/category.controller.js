@@ -19,11 +19,9 @@ class CategoryController {
     this.articleType = 'all';
 
     $scope.$on('updateArticles', () => {
-      console.log('$on: updateArticles');
       this.getAllData(this, true);
     });
     $scope.$on('updateCategories', () => {
-      console.log('$on: updateCategories');
       this.getAllData(this, true);
     });
 

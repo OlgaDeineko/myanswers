@@ -47,7 +47,7 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
         return $q.resolve(FakeDataService.getData(errorResponse.url, errorResponse.method))
       }
 
-      console.warn(errorResponse);
+      console.warn('responseError', errorResponse);
 
       //@see http://stackoverflow.com/a/25496219
       let stateService = $injector.get('$state');
@@ -65,7 +65,6 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
           toastr.error(errorResponse.data.message, `Server error ${errorResponse.status}:`);
           break;
       }
-      console.log('responseError', errorResponse)
       return $q.reject(errorResponse);
     }
   };

@@ -22,6 +22,12 @@ class NavbarController {
       component: 'chooseSubdomainModal'
     });
   }
+
+  openChooseLanguage() {
+    this.$uibModal.open({
+      component: 'chooseLanguageModal'
+    });
+  }
 }
 
 export default NavbarController;

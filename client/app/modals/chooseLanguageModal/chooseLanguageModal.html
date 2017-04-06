@@ -1,0 +1,37 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">{{$ctrl.name | translate}}</h3>
+</div>
+
+<div class="modal-body choose-subdomain-modal" id="modal-body">
+  <div class="container-fluid">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="ma-select"
+           uib-dropdown>
+        <div class="dropdown-toggle form-control"
+             uib-dropdown-toggle>
+          <i class="fa fa-angle-down dropdown-angle"></i>
+          <span class="flag-icon {{($ctrl.languages | filter: {code: $ctrl.languageModel})[0].icon}}"></span>
+          {{'LANGUAGES.'+(($ctrl.languages | filter: {code: $ctrl.languageModel})[0].name) | uppercase | translate}}
+        </div>
+
+        <ul class="dropdown-menu">
+          <li ng-repeat="item in $ctrl.languages" ng-click="$ctrl.languageModel = item.code">
+            <span class="flag-icon {{item.icon}}"></span>
+            {{'LANGUAGES.'+item.name | uppercase | translate}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="button" ng-click="$ctrl.cancel()">
+    {{'BUTTON.CANCEL' | translate}}
+  </button>
+
+  <button class="button button-primary"
+          ng-click="$ctrl.save()">
+    {{'BUTTON.SAVE' | translate}}
+  </button>
+</div>
