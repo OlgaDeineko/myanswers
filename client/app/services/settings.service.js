@@ -1,21 +1,36 @@
-import config, {langIcons, visibilityIcons} from '../config';
+import config, {langIcons, visibilityIcons, defaultKBSettings} from '../config';
 
 function SettingsService($http, $rootScope, $q, $translate, SessionService) {
   "ngInject";
-  let settings = null;
-  let subdomains = null;
-  let currentLanguage = null;
+  this.commonSettings = null;
+  this.subdomains = null;
+  this.currentLanguage = null;
+  this.KBSettings = {
+    lang: {
+      code: "en"
+    },
+    filter: {
+      sort_by: "NAME_ASC"
+    }
+  };
+
+  let _setKBSettings = (KBSettings = null) => {
+    this.KBSettings = KBSettings || this.KBSettings;
+    $rootScope.KBSettings = this.KBSettings ;
+    $translate.use(this.KBSettings.lang.code);
+    SessionService.setKBSettings(KBSettings);
+  };
 
   /**
-   * get settings
+   * get common settings
    * @returns {Promise<Object>}
    */
-  let getSettings = () => {
+  let getCommonSettings = () => {
     let self = this;
 
-    if (this.settings) {
+    if (this.commonSettings) {
       return new Promise((resolve) => {
-        resolve(self.settings);
+        resolve(self.commonSettings);
       })
     }
 
@@ -26,15 +41,15 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
       method: 'GET',
       url: `${SessionService.geApiUrl()}/settings/common`,
     }).then((result) => {
-      self.settings = result.data.data;
-      self.settings.languages.map((lang) => {
+      self.commonSettings = result.data.data;
+      self.commonSettings.languages.map((lang) => {
         lang.icon = langIcons[lang.code];
       });
-      self.settings.faq_visibility.map((vis) => {
+      self.commonSettings.faq_visibility.map((vis) => {
         vis.icon = visibilityIcons[vis.code];
       });
-      $rootScope.settings = self.settings;
-      self.deferred.resolve(self.settings);
+      $rootScope.settings = self.commonSettings;
+      self.deferred.resolve(self.commonSettings);
       delete self.deferred;
     });
 
@@ -70,35 +85,51 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
 
   /**
    * change current language
-   * @param language
+   * @param {string} language - language code (en, dl, etc.)
    */
   let changeLanguage = (language) => {
-    if(!language){
-      language = getCurrentLanguage();
-    }
-    SessionService.setLanguage(language);
-    this.currentLanguage = language;
+    this.KBSettings.lang.code = language;
+    $rootScope.KBSettings.lang.code = language;
     $translate.use(language);
+    saveKBSettings(this.KBSettings);
   };
 
   /**
-   * get current language
-   * @returns {string} language code
+   * change current category order
+   * @param {string} order - language code (NAME_ASC, CUSTOM, LAST_CREATED, etc.)
    */
-  let getCurrentLanguage = () => {
-    let lang = this.currentLanguage || SessionService.getLanguage();
-    if(!lang){
-      lang = 'en';
-    }
-    this.currentLanguage = lang;
-    return lang;
+  let changeCategoryOrder = (order) => {
+    this.KBSettings.filter.sort_by = order;
+    $rootScope.KBSettings.filter.sort_by = order;
+    saveKBSettings(this.KBSettings);
+  };
+
+  let getKBSettings = () => {
+    _setKBSettings(SessionService.getKBSettings());
+    return $http({
+      method: 'GET',
+      url: `${SessionService.geApiUrl()}/settings`
+    }).then(result => {
+      _setKBSettings(result.data.data);
+    });
+  };
+
+  let saveKBSettings = (KBSettings) => {
+    SessionService.setKBSettings(KBSettings);
+    return $http({
+      method: 'POST',
+      url: `${SessionService.geApiUrl()}/settings`,
+      data: KBSettings
+    })
   };
 
   return {
-    getSettings,
+    getCommonSettings,
     getAllSubdomains,
     changeLanguage,
-    getCurrentLanguage
+    changeCategoryOrder,
+    getKBSettings,
+    saveKBSettings
   }
 }
 

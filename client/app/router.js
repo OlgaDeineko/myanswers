@@ -90,7 +90,7 @@ let routerModule = angular.module('routing', [
         template: '<ui-view/>',
         resolve: {
           settings: (SettingsService) => {
-            return SettingsService.getSettings();
+            return SettingsService.getCommonSettings();
           }
         }
       })

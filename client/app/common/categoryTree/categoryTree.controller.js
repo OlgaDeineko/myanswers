@@ -1,12 +1,13 @@
 class CategoryTreeController {
-  constructor(CategoryService, ArticleService) {
+  constructor($rootScope, CategoryService, ArticleService, SettingsService) {
     'ngInject';
 
     this.name = 'categoryTree';
     this.CategoryService = CategoryService;
+    this.SettingsService = SettingsService;
     let self = this;
 
-    this.sorting = [
+    this.orderList = [
       {
         name: 'CUSTOM',
         cat: '',
@@ -43,12 +44,7 @@ class CategoryTreeController {
         faq: '-updated_at'
       },
     ];
-
-    this.sort = {
-      name: 'NAME_ASC',
-      cat: 'name',
-      faq: 'question'
-    };
+    this.order = this.orderList.find((o) => o.name == $rootScope.KBSettings.filter.sort_by);
 
     Promise.all([
       CategoryService.getAll(),
@@ -83,6 +79,11 @@ class CategoryTreeController {
 
     next();
 
+  }
+
+  changeOrder(item){
+    this.order = item;
+    this.SettingsService.changeCategoryOrder(item.name);
   }
 }
 

@@ -175,7 +175,7 @@ angular.module('app', [
       }
     });
 
-    SettingsService.changeLanguage();
+    SettingsService.getKBSettings();
 
     $rootScope.translateIsReady = false;
     $rootScope.$on('$translateChangeSuccess', function () {

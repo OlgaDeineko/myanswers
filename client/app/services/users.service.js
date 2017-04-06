@@ -1,6 +1,6 @@
 function UsersService($http, $q, $rootScope, userHelper, SessionService) {
   "ngInject";
-  let users = null;
+  this.users = null;
 
   /**
    * Get all users

@@ -8,7 +8,7 @@ class ChooseLanguageModalController {
     this.translate = $filter('translate');
 
     this.languages = $scope.$root.settings.languages.filter((lang) => lang.code == 'en' || lang.code == 'nl');
-    this.languageModel = SettingsService.getCurrentLanguage();
+    this.languageModel = $scope.$root.KBSettings.lang.code;
 
     this.$uibModalInstance = $scope.$parent.$uibModalInstance;
   }

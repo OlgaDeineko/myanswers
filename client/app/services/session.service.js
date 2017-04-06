@@ -97,27 +97,7 @@ function SessionService($window) {
    */
   let getPreviousPage = () => {
     let previous = $window.sessionStorage['previous_page'];
-    if(previous){
-      return JSON.parse(previous);
-    } else {
-      return null;
-    }
-  };
-
-  /**
-   * get language
-   * @returns {string} - language code
-   */
-  let getLanguage = () => {
-    return $window.localStorage['lang'];
-  };
-
-  /**
-   * set language
-   * @param {language} languageCode - language code
-   */
-  let setLanguage = (languageCode) => {
-    $window.localStorage['lang'] = languageCode;
+    return previous ? JSON.parse(previous) : null;
   };
 
   /**
@@ -125,6 +105,15 @@ function SessionService($window) {
    */
   let removePreviousPage = () => {
     $window.sessionStorage.removeItem('previous_page');
+  };
+
+  let setKBSettings = (KBSettings) => {
+    $window.localStorage['kb_settings'] = JSON.stringify(KBSettings);
+  };
+
+  let getKBSettings = () => {
+    let KBSettings = $window.localStorage['kb_settings'];
+    return KBSettings ? JSON.parse(KBSettings) : null;
   };
 
   return {
@@ -139,8 +128,8 @@ function SessionService($window) {
     setPreviousPage,
     removePreviousPage,
     getPreviousPage,
-    getLanguage,
-    setLanguage
+    setKBSettings,
+    getKBSettings
   }
 }
 

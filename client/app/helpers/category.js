@@ -34,6 +34,7 @@
  * @property {string} lang - code article language
  * @property {string} author - author full name
  * @property {number} sort_order - number of order category
+ * @property {string} author_href - user stormpath href
  */
 
 function CategoryHelper($rootScope) {
@@ -79,6 +80,7 @@ function CategoryHelper($rootScope) {
       lang: category.lang,
       author: category.author,
       sort_order: category.sort_order,
+      author_href: ''
     };
   };
 

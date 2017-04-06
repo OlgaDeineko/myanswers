@@ -46,7 +46,7 @@
 
       <div class="visitor-tree-item visitor-tree-item-category"
            ng-class="{'item-column': $ctrl.currentCategory == 1}"
-           ng-repeat="item in $ctrl.tree.categories | orderBy: sort_order">
+           ng-repeat="item in $ctrl.tree.categories | orderBy: $ctrl.order.cat">
         <a ui-sref="visitor({categoryId: item.id})">
           <i class="fa fa-folder"></i>
           {{item.name}}
@@ -55,7 +55,7 @@
 
       <div class="visitor-tree-item visitor-tree-item-category"
            ng-class="{'item-column': $ctrl.currentCategory == 1}"
-           ng-repeat="item in $ctrl.tree.articles">
+           ng-repeat="item in $ctrl.tree.articles | orderBy: $ctrl.order.faq">
         <a ui-sref="visitorArticle({faqId: item.id, categoryId: $ctrl.currentCategory})">
           <i class="fa fa-question-circle"></i>
           {{item.question}}

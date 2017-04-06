@@ -1,6 +1,6 @@
 function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) {
   "ngInject";
-  let categories = null;
+  this.categories = null;
 
   /**
    * Get all categories

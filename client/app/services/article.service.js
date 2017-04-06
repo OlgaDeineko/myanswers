@@ -1,6 +1,6 @@
 function ArticleService($http, $q, $rootScope, faqHelper,  SessionService) {
   "ngInject";
-  let articles = null;
+  this.articles = null;
 
   /**
    * Get all articles(FAQ)

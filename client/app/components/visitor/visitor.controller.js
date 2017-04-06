@@ -18,6 +18,46 @@ class VisitorController {
     this.CategoryService = CategoryService;
     this.categoryHelper = categoryHelper;
 
+
+    let orderList = [
+      {
+        name: 'CUSTOM',
+        cat: '',
+        faq: ''
+      },
+      {
+        name: 'NAME_ASC',
+        cat: 'name',
+        faq: 'question'
+      },
+      {
+        name: 'NAME_DESC',
+        cat: '-name',
+        faq: '-question'
+      },
+      {
+        name: 'AUTHOR_ASC',
+        cat: 'author',
+        faq: 'author'
+      },
+      {
+        name: 'AUTHOR_DESC',
+        cat: '-author',
+        faq: '-author'
+      },
+      {
+        name: 'LAST_CREATED',
+        cat: '-crated_at',
+        faq: '-crated_at'
+      },
+      {
+        name: 'LAST_UPDATED',
+        cat: '-updated_at',
+        faq: '-updated_at'
+      },
+    ];
+    this.order = orderList.find((o) => o.name == $scope.$root.KBSettings.filter.sort_by);
+
     this.uncategoryId = 1;
     this.currentCategory = $stateParams.categoryId || this.uncategoryId;
     this.articles = [];
@@ -44,6 +84,8 @@ class VisitorController {
       let id = self.currentCategory;
       self.categoryForAlgolia = '';
       self.categoriesArray = [];
+
+      //TODO: move to helper
       while (id != 0) {
         let category = categories.find((c) => c.id == id);
         self.categoriesArray.unshift(category.name);
