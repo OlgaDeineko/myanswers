@@ -1,5 +1,9 @@
 function FakeDataService() {
   "ngInject";
+  let _toFormatResponse = (data) => {
+    return {data: {data: data}};
+  };
+
   /**
    *  get data
    * @param {string} url - request url after ...api/v1/
@@ -287,59 +291,53 @@ function FakeDataService() {
           "subdomains": ["skiba"]
         }
       ],
-      checkSubdomain: {"data": {"subdomain": "exist"}},
+      checkSubdomain: {"subdomain": "exist"},
       login: {
-        "data": {
-          "access_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiIzMVRoOE5NZXQ3R3VCT0R4dDRsTkU0IiwiaWF0IjoxNDg4MjA5NzM4LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDg4MjEzMzM4LCJydGkiOiIzMVRjb0s0VFhDbmhDcm5wVzZ4WFZVIn0.XgsGFDduqHdezCOGKr_JD7taQ5ao_Ozwz2ARfwgQNcA",
-          "refresh_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoicmVmcmVzaCIsImFsZyI6IkhTMjU2In0.eyJqdGkiOiIzMVRjb0s0VFhDbmhDcm5wVzZ4WFZVIiwiaWF0IjoxNDg4MjA5NzM4LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDkzMzkzNzM4fQ.nfSz9RXMFyJh7kzDuVpRFjbVNaoVrBPUwppb3_iVfEA",
-          "token_type": "Bearer",
-          "expires_in": 3600,
-          "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/31Th8NMet7GuBODxt4lNE4",
-          "role": ["admin"],
-          "id": "78FsrnMdYHAcJEWUPo4gQe",
-          "email": "oleg.skiba@yanpix.com",
-          "username": "oleg.skiba@yanpix.com",
-          "first_name": "Oleg",
-          "last_name": "Skiba",
-          "subdomains": ["skiba"]
-        }
+        "access_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiIzMVRoOE5NZXQ3R3VCT0R4dDRsTkU0IiwiaWF0IjoxNDg4MjA5NzM4LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDg4MjEzMzM4LCJydGkiOiIzMVRjb0s0VFhDbmhDcm5wVzZ4WFZVIn0.XgsGFDduqHdezCOGKr_JD7taQ5ao_Ozwz2ARfwgQNcA",
+        "refresh_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoicmVmcmVzaCIsImFsZyI6IkhTMjU2In0.eyJqdGkiOiIzMVRjb0s0VFhDbmhDcm5wVzZ4WFZVIiwiaWF0IjoxNDg4MjA5NzM4LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDkzMzkzNzM4fQ.nfSz9RXMFyJh7kzDuVpRFjbVNaoVrBPUwppb3_iVfEA",
+        "token_type": "Bearer",
+        "expires_in": 3600,
+        "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/31Th8NMet7GuBODxt4lNE4",
+        "role": ["admin"],
+        "id": "78FsrnMdYHAcJEWUPo4gQe",
+        "email": "oleg.skiba@yanpix.com",
+        "username": "oleg.skiba@yanpix.com",
+        "first_name": "Oleg",
+        "last_name": "Skiba",
+        "subdomains": ["skiba"]
       },
       superAdmin: {
-        "data": {
-          "access_token": "eyJraWQiOiIxUEdWOFZEVk5BSkZRRVRMWTkzS1JBUUE4Iiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI2anhGTjVJRHNHaU9JSU1FMktaOU9XIiwiaWF0IjoxNDg4NDcyNzk0LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy8xTThIaGZibjIxd29vQVU1b0pqcWd1Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy81alQ4UWY3a3d1NUp0V1Zka1hub1ZnIiwiZXhwIjoxNDg4NDc2Mzk0LCJvcmciOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL29yZ2FuaXphdGlvbnMvNXRQREc3UUpIZzJ3ZEhUc3JVNTBvdyIsInJ0aSI6IjZqeEZOMXk4eGdQUGZUR01xNGhzbVMifQ.yUSo_Pe27ZEbArjdjE4toerMA_eKmz7C5H57CBAClqk",
-          "refresh_token": "eyJraWQiOiIxUEdWOFZEVk5BSkZRRVRMWTkzS1JBUUE4Iiwic3R0IjoicmVmcmVzaCIsImFsZyI6IkhTMjU2In0.eyJqdGkiOiI2anhGTjF5OHhnUFBmVEdNcTRoc21TIiwiaWF0IjoxNDg4NDcyNzk0LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy8xTThIaGZibjIxd29vQVU1b0pqcWd1Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy81alQ4UWY3a3d1NUp0V1Zka1hub1ZnIiwiZXhwIjoxNDkzNjU2Nzk0LCJvcmciOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL29yZ2FuaXphdGlvbnMvNXRQREc3UUpIZzJ3ZEhUc3JVNTBvdyJ9.n8-1EagLfrWzbQfPXLJ5mCg4-o9VoYMDun6Qv1tXDBE",
-          "token_type": "Bearer",
-          "expires_in": 3600,
-          "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/6jxFN5IDsGiOIIME2KZ9OW",
-          "role": ["Super Admin"],
-          "id": "5jT8Qf7kwu5JtWVdkXnoVg",
-          "email": "onyshchenko.max@gmail.com",
-          "username": "onyshchenko.max@gmail.com",
-          "first_name": "Max",
-          "last_name": "Oni",
-          "subdomains": null
+        "access_token": "eyJraWQiOiIxUEdWOFZEVk5BSkZRRVRMWTkzS1JBUUE4Iiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI2anhGTjVJRHNHaU9JSU1FMktaOU9XIiwiaWF0IjoxNDg4NDcyNzk0LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy8xTThIaGZibjIxd29vQVU1b0pqcWd1Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy81alQ4UWY3a3d1NUp0V1Zka1hub1ZnIiwiZXhwIjoxNDg4NDc2Mzk0LCJvcmciOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL29yZ2FuaXphdGlvbnMvNXRQREc3UUpIZzJ3ZEhUc3JVNTBvdyIsInJ0aSI6IjZqeEZOMXk4eGdQUGZUR01xNGhzbVMifQ.yUSo_Pe27ZEbArjdjE4toerMA_eKmz7C5H57CBAClqk",
+        "refresh_token": "eyJraWQiOiIxUEdWOFZEVk5BSkZRRVRMWTkzS1JBUUE4Iiwic3R0IjoicmVmcmVzaCIsImFsZyI6IkhTMjU2In0.eyJqdGkiOiI2anhGTjF5OHhnUFBmVEdNcTRoc21TIiwiaWF0IjoxNDg4NDcyNzk0LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy8xTThIaGZibjIxd29vQVU1b0pqcWd1Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy81alQ4UWY3a3d1NUp0V1Zka1hub1ZnIiwiZXhwIjoxNDkzNjU2Nzk0LCJvcmciOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL29yZ2FuaXphdGlvbnMvNXRQREc3UUpIZzJ3ZEhUc3JVNTBvdyJ9.n8-1EagLfrWzbQfPXLJ5mCg4-o9VoYMDun6Qv1tXDBE",
+        "token_type": "Bearer",
+        "expires_in": 3600,
+        "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/6jxFN5IDsGiOIIME2KZ9OW",
+        "role": ["Super Admin"],
+        "id": "5jT8Qf7kwu5JtWVdkXnoVg",
+        "email": "onyshchenko.max@gmail.com",
+        "username": "onyshchenko.max@gmail.com",
+        "first_name": "Max",
+        "last_name": "Oni",
+        "subdomains": null
+      },
+      attachments: [
+        {
+          "model": "faq",
+          "model_id": "11",
+          "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/11/1488301972qoy5qVpnJf26yA7cITwV.pdf",
+          "size": 35761,
+          "type": "pdf",
+          "mime": "application/pdf"
+        },
+        {
+          "model": "faq",
+          "model_id": "11",
+          "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/11/1488301972qoy5qVpnJf26yA7cITwV.pdf",
+          "size": 35761,
+          "type": "pdf",
+          "mime": "application/pdf"
         }
-      },
-      attachments: {
-        "data": [
-          {
-            "model": "faq",
-            "model_id": "11",
-            "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/11/1488301972qoy5qVpnJf26yA7cITwV.pdf",
-            "size": 35761,
-            "type": "pdf",
-            "mime": "application/pdf"
-          },
-          {
-            "model": "faq",
-            "model_id": "11",
-            "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/11/1488301972qoy5qVpnJf26yA7cITwV.pdf",
-            "size": 35761,
-            "type": "pdf",
-            "mime": "application/pdf"
-          }
-        ]
-      },
+      ],
       domains: {
         "subdomains": [
           {"code": "annatest", "name": "annatest"},
@@ -348,6 +346,10 @@ function FakeDataService() {
           {"code": "annam", "name": "annam"},
           {"code": "max-oni", "name": "max-oni"},
           {"code": "anna1", "name": "anna1"}]
+      },
+      KBSettings: {
+        "lang": {"code": "en"},
+        "filter": {"sort_by": "NAME_ASC"}
       }
     };
     console.info('getLocalData', url);
@@ -363,44 +365,47 @@ function FakeDataService() {
       case 'categories':
         //if get one item or update/delete return one item
         if (reg.test(url) || method != 'GET') {
-          return {data: {data: data.categories[0]}};
+          return _toFormatResponse(data.categories[0]);
         }
-        return {data: {data: data.categories}};
+        return _toFormatResponse(data.categories);
         break;
       case 'faq':
       case 'faq/algolia':
         if (reg.test(url) || method != 'GET') {
-          return {data: {data: data.articles[0]}};
+          return _toFormatResponse(data.articles[0]);
         }
-        return {data: {data: data.articles}};
+        return _toFormatResponse(data.articles);
         break;
       case 'users':
         if (reg.test(url) || method != 'GET') {
-          return {data: {data: data.users[0]}};
+          return _toFormatResponse(data.users[0]);
         }
-        return {data: {data: data.users}};
+        return _toFormatResponse(data.users);
         break;
       case 'settings/common':
-        return {data: {data: data.settings}};
+        return _toFormatResponse(data.settings);
         break;
       case 'settings/advanced':
-        return {data: {data: data.domains}};
+        return _toFormatResponse(data.domains);
+        break;
+      case 'settings':
+        return _toFormatResponse(data.KBSettings);
         break;
       case 'auth/check-subdomain':
-        return data.checkSubdomain;
+        return _toFormatResponse(data.checkSubdomain);
         break;
       case 'auth/login':
-        // return {data: data.login};
-        return {data: data.superAdmin};
+        // return _toFormatResponse(data.login);
+        return _toFormatResponse(data.superAdmin);
         break;
       case 'attachments/faq':
         if (method != 'GET') {
-          return {data: {data: data.attachments.data[0]}};
+          return _toFormatResponse(data.attachments[0]);
         }
-        return {data: data.attachments};
+        return _toFormatResponse(data.attachments);
         break;
     }
-    return {data: {data: []}}
+    return _toFormatResponse([]);
   };
 
   return {
