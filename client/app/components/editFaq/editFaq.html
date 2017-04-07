@@ -4,7 +4,10 @@
   <!--left sidebar article-->
   <div class="col-md-2 faq-left-sidebar">
     <!--Action buttons-->
-    <button class="button button-primary" ng-if="$ctrl.mode == 'update'" ng-click="$ctrl.remove()">
+    <button class="button button-primary"
+            ng-if="$ctrl.mode == 'update'"
+            ng-click="$ctrl.remove()"
+            confirm="FAQ.CONFIRM">
       <i class="fa fa-trash-o"></i>
       {{'BUTTON.DELETE' | translate}}
     </button><!--END: Action buttons-->

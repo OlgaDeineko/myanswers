@@ -46,6 +46,7 @@
 
     <button class="icon-button"
             ng-click="$ctrl.remove($ctrl.item.id)"
+            confirm="{{$ctrl.type == 'faq' ? 'FAQ.CONFIRM' : 'CATEGORY.CONFIRM_'+$ctrl.item.type}}"
             role-accesses="{disabled:['contributor'], orDisabled: $ctrl.item.status == 'trash', andDisabled: $ctrl.item.status != 'draft'}"
             tooltip-placement="up"
             uib-tooltip="{{$ctrl.type == 'faq' ? 'FAQ.REMOVE' : ('CATEGORY.REMOVE_'+$ctrl.item.type | uppercase) | translate}}">

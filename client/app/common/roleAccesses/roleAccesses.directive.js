@@ -1,15 +1,13 @@
 class RoleAccessesDirective {
   constructor(PermPermissionStore) {
     this.restrict = 'A';
-    this.scope = {
-      roleAccesses: '=roleAccesses'
-    };
 
     this.PermPermissionStore = PermPermissionStore;
   }
 
   link($scope, $element, $attr) {
     let self = this;
+    $scope.roleAccesses = $scope.$eval($attr.roleAccesses);
 
     $scope.$watch('roleAccesses', function () {
       $element.removeAttr('disabled');

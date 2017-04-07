@@ -17,6 +17,7 @@ import SettingsService from './services/settings.service';
 import UsersService from './services/users.service';
 import FakeDataService from './services/fakeData.service';
 import FilesService from './services/files.services';
+import ConfirmService from './services/confirm.service';
 
 import FaqHelper from './helpers/faq';
 import UserHelper from './helpers/user';
@@ -165,6 +166,7 @@ angular.module('app', [
   .service('UsersService', UsersService)
   .service('FakeDataService', FakeDataService)
   .service('FilesService', FilesService)
+  .service('ConfirmService', ConfirmService)
 
   .service('faqHelper', FaqHelper)
   .service('userHelper', UserHelper)

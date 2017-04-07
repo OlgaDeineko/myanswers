@@ -9,6 +9,7 @@ import CancelBtn from './cancelBtn/cancelBtn';
 import Spinner from './spinner/spinner';
 import AlgoliaSearch from './algoliaSearch/algoliaSearch';
 import RoleAccesses from './roleAccesses/roleAccesses';
+import Confirm from './confirm/confirm';
 
 import User from './user/user';
 
@@ -22,7 +23,8 @@ let commonModule = angular.module('app.common', [
   CancelBtn,
   Spinner,
   AlgoliaSearch,
-  RoleAccesses
+  RoleAccesses,
+  Confirm
 ])
 
   .name;

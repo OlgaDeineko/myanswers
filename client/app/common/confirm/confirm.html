@@ -1,0 +1,16 @@
+<div class="modal-body confirm-modal">
+  <div class="row text-center title">
+    {{$ctrl.answer | uppercase | translate}}
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="button" ng-click="$ctrl.cancel()">
+    {{'BUTTON.CANCEL' | translate}}
+  </button>
+
+  <button class="button button-primary"
+          ng-click="$ctrl.ok()">
+    {{'BUTTON.YES' | translate}}
+  </button>
+</div>

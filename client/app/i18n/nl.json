@@ -13,7 +13,8 @@
     "CANCEL": "Annuleren",
     "SAVE": "Opslaan",
     "SEND": "Versturen",
-    "UPLOAD_ATTACHMENT": "Bijlage uploaden (max 20MB)"
+    "UPLOAD_ATTACHMENT": "Bijlage uploaden (max 20MB)",
+    "YES": "Yes"
   },
 
   "CATEGORY":{
@@ -25,6 +26,8 @@
     "EDIT_SUBCATEGORY": "Subcategorie Bewerken",
     "REMOVE_CATEGORY": "Categorie Verwijderen",
     "REMOVE_SUBCATEGORY": "Subcategorie Verwijderen",
+    "CONFIRM_CATEGORY": "Do you want to delete this Category?",
+    "CONFIRM_SUBCATEGORY": "Do you want to delete this Subcategory?",
     "SORT_BY": "Sorteren op:",
     "SORT_FILTER":{
       "CUSTOM": "Handmatig",
@@ -63,6 +66,7 @@
     "KEYWORDS": "Trefwoorden",
     "KEYWORDS_PLACEHOLDER": "Voer trefwoorden in gescheiden door comma's",
     "PUBLISH": "Publiceer in categorie:",
+    "CONFIRM": "Do you want to delete this FAQ?",
 
     "STATUSES":{
       "DRAFT": "Concept",
