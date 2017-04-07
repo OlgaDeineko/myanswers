@@ -91,6 +91,7 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
     this.KBSettings.lang.code = language;
     $rootScope.KBSettings.lang.code = language;
     $translate.use(language);
+    $rootScope.$broadcast('KBSettingsChanged','language');
     saveKBSettings(this.KBSettings);
   };
 
@@ -101,6 +102,7 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
   let changeCategoryOrder = (order) => {
     this.KBSettings.filter.sort_by = order;
     $rootScope.KBSettings.filter.sort_by = order;
+    $rootScope.$broadcast('KBSettingsChanged','order');
     saveKBSettings(this.KBSettings);
   };
 

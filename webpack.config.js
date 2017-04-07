@@ -7,6 +7,7 @@ module.exports = {
   entry: {},
   module: {
     loaders: [
+       { test: /i18n\/tinyMCE\/.*(\.js)$/, loader: "file-loader?name=./i18n/tinyMCE/[name].[ext]" },
        { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
        { test: /\.html$/, loader: 'raw' },
        { test: /\.((woff|woff2)(\?v=.*)?)$/,  loader: "url-loader?limit=10000&mimetype=application/font-woff&name=./fonts/[hash].[ext]" },

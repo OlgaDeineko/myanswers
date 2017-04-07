@@ -64,6 +64,9 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
         case 500:
           toastr.error(errorResponse.data.message, `Server error ${errorResponse.status}:`);
           break;
+        case 404:
+          toastr.error("Resource not found");
+          break;
       }
       return $q.reject(errorResponse);
     }

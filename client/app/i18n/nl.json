@@ -160,6 +160,7 @@
     "AUTHORIZATION_ERROR": "Autorisatiefout:",
     "LOGIN_AGAIN": "Graag opnieuw inloggen",
     "NOT_ACCESS": "U heeft geen toegang tot deze functies",
-    "LANGUAGE_CHANGED": "Language changed"
+    "LANGUAGE_CHANGED": "Language changed",
+    "NOT_FOUND": "Resource not found"
   }
 }

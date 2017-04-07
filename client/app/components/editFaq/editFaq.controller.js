@@ -56,12 +56,17 @@ class EditFaqController {
       }
     };
 
+    $scope.$on('KBSettingsChanged', (ev, type) => {
+      self.tinymceOptions.language_url = `/i18n/tinyMCE/${self.$scope.$root.KBSettings.lang.code}.js`;
+    });
+
     // configs for tinyMCE editor @see https://www.tinymce.com/docs/
     this.tinymceOptions = {
       themes: "modern",
       skin: false,
       height: 350,
       resize: false,
+      language_url : `/i18n/tinyMCE/${$scope.$root.KBSettings.lang.code}.js`,
       plugins: [
         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
         'searchreplace visualblocks visualchars code fullscreen',

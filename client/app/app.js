@@ -93,6 +93,8 @@ import 'tinymce/plugins/toc/plugin';
 //
 import './i18n/en.json';
 import './i18n/nl.json';
+import './i18n/tinyMCE/en.js';
+import './i18n/tinyMCE/nl.js';
 
 
 angular.module('app', [
@@ -116,7 +118,7 @@ angular.module('app', [
   'dndLists',
   'pascalprecht.translate'
 ])
-  .config(($locationProvider, $httpProvider, flowFactoryProvider, $translateProvider, $qProvider) => {
+  .config(($locationProvider, $httpProvider, flowFactoryProvider, $translateProvider, $provide, $qProvider) => {
     "ngInject";
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
     // #how-to-configure-your-server-to-work-with-html5mode
@@ -130,7 +132,15 @@ angular.module('app', [
     $httpProvider.defaults.headers.put = {};
     $httpProvider.defaults.headers.patch = {};
 
-    //$qProvider.errorOnUnhandledRejections(false);
+    $provide.decorator("$exceptionHandler", function($delegate, $injector){
+      return function(exception, cause){
+        if(/^Possibly unhandled rejection:/.test(exception)){
+          return;
+        }
+        $delegate(exception, cause);
+      };
+    });
+    // $qProvider.errorOnUnhandledRejections(false);
 
     $translateProvider.useStaticFilesLoader({
       prefix: 'i18n/',

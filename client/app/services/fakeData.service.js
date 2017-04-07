@@ -348,7 +348,7 @@ function FakeDataService() {
           {"code": "anna1", "name": "anna1"}]
       },
       KBSettings: {
-        "lang": {"code": "en"},
+        "lang": {"code": "nl"},
         "filter": {"sort_by": "NAME_ASC"}
       }
     };
