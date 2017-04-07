@@ -9,16 +9,17 @@ class RoleAccessesDirective {
     let self = this;
     $scope.roleAccesses = $scope.$eval($attr.roleAccesses);
 
-    $scope.$watch('roleAccesses', function () {
+    $scope.$watch(function () {return $attr.roleAccesses}, function (roleAccesses) {
+      roleAccesses = $scope.$eval(roleAccesses);
       $element.removeAttr('disabled');
       $element.removeClass('disabled');
 
-      if ($scope.roleAccesses.hasOwnProperty('only')) {
-        if ($scope.roleAccesses.hasOwnProperty('excluded')) {
-          delete $scope.roleAccesses['excluded'];
+      if (roleAccesses.hasOwnProperty('only')) {
+        if (roleAccesses.hasOwnProperty('excluded')) {
+          delete roleAccesses['excluded'];
         }
         let check = false;
-        $scope.roleAccesses.only.forEach((item) => {
+        roleAccesses.only.forEach((item) => {
           if (self.PermPermissionStore.hasPermissionDefinition(item) &&
             self.PermPermissionStore.getPermissionDefinition(item).validationFunction[2]()
           ) {
@@ -32,9 +33,9 @@ class RoleAccessesDirective {
         }
       }
 
-      if ($scope.roleAccesses.hasOwnProperty('excluded')) {
+      if (roleAccesses.hasOwnProperty('excluded')) {
         let check = false;
-        $scope.roleAccesses.excluded.forEach((item) => {
+        roleAccesses.excluded.forEach((item) => {
           if (self.PermPermissionStore.hasPermissionDefinition(item) &&
             self.PermPermissionStore.getPermissionDefinition(item).validationFunction[2]()
           ) {
@@ -48,15 +49,15 @@ class RoleAccessesDirective {
         }
       }
 
-      if ($scope.roleAccesses.hasOwnProperty('disabled')) {
+      if (roleAccesses.hasOwnProperty('disabled')) {
         let check = false;
-        $scope.roleAccesses.disabled.forEach((item) => {
+        roleAccesses.disabled.forEach((item) => {
           let isDisabled = self.PermPermissionStore.hasPermissionDefinition(item) && self.PermPermissionStore.getPermissionDefinition(item).validationFunction[2]();
-          if ($scope.roleAccesses.hasOwnProperty('orDisabled')) {
-            isDisabled = isDisabled || $scope.roleAccesses.orDisabled;
+          if (roleAccesses.hasOwnProperty('orDisabled')) {
+            isDisabled = isDisabled || roleAccesses.orDisabled;
           }
-          if ($scope.roleAccesses.hasOwnProperty('andDisabled')) {
-            isDisabled = isDisabled && $scope.roleAccesses.andDisabled;
+          if (roleAccesses.hasOwnProperty('andDisabled')) {
+            isDisabled = isDisabled && roleAccesses.andDisabled;
           }
           if (isDisabled) {
             check = true;
