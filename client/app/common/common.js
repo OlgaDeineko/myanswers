@@ -10,6 +10,7 @@ import Spinner from './spinner/spinner';
 import AlgoliaSearch from './algoliaSearch/algoliaSearch';
 import RoleAccesses from './roleAccesses/roleAccesses';
 import Confirm from './confirm/confirm';
+import CheckUsers from './checkUsers/checkUsers';
 
 import User from './user/user';
 
@@ -24,7 +25,8 @@ let commonModule = angular.module('app.common', [
   Spinner,
   AlgoliaSearch,
   RoleAccesses,
-  Confirm
+  Confirm,
+  CheckUsers
 ])
 
   .name;

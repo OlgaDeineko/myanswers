@@ -108,6 +108,9 @@ function FaqHelper($rootScope, fileHelper) {
     let time = (faq.countWords / 200 + "").split('.');
     faq.timeReads = `${time[0]} min ${((('.' + time[1]) * 60).toFixed())} sec`;
 
+    if(!(faq.granted_access && Array.isArray(faq.granted_access))){
+      faq.granted_access = [];
+    }
     return faq;
   };
 
@@ -142,8 +145,8 @@ function FaqHelper($rootScope, fileHelper) {
       tag_ids: tag_ids,
       category_ids: category_ids,
       remarks: faq.remarks,
-      author_href: ''
-
+      author_href: '',
+      granted_access: faq.granted_access
     };
   };
 
@@ -154,6 +157,7 @@ function FaqHelper($rootScope, fileHelper) {
    * @returns {object}
    */
   let newFaq = (categoryId, author) => {
+    //TODO add granted_access to docs
     return {
       question: '',
       answer: '',
@@ -164,7 +168,8 @@ function FaqHelper($rootScope, fileHelper) {
       lang: 'en',
       is_open_comments: true,
       status: 'draft',
-      remarks: ''
+      remarks: '',
+      granted_access: []
     };
   };
 

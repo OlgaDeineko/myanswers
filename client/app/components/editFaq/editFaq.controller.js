@@ -1,6 +1,6 @@
 class EditFaqController {
   constructor($state, $scope, $rootScope, $filter, toastr, faqHelper, CategoryService,
-              ArticleService, SettingsService, SessionService, FilesService) {
+              ArticleService, SettingsService, SessionService, FilesService, UsersService) {
     'ngInject';
     this.name = 'editFaq';
     let self = this;
@@ -25,6 +25,7 @@ class EditFaqController {
     this.loadingFileFlag = true;
     this.filesBase64 = [];
     this.removedFiles = [];
+    this.Users = [];
 
     if ($state.current.name == 'admin.editFaq') {
       this.mode = 'update';
@@ -90,6 +91,11 @@ class EditFaqController {
           self.faq = result;
         })
     }
+
+    UsersService.getAll()
+      .then((result) => {
+        self.users = result;
+      });
 
     this.CategoryService.getAll()
       .then((result) => {

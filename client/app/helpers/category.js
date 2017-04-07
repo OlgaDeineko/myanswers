@@ -65,6 +65,10 @@ function CategoryHelper($rootScope) {
       category.language = $rootScope.settings.languages.find((l) => l.code == category.lang);
     }
 
+    if(!(category.granted_access && Array.isArray(category.granted_access))){
+      category.granted_access = [];
+    }
+
     return category;
   };
 
@@ -80,7 +84,8 @@ function CategoryHelper($rootScope) {
       lang: category.lang,
       author: category.author,
       sort_order: category.sort_order,
-      author_href: ''
+      author_href: '',
+      granted_access: category.granted_access
     };
   };
 
@@ -113,7 +118,8 @@ function CategoryHelper($rootScope) {
       parent_id: +parentCategoryId || 1,
       lang: 'en',
       author: author || 'Unknown',
-      sort_order: 0
+      sort_order: 0,
+      granted_access: []
     };
   };
 

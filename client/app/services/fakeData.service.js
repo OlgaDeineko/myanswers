@@ -49,7 +49,8 @@ function FakeDataService() {
               "type": "pdf",
               "mime": "application/pdf"
             }
-          ]
+          ],
+          "granted_access": ['78FsrnMdYHAcJEWUPo4gQe']
         },
         {
           "id": "2",
@@ -68,6 +69,7 @@ function FakeDataService() {
           "tags": [],
           "remarks": "internal comment",
           "hits_count": 547,
+          "granted_access": ['78FsrnMdYHAcJEWUPo4gQe']
         },
         {
           "id": "3",
@@ -86,6 +88,7 @@ function FakeDataService() {
           "tags": [],
           "remarks": "internal comment",
           "hits_count": 676,
+          "granted_access": []
         },
         {
           "id": "4",
@@ -104,6 +107,7 @@ function FakeDataService() {
           "tags": [],
           "remarks": "internal comment",
           "hits_count": 11,
+          "granted_access": []
         },
         {
           "id": "5",
@@ -122,6 +126,7 @@ function FakeDataService() {
           "tags": [],
           "remarks": "internal comment",
           "hits_count": 0,
+          "granted_access": []
         },
         {
           "id": "6",
@@ -140,6 +145,7 @@ function FakeDataService() {
           "tags": [{"tag_id": "1", "name": "test"}],
           "remarks": "internal comment",
           "hits_count": 45,
+          "granted_access": []
         }
       ],
       categories: [
@@ -152,6 +158,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
+          "granted_access": []
         },
         {
           "id": "2",
@@ -162,6 +169,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
+          "granted_access": ['78FsrnMdYHAcJEWUPo4gQe']
         },
         {
           "id": "12",
@@ -172,6 +180,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
+          "granted_access": []
         },
         {
           "id": "3",
@@ -182,6 +191,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
+          "granted_access": []
         },
         {
           "id": "4",
@@ -192,6 +202,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
+          "granted_access": []
         },
         {
           "id": "5",
@@ -202,6 +213,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
+          "granted_access": []
         },
         {
           "id": "6",
@@ -212,6 +224,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
+          "granted_access": []
         },
         {
           "id": "7",
@@ -222,6 +235,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
+          "granted_access": []
         }
       ],
       settings: {
@@ -257,7 +271,8 @@ function FakeDataService() {
           "last_name": "Skiba",
           "role": ["admin"],
           "subdomains": ["skiba"]
-        }, {
+        },
+        {
           "id": "2n0Y6dzxevGvKVppiU9BhR",
           "email": "test4@test.com",
           "username": "test4@test.com",
@@ -265,7 +280,8 @@ function FakeDataService() {
           "last_name": "dfgdsgsd",
           "role": ["user"],
           "subdomains": ["skiba"]
-        }, {
+        },
+        {
           "id": "NwUQypbQRtd5485POk7Nh",
           "email": "wwwww@dfgdf.dfg",
           "username": "fsfsdf@dfgdf.dfg",
@@ -273,7 +289,8 @@ function FakeDataService() {
           "last_name": "dsgsdfg",
           "role": ["visitor"],
           "subdomains": ["skiba"]
-        }, {
+        },
+        {
           "id": "5G0kKHSP10OICd4MRAr6cO",
           "email": "test@test.com",
           "username": "test@test.com",
@@ -281,7 +298,8 @@ function FakeDataService() {
           "last_name": "User",
           "role": ["user"],
           "subdomains": ["skiba"]
-        }, {
+        },
+        {
           "id": "3wGzBu2ikq85AFLaToYsTU",
           "email": "test@test.ww",
           "username": "test@test.ww",
