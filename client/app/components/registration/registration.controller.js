@@ -27,6 +27,7 @@ class RegistrationController {
     }
   }
 
+
   initForm() {
     this.schema = {
       type: "object",
@@ -50,7 +51,7 @@ class RegistrationController {
         "email": {
           type: "string",
           title: this.translate('REGISTRATION.EMAIL'),
-          minLength: 5,
+          require: true,
           "pattern": /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
           "x-schema-form": {
             placeholder: this.translate('REGISTRATION.EMAIL'),
@@ -60,7 +61,7 @@ class RegistrationController {
           },
         },
         "subdomain": {
-          minLength: 5,
+          require: true,
           type: "string",
           title: this.translate('REGISTRATION.SUBDOMAIN'),
           "x-schema-form": {
