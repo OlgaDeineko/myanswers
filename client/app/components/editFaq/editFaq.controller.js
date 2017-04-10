@@ -120,7 +120,7 @@ class EditFaqController {
     this.ArticleService[this.mode](this.faq)
       .then((result) => {
         if (self.filesBase64.length) {
-          self.FilesService.create(self.filesBase64, 'faq', result.id);
+          self.ArticleService.saveAttachments(self.filesBase64, result.id);
         }
         return result
       })

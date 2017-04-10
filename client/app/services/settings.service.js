@@ -4,7 +4,6 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
   "ngInject";
   this.commonSettings = null;
   this.subdomains = null;
-  this.currentLanguage = null;
   this.KBSettings = {
     lang: {
       code: "en"

@@ -1,4 +1,4 @@
-function ArticleService($http, $q, $rootScope, faqHelper,  SessionService) {
+function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionService) {
   "ngInject";
   this.articles = null;
 
@@ -115,6 +115,21 @@ function ArticleService($http, $q, $rootScope, faqHelper,  SessionService) {
     });
   };
 
+  /**
+   * save article attachments
+   * @param {object[]} files
+   * @param {number} faqId - faq ID
+   */
+  let saveAttachments = (files, faqId) => {
+    return $http({
+      method: 'POST',
+      url: `${SessionService.geApiUrl()}/faq/${faqId}/attachments`,
+      data: {files: files.map(fileHelper.dataToRequest)}
+    }).then((result) => {
+      return result.data.data.map(fileHelper.responseToData);
+    });
+  };
+
   return {
     getAll,
     getById,
@@ -122,6 +137,7 @@ function ArticleService($http, $q, $rootScope, faqHelper,  SessionService) {
     update,
     remove,
     getByAlgoliaId,
+    saveAttachments,
   }
 }
 
