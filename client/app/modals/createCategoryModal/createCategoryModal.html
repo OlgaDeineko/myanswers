@@ -11,7 +11,11 @@
       sf-model="$ctrl.newCategory">
   </form>
 
-  <check-users users="$ctrl.users" selected="$ctrl.newCategory.granted_access"></check-users>
+  <check-users ng-if="$ctrl.users && $ctrl.users.length"
+               update-mode="$ctrl.mode == 'update'"
+               users="$ctrl.users"
+               selected="$ctrl.newCategory.granted_access">
+  </check-users>
 
 </div>
 

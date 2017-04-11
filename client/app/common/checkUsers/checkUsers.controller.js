@@ -1,9 +1,18 @@
+//this component not used
 class CheckUsersController {
   constructor() {
     this.name = 'checkUsers';
   }
 
-  checkUser(userId){
+  $onInit() {
+    if (!this.updateMode) {
+      this.users.forEach((user) => {
+        this.selected.push(user.id);
+      })
+    }
+  }
+
+  checkUser(userId) {
     let idx = this.selected.indexOf(userId);
 
     if (idx > -1) {

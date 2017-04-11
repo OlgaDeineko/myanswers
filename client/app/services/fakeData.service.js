@@ -180,7 +180,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": []
+          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
         },
         {
           "id": "3",
@@ -191,7 +191,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": []
+          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
         },
         {
           "id": "4",
@@ -202,7 +202,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": []
+          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
         },
         {
           "id": "5",
@@ -213,7 +213,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": []
+          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
         },
         {
           "id": "6",
@@ -224,7 +224,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": []
+          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
         },
         {
           "id": "7",
@@ -235,7 +235,7 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": []
+          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
         }
       ],
       settings: {

@@ -18,7 +18,7 @@ class CreateCategoryModalController {
     this.mode = 'create';
     this.type = $stateParams.categoryId ? 'Subcategory' : 'Category';
     this.newCategory = categoryHelper.newCategory($stateParams.categoryId, SessionService.getFullName());
-    this.Users = [];
+    this.users = [];
 
     if (this.$resolve.category) {
       this.newCategory = this.$resolve.category;

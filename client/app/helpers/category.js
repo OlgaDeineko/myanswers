@@ -65,8 +65,12 @@ function CategoryHelper($rootScope) {
       category.language = $rootScope.settings.languages.find((l) => l.code == category.lang);
     }
 
-    if(!(category.granted_access && Array.isArray(category.granted_access))){
+    if (!(category.granted_access && Array.isArray(category.granted_access))) {
       category.granted_access = [];
+    }
+
+    if (!category.author) {
+      category.author = 'Unknown';
     }
 
     return category;
@@ -99,7 +103,7 @@ function CategoryHelper($rootScope) {
   let buildTree = (articles, categories, currentCategory) => {
     articles = articles.filter((article) => article.status != 'trash');
     categories.forEach((category, i) => {
-      categories[i].categories = categories.filter(c => c.parent_id == category.id).sort((a, b)=> a.sort_order - b.sort_order);
+      categories[i].categories = categories.filter(c => c.parent_id == category.id).sort((a, b) => a.sort_order - b.sort_order);
       categories[i].articles = articles.filter(a => a.categories.find(c => c.id == category.id));
     });
 

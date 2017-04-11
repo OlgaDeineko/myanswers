@@ -1,13 +1,14 @@
+<!--this component not used-->
 <div class="row">
   <div class="col-md-4" ng-repeat="item in $ctrl.users track by $index">
     <div class="checkbox">
       <label>
         <input type="checkbox"
                ng-checked="$ctrl.selected.indexOf(item.id) > -1"
+               ng-disabled="item.role == 'admin'"
                ng-click="$ctrl.checkUser(item.id)">
         {{item.first_name}} {{item.last_name}}
       </label>
     </div>
-
   </div>
 </div>
