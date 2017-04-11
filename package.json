@@ -84,10 +84,11 @@
     "build": "gulp webpack",
     "component": "gulp component",
     "serve": "gulp serve",
-    "start": "gulp serve",
     "test": "karma start",
-    "watch": "gulp serve",
-    "webpack": "gulp webpack"
+    "deploy_test": "sh deploy.sh test",
+    "deploy_prod": "sh deploy.sh prod",
+    "get_test_lang": "sh lang.sh test",
+    "get_prod_lang": "sh lang.sh prod"
   },
   "keywords": [
     "angular",
