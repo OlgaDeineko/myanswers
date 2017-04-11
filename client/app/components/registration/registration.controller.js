@@ -62,6 +62,7 @@ class RegistrationController {
         },
         "subdomain": {
           require: true,
+          minLength: 2,
           type: "string",
           title: this.translate('REGISTRATION.SUBDOMAIN'),
           "x-schema-form": {
