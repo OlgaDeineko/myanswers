@@ -1,6 +1,8 @@
 class TypeOfQuestionsController {
-  constructor() {
+  constructor(ArticleService) {
+    'ngInject'
     this.name = 'Questions';
+    this.ArticleService = ArticleService;
   }
 }
 

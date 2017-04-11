@@ -1,5 +1,5 @@
 class CategoryController {
-  constructor($stateParams, $scope, $uibModal, faqHelper, categoryHelper, CategoryService, ArticleService) {
+  constructor($stateParams, $scope, $uibModal, categoryHelper, CategoryService, ArticleService) {
     "ngInject";
 
     this.name = 'DASHBOARD.TITLE';
@@ -9,7 +9,6 @@ class CategoryController {
 
     this.ArticleService = ArticleService;
     this.CategoryService = CategoryService;
-    this.faqHelper = faqHelper;
     this.categoryHelper = categoryHelper;
 
     this.uncategoryId = 1;
@@ -42,8 +41,6 @@ class CategoryController {
       let categories = res[0];
       let articles = res[1];
 
-      //TODO: move article counting to the service
-      self.articlesCounts = self.faqHelper.countsTypes(articles);
       self.tree = self.categoryHelper.buildTree(articles, categories, self.currentCategory);
 
       self.$scope.$apply();

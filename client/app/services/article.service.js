@@ -1,6 +1,11 @@
 function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionService) {
   "ngInject";
   this.articles = null;
+  this.articleCounts = [{
+    name: "ALL",
+    code: "all",
+    counts: 0
+  }];
 
   /**
    * Get all articles(FAQ)
@@ -24,6 +29,7 @@ function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionSer
       url: `${SessionService.geApiUrl()}/faq`,
     }).then((result) => {
       self.articles = result.data.data.map(faqHelper.responseToData);
+      self.articleCounts = faqHelper.countsTypes(self.articles);
       self.deferred.resolve(self.articles);
       delete self.deferred;
     });
@@ -130,6 +136,14 @@ function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionSer
     });
   };
 
+  /**
+   * get articles counts
+   * @returns {object[]<{name: string, code: string, counts: number}>} counts
+   */
+  let getCounts = () => {
+    return this.articleCounts;
+  };
+
   return {
     getAll,
     getById,
@@ -138,6 +152,7 @@ function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionSer
     remove,
     getByAlgoliaId,
     saveAttachments,
+    getCounts,
   }
 }
 

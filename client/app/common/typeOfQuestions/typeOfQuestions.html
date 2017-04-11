@@ -2,7 +2,7 @@
   <ul class="list-group">
     <li class="list-group-item"
         ui-sref="admin.faqCategories({status: item.code})"
-        ng-repeat="item in $ctrl.articleCounts">
+        ng-repeat="item in $ctrl.ArticleService.getCounts()">
       <span class="badge">
         {{item.counts}}
       </span>
