@@ -25,14 +25,14 @@ let resolveToApp = (glob = '') => {
 };
 
 let resolveToComponents = (glob = '') => {
-  return path.join(root, 'app/..', glob); // app/components/{glob}
+  return path.join(root, 'app/components', glob); // app/components/{glob}
 };
 
 // map of all paths
 let paths = {
   js: resolveToComponents('**/*!(.spec.js).js'), // exclude spec files
   scss: resolveToApp('**/*.scss'), // stylesheets
-  json: resolveToApp('**/*.json'), // stylesheets
+  json: resolveToApp('**/*.json'), // json
   html: [
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')
@@ -96,8 +96,6 @@ gulp.task('serve', () => {
   });
 });
 
-gulp.task('watch', ['serve']);
-
 gulp.task('component', () => {
   const cap = (val) => {
     return val.charAt(0).toUpperCase() + val.slice(1);
@@ -124,4 +122,4 @@ gulp.task('clean', (cb) => {
   })
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['serve']);
