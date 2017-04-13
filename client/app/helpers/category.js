@@ -104,6 +104,9 @@ function CategoryHelper($rootScope) {
     articles = articles.filter((article) => article.status != 'trash');
     categories.forEach((category, i) => {
       categories[i].categories = categories.filter(c => c.parent_id == category.id).sort((a, b) => a.sort_order - b.sort_order);
+      if(category.parent_id != 0){
+        categories[i].parent = categories.find(c => c.id == category.parent_id);
+      }
       categories[i].articles = articles.filter(a => a.categories.find(c => c.id == category.id));
     });
 

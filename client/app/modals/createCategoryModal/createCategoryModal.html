@@ -5,18 +5,20 @@
 <div class="modal-body" id="modal-body">
 
   <form
-      name="createCategoryForm"
-      sf-schema="$ctrl.schema"
-      sf-form="$ctrl.form"
-      sf-model="$ctrl.newCategory">
+    name="createCategoryForm"
+    sf-schema="$ctrl.schema"
+    sf-form="$ctrl.form"
+    sf-model="$ctrl.newCategory">
   </form>
 
-  <check-users ng-if="$ctrl.users && $ctrl.users.length"
-               update-mode="$ctrl.mode == 'update'"
-               users="$ctrl.users"
-               selected="$ctrl.newCategory.granted_access">
-  </check-users>
-
+  <div class="form-group">
+    <label>{{'CATEGORY.VISIBILITY_USER' | translate}}</label>
+    <check-users ng-if="$ctrl.users && $ctrl.users.length"
+                 update-mode="$ctrl.mode == 'update'"
+                 users="$ctrl.users"
+                 selected="$ctrl.newCategory.granted_access">
+    </check-users>
+  </div>
 </div>
 
 <div class="modal-footer">

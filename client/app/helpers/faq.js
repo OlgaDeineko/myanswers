@@ -19,7 +19,7 @@
  * @property {string} remarks - article internal comment
  * @property {CategoryResponse[]} categories - categories article. now in array one element
  *
- * @property {CategoryResponse} category - category article. remove array :)
+ * @property {Category} category - category article. remove array :)
  * @property {number} categoryId - ID category article
  * @property {object} language - language object
  * @property {string} language.code - language code
@@ -67,7 +67,7 @@
  * @property {string} author_href - user stormpath href
  */
 
-function FaqHelper($rootScope, fileHelper) {
+function FaqHelper($rootScope, fileHelper, categoryHelper) {
   'ngInject';
 
   /**
@@ -79,7 +79,7 @@ function FaqHelper($rootScope, fileHelper) {
 
     if(faq.categories && faq.categories.length){
       faq.categories[0].id = +faq.categories[0].id;
-      faq.category = faq.categories[0];
+      faq.category = categoryHelper.responseToData(faq.categories[0]);
       faq.categoryId = faq.categories[0].id;
     }else{
       faq.category = '';

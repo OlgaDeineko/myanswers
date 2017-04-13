@@ -29,7 +29,10 @@ class CategoryController {
 
   createCategory() {
     this.$uibModal.open({
-      component: 'createCategoryModal'
+      component: 'createCategoryModal',
+      resolve: {
+        parentCategory: this.tree
+      }
     });
   };
 

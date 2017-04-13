@@ -25,7 +25,7 @@ class EditFaqController {
     this.loadingFileFlag = true;
     this.filesBase64 = [];
     this.removedFiles = [];
-    this.Users = [];
+    this.users = [];
 
     if ($state.current.name == 'admin.editFaq') {
       this.mode = 'update';
@@ -34,7 +34,7 @@ class EditFaqController {
     let uploadFileForTinimce = (callback, value, meta) => {
       if (meta.filetype == 'image') {
         $('#tinymceUploader').trigger('click');
-        $('#tinymceUploader').on('change', function() {
+        $('#tinymceUploader').on('change', function () {
           let file = this.files[0];
           if (!/\.(jpeg|jpg|png)$/.test(file.name)) {
             self.toastr.error(self.translate('MESSAGES.ERROR_IMAGE_TYPE'));
@@ -67,7 +67,7 @@ class EditFaqController {
       skin: false,
       height: 350,
       resize: false,
-      language_url : `/i18n/tinyMCE/${$scope.$root.KBSettings.lang.code}.js`,
+      language_url: `/i18n/tinyMCE/${$scope.$root.KBSettings.lang.code}.js`,
       plugins: [
         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
         'searchreplace visualblocks visualchars code fullscreen',
@@ -92,10 +92,21 @@ class EditFaqController {
         })
     }
 
-    UsersService.getAll()
-      .then((result) => {
-        self.users = result;
+    CategoryService.getById($state.params.categoryId || 1)
+      .then(category => {
+
+        UsersService.getAll()
+          .then((result) => {
+            console.log('need remove self', self === this);
+            console.log('category', category, result);
+            if (category.id == 1) {
+              this.users = result;
+            } else {
+              this.users = result.filter(u => category.granted_access.indexOf(u.id) > -1);
+            }
+          });
       });
+
 
     this.CategoryService.getAll()
       .then((result) => {

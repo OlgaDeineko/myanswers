@@ -1,4 +1,3 @@
-//this component not used
 class CheckUsersController {
   constructor() {
     this.name = 'checkUsers';

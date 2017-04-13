@@ -8,26 +8,38 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
    * @returns {Promise.<Category[]>}
    */
   let getAll = (update) => {
-    let self = this;
-
     if(this.categories && !update){
       return new Promise((resolve, reject) => {
-        resolve(self.categories);
+        resolve(this.categories);
       })
     }
 
-    if(self.deferred) return self.deferred.promise;
+    if(this.deferred) return this.deferred.promise;
     this.deferred = $q.defer();
 
     $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/categories`,
     }).then(result => {
-      self.categories = result.data.data.map(categoryHelper.responseToData);
-      self.deferred.resolve(self.categories);
-      delete self.deferred;
+      this.categories = result.data.data.map(categoryHelper.responseToData);
+      this.deferred.resolve(this.categories);
+      delete this.deferred;
     });
-    return self.deferred.promise;
+    return this.deferred.promise;
+  };
+
+  /**
+   * Get category by id
+   * @params {number} update - need updated
+   * @returns {Promise.<Category>}
+   */
+  let getById = (categoryId) => {
+    return $http({
+      method: 'GET',
+      url: `${SessionService.geApiUrl()}/categories/${categoryId}`,
+    }).then(result => {
+      return categoryHelper.responseToData(result.data.data);
+    });
   };
 
   /**
@@ -36,13 +48,12 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
    * @returns {Promise.<{Category}>}
    */
   let create = (newCategory) => {
-    let self = this;
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/categories`,
       data: categoryHelper.dataToRequest(newCategory)
     }).then(result => {
-      self.categories=null;
+      this.categories=null;
       $rootScope.$broadcast('updateCategories');
       return categoryHelper.responseToData(result.data.data);
     });
@@ -54,13 +65,12 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
    * @returns {Promise.<{Category}>}
    */
   let update = (category) => {
-    let self = this;
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/categories/${category.id}`,
       data: categoryHelper.dataToRequest(category)
     }).then(result => {
-      self.categories=null;
+      this.categories=null;
       $rootScope.$broadcast('updateCategories');
       return categoryHelper.responseToData(result.data.data);
     });
@@ -83,12 +93,11 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
    * @returns {Promise.<{Category}>}
    */
   let remove = (categoryId) => {
-    let self = this;
     return $http({
       method: 'DELETE',
       url: `${SessionService.geApiUrl()}/categories/${categoryId}`,
     }).then(result => {
-      self.categories=null;
+      this.categories=null;
       $rootScope.$broadcast('updateCategories');
       return result.data.data
     });
@@ -96,6 +105,7 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
 
   return {
     getAll,
+    getById,
     create,
     update,
     remove,

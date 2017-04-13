@@ -114,6 +114,16 @@
       </div>
     </div><!--END: Visibility-->
 
+    <!--Visibility-->
+    <div class="faq-user-visibility">
+      <h4>{{'FAQ.VISIBILITY_USER' | translate}}</h4>
+      <check-users  ng-if="$ctrl.users && $ctrl.users.length"
+                    update-mode="$ctrl.mode == 'update'"
+                    users="$ctrl.users"
+                    selected="$ctrl.faq.granted_access">
+      </check-users>
+    </div><!--END: Visibility-->
+
     <!--Categories-->
     <div class="faq-category">
       <h4>{{'FAQ.PUBLISH' | translate}}</h4>

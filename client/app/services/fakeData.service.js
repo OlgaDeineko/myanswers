@@ -26,7 +26,22 @@ function FakeDataService() {
           "algolia_object_id": "379636340",
           "created_at": "1487884302",
           "updated_at": "1487850702",
-          "categories": [{"id": "1", "name": "Root", "slug": null, "description": "", "lang": "en"}],
+          "categories": [
+            {
+              "id": "2",
+              "parent_id": "1",
+              "name": "Keyboard",
+              "sort_order": "0",
+              "lang": "en",
+              "author": 'Oleg Skiba',
+              "created_at": "1487850702",
+              "updated_at": "1487850702",
+              "granted_access": [
+                "78FsrnMdYHAcJEWUPo4gQe",
+                "2n0Y6dzxevGvKVppiU9BhR"
+              ]
+            }
+          ],
           "tags": [{"tag_id": "1", "name": "test"}, {"tag_id": "2", "name": "new tag"},],
           "remarks": "internal comment",
           "hits_count": 13,
@@ -169,7 +184,10 @@ function FakeDataService() {
           "author": 'Oleg Skiba',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": ['78FsrnMdYHAcJEWUPo4gQe']
+          "granted_access": [
+            "78FsrnMdYHAcJEWUPo4gQe",
+            "2n0Y6dzxevGvKVppiU9BhR"
+          ]
         },
         {
           "id": "12",
