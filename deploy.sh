@@ -6,8 +6,6 @@ CP=`pwd`
 SERVER_PATH="/var/www/html/"
 DIST_PATH="/dist/"
 
-echo "$PROD_IP"
-
 case "$1" in
     prod)
         if [ -f "$PROD_KEY" ]

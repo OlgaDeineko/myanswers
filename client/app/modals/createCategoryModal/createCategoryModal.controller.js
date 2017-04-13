@@ -59,6 +59,8 @@ class CreateCategoryModalController {
         }else{
           this.users = result.filter(u => this.parentCategory.granted_access.indexOf(u.id) > -1 );
         }
+
+        if (this.$scope.$root.$$phase != '$apply' && this.$scope.$root.$$phase != '$digest') this.$scope.$apply();
       });
 
     this.schema = {

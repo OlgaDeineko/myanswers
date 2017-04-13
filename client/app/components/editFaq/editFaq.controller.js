@@ -97,13 +97,12 @@ class EditFaqController {
 
         UsersService.getAll()
           .then((result) => {
-            console.log('need remove self', self === this);
-            console.log('category', category, result);
             if (category.id == 1) {
               this.users = result;
             } else {
               this.users = result.filter(u => category.granted_access.indexOf(u.id) > -1);
             }
+            if (this.$scope.$root.$$phase != '$apply' && this.$scope.$root.$$phase != '$digest') this.$scope.$apply();
           });
       });
 

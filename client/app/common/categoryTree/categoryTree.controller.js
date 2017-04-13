@@ -1,11 +1,13 @@
 class CategoryTreeController {
-  constructor($rootScope, CategoryService, ArticleService, SettingsService) {
+  constructor($scope, CategoryService, ArticleService, SettingsService) {
     'ngInject';
 
     this.name = 'categoryTree';
+    this.$scope = $scope;
+
     this.CategoryService = CategoryService;
     this.SettingsService = SettingsService;
-    let self = this;
+    this.ArticleService = ArticleService;
 
     this.orderList = [
       {
@@ -44,19 +46,32 @@ class CategoryTreeController {
         faq: '-updated_at'
       },
     ];
-    this.order = this.orderList.find((o) => o.name == $rootScope.KBSettings.filter.sort_by);
+    this.order = this.orderList.find((o) => o.name == $scope.$root.KBSettings.filter.sort_by);
 
+    this.searchModel = "";
+
+    $scope.$on('updateArticles', () => {
+      this.getAllData(this, true);
+    });
+    $scope.$on('updateCategories', () => {
+      this.getAllData(this, true);
+    });
+
+    this.getAllData(this);
+  }
+
+
+  getAllData(self, update) {
     Promise.all([
-      CategoryService.getAll(),
-      ArticleService.getAll()
+      self.CategoryService.getAll(),
+      self.ArticleService.getAll()
     ]).then((result) => {
       self.allCategories = result[0].filter((category) => category.parent_id != 0);
       self.allArticles = (self.articleType == 'all')
-          ? result[1].filter((a) => a.status != 'trash')
-          : result[1].filter((a) => a.status == self.articleType);
+        ? result[1].filter((a) => a.status != 'trash')
+        : result[1].filter((a) => a.status == self.articleType);
+      if (this.$scope.$root.$$phase != '$apply' && this.$scope.$root.$$phase != '$digest') this.$scope.$apply();
     });
-
-    this.searchModel = "";
   }
 
   moved(index, item) {
@@ -67,10 +82,10 @@ class CategoryTreeController {
 
     function next() {
       if (idx < self.tree.categories.length) {
-        if(self.tree.categories[idx].sort_order != idx) {
+        if (self.tree.categories[idx].sort_order != idx) {
           self.tree.categories[idx].sort_order = idx;
           self.CategoryService.changeOrder(self.tree.categories[idx++]).then(next);
-        }else{
+        } else {
           idx++;
           next();
         }
@@ -81,7 +96,7 @@ class CategoryTreeController {
 
   }
 
-  changeOrder(item){
+  changeOrder(item) {
     this.order = item;
     this.SettingsService.changeCategoryOrder(item.name);
   }

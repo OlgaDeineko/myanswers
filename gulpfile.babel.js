@@ -52,7 +52,7 @@ gulp.task('webpack', ['clean'], (cb) => {
   config.entry.app = paths.entry;
 
   webpack(config, (err, stats) => {
-    if(err)  {
+    if (err) {
       throw new gutil.PluginError("webpack", err);
     }
 
@@ -87,7 +87,8 @@ gulp.task('serve', () => {
         stats: {
           colors: colorsSupported,
           chunks: false,
-          modules: false
+          modules: false,
+          assets: false
         },
         publicPath: config.output.publicPath
       }),

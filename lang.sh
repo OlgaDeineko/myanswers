@@ -6,8 +6,6 @@ CP=`pwd`
 SERVER_LANG_PATH="/var/www/html/i18n/"
 LOCAL_LANG_PATH="/client/app/i18n/"
 
-echo "$PROD_IP"
-
 case "$1" in
     prod)
         if [ -f "$PROD_KEY" ]
