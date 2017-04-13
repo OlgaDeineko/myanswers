@@ -1,11 +1,11 @@
 /**
- * @name Article
+ * @typedef {Object} Article
  * @property {number} id - article id
  * @property {string} question - article question (title)
  * @property {string} answer - faq answer (text)
  * @property {string} slug - article slug
  * @property {string} visibility - article visibility (public | internal | private)
- * @property {number} is_open_comments
+ * @property {boolean} is_open_comments
  * @property {string} lang - code article language
  * @property {string} author - author full name
  * @property {string} status - article status (draft, publish, etc.)
@@ -30,7 +30,7 @@
  * @property {string} timeReads - time to read the answer
  */
 /**
- * @name ArticleResponse
+ * @typedef {Object} ArticleResponse
  * @property {number} id - article id
  * @property {string} question - article question (title)
  * @property {string} answer - faq answer (text)
@@ -52,7 +52,7 @@
  * @property {CategoryResponse[]} categories - categories article. now in array one element
  */
 /**
- * @name ArticleRequest
+ * @typedef {Object} ArticleRequest
  * @property {string} question - article question (title)
  * @property {string} answer - faq answer (text)
  * @property {string} visibility - article visibility (public | internal | private)
@@ -176,9 +176,12 @@ function FaqHelper($rootScope, fileHelper, categoryHelper) {
   /**
    * counts types articles (publish, draft, trash, etc.)
    * @param {Article[]} faqs
-   * @returns {object[]<{name: string, code: string, counts: number}>} counts
+   * @returns {object[].<{name: string, code: string, counts: number}>|void} counts
    */
   let countsTypes = (faqs) => {
+    if (!$rootScope.settings) {
+      return;
+    }
     let articlesCounts =[];
     articlesCounts.push({
       name: "ALL",
