@@ -7,7 +7,6 @@ class RoleAccessesDirective {
 
   link($scope, $element, $attr) {
     let self = this;
-    $scope.roleAccesses = $scope.$eval($attr.roleAccesses);
 
     $scope.$watch(function () {return $attr.roleAccesses}, function (roleAccesses) {
       roleAccesses = $scope.$eval(roleAccesses);
