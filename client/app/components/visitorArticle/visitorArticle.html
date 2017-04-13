@@ -26,9 +26,6 @@
     <!--Counts views-->
     <div class="faq-counts">
       Updated by {{$ctrl.faq.author}} on {{$ctrl.faq.updated_at * 1000 | date : "dd/MM/yy HH:mm:ss"}}
-      <span class="pull-right">
-        {{$ctrl.faq.hits_count}} view{{$ctrl.faq.hits_count > 1 ? 's': ''}}
-      </span>
     </div><!--END: Counts views-->
 
     <!--Tags-->
@@ -40,6 +37,16 @@
 
     <!--Copy To Clipboard-->
     <div class="container-fluid">
+      <!--faq analytics-->
+      <i class="pull-right fa fa-bar-chart faq-views">
+        <div class="faq-views-analytics">
+          <h4>Analytics</h4>
+          <p><i class="fa fa-eye"></i>{{$ctrl.faq.hits_count}} view{{$ctrl.faq.hits_count > 1 ? 's': ''}}</p>
+          <p><i class="fa fa-smile-o"></i> {{$ctrl.faq.likes}} like{{$ctrl.faq.likes > 1 ? 's': ''}}</p>
+          <p><i class="fa fa-frown-o"></i> {{$ctrl.faq.dislikes}} dislike{{$ctrl.faq.dislikes > 1 ? 's': ''}}</p>
+        </div>
+      </i><!--END: faq analytics-->
+
       <button class="button button-primary pull-right faq-copy"
               clipboard
               uib-tooltip="Copy to clipboard"

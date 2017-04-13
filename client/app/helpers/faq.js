@@ -28,6 +28,8 @@
  * @property {number} countWords - count answer words
  * @property {number} countChars - count answer chars
  * @property {string} timeReads - time to read the answer
+ * @property {number} likes - count article likes
+ * @property {number} dislikes - count article dislikes
  */
 /**
  * @typedef {Object} ArticleResponse
@@ -111,6 +113,11 @@ function FaqHelper($rootScope, fileHelper, categoryHelper) {
     if(!(faq.granted_access && Array.isArray(faq.granted_access))){
       faq.granted_access = [];
     }
+
+    //TODO remove this after this functional to be done on the server
+    faq.likes = 0;
+    faq.dislikes = 0;
+
     return faq;
   };
 

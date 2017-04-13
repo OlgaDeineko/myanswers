@@ -49,7 +49,6 @@
       }
     }
 
-
     &-remarks {
       margin-top: 40px;
       h4 {
@@ -71,6 +70,42 @@
     &-copy{
       i{
         margin: 0;
+      }
+    }
+
+    &-views{
+      font-size: 2rem;
+      cursor: pointer;
+      position: relative;
+      padding-top: 8px;
+
+      &-analytics {
+        position: absolute;
+        background: white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        font-size: 1.4rem;
+        right: 0;
+        z-index: 1;
+        top: 0;
+        display: none;
+        white-space: nowrap;
+        color: rgba($darkTextColor, 0.5);
+
+        h4{
+          margin: 0 0 20px;
+          color: $darkTextColor;
+        }
+
+        i{
+          margin-right: 5px;
+        }
+      }
+
+      &:hover{
+        .faq-views-analytics {
+          display: block;
+        }
       }
     }
   }
