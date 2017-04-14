@@ -1,6 +1,6 @@
 class ForgotPasswordModalController {
 
-  constructor($scope, $filter, toastr, AuthenticationService) {
+  constructor($scope, $filter, toastr, UserService) {
     'ngInject';
     this.name = 'REGISTRATION.FORGOT_PASSWORD';
 
@@ -8,7 +8,7 @@ class ForgotPasswordModalController {
     this.toastr = toastr;
     this.translate = $filter('translate');
 
-    this.AuthenticationService = AuthenticationService;
+    this.UserService = UserService;
 
     this.$uibModalInstance = $scope.$parent.$uibModalInstance;
 
@@ -41,7 +41,7 @@ class ForgotPasswordModalController {
     let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
-      self.AuthenticationService.forgotPassword(newUser.email)
+      self.UserService.forgotPassword(newUser.email)
         .then((result) => {
           self.toastr.success(self.translate('MESSAGES.EMAIL_SENT'));
           self.$uibModalInstance.close(result);

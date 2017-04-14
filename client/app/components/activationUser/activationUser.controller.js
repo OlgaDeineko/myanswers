@@ -1,5 +1,5 @@
 class ActivationUserController {
-  constructor($state, $filter, toastr, AuthenticationService) {
+  constructor($state, $filter, toastr, UserService) {
     'ngInject';
 
     this.name = 'activationUser';
@@ -8,7 +8,7 @@ class ActivationUserController {
     this.toastr = toastr;
     this.translate = $filter('translate');
 
-    AuthenticationService.sendActivation($state.params.token)
+    UserService.sendActivation($state.params.token)
       .then((result) => {
         self.toastr.success(self.translate('MESSAGES.ACCOUNT_ACTIVATED'));
         $state.go('chooseSubdomain');

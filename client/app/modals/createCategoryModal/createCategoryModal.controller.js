@@ -1,6 +1,6 @@
 class CreateCategoryModalController {
   constructor($scope, $rootScope, $filter, $stateParams, toastr,
-              categoryHelper, CategoryService, SessionService, UsersService) {
+              categoryHelper, CategoryService, UserService, UsersService) {
     'ngInject';
 
     this.name = 'createCategoryModal';
@@ -16,7 +16,7 @@ class CreateCategoryModalController {
 
     this.mode = 'create';
     this.type = $stateParams.categoryId ? 'Subcategory' : 'Category';
-    this.newCategory = categoryHelper.newCategory($stateParams.categoryId, SessionService.getFullName());
+    this.newCategory = categoryHelper.newCategory($stateParams.categoryId, UserService.getFullName());
     this.parentCategory = this.$resolve.parentCategory || this.$resolve.category.parent;
     this.users = [];
 

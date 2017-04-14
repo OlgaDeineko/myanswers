@@ -9,7 +9,7 @@ class ChooseSubdomainController {
     this.translate = $filter('translate');
     this.SubdomainService = SubdomainService;
 
-    SessionService.destroy();
+    SessionService.user.remove();
 
     let locationSubdomain = SessionService.getSubdomain();
     if (locationSubdomain != defaultSubdomain) {

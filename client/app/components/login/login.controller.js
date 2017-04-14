@@ -1,7 +1,7 @@
 import config, {mainDomian, defaultSubdomain} from '../../config';
 
 class LoginController {
-  constructor($scope, $state, $filter, $uibModal, toastr, AuthenticationService, SessionService) {
+  constructor($scope, $state, $filter, $uibModal, toastr, UserService, SessionService) {
     "ngInject";
 
     this.name = 'REGISTRATION.LOGIN';
@@ -13,8 +13,7 @@ class LoginController {
     this.toastr = toastr;
     this.translate = $filter('translate');
 
-    this.SessionService = SessionService;
-    this.AuthenticationService = AuthenticationService;
+    this.UserService = UserService;
 
     this.subdomain = SessionService.getSubdomain();
 
@@ -28,7 +27,7 @@ class LoginController {
       })
     }
 
-    if(this.subdomain == defaultSubdomain) {
+    if (this.subdomain == defaultSubdomain) {
       this.$state.go("chooseSubdomain");
     }
   }
@@ -74,13 +73,13 @@ class LoginController {
   login(loginForm, user) {
     let self = this;
     this.$scope.$broadcast('schemaFormValidate');
-    if(loginForm.$valid) {
+    if (loginForm.$valid) {
       user.subdomain = self.subdomain;
-      this.AuthenticationService.login(user)
-        .then((result) => {
-          if(self.SessionService.getRole() == 'visitor'){
+      this.UserService.login(user)
+        .then(() => {
+          if (this.UserService.getRole() == 'visitor') {
             self.$state.go("visitor");
-          }else {
+          } else {
             self.$state.go("admin.category");
           }
         }, (error) => {
@@ -91,7 +90,7 @@ class LoginController {
     }
   }
 
-  forgot(){
+  forgot() {
     this.$uibModal.open({
       component: 'forgotPasswordModal'
     });

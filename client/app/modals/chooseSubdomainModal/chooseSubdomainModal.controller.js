@@ -22,10 +22,11 @@ class ChooseSubdomainModalController {
 
   choose(subdomain) {
     let token = `t=${this.SessionService.token.data}`;
-    let role = `r=${this.SessionService.getRole()}`;
-    let name = `n=${this.SessionService.getFullName()}`;
-    this.SessionService.destroy();
-    this.$window.location = `http://${subdomain}.${mainDomain}/superadmin/chooseSubdomain?${token}&${role}&${name}&d=${subdomain}`;
+    let user = `u=${this.SessionService.user.data}`;
+    this.SessionService.token.remove();
+    this.SessionService.subdomain.remove();
+    this.SessionService.user.remove();
+    this.$window.location = `http://${subdomain}.${mainDomain}/superadmin/chooseSubdomain?${token}&${user}&d=${subdomain}`;
   }
 
   cancel() {

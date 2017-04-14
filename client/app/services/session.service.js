@@ -57,37 +57,12 @@ function SessionService($window) {
   let subdomain = new SessionObject('subdomain');
 
   /**
-   * set data to local data
-   * @param {string} accessToken
-   * @param {string} subdomain
-   * @param {string} role
-   * @param {string} fullName
-   */
-  let create = (accessToken, subdomain, role, fullName) => {
-    //TODO merge to user
-    token.data = accessToken;
-    // $window.localStorage['user_name'] = userName;
-    getSubdomain.data = subdomain
-    $window.localStorage['role'] = role;
-    $window.localStorage['full_name'] = fullName;
-  };
-
-  /**
    * get api url
    * @returns {string}
    */
   let geApiUrl = () => {
-    let userSubdomain = subdomain.data|| $window.location.host.match(/[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?/) || defaultSubdomain;
+    let userSubdomain = subdomain.data || $window.location.host.match(/[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?/) || defaultSubdomain;
     return `${protocol}${userSubdomain}.${apiUrl}`;
-  };
-
-  /**
-   * get role
-   * @returns {string}
-   */
-  let getRole = () => {
-    //TODO merge to user
-    return $window.localStorage['role'];
   };
 
   /**
@@ -96,27 +71,6 @@ function SessionService($window) {
    */
   let getSubdomain = () => {
     return subdomain.data || $window.location.host.match(/[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?/)[0];
-  };
-
-  /**
-   * get user full name
-   * @returns {string}
-   */
-  let getFullName = () => {
-    //TODO merge to user
-    return $window.localStorage['full_name'];
-  };
-
-  /**
-   * clear local storage
-   */
-  let destroy = () => {
-    //TODO merge to user
-    token.remove()
-    // $window.localStorage.removeItem('user_name');
-    subdomain.remove();
-    $window.localStorage.removeItem('role');
-    $window.localStorage.removeItem('full_name');
   };
 
   /**
@@ -132,12 +86,8 @@ function SessionService($window) {
   };
 
   return {
-    create,
-    destroy,
     getSubdomain,
-    getRole,
     geApiUrl,
-    getFullName,
     setPreviousPage,
 
     user,

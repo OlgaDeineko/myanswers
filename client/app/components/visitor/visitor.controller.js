@@ -4,7 +4,7 @@ let algoliasearch = require('algoliasearch');
 let algoliasearchHelper = require('algoliasearch-helper');
 
 class VisitorController {
-  constructor($window, $stateParams, $state, $scope, categoryHelper, AuthenticationService, CategoryService, ArticleService, SessionService) {
+  constructor($window, $stateParams, $state, $scope, categoryHelper, UserService, CategoryService, ArticleService, SessionService) {
     'ngInject';
 
     this.name = 'Welcome to KB';
@@ -13,7 +13,7 @@ class VisitorController {
     this.$scope = $scope;
     this.$state = $state;
 
-    this.AuthenticationService = AuthenticationService;
+    this.UserService = UserService;
     this.ArticleService = ArticleService;
     this.CategoryService = CategoryService;
     this.categoryHelper = categoryHelper;
@@ -69,7 +69,7 @@ class VisitorController {
   }
 
   logout() {
-    this.AuthenticationService.logOut();
+    this.UserService.logOut();
     this.$window.location.href = `http://main.${mainDomain}/subdomain`;
   }
 

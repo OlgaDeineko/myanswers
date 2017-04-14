@@ -1,10 +1,11 @@
-function AuthenticationService($http, PermPermissionStore, userHelper, SessionService) {
+function UserService($http, PermPermissionStore, userHelper, SessionService) {
   "ngInject";
+  this.user = null;
 
   /**
    * login
    * @param {User} userData
-   * @returns {Promise<Object>}
+   * @returns {Promise<void>}
    */
   let login = (userData) => {
     return $http({
@@ -13,14 +14,27 @@ function AuthenticationService($http, PermPermissionStore, userHelper, SessionSe
       data: userData
     }).then((result) => {
       let user = userHelper.responseToData(result.data.data);
-      SessionService.create(
-        user.access_token,
-        userData.subdomain,
-        user.role,
-        user.fullName
-      );
-      return user;
+
+      SessionService.token.data = result.data.data.access_token;
+      SessionService.subdomain.data = userData.subdomain;
+
+      this.user = {
+        id: user.id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        role: user.role
+      };
+
+      SessionService.user.data = this.user;
     });
+  };
+
+  /**
+   * logout
+   */
+  let logOut = () => {
+    SessionService.user.remove();
   };
 
   /**
@@ -39,13 +53,76 @@ function AuthenticationService($http, PermPermissionStore, userHelper, SessionSe
   };
 
   /**
+   * get user full name
+   * @returns {string}
+   */
+  let getFullName = () => {
+    if (!this.user) return;
+    return `${this.user.first_name} ${this.user.last_name}`
+  };
+
+  /**
+   * get user access token
+   * @returns {string}
+   */
+  let getToken = () => {
+    return SessionService.token.data;
+  };
+
+  /**
+   * get user role
+   * @returns {string|void}
+   */
+  let getRole = () => {
+    if (!this.user) return;
+    return this.user.role;
+  };
+
+  /**
+   * get user id
+   * @returns {string|void}
+   */
+  let getId = () => {
+    if (!this.user) return;
+    return this.user.id;
+  };
+
+  /**
+   * get user email
+   * @returns {string|void}
+   */
+  let getEmail = () => {
+    if (!this.user) return;
+    return this.user.email;
+  };
+
+  /**
    * is authorized
    * @returns {boolean}
    */
-  let isAuthenticated = () => {
-    return !!SessionService.token.data;
+  let isLogin = () => {
+    return !!getToken();
   };
 
+  /**
+   * get current user
+   * @returns {Promise}
+   */
+  let getCurrentUser = () => {
+    //TODO: need call to server(don't implemented)
+    return new Promise((resolve, reject) => {
+      resolve(this.user);
+    })
+  };
+
+  /**
+   * read user from local storage
+   */
+  let getUserFromStorage = () => {
+    this.user = SessionService.user.data
+  };
+
+  //////////////////////////////////////////////////////////////////////////////////////////
   /**
    * Init user role permissions
    */
@@ -54,30 +131,23 @@ function AuthenticationService($http, PermPermissionStore, userHelper, SessionSe
       return true;
     });
     PermPermissionStore.definePermission('anonymous', () => {
-      return !SessionService.token.data;
+      return !isLogin();
     });
     PermPermissionStore.definePermission('user', () => {
-      return SessionService.getRole() == 'user' || SessionService.getRole() == 'editor';
+      return getRole() == 'user' || getRole() == 'editor';
     });
     PermPermissionStore.definePermission('admin', () => {
-      return SessionService.getRole() == 'admin' || SessionService.getRole() == 'ADMIN';
+      return getRole() == 'admin' || getRole() == 'ADMIN';
     });
     PermPermissionStore.definePermission('visitor', () => {
-      return SessionService.getRole() == 'visitor';
+      return getRole() == 'visitor';
     });
     PermPermissionStore.definePermission('superAdmin', () => {
-      return SessionService.getRole() == 'Super Admin';
+      return getRole() == 'Super Admin';
     });
     PermPermissionStore.definePermission('contributor', () => {
-      return SessionService.getRole() == 'contributor';
+      return getRole() == 'contributor';
     });
-  };
-
-  /**
-   * logout
-   */
-  let logOut = () => {
-    SessionService.destroy();
   };
 
   /**
@@ -126,15 +196,23 @@ function AuthenticationService($http, PermPermissionStore, userHelper, SessionSe
   };
 
   return {
-    register,
     login,
     logOut,
-    isAuthenticated,
+    register,
+    getFullName,
+    getToken,
+    getRole,
+    getId,
+    getEmail,
+    isLogin,
+    getCurrentUser,
+    getUserFromStorage,
     initPermission,
+
     forgotPassword,
     resetPassword,
     sendActivation,
   }
 }
 
-export default AuthenticationService;
+export default UserService;

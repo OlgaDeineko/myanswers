@@ -1,5 +1,5 @@
 class ForgotPasswordController {
-  constructor($scope, $state, $filter, toastr, AuthenticationService) {
+  constructor($scope, $state, $filter, toastr, UserService) {
     'ngInject';
 
     this.name = 'REGISTRATION.RESET_PASSWORD';
@@ -10,7 +10,7 @@ class ForgotPasswordController {
     this.$scope = $scope;
     this.translate = $filter('translate');
 
-    this.AuthenticationService = AuthenticationService;
+    this.UserService = UserService;
 
     this.newPass = {};
     if ($scope.$root.translateIsReady) {
@@ -63,7 +63,7 @@ class ForgotPasswordController {
     let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
-      this.AuthenticationService.resetPassword(this.$state.params.resetToken, newPass.password)
+      this.UserService.resetPassword(this.$state.params.resetToken, newPass.password)
         .then((result) => {
           self.toastr.success(self.translate('MESSAGES.PASSWORD_CHANGED'));
           this.$state.go('chooseSubdomain');

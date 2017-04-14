@@ -22,10 +22,14 @@ let routerModule = angular.module('routing', [
       })
 
       .state('chooseSubdomainSuperAdmin', {
-        url: '/superadmin/chooseSubdomain?t&r&d&n',
+        url: '/superadmin/chooseSubdomain?t&u&n',
         controller: ($state, SessionService) => {
           'ngInject'
-          SessionService.create($state.params.t, $state.params.d, $state.params.r, $state.params.n);
+
+          SessionService.token.data = $state.params.t;
+          SessionService.subdomain.data = $state.params.d;
+          SessionService.user.data = $state.params.u;
+
           $state.go('admin.category');
         },
         // data: {

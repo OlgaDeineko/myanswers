@@ -1,7 +1,7 @@
 import {mainDomain, defaultSubdomain} from '../../config';
 
 class NavbarController {
-  constructor($uibModal, $window, AuthenticationService) {
+  constructor($uibModal, $window, UserService) {
     "ngInject";
 
     this.name = 'navbar';
@@ -9,11 +9,11 @@ class NavbarController {
     this.$window = $window;
     this.$uibModal = $uibModal;
 
-    this.AuthenticationService = AuthenticationService;
+    this.UserService = UserService;
   }
 
   logout() {
-    this.AuthenticationService.logOut();
+    this.UserService.logOut();
     this.$window.location.href = `http://${defaultSubdomain}.${mainDomain}/subdomain`;
   }
 

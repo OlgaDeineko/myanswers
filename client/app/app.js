@@ -8,7 +8,6 @@ import AppComponent from './app.component';
 import Router from './router';
 
 import SessionService from './services/session.service';
-import AuthenticationService from './services/authentication.service';
 import ResponseObserver from './services/responseObserver.service';
 import ArticleService from './services/article.service';
 import CategoryService from './services/category.service';
@@ -134,9 +133,9 @@ angular.module('app', [
     $httpProvider.defaults.headers.put = {};
     $httpProvider.defaults.headers.patch = {};
 
-    $provide.decorator("$exceptionHandler", function($delegate, $injector){
-      return function(exception, cause){
-        if(/^Possibly unhandled rejection:/.test(exception)){
+    $provide.decorator("$exceptionHandler", function ($delegate, $injector) {
+      return function (exception, cause) {
+        if (/^Possibly unhandled rejection:/.test(exception)) {
           return;
         }
         $delegate(exception, cause);
@@ -159,7 +158,6 @@ angular.module('app', [
   })
   .service('ResponseObserver', ResponseObserver)
   .service('SessionService', SessionService)
-  .service('AuthenticationService', AuthenticationService)
   .service('ArticleService', ArticleService)
   .service('CategoryService', CategoryService)
   .service('SubdomainService', SubdomainService)
@@ -176,15 +174,19 @@ angular.module('app', [
   .service('fileHelper', FileHelper)
 
   .component('app', AppComponent)
-  .run(($rootScope, $state, AuthenticationService, SessionService, SettingsService) => {
+  .run(($rootScope, $state, UserService, SessionService, SettingsService) => {
     "ngInject";
 
+    if (UserService.isLogin) {
+      UserService.getUserFromStorage();
+    }
+
     $rootScope.$on('$stateChangeStart', (event, next) => {
-      AuthenticationService.initPermission();
+      UserService.initPermission();
     });
 
     $rootScope.$on('$stateChangeSuccess', (ev, to, toParams, from, fromParams) => {
-      if(from.name){
+      if (from.name) {
         SessionService.setPreviousPage(from.name, fromParams)
       }
     });

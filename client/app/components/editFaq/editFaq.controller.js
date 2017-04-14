@@ -1,6 +1,6 @@
 class EditFaqController {
   constructor($state, $scope, $rootScope, $filter, toastr, faqHelper, CategoryService,
-              ArticleService, SettingsService, SessionService, FilesService, UsersService) {
+              ArticleService, SettingsService, FilesService, UsersService, UserService) {
     'ngInject';
     this.name = 'editFaq';
     let self = this;
@@ -11,7 +11,6 @@ class EditFaqController {
     this.translate = $filter('translate');
 
     this.CategoryService = CategoryService;
-    this.SessionService = SessionService;
     this.ArticleService = ArticleService;
     this.SettingsService = SettingsService;
     this.FilesService = FilesService;
@@ -84,7 +83,7 @@ class EditFaqController {
 
     //state can be in two states: createFaq or editFaq. for create - empty object, for edit - grab from server
     if (this.mode == 'create') {
-      this.faq = faqHelper.newFaq($state.params.categoryId, SessionService.getFullName());
+      this.faq = faqHelper.newFaq($state.params.categoryId, UserService.getFullName());
     } else {
       this.ArticleService.getById($state.params.faqId)
         .then((result) => {

@@ -1,7 +1,7 @@
 import {mainDomain} from '../../config';
 
 class RegistrationController {
-  constructor($scope, $window, $filter, $state, toastr, AuthenticationService) {
+  constructor($scope, $window, $filter, $state, toastr, UserService) {
     "ngInject";
     this.name = 'REGISTRATION.TITLE';
     let self = this;
@@ -12,7 +12,7 @@ class RegistrationController {
     this.toastr = toastr;
     this.translate = $filter('translate');
 
-    this.AuthenticationService = AuthenticationService;
+    this.UserService = UserService;
 
     this.registrationDone = false;
     this.isCreated = '';
@@ -114,7 +114,7 @@ class RegistrationController {
     const self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
-      this.AuthenticationService.register(newUser)
+      this.UserService.register(newUser)
         .then((result) => {
           self.isCreated = newUser.subdomain.toLowerCase();
           self.toastr.success(self.translate('MESSAGES.REGISTRATION_DONE_MSG'));
