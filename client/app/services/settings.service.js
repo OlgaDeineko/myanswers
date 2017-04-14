@@ -17,7 +17,7 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
     this.KBSettings = KBSettings || this.KBSettings;
     $rootScope.KBSettings = this.KBSettings ;
     $translate.use(this.KBSettings.lang.code);
-    SessionService.setKBSettings(KBSettings);
+    SessionService.kbSettings.data = KBSettings;
   };
 
   /**
@@ -106,7 +106,7 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
   };
 
   let getKBSettings = () => {
-    _setKBSettings(SessionService.getKBSettings());
+    _setKBSettings(SessionService.kbSettings.data);
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/settings`
@@ -116,7 +116,7 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
   };
 
   let saveKBSettings = (KBSettings) => {
-    SessionService.setKBSettings(KBSettings);
+    SessionService.kbSettings.data = KBSettings;
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/settings`,

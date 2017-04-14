@@ -19,7 +19,7 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
       }
       if (SessionService.getSubdomain()) {
         config.headers['Client-Subdomain'] = SessionService.getSubdomain();
-        config.headers['Authorization'] = 'Bearer ' + SessionService.getToken();
+        config.headers['Authorization'] = 'Bearer ' + SessionService.token.data;
       }
       spinnerFactory.start();
       return config;

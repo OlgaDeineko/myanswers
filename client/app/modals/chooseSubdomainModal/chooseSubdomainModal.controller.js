@@ -21,7 +21,7 @@ class ChooseSubdomainModalController {
   }
 
   choose(subdomain) {
-    let token = `t=${this.SessionService.getToken()}`;
+    let token = `t=${this.SessionService.token.data}`;
     let role = `r=${this.SessionService.getRole()}`;
     let name = `n=${this.SessionService.getFullName()}`;
     this.SessionService.destroy();

@@ -15,6 +15,7 @@ import CategoryService from './services/category.service';
 import SubdomainService from './services/subdomain.service';
 import SettingsService from './services/settings.service';
 import UsersService from './services/users.service';
+import UserService from './services/user.service';
 import FakeDataService from './services/fakeData.service';
 import FilesService from './services/files.services';
 import ConfirmService from './services/confirm.service';
@@ -164,6 +165,7 @@ angular.module('app', [
   .service('SubdomainService', SubdomainService)
   .service('SettingsService', SettingsService)
   .service('UsersService', UsersService)
+  .service('UserService', UserService)
   .service('FakeDataService', FakeDataService)
   .service('FilesService', FilesService)
   .service('ConfirmService', ConfirmService)

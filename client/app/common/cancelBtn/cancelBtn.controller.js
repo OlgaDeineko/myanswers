@@ -9,7 +9,7 @@ class CancelBtnController {
 
     this.isSetPrevious = false;
 
-    let state = SessionService.getPreviousPage();
+    let state = SessionService.previousPage.data;
     if (state && state.stateName) {
       this.isSetPrevious = true;
     }
@@ -26,7 +26,7 @@ class CancelBtnController {
 */
 
   cancel() {
-    let previous = this.SessionService.getPreviousPage();
+    let previous = this.SessionService.previousPage.data;
     if(previous.stateName) {
       this.$state.go(previous.stateName, previous.params);
     }

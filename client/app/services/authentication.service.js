@@ -43,7 +43,7 @@ function AuthenticationService($http, PermPermissionStore, userHelper, SessionSe
    * @returns {boolean}
    */
   let isAuthenticated = () => {
-    return SessionService.hasToken();
+    return !!SessionService.token.data;
   };
 
   /**
@@ -54,7 +54,7 @@ function AuthenticationService($http, PermPermissionStore, userHelper, SessionSe
       return true;
     });
     PermPermissionStore.definePermission('anonymous', () => {
-      return !SessionService.hasToken();
+      return !SessionService.token.data;
     });
     PermPermissionStore.definePermission('user', () => {
       return SessionService.getRole() == 'user' || SessionService.getRole() == 'editor';
