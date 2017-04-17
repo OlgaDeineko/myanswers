@@ -4,7 +4,7 @@
       <label>
         <input type="checkbox"
                ng-checked="$ctrl.selected.indexOf(item.id) > -1"
-               ng-disabled="item.role == 'admin'"
+               ng-disabled="item.role == 'admin' || item.role == 'Super Admin'"
                ng-click="$ctrl.checkUser(item.id)">
         {{item.first_name}} {{item.last_name}}
       </label>

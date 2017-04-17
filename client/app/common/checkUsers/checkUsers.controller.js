@@ -4,11 +4,15 @@ class CheckUsersController {
   }
 
   $onInit() {
-    if (!this.updateMode) {
-      this.users.forEach((user) => {
+    this.users.forEach((user) => {
+      if (!this.updateMode) {
         this.selected.push(user.id);
-      })
-    }
+      } else {
+        if ((user.role == 'admin' || user.role == 'Super Admin') && this.selected.indexOf(user.id) == -1) {
+          this.selected.push(user.id);
+        }
+      }
+    })
   }
 
   checkUser(userId) {
