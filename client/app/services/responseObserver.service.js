@@ -54,6 +54,7 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
       switch (errorResponse.status) {
         case 403:
           toastr.error("You don't have access to this actions");
+          //TODO: redirect to another page
           stateService.go('chooseSubdomain');
           break;
         case 401:

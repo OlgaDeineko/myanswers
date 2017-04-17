@@ -1,5 +1,6 @@
 let SpinnerFactory = function ($rootScope) {
   'ngInject';
+  //TODO: remove $rootScope
   $rootScope.spinner = [];
 
   /**

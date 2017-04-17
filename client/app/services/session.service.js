@@ -61,7 +61,7 @@ function SessionService($window) {
    * @returns {string}
    */
   let geApiUrl = () => {
-    let userSubdomain = subdomain.data || $window.location.host.match(/[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?/) || defaultSubdomain;
+    let userSubdomain = getSubdomain()|| defaultSubdomain;
     return `${protocol}${userSubdomain}.${apiUrl}`;
   };
 

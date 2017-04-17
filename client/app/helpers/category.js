@@ -73,6 +73,12 @@ function CategoryHelper($rootScope) {
       category.author = 'Unknown';
     }
 
+    category.hierarchical = {
+      lvl0: null,
+      lvl1: null,
+      lvl2: null,
+    };
+
     return category;
   };
 
@@ -102,12 +108,25 @@ function CategoryHelper($rootScope) {
    */
   let buildTree = (articles, categories, currentCategory) => {
     articles = articles.filter((article) => article.status != 'trash');
+    let rootId = 1;
+    let rootName = categories.find(c => c.id == rootId).name;
     categories.forEach((category, i) => {
       categories[i].categories = categories.filter(c => c.parent_id == category.id).sort((a, b) => a.sort_order - b.sort_order);
-      if(category.parent_id != 0){
+      if (category.id != rootId) {
         categories[i].parent = categories.find(c => c.id == category.parent_id);
       }
       categories[i].articles = articles.filter(a => a.categories.find(c => c.id == category.id));
+
+      categories[i].hierarchical.lvl0 = rootName;
+      switch (categories[i].type) {
+        case 'category':
+          categories[i].hierarchical.lvl1 = [rootName, categories[i].name].join(' > ');
+          break;
+        case 'subcategory':
+          categories[i].hierarchical.lvl1 = [rootName, categories[i].parent.name].join(' > ');
+          categories[i].hierarchical.lvl2 = [rootName, categories[i].parent.name, categories[i].name].join(' > ');
+          break;
+      }
     });
 
     return categories.find(c => c.id == currentCategory);

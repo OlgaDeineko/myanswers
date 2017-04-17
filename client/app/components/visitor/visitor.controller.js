@@ -81,36 +81,15 @@ class VisitorController {
       let categories = result[0];
       let articles = result[1].filter((article) => article.status == 'published');
 
-      let id = self.currentCategory;
-      self.categoryForAlgolia = '';
-      self.categoriesArray = [];
-
-      //TODO: move to helper
-      while (id != 0) {
-        let category = categories.find((c) => c.id == id);
-        self.categoriesArray.unshift(category.name);
-        if(category.parent_id == 0){
-          self.categoryForAlgolia = `${category.name}${self.categoryForAlgolia}`;
-        }else{
-          self.categoryForAlgolia = ` > ${category.name}${self.categoryForAlgolia}`;
-        }
-        id = category.parent_id;
-      }
-
       self.tree = self.categoryHelper.buildTree(articles, categories, self.currentCategory);
-
-      if(self.categoriesArray.length == 1){
-        self.getArticles(self, self.categoriesArray[0]);
-      }else{
-        self.getArticles(self, `${self.categoriesArray[0]} > ${self.categoriesArray[1]}`);
-      }
-
+      self.getArticles(self, self.tree.id == 1 ? self.tree.hierarchical.lvl0 : self.tree.hierarchical.lvl1);
 
       self.$scope.$apply();
     })
   }
 
   getArticles(self, category) {
+    //TODO: create service
     let algoliaHelper = new algoliasearchHelper(self.algolia, self.algoliaIndex, {
       hierarchicalFacets: [{
         name: 'parent',
