@@ -13,9 +13,9 @@
 
   <div class="form-group">
     <label>{{'CATEGORY.VISIBILITY_USER' | translate}}</label>
-    <check-users ng-if="$ctrl.users && $ctrl.users.length"
+    <check-users ng-if="$ctrl.parentCategory"
                  update-mode="$ctrl.mode == 'update'"
-                 users="$ctrl.users"
+                 parent-users="$ctrl.parentCategory.id == 1 ? 'all' : $ctrl.parentCategory.granted_access"
                  selected="$ctrl.newCategory.granted_access">
     </check-users>
   </div>

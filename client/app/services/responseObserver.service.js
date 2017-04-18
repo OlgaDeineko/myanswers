@@ -32,7 +32,7 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
           response);
       }
 
-      if(response.data.status == 0){
+      if (response.data.status == 0) {
         spinnerFactory.reject();
         return $q.reject(response);
       }
@@ -58,7 +58,8 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
           break;
         case 401:
           toastr.error('Please login again', `Authorisation error:`);
-          SessionService.destroy();
+          SessionService.user.remove();
+          SessionService.token.remove();
           stateService.go('chooseSubdomain');
           break;
         case 500:

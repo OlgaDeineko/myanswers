@@ -14,6 +14,7 @@ class EditFaqController {
     this.ArticleService = ArticleService;
     this.SettingsService = SettingsService;
     this.FilesService = FilesService;
+    this.UserService = UserService;
 
     this.languages = $rootScope.settings.languages;
     this.faqVisibility = $rootScope.settings.faq_visibility;
@@ -93,16 +94,7 @@ class EditFaqController {
 
     CategoryService.getById($state.params.categoryId || 1)
       .then(category => {
-
-        UsersService.getAll()
-          .then((result) => {
-            if (category.id == 1) {
-              this.users = result;
-            } else {
-              this.users = result.filter(u => category.granted_access.indexOf(u.id) > -1);
-            }
-            if (this.$scope.$root.$$phase != '$apply' && this.$scope.$root.$$phase != '$digest') this.$scope.$apply();
-          });
+        this.parentCategory = category;
       });
 
 

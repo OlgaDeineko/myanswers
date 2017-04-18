@@ -28,18 +28,15 @@ function FakeDataService() {
           "updated_at": "1487850702",
           "categories": [
             {
-              "id": "2",
-              "parent_id": "1",
-              "name": "Keyboard",
+              "id": "1",
+              "parent_id": "0",
+              "name": "Root",
               "sort_order": "0",
               "lang": "en",
               "author": 'Oleg Skiba',
               "created_at": "1487850702",
               "updated_at": "1487850702",
-              "granted_access": [
-                "78FsrnMdYHAcJEWUPo4gQe",
-                "2n0Y6dzxevGvKVppiU9BhR"
-              ]
+              "granted_access": []
             }
           ],
           "tags": [{"tag_id": "1", "name": "test"}, {"tag_id": "2", "name": "new tag"},],
@@ -65,7 +62,7 @@ function FakeDataService() {
               "mime": "application/pdf"
             }
           ],
-          "granted_access": ['78FsrnMdYHAcJEWUPo4gQe']
+          "granted_access": ['2n0Y6dzxevGvKVppiU9BhR']
         },
         {
           "id": "2",
@@ -186,7 +183,9 @@ function FakeDataService() {
           "updated_at": "1487850702",
           "granted_access": [
             "78FsrnMdYHAcJEWUPo4gQe",
-            "2n0Y6dzxevGvKVppiU9BhR"
+            "2n0Y6dzxevGvKVppiU9BhR",
+            "NwUQypbQRtd5485POk7Nh",
+            "5G0kKHSP10OICd4MRAr6cO"
           ]
         },
         {
@@ -334,7 +333,7 @@ function FakeDataService() {
         "token_type": "Bearer",
         "expires_in": 3600,
         "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/31Th8NMet7GuBODxt4lNE4",
-        "role": ["admin"],
+        "role": ["contributor"],
         "id": "78FsrnMdYHAcJEWUPo4gQe",
         "email": "oleg.skiba@yanpix.com",
         "username": "oleg.skiba@yanpix.com",
@@ -432,8 +431,8 @@ function FakeDataService() {
         return _toFormatResponse(data.checkSubdomain);
         break;
       case 'auth/login':
-        // return _toFormatResponse(data.login);
-        return _toFormatResponse(data.superAdmin);
+        return _toFormatResponse(data.login);
+        // return _toFormatResponse(data.superAdmin);
         break;
       case 'attachments/faq':
         if (method != 'GET') {

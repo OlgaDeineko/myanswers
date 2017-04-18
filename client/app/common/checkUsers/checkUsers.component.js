@@ -5,7 +5,7 @@ import './checkUsers.scss';
 let checkUsersComponent = {
   restrict: 'E',
   bindings: {
-    users: "=",
+    parentUsers: "=",
     selected: "=",
     updateMode: "=",
   },

@@ -19,8 +19,10 @@
     <!--Counts word-->
     <div class="text-right faq-counts" ng-if="$ctrl.faq.countWords">
       <p>
-        {{$ctrl.faq.countWords}} {{$ctrl.faq.countWords > 1 ? 'FAQ.WORDS': 'FAQ.WORD' | translate}} {{$ctrl.faq.countChars}}
-        {{$ctrl.faq.countChars > 1 ? 'FAQ.CHARACTERS': 'FAQ.CHARACTER' | translate}}, {{$ctrl.faq.timeReads}} {{'FAQ.READING_TIME' | translate}}
+        {{$ctrl.faq.countWords}} {{$ctrl.faq.countWords > 1 ? 'FAQ.WORDS': 'FAQ.WORD' | translate}}
+        {{$ctrl.faq.countChars}}
+        {{$ctrl.faq.countChars > 1 ? 'FAQ.CHARACTERS': 'FAQ.CHARACTER' | translate}}, {{$ctrl.faq.timeReads}}
+        {{'FAQ.READING_TIME' | translate}}
       </p>
     </div><!--END: Counts word-->
 
@@ -33,11 +35,14 @@
                role-accesses="{disabled:['contributor']}"
                uib-dropdown-toggle>
             <i class="fa fa-angle-down dropdown-angle"></i>
-            {{ 'FAQ.STATUSES.'+(($ctrl.faqStatuses | filter: {code: $ctrl.faq.status})[0].name | uppercase) | translate}}
+            {{ 'FAQ.STATUSES.'+(($ctrl.faqStatuses | filter: {code: $ctrl.faq.status})[0].name | uppercase) |
+            translate}}
           </div>
 
           <ul class="dropdown-menu">
-            <li ng-repeat="item in $ctrl.faqStatuses" ng-click="$ctrl.faq.status = item.code">{{'FAQ.STATUSES.'+item.name | uppercase | translate}}</li>
+            <li ng-repeat="item in $ctrl.faqStatuses" ng-click="$ctrl.faq.status = item.code">
+              {{'FAQ.STATUSES.'+item.name | uppercase | translate}}
+            </li>
           </ul>
         </div>
       </div>
@@ -46,7 +51,8 @@
     <!--Question-->
     <div class="faq-question">
       <label>{{'FAQ.LABEL_TITLE' | translate}}</label>
-      <input class="form-control" placeholder="{{'FAQ.LABEL_TITLE' | translate}} {{'FAQ.TITLE' | translate}}" ng-model="$ctrl.faq.question">
+      <input class="form-control" placeholder="{{'FAQ.LABEL_TITLE' | translate}} {{'FAQ.TITLE' | translate}}"
+             ng-model="$ctrl.faq.question">
     </div><!--END: Question-->
 
     <!--Answer-->
@@ -115,12 +121,13 @@
     </div><!--END: Visibility-->
 
     <!--Visibility-->
-    <div class="faq-user-visibility">
+    <!--TODO: rewrite this-->
+    <div class="faq-user-visibility" ng-if="$ctrl.UserService.getRole() != 'contributor'">
       <h4>{{'FAQ.VISIBILITY_USER' | translate}}</h4>
-      <check-users  ng-if="$ctrl.users && $ctrl.users.length"
-                    update-mode="$ctrl.mode == 'update'"
-                    users="$ctrl.users"
-                    selected="$ctrl.faq.granted_access">
+      <check-users ng-if="$ctrl.parentCategory"
+                   update-mode="$ctrl.mode == 'update'"
+                   parent-users="$ctrl.parentCategory.id == 1 ? 'all' : $ctrl.parentCategory.granted_access"
+                   selected="$ctrl.faq.granted_access">
       </check-users>
     </div><!--END: Visibility-->
 
@@ -187,10 +194,10 @@
            class="faq-uploader">
 
         <button
-            class="upload-button"
-           flow-btn
-           ng-disapbled="$ctrl.loadingFileFlag"
-           flow-attrs="{accept:'image/*'}">
+          class="upload-button"
+          flow-btn
+          ng-disapbled="$ctrl.loadingFileFlag"
+          flow-attrs="{accept:'image/*'}">
           <a>{{'BUTTON.UPLOAD_ATTACHMENT' | translate}}</a>
         </button>
 

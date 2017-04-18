@@ -1,6 +1,6 @@
 class CreateCategoryModalController {
   constructor($scope, $rootScope, $filter, $stateParams, toastr,
-              categoryHelper, CategoryService, UserService, UsersService) {
+              categoryHelper, CategoryService, UserService) {
     'ngInject';
 
     this.name = 'createCategoryModal';
@@ -50,17 +50,6 @@ class CreateCategoryModalController {
             return {value: item.code, name: item.name};
           })
         });
-      });
-
-    UsersService.getAll()
-      .then((result) => {
-        if (this.parentCategory.id == 1){
-          this.users = result;
-        }else{
-          this.users = result.filter(u => this.parentCategory.granted_access.indexOf(u.id) > -1 );
-        }
-
-        if (this.$scope.$root.$$phase != '$apply' && this.$scope.$root.$$phase != '$digest') this.$scope.$apply();
       });
 
     this.schema = {
