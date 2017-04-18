@@ -1,9 +1,10 @@
 class CheckUsersController {
-  constructor(UsersService) {
+  constructor($scope, UsersService) {
     'ngInject';
 
     this.name = 'checkUsers';
     this.UsersService = UsersService;
+    this.$scope = $scope;
   }
 
   $onInit() {
@@ -23,7 +24,9 @@ class CheckUsersController {
               this.selected.push(user.id);
             }
           }
-        })
+        });
+
+        if (this.$scope.$root.$$phase != '$apply' && this.$scope.$root.$$phase != '$digest') this.$scope.$apply();
       });
   }
 
