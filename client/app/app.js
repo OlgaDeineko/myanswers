@@ -6,24 +6,10 @@ import Components from './components/components';
 import Modals from './modals/modals';
 import AppComponent from './app.component';
 import Router from './router';
+import Services from './services/services';
+import Helpers from './helpers/helpers';
 
-import SessionService from './services/session.service';
-import ResponseObserver from './services/responseObserver.service';
-import ArticleService from './services/article.service';
-import CategoryService from './services/category.service';
-import SubdomainService from './services/subdomain.service';
-import SettingsService from './services/settings.service';
-import UsersService from './services/users.service';
-import UserService from './services/user.service';
-import FakeDataService from './services/fakeData.service';
-import FilesService from './services/files.services';
-import ConfirmService from './services/confirm.service';
-import AlgoliaService from './services/algolia.service';
 
-import FaqHelper from './helpers/faq';
-import UserHelper from './helpers/user';
-import CategoryHelper from './helpers/category';
-import FileHelper from './helpers/file';
 
 //
 import 'angular-schema-form';
@@ -107,6 +93,9 @@ angular.module('app', [
   Components,
   Modals,
   Router,
+  Services,
+  Helpers,
+
   'ui.bootstrap',
   'schemaForm',
   'ui.tree',
@@ -157,23 +146,7 @@ angular.module('app', [
       return new Flow(opts)
     };
   })
-  .service('ResponseObserver', ResponseObserver)
-  .service('SessionService', SessionService)
-  .service('ArticleService', ArticleService)
-  .service('CategoryService', CategoryService)
-  .service('SubdomainService', SubdomainService)
-  .service('SettingsService', SettingsService)
-  .service('UsersService', UsersService)
-  .service('UserService', UserService)
-  .service('FakeDataService', FakeDataService)
-  .service('FilesService', FilesService)
-  .service('ConfirmService', ConfirmService)
-  .service('AlgoliaService', AlgoliaService)
 
-  .service('faqHelper', FaqHelper)
-  .service('userHelper', UserHelper)
-  .service('categoryHelper', CategoryHelper)
-  .service('fileHelper', FileHelper)
 
   .component('app', AppComponent)
   .run(($rootScope, $state, UserService, SessionService, SettingsService) => {
