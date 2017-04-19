@@ -1,7 +1,7 @@
 import {mainDomain} from '../../config';
 
 class VisitorController {
-  constructor($scope, $window, $stateParams, categoryHelper, UserService, CategoryService, ArticleService, AlgoliaService) {
+  constructor($scope, $window, $stateParams, categoryHelper,UserService, CategoryService, ArticleService, AlgoliaService, SettingsService) {
     'ngInject';
 
     this.name = 'Welcome to KB';
@@ -13,6 +13,7 @@ class VisitorController {
     this.ArticleService = ArticleService;
     this.CategoryService = CategoryService;
     this.categoryHelper = categoryHelper;
+    this.SettingsService = SettingsService;
 
     this.mostViewed = AlgoliaService.initMostViewed((content) => {
       this.articles = content.hits;
@@ -80,7 +81,7 @@ class VisitorController {
 
       this.tree = this.categoryHelper.buildTree(articles, categories, this.currentCategory);
 
-      // this.mostViewed.visibleArticles = ['445271402', '445271392'];
+      this.mostViewed.visibleArticles = this.SettingsService.getVisibleArticles();
       this.mostViewed.hierarchicalCategory = this.tree.id == 1 ? this.tree.hierarchical.lvl0 : this.tree.hierarchical.lvl1;
       this.mostViewed.search();
     })

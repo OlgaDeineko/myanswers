@@ -4,6 +4,7 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
   "ngInject";
   this.commonSettings = null;
   this.subdomains = null;
+  this.visibleArticles = null;
   this.KBSettings = {
     lang: {
       code: "en"
@@ -109,8 +110,13 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
     _setKBSettings(SessionService.kbSettings.data);
     return $http({
       method: 'GET',
-      url: `${SessionService.geApiUrl()}/settings`
+      url: `${SessionService.geApiUrl()}/settings/dashboard`
     }).then(result => {
+      try {
+        this.visibleArticles = result.data.data.shared_resources.faq || [];
+      } catch (e) {
+        this.visibleArticles = [];
+      }
       _setKBSettings(result.data.data);
     });
   };
@@ -119,9 +125,13 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
     SessionService.kbSettings.data = KBSettings;
     return $http({
       method: 'POST',
-      url: `${SessionService.geApiUrl()}/settings`,
+      url: `${SessionService.geApiUrl()}/settings/dashboard`,
       data: KBSettings
     })
+  };
+
+  let getVisibleArticles = () => {
+    return this.visibleArticles || []
   };
 
   return {
@@ -130,7 +140,8 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
     changeLanguage,
     changeCategoryOrder,
     getKBSettings,
-    saveKBSettings
+    saveKBSettings,
+    getVisibleArticles,
   }
 }
 

@@ -1,5 +1,5 @@
 class AlgoliaSearchController {
-  constructor($scope, AlgoliaService) {
+  constructor($scope, AlgoliaService, SettingsService) {
     'ngInject';
     this.name = 'algoliaSearch';
 
@@ -11,7 +11,7 @@ class AlgoliaSearchController {
       });
       $scope.$apply();
     });
-    // this.searching.visibleArticles = ['445271402', '445271392'];
+    this.searching.visibleArticles = SettingsService.getVisibleArticles();
 
 
     $scope.$watch(() => {
