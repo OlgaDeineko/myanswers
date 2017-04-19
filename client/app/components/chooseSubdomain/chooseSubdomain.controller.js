@@ -10,6 +10,7 @@ class ChooseSubdomainController {
     this.SubdomainService = SubdomainService;
 
     SessionService.user.remove();
+    SessionService.token.remove();
 
     let locationSubdomain = SessionService.getSubdomain();
     if (locationSubdomain != defaultSubdomain) {

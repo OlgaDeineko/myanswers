@@ -34,6 +34,7 @@ function UserService($http, PermPermissionStore, userHelper, SessionService) {
    * logout
    */
   let logOut = () => {
+    SessionService.token.remove();
     SessionService.user.remove();
   };
 

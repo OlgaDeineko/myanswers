@@ -166,7 +166,9 @@ angular.module('app', [
       }
     });
 
-    SettingsService.getKBSettings();
+     if(UserService.isLogin()) {
+      SettingsService.getKBSettings();
+    }
 
     $rootScope.translateIsReady = false;
     $rootScope.$on('$translateChangeSuccess', function () {

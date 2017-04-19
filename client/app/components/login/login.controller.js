@@ -1,7 +1,7 @@
 import config, {mainDomian, defaultSubdomain} from '../../config';
 
 class LoginController {
-  constructor($scope, $state, $filter, $uibModal, toastr, UserService, SessionService) {
+  constructor($scope, $state, $filter, $uibModal, toastr, UserService, SessionService, SettingsService) {
     "ngInject";
 
     this.name = 'REGISTRATION.LOGIN';
@@ -14,6 +14,7 @@ class LoginController {
     this.translate = $filter('translate');
 
     this.UserService = UserService;
+    this.SettingsService = SettingsService;
 
     this.subdomain = SessionService.getSubdomain();
 
@@ -77,12 +78,16 @@ class LoginController {
       user.subdomain = self.subdomain;
       this.UserService.login(user)
         .then(() => {
+          return this.SettingsService.getKBSettings();
+        })
+        .then(() => {
           if (this.UserService.getRole() == 'visitor') {
             self.$state.go("visitor");
           } else {
             self.$state.go("admin.category");
           }
-        }, (error) => {
+        })
+        .catch((error) => {
           error.data.errors.forEach(error => {
             self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
           });

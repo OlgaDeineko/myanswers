@@ -114,6 +114,7 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
     }).then(result => {
       try {
         this.visibleArticles = result.data.data.shared_resources.faq || [];
+        delete result.data.data.shared_resources;
       } catch (e) {
         this.visibleArticles = [];
       }
