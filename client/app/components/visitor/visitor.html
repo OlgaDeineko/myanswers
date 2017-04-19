@@ -1,6 +1,7 @@
 <div class="visitor">
   <div class="visitor-bg-heading">
 
+    <!--actions-->
     <div class="col-md-12">
       <div class="visitor-actions pull-right">
         <button class="button button-primary"
@@ -19,22 +20,25 @@
 
       </div>
 
-    </div>
+    </div><!--END:actions-->
 
+    <!--title-->
     <div class="visitor-title text-center">
       <h1>{{ $ctrl.name }}</h1>
-    </div>
+    </div><!--END:title-->
 
+    <!--search form-->
     <div class="row algolia-search-input">
       <div class="col-md-10 col-md-offset-1">
         <i class=" fa fa-search"></i>
         <input class="form-control" placeholder="Search FAQ by Algolia" ng-model="$ctrl.searchModel">
       </div>
-    </div>
+    </div><!--END:search form-->
 
   </div>
 
   <div class="container-fluid" ng-if="!$ctrl.searchModel">
+    <!--tree-->
     <div class="col-md-7 col-md-offset-1 visitor-tree">
 
       <!--parent category-->
@@ -71,7 +75,7 @@
           Empty
         </h3>
       </div><!--END: data is empty-->
-    </div>
+    </div><!--END:tree-->
 
     <!--Most viewed FAQs-->
     <div class="col-md-3 visitor-last-created" ng-if="$ctrl.articles.length">
@@ -87,6 +91,7 @@
 
   <!--search result from algolia-->
   <algolia-search
+    ng-if="$ctrl.searchModel"
     search-model="$ctrl.searchModel"
     category="$ctrl.tree.hierarchical.lvl2 || $ctrl.tree.hierarchical.lvl1 || $ctrl.tree.hierarchical.lvl0">
   </algolia-search><!--END:search result from algolia-->

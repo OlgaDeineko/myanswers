@@ -1,23 +1,23 @@
-import {algolia, mainDomain} from '../../config';
-
-let algoliasearch = require('algoliasearch');
-let algoliasearchHelper = require('algoliasearch-helper');
+import {mainDomain} from '../../config';
 
 class VisitorController {
-  constructor($window, $stateParams, $state, $scope, categoryHelper, UserService, CategoryService, ArticleService, SessionService) {
+  constructor($scope, $window, $stateParams, categoryHelper, UserService, CategoryService, ArticleService, AlgoliaService) {
     'ngInject';
 
     this.name = 'Welcome to KB';
 
     this.$window = $window;
     this.$scope = $scope;
-    this.$state = $state;
 
     this.UserService = UserService;
     this.ArticleService = ArticleService;
     this.CategoryService = CategoryService;
     this.categoryHelper = categoryHelper;
 
+    this.mostViewed = AlgoliaService.initMostViewed((content) => {
+      this.articles = content.hits;
+      this.$scope.$apply();
+    });
 
     let orderList = [
       {
@@ -62,10 +62,7 @@ class VisitorController {
     this.currentCategory = $stateParams.categoryId || this.uncategoryId;
     this.articles = [];
 
-    this.algoliaIndex = SessionService.getSubdomain();
-    this.algolia = new algoliasearch(algolia.id, algolia.key, {protocol: 'https:'});
-
-    this.getAllData(this);
+    this.getAllData();
   }
 
   logout() {
@@ -73,42 +70,20 @@ class VisitorController {
     this.$window.location.href = `http://main.${mainDomain}/subdomain`;
   }
 
-  getAllData(self, update) {
+  getAllData(update) {
     Promise.all([
-      self.CategoryService.getAll(update),
-      self.ArticleService.getAll(update)
+      this.CategoryService.getAll(update),
+      this.ArticleService.getAll(update)
     ]).then((result) => {
       let categories = result[0];
       let articles = result[1].filter((article) => article.status == 'published');
 
-      self.tree = self.categoryHelper.buildTree(articles, categories, self.currentCategory);
-      self.getArticles(self, self.tree.id == 1 ? self.tree.hierarchical.lvl0 : self.tree.hierarchical.lvl1);
+      this.tree = this.categoryHelper.buildTree(articles, categories, this.currentCategory);
 
-      self.$scope.$apply();
+      // this.mostViewed.visibleArticles = ['445271402', '445271392'];
+      this.mostViewed.hierarchicalCategory = this.tree.id == 1 ? this.tree.hierarchical.lvl0 : this.tree.hierarchical.lvl1;
+      this.mostViewed.search();
     })
-  }
-
-  getArticles(self, category) {
-    //TODO: create service
-    let algoliaHelper = new algoliasearchHelper(self.algolia, self.algoliaIndex, {
-      hierarchicalFacets: [{
-        name: 'parent',
-        attributes: [
-          'hierarchicalCategories.lvl0',
-          'hierarchicalCategories.lvl1',
-          'hierarchicalCategories.lvl2'
-        ],
-        rootPath: category,
-      }],
-    });
-
-    algoliaHelper.search();
-
-    algoliaHelper.on('result', function (content) {
-      self.articles = content.hits;
-      self.$scope.$apply();
-    });
-
   }
 }
 
