@@ -38,7 +38,7 @@
   <div class="tree-item-actions" ng-if="$ctrl.$state.current.name != 'visitor'">
     <button class="icon-button"
             ng-click="$ctrl.edit($ctrl.item.id)"
-            role-accesses="{disabled:['contributor'], andDisabled: $ctrl.item.status != 'draft'}"
+            role-accesses="{disabled:['contributor'], andDisabled: $ctrl.item.status != 'draft' || !$ctrl.item.isOwner}"
             tooltip-placement="up"
             uib-tooltip="{{$ctrl.type == 'faq' ? 'FAQ.EDIT' : ('CATEGORY.EDIT_'+$ctrl.item.type | uppercase) | translate}}">
       <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -47,7 +47,7 @@
     <button class="icon-button"
             ng-click="$ctrl.remove($ctrl.item.id)"
             confirm="{{$ctrl.type == 'faq' ? 'FAQ.CONFIRM' : 'CATEGORY.CONFIRM_'+$ctrl.item.type}}"
-            role-accesses="{disabled:['contributor'], orDisabled: $ctrl.item.status == 'trash', andDisabled: $ctrl.item.status != 'draft'}"
+            role-accesses="{disabled:['contributor'], orDisabled: $ctrl.item.status == 'trash', andDisabled: $ctrl.item.status != 'draft' || !$ctrl.item.isOwner}"
             tooltip-placement="up"
             uib-tooltip="{{$ctrl.type == 'faq' ? 'FAQ.REMOVE' : ('CATEGORY.REMOVE_'+$ctrl.item.type | uppercase) | translate}}">
       <i class="fa fa-trash" aria-hidden="true"></i>

@@ -69,7 +69,7 @@
  * @property {string} author_href - user stormpath href
  */
 
-function FaqHelper($rootScope, fileHelper, categoryHelper) {
+function FaqHelper($rootScope, fileHelper, categoryHelper, UserService) {
   'ngInject';
 
   /**
@@ -113,6 +113,11 @@ function FaqHelper($rootScope, fileHelper, categoryHelper) {
     if(!(faq.granted_access && Array.isArray(faq.granted_access))){
       faq.granted_access = [];
     }
+
+    if(typeof faq.author_href == 'string') {
+      faq.authorId = faq.author_href.replace(/(.*\/accounts\/)/g, '');
+    }
+    faq.isOwner = UserService.getId() == faq.authorId;
 
     //TODO remove this after this functional to be done on the server
     faq.likes = 0;
