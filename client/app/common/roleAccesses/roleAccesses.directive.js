@@ -5,6 +5,7 @@ class RoleAccessesDirective {
     this.PermPermissionStore = PermPermissionStore;
   }
 
+  //TODO: rewrite this directive she is work not correct
   link($scope, $element, $attr) {
     let self = this;
 

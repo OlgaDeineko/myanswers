@@ -44,7 +44,7 @@
 
     <!--Action buttons-->
     <div class="row faq-actions" >
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-6 col-md-offset-3" ng-if="$ctrl.faq">
         <button class="button button-primary button-full"
                 role-accesses="{disabled:['contributor'], andDisabled: $ctrl.faq.status != 'draft'}"
                 ng-click="$ctrl.goTo()">

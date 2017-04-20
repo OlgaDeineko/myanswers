@@ -12,7 +12,7 @@ class FaqController {
     this.FilesService = FilesService;
 
     this.convertHTML = $sce.trustAsHtml;
-    this.faq = {};
+    this.faq = null;
 
     this.ArticleService.getById($state.params.faqId)
       .then((result) => {
