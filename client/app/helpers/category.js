@@ -37,6 +37,8 @@
  * @property {string} author_href - user stormpath href
  */
 
+import {copy} from 'angular'
+
 function CategoryHelper($rootScope) {
   'ngInject';
 
@@ -111,7 +113,7 @@ function CategoryHelper($rootScope) {
     let rootId = 1;
     let rootName = categories.find(c => c.id == rootId).name;
     categories.forEach((category, i) => {
-      categories[i].categories = categories.filter(c => c.parent_id == category.id).sort((a, b) => a.sort_order - b.sort_order);
+      categories[i].categories = copy(categories.filter(c => c.parent_id == category.id).sort((a, b) => a.sort_order - b.sort_order));
       if (category.id != rootId) {
         categories[i].parent = categories.find(c => c.id == category.parent_id);
       }

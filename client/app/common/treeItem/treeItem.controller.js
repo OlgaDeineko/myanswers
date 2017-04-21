@@ -61,7 +61,7 @@ class TreeItemController {
 
   toggleChildren(item) {
     if(this.type == 'faq') return;
-    if(item.categories.length)
+    if(item.categories && item.categories.length)
       item.expanded = !item.expanded
 
     // if (!scope.$nodeScope.$modelValue.categories) {
