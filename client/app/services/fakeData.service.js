@@ -15,33 +15,39 @@ function FakeDataService() {
       articles: [
         {
           "id": "1",
-          "question": "dsdgdsfg",
-          "answer": "<p style='color: red'>sdgsdfgdfg</p><h3>ssssss</h3><div>qqqqqqqq</div>",
-          "slug": "dsdgdsfg",
+          "question": "id-1_cat-1_published",
+          "answer": "<p style='color: red'>aaaaaaaaa</p><h3>ssssss</h3><div>qqqqqqqq</div>",
+          "slug": "slug-slug",
           "visibility": 'public',
           "is_open_comments": "1",
-          "author": 'Oleg Skiba',
-          "status": 'draft',
+          "author": 'User1 admin',
+          "author_href": "https://api.stormpath.com/v1/accounts/u1",
+          "status": 'published',
           "lang": 'en',
+          "remarks": "internal comment",
           "algolia_object_id": "379636340",
+          "hits_count": 13,
+          "sort_order": null,
           "created_at": "1487884302",
           "updated_at": "1487850702",
           "categories": [
             {
               "id": "1",
-              "parent_id": "0",
               "name": "Root",
-              "sort_order": "0",
+              "slug": "root",
+              "description": "",
+              "author": 'User1 admin',
+              "author_href": "https://api.stormpath.com/v1/accounts/u1",
               "lang": "en",
-              "author": 'Oleg Skiba',
+              "sort_order": "0",
               "created_at": "1487850702",
-              "updated_at": "1487850702",
-              "granted_access": []
+              "updated_at": "1487850702"
             }
           ],
-          "tags": [{"tag_id": "1", "name": "test"}, {"tag_id": "2", "name": "new tag"},],
-          "remarks": "internal comment",
-          "hits_count": 13,
+          "tags": [
+            {"tag_id": "1", "name": "test"},
+            {"tag_id": "2", "name": "new tag"},
+          ],
           "attachments": [
             {
               "id": "3",
@@ -62,103 +68,581 @@ function FakeDataService() {
               "mime": "application/pdf"
             }
           ],
-          "granted_access": ['2n0Y6dzxevGvKVppiU9BhR']
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
         },
         {
           "id": "2",
-          "question": "fdhdfhfd",
-          "answer": "Einen Moment bitte. Ich schau mal kurz nach.\n\nSuchen Sie eine bestimmte Lagerhalle?\n\nBij alle producten: Welche Maße brauchen Sie?\nBij Lagerzelte ook: Aus welchem Material soll die Plane bestehen? PVC oder PE?\n\nAuf welchen Untergrund möchten Sie die Halle stellen?\n\n\n\nMöchten Sie ein unverbindliches Angebot empfangen?\nDanke. Darf ich bitte Ihre Kontaktdaten notieren, so daß mein Kollege mit Ihnen Kontakt aufnehmen kann?\n\nDanke. Darf ich bitte Ihre Kontaktdaten notieren, so daß mein Kollege Ihnen ein unverbindliches Angebot schicken kann?\n\nIch möchte auch gern Ihre Telefonnummer und E-Mail-Adresse notieren.\n\nIch hätte auch gerne Ihren Namen, den Firmennamen, die PLZ und Telefonnummer.\n\nDann hätte ich gerne Ihren Namen, den Firmennamen, die PLZ, Telefonnummer und E-Mail-Adresse.\n\nDanke schön! Wie ist der Firmenname?\n\nDann hätte ich auch noch gerne Ihren eigenen Namen.\n\nWie ist Ihr Name?\n\nUnd wie ist Ihr eigener Name?\n\nWie lautet Ihre PLZ? [PLZ is postcode in het Duits]\n\nDann hätte ich gerne Ihren Firmennamen und die PLZ.\n\nVielen Dank. Mein Kollege wird Sie innerhalb von 2 Werktagen kontaktieren.\n\nHaben Sie noch weitere Fragen?\n\nIch wünsche Ihnen einen schönen Tag/Abend!\n\nIch wünsche Ihnen ein schönes Wochenende!\n\nWenn Sie keine weiteren Fragen haben, beende ich diesen Chat.\n\nJa, schauen Sie sich in aller Ruhe um.\n\nWenn Sie Preisinformationen brauchen, dann helfe ich Ihnen gerne weiter.\n\nWenn Sie unverbindliche Preisinformationen brauchen, dann können Sie sich gerne wieder bei mir melden.\n\nFalls Sie später noch Fragen haben, zögern Sie nicht um mit uns über den Chat in Kontakt zu treten. Wir sind täglich bis 23 Uhr online.Sollten Sie später doch noch eine Frage haben, wir sind hier täglich von 7.00 - 23.00 Uhr über den Chat zu erreichen.\n\nDas weiß ich nicht. Ich werde meinen Kollegen fragen. Darf ich bitte Ihre Kontaktdaten notieren? Er wird Sie dann kontaktieren.\n\nDie Frage kann ich Ihnen leider nicht beantworten. Ich kann es aber gerne für Sie nachfragen. Dürfte ich Ihre Kontaktdaten notieren? Mein Kollege wird sich dann mit Ihnen in Verbindung setzen.\n\nGern geschehen!\n\nKeine Ursache!\n\nWünschen Sie ein Angebot inkl. Transportkosten?\n\nMöchten Sie ein Angebot inkl. Transport- und Montagekosten erhalten?\n\nBauen Sie die Lagerhalle selbst auf?\n\nWollen Sie die Lagerhalle selbst aufbauen, oder sollen wir Ihnen auch ein Angebot machen für die Montagekosten?\n\nWie wollen Sie die Lagerhalle am Boden befestigen? Mit Erdnägeln oder mit Betonankern?\n\n(Wenn Kunde es nicht weiß)\nAuf welchen Untergrund wollen Sie die Lagerhalle stellen?\n\nFundament = Betonanker\n\nSchotter, Asphalt oder Pflastersteine, zeitlich begrenzter Aufbau, Fliegender Bau = Erdnägel",
-          "slug": "fdhdfhfd",
+          "question": "id-2_cat-4_published",
+          "answer": "<p style='color: red'>aaaaaaaaa</p><h3>ssssss</h3><div>qqqqqqqq</div>",
+          "slug": "slug-slug",
           "visibility": 'public',
           "is_open_comments": "1",
-          "author": "Test User",
+          "author": 'User1 admin',
+          "author_href": "https://api.stormpath.com/v1/accounts/u1",
           "status": 'published',
           "lang": 'en',
-          "algolia_object_id": "379636380",
-          "created_at": "1486540724",
-          "updated_at": "1487850724",
-          "categories": [{"id": "2", "name": "Keyboard", "slug": null, "description": "", "lang": "en"}],
-          "tags": [],
           "remarks": "internal comment",
-          "hits_count": 547,
-          "granted_access": ['78FsrnMdYHAcJEWUPo4gQe']
+          "algolia_object_id": "379636340",
+          "hits_count": 13,
+          "sort_order": null,
+          "created_at": "1487884302",
+          "updated_at": "1487850702",
+          "categories": [
+            {
+              "id": "4",
+              "name": "id-4_pid-2_cat",
+              "slug": "root",
+              "description": "",
+              "author": 'User1 admin',
+              "author_href": "https://api.stormpath.com/v1/accounts/u1",
+              "lang": "en",
+              "sort_order": "0",
+              "created_at": "1487850702",
+              "updated_at": "1487850702"
+            }
+          ],
+          "tags": [
+            {"tag_id": "1", "name": "test"},
+            {"tag_id": "2", "name": "new tag"},
+          ],
+          "attachments": [
+            {
+              "id": "3",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            },
+            {
+              "id": "4",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            }
+          ],
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
         },
         {
           "id": "3",
-          "question": "wwwwwwwwww",
-          "answer": "<p>sdgdfgdgsdg</p>",
-          "slug": "wwwwwwwwww",
+          "question": "id-3_cat-4_published",
+          "answer": "<p style='color: red'>aaaaaaaaa</p><h3>ssssss</h3><div>qqqqqqqq</div>",
+          "slug": "slug-slug",
           "visibility": 'public',
           "is_open_comments": "1",
-          "author": "Test User",
-          "status": 'trash',
-          "lang": "en",
-          "algolia_object_id": "379636710",
-          "created_at": "1487654332",
-          "updated_at": "1487927683",
-          "categories": [{"id": "2", "name": "Keyboard", "slug": null, "description": "", "lang": "en"}],
-          "tags": [],
+          "author": 'User1 admin',
+          "author_href": "https://api.stormpath.com/v1/accounts/u1",
+          "status": 'published',
+          "lang": 'en',
           "remarks": "internal comment",
-          "hits_count": 676,
-          "granted_access": []
+          "algolia_object_id": "379636340",
+          "hits_count": 13,
+          "sort_order": null,
+          "created_at": "1487884302",
+          "updated_at": "1487850702",
+          "categories": [
+            {
+              "id": "4",
+              "name": "id-4_pid-2_cat",
+              "slug": "root",
+              "description": "",
+              "author": 'User1 admin',
+              "author_href": "https://api.stormpath.com/v1/accounts/u1",
+              "lang": "en",
+              "sort_order": "0",
+              "created_at": "1487850702",
+              "updated_at": "1487850702"
+            }
+          ],
+          "tags": [
+            {"tag_id": "1", "name": "test"},
+            {"tag_id": "2", "name": "new tag"},
+          ],
+          "attachments": [
+            {
+              "id": "3",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            },
+            {
+              "id": "4",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            }
+          ],
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
         },
         {
           "id": "4",
-          "question": "sdfsdf",
-          "answer": "<p>sdfsdfsd</p>",
-          "slug": "sdfsdf",
+          "question": "id-4_cat-4_published",
+          "answer": "<p style='color: red'>aaaaaaaaa</p><h3>ssssss</h3><div>qqqqqqqq</div>",
+          "slug": "slug-slug",
           "visibility": 'public',
           "is_open_comments": "1",
-          "author": "Test User",
-          "status": "published",
-          "lang": "en",
-          "algolia_object_id": "379636980",
-          "created_at": "1487866627",
-          "updated_at": "1487930293",
-          "categories": [{"id": "4", "name": "test1", "slug": null, "description": "", "lang": "en"}],
-          "tags": [],
+          "author": 'User1 admin',
+          "author_href": "https://api.stormpath.com/v1/accounts/u1",
+          "status": 'published',
+          "lang": 'en',
           "remarks": "internal comment",
-          "hits_count": 11,
-          "granted_access": []
+          "algolia_object_id": "379636340",
+          "hits_count": 13,
+          "sort_order": null,
+          "created_at": "1487884302",
+          "updated_at": "1487850702",
+          "categories": [
+            {
+              "id": "4",
+              "name": "id-4_pid-2_cat",
+              "slug": "root",
+              "description": "",
+              "author": 'User1 admin',
+              "author_href": "https://api.stormpath.com/v1/accounts/u1",
+              "lang": "en",
+              "sort_order": "0",
+              "created_at": "1487850702",
+              "updated_at": "1487850702"
+            }
+          ],
+          "tags": [
+            {"tag_id": "1", "name": "test"},
+            {"tag_id": "2", "name": "new tag"},
+          ],
+          "attachments": [
+            {
+              "id": "3",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            },
+            {
+              "id": "4",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            }
+          ],
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
         },
         {
           "id": "5",
-          "question": "cat2",
-          "answer": "<p>dfgdsfg</p>",
-          "slug": "cat2",
+          "question": "id-5_cat-1_published",
+          "answer": "<p style='color: red'>aaaaaaaaa</p><h3>ssssss</h3><div>qqqqqqqq</div>",
+          "slug": "slug-slug",
           "visibility": 'public',
           "is_open_comments": "1",
-          "author": "Test User",
+          "author": 'User1 admin',
+          "author_href": "https://api.stormpath.com/v1/accounts/u1",
           "status": 'published',
-          "lang": "en",
-          "algolia_object_id": "354285312",
-          "created_at": "1487333465",
-          "updated_at": "1487854965",
-          "categories": [{"id": "4", "name": "test1", "slug": "keyboard", "description": "", "lang": "en"}],
-          "tags": [],
+          "lang": 'en',
           "remarks": "internal comment",
-          "hits_count": 0,
-          "granted_access": []
+          "algolia_object_id": "379636340",
+          "hits_count": 13,
+          "sort_order": null,
+          "created_at": "1487884302",
+          "updated_at": "1487850702",
+          "categories": [
+            {
+              "id": "1",
+              "name": "Root",
+              "slug": "root",
+              "description": "",
+              "author": 'User1 admin',
+              "author_href": "https://api.stormpath.com/v1/accounts/u1",
+              "lang": "en",
+              "sort_order": "0",
+              "created_at": "1487850702",
+              "updated_at": "1487850702"
+            }
+          ],
+          "tags": [
+            {"tag_id": "1", "name": "test"},
+            {"tag_id": "2", "name": "new tag"},
+          ],
+          "attachments": [
+            {
+              "id": "3",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            },
+            {
+              "id": "4",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            }
+          ],
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
         },
         {
           "id": "6",
-          "question": "test new",
-          "answer": "<p>dfsdgsdfgsdfg sfdgsdf&nbsp;</p>",
-          "slug": "test-new",
-          "visibility": "Public",
+          "question": "id-6_cat-1_published",
+          "answer": "<p style='color: red'>aaaaaaaaa</p><h3>ssssss</h3><div>qqqqqqqq</div>",
+          "slug": "slug-slug",
+          "visibility": 'public',
           "is_open_comments": "1",
-          "author": "Test User",
+          "author": 'User1 admin',
+          "author_href": "https://api.stormpath.com/v1/accounts/u1",
           "status": 'published',
-          "lang": "fr",
-          "algolia_object_id": "357316872",
-          "created_at": "1487925920",
-          "updated_at": "1487925920",
-          "categories": [{"id": "5", "name": "test2", "slug": null, "description": "", "lang": "en"}],
-          "tags": [{"tag_id": "1", "name": "test"}],
+          "lang": 'en',
           "remarks": "internal comment",
-          "hits_count": 45,
-          "granted_access": []
-        }
+          "algolia_object_id": "379636340",
+          "hits_count": 13,
+          "sort_order": null,
+          "created_at": "1487884302",
+          "updated_at": "1487850702",
+          "categories": [
+            {
+              "id": "1",
+              "name": "Root",
+              "slug": "root",
+              "description": "",
+              "author": 'User1 admin',
+              "author_href": "https://api.stormpath.com/v1/accounts/u1",
+              "lang": "en",
+              "sort_order": "0",
+              "created_at": "1487850702",
+              "updated_at": "1487850702"
+            }
+          ],
+          "tags": [
+            {"tag_id": "1", "name": "test"},
+            {"tag_id": "2", "name": "new tag"},
+          ],
+          "attachments": [
+            {
+              "id": "3",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            },
+            {
+              "id": "4",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            }
+          ],
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
+        },
+        {
+          "id": "7",
+          "question": "id-7_cat-4_draft",
+          "answer": "<p style='color: red'>aaaaaaaaa</p><h3>ssssss</h3><div>qqqqqqqq</div>",
+          "slug": "slug-slug",
+          "visibility": 'public',
+          "is_open_comments": "1",
+          "author": 'User1 admin',
+          "author_href": "https://api.stormpath.com/v1/accounts/u1",
+          "status": 'draft',
+          "lang": 'en',
+          "remarks": "internal comment",
+          "algolia_object_id": "379636340",
+          "hits_count": 13,
+          "sort_order": null,
+          "created_at": "1487884302",
+          "updated_at": "1487850702",
+          "categories": [
+            {
+              "id": "4",
+              "name": "id-4_pid-2_cat",
+              "slug": "root",
+              "description": "",
+              "author": 'User1 admin',
+              "author_href": "https://api.stormpath.com/v1/accounts/u1",
+              "lang": "en",
+              "sort_order": "0",
+              "created_at": "1487850702",
+              "updated_at": "1487850702"
+            }
+          ],
+          "tags": [
+            {"tag_id": "1", "name": "test"},
+            {"tag_id": "2", "name": "new tag"},
+          ],
+          "attachments": [
+            {
+              "id": "3",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            },
+            {
+              "id": "4",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            }
+          ],
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
+        },
+        {
+          "id": "8",
+          "question": "id-8_cat-1_draft",
+          "answer": "<p style='color: red'>aaaaaaaaa</p><h3>ssssss</h3><div>qqqqqqqq</div>",
+          "slug": "slug-slug",
+          "visibility": 'public',
+          "is_open_comments": "1",
+          "author": 'User1 admin',
+          "author_href": "https://api.stormpath.com/v1/accounts/u1",
+          "status": 'draft',
+          "lang": 'en',
+          "remarks": "internal comment",
+          "algolia_object_id": "379636340",
+          "hits_count": 13,
+          "sort_order": null,
+          "created_at": "1487884302",
+          "updated_at": "1487850702",
+          "categories": [
+            {
+              "id": "1",
+              "name": "Root",
+              "slug": "root",
+              "description": "",
+              "author": 'User1 admin',
+              "author_href": "https://api.stormpath.com/v1/accounts/u1",
+              "lang": "en",
+              "sort_order": "0",
+              "created_at": "1487850702",
+              "updated_at": "1487850702"
+            }
+          ],
+          "tags": [
+            {"tag_id": "1", "name": "test"},
+            {"tag_id": "2", "name": "new tag"},
+          ],
+          "attachments": [
+            {
+              "id": "3",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            },
+            {
+              "id": "4",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            }
+          ],
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
+        },
+        {
+          "id": "9",
+          "question": "id-9_cat-1_draft",
+          "answer": "<p style='color: red'>aaaaaaaaa</p><h3>ssssss</h3><div>qqqqqqqq</div>",
+          "slug": "slug-slug",
+          "visibility": 'public',
+          "is_open_comments": "1",
+          "author": 'User1 admin',
+          "author_href": "https://api.stormpath.com/v1/accounts/u1",
+          "status": 'draft',
+          "lang": 'en',
+          "remarks": "internal comment",
+          "algolia_object_id": "379636340",
+          "hits_count": 13,
+          "sort_order": null,
+          "created_at": "1487884302",
+          "updated_at": "1487850702",
+          "categories": [
+            {
+              "id": "1",
+              "name": "Root",
+              "slug": "root",
+              "description": "",
+              "author": 'User1 admin',
+              "author_href": "https://api.stormpath.com/v1/accounts/u1",
+              "lang": "en",
+              "sort_order": "0",
+              "created_at": "1487850702",
+              "updated_at": "1487850702"
+            }
+          ],
+          "tags": [
+            {"tag_id": "1", "name": "test"},
+            {"tag_id": "2", "name": "new tag"},
+          ],
+          "attachments": [
+            {
+              "id": "3",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            },
+            {
+              "id": "4",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            }
+          ],
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
+        },
+        {
+          "id": "10",
+          "question": "id-10_cat-1_trash",
+          "answer": "<p style='color: red'>aaaaaaaaa</p><h3>ssssss</h3><div>qqqqqqqq</div>",
+          "slug": "slug-slug",
+          "visibility": 'public',
+          "is_open_comments": "1",
+          "author": 'User1 admin',
+          "author_href": "https://api.stormpath.com/v1/accounts/u1",
+          "status": 'trash',
+          "lang": 'en',
+          "remarks": "internal comment",
+          "algolia_object_id": "379636340",
+          "hits_count": 13,
+          "sort_order": null,
+          "created_at": "1487884302",
+          "updated_at": "1487850702",
+          "categories": [
+            {
+              "id": "1",
+              "name": "Root",
+              "slug": "root",
+              "description": "",
+              "author": 'User1 admin',
+              "author_href": "https://api.stormpath.com/v1/accounts/u1",
+              "lang": "en",
+              "sort_order": "0",
+              "created_at": "1487850702",
+              "updated_at": "1487850702"
+            }
+          ],
+          "tags": [
+            {"tag_id": "1", "name": "test"},
+            {"tag_id": "2", "name": "new tag"},
+          ],
+          "attachments": [
+            {
+              "id": "3",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            },
+            {
+              "id": "4",
+              "model": "faq",
+              "model_id": "1",
+              "attachment_url": "https://s3.eu-central-1.amazonaws.com/myanswers/skiba/faq/6/Common_structure.pdf",
+              "size": 35761,
+              "type": "pdf",
+              "mime": "application/pdf"
+            }
+          ],
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
+        },
       ],
       categories: [
         {
@@ -167,7 +651,7 @@ function FakeDataService() {
           "name": "Root",
           "sort_order": "0",
           "lang": "en",
-          "author": 'Oleg Skiba',
+          "author": 'User1 admin',
           "created_at": "1487850702",
           "updated_at": "1487850702",
           "granted_access": []
@@ -175,84 +659,131 @@ function FakeDataService() {
         {
           "id": "2",
           "parent_id": "1",
-          "name": "Keyboard",
+          "name": "id-2_pid-1_cat",
           "sort_order": "0",
           "lang": "en",
-          "author": 'Oleg Skiba',
+          "author": 'User1 admin',
           "created_at": "1487850702",
           "updated_at": "1487850702",
           "granted_access": [
-            "78FsrnMdYHAcJEWUPo4gQe",
-            "2n0Y6dzxevGvKVppiU9BhR",
-            "NwUQypbQRtd5485POk7Nh",
-            "5G0kKHSP10OICd4MRAr6cO"
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
           ]
-        },
-        {
-          "id": "12",
-          "parent_id": "2",
-          "name": "Keyboard FR",
-          "sort_order": "4",
-          "lang": "fr",
-          "author": 'Oleg Skiba',
-          "created_at": "1487850702",
-          "updated_at": "1487850702",
-          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
         },
         {
           "id": "3",
           "parent_id": "1",
-          "name": "Phone",
-          "sort_order": "1",
-          "lang": "en",
-          "author": 'Oleg Skiba',
+          "name": "id-3_pid-1_cat",
+          "sort_order": "4",
+          "lang": "fr",
+          "author": 'User1 admin',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
         },
         {
           "id": "4",
           "parent_id": "2",
-          "name": "test1",
+          "name": "id-4_pid-2_sub",
           "sort_order": "1",
           "lang": "en",
-          "author": 'Oleg Skiba',
+          "author": 'User1 admin',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+          ]
         },
         {
           "id": "5",
           "parent_id": "2",
-          "name": "test2",
-          "sort_order": "2",
+          "name": "id-5_pid-2_sub",
+          "sort_order": "1",
           "lang": "en",
-          "author": 'Oleg Skiba',
+          "author": 'User1 admin',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
+          "granted_access": [
+            "u1",
+          ]
         },
         {
           "id": "6",
           "parent_id": "2",
-          "name": "test3",
-          "sort_order": "3",
+          "name": "id-6_pid-2_sub",
+          "sort_order": "2",
           "lang": "en",
-          "author": 'Oleg Skiba',
+          "author": 'User1 admin',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+          ]
         },
         {
           "id": "7",
-          "parent_id": "1",
-          "name": "new",
-          "sort_order": "0",
+          "parent_id": "2",
+          "name": "id-7_pid-2_sub",
+          "sort_order": "3",
           "lang": "en",
-          "author": 'Oleg Skiba',
+          "author": 'User1 admin',
           "created_at": "1487850702",
           "updated_at": "1487850702",
-          "granted_access": ["78FsrnMdYHAcJEWUPo4gQe"]
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
+        },
+        {
+          "id": "8",
+          "parent_id": "3",
+          "name": "id-8_pid-3_sub",
+          "sort_order": "0",
+          "lang": "en",
+          "author": 'User1 admin',
+          "created_at": "1487850702",
+          "updated_at": "1487850702",
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
+        },
+        {
+          "id": "9",
+          "parent_id": "3",
+          "name": "id-9_pid-3_sub",
+          "sort_order": "0",
+          "lang": "en",
+          "author": 'User1 admin',
+          "created_at": "1487850702",
+          "updated_at": "1487850702",
+          "granted_access": [
+            "u1",
+            "u2",
+            "u3",
+            "u4",
+            "u5",
+          ]
         }
       ],
       settings: {
@@ -264,7 +795,7 @@ function FakeDataService() {
         ],
         "roles": [
           {"code": "admin", "name": "admin"},
-          {"code": "user", "name": "user"},
+          {"code": "editor", "name": "editor"},
           {"code": "visitor", "name": "visitor"},
           {"code": "contributor", "name": "contributor"}
         ],
@@ -281,48 +812,48 @@ function FakeDataService() {
       },
       users: [
         {
-          "id": "78FsrnMdYHAcJEWUPo4gQe",
-          "email": "oleg.skiba@yanpix.com",
-          "username": "oleg.skiba@yanpix.com",
-          "first_name": "Oleg",
-          "last_name": "Skiba",
+          "id": "u1",
+          "email": "user1@yanpix.com",
+          "username": "user1@yanpix.com",
+          "first_name": "User1",
+          "last_name": "admin",
           "role": ["admin"],
           "subdomains": ["skiba"]
         },
         {
-          "id": "2n0Y6dzxevGvKVppiU9BhR",
-          "email": "test4@test.com",
-          "username": "test4@test.com",
-          "first_name": "sdfsfsd",
-          "last_name": "dfgdsgsd",
-          "role": ["user"],
+          "id": "u2",
+          "email": "user2@yanpix.com",
+          "username": "user2@yanpix.com",
+          "first_name": "User2",
+          "last_name": "editor",
+          "role": ["editor"],
           "subdomains": ["skiba"]
         },
         {
-          "id": "NwUQypbQRtd5485POk7Nh",
-          "email": "wwwww@dfgdf.dfg",
-          "username": "fsfsdf@dfgdf.dfg",
-          "first_name": "dgdfsd",
-          "last_name": "dsgsdfg",
+          "id": "u3",
+          "email": "user3@yanpix.com",
+          "username": "user3@yanpix.com",
+          "first_name": "User3",
+          "last_name": "visitor",
           "role": ["visitor"],
           "subdomains": ["skiba"]
         },
         {
-          "id": "5G0kKHSP10OICd4MRAr6cO",
-          "email": "test@test.com",
-          "username": "test@test.com",
-          "first_name": "Test2",
-          "last_name": "User",
-          "role": ["user"],
+          "id": "u4",
+          "email": "user4@yanpix.com",
+          "username": "user4@yanpix.com",
+          "first_name": "User4",
+          "last_name": "contributor",
+          "role": ["contributor"],
           "subdomains": ["skiba"]
         },
         {
-          "id": "3wGzBu2ikq85AFLaToYsTU",
-          "email": "test@test.ww",
-          "username": "test@test.ww",
-          "first_name": "Test",
-          "last_name": "User",
-          "role": ["user"],
+          "id": "u5",
+          "email": "user5@yanpix.com",
+          "username": "user5@yanpix.com",
+          "first_name": "User5",
+          "last_name": "editor",
+          "role": ["editor"],
           "subdomains": ["skiba"]
         }
       ],
@@ -332,9 +863,9 @@ function FakeDataService() {
         "refresh_token": "eyJraWQiOiIyT0pZNzVDOVNIRTFISEhXUkFCRzY2MzZTIiwic3R0IjoicmVmcmVzaCIsImFsZyI6IkhTMjU2In0.eyJqdGkiOiIzMVRjb0s0VFhDbmhDcm5wVzZ4WFZVIiwiaWF0IjoxNDg4MjA5NzM4LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy83Nm9oQnJHUVlLYnhQRERzeGlrZlQ3Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy83OEZzcm5NZFlIQWNKRVdVUG80Z1FlIiwiZXhwIjoxNDkzMzkzNzM4fQ.nfSz9RXMFyJh7kzDuVpRFjbVNaoVrBPUwppb3_iVfEA",
         "token_type": "Bearer",
         "expires_in": 3600,
-        "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/31Th8NMet7GuBODxt4lNE4",
-        "role": ["contributor"],
-        "id": "78FsrnMdYHAcJEWUPo4gQe",
+        "stormpath_access_token_href": "https://api.stormpath.com/v1/accessTokens/3M93ZjEOfT5mLBIPJxKJv5",
+        "role": ["admin"],
+        "id": "2WW8fzUSZNjQ1qV2EZDxJJ",
         "email": "oleg.skiba@yanpix.com",
         "username": "oleg.skiba@yanpix.com",
         "first_name": "Oleg",
@@ -385,7 +916,15 @@ function FakeDataService() {
       },
       KBSettings: {
         "lang": {"code": "en"},
-        "filter": {"sort_by": "NAME_ASC"}
+        "filter": {"sort_by": "NAME_ASC"},
+        "shared_resources": {
+          "faq": [
+            "445271402",
+            "445271392",
+            "481539921",
+            "481539941"
+          ]
+        }
       }
     };
     console.info('getLocalData', url);
@@ -424,7 +963,7 @@ function FakeDataService() {
       case 'settings/advanced':
         return _toFormatResponse(data.domains);
         break;
-      case 'settings':
+      case 'settings/dashboard':
         return _toFormatResponse(data.KBSettings);
         break;
       case 'auth/check-subdomain':
