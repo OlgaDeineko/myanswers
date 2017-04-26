@@ -110,28 +110,44 @@ function CategoryHelper($rootScope) {
    */
   let buildTree = (articles, categories, currentCategory) => {
     articles = articles.filter((article) => article.status != 'trash');
+
     let rootId = 1;
     let rootName = categories.find(c => c.id == rootId).name;
-    categories.forEach((category, i) => {
-      categories[i].categories = copy(categories.filter(c => c.parent_id == category.id).sort((a, b) => a.sort_order - b.sort_order));
-      if (category.id != rootId) {
-        categories[i].parent = categories.find(c => c.id == category.parent_id);
-      }
-      categories[i].articles = articles.filter(a => a.categories.find(c => c.id == category.id));
+    let preparedCategories;
 
-      categories[i].hierarchical.lvl0 = rootName;
-      switch (categories[i].type) {
+    preparedCategories = categories.map((category) => {
+      /** @param {Category} category*/
+
+      if (category.id != rootId) {
+        category.parent = copy(categories.find(c => c.id == category.parent_id));
+      }
+
+      category.articles = articles.filter(a => a.categories.find(c => c.id == category.id));
+
+      category.hierarchical.lvl0 = rootName;
+      switch (category.type) {
         case 'category':
-          categories[i].hierarchical.lvl1 = [rootName, categories[i].name].join(' > ');
+          category.hierarchical.lvl1 = [rootName, category.name].join(' > ');
           break;
         case 'subcategory':
-          categories[i].hierarchical.lvl1 = [rootName, categories[i].parent.name].join(' > ');
-          categories[i].hierarchical.lvl2 = [rootName, categories[i].parent.name, categories[i].name].join(' > ');
+          category.hierarchical.lvl1 = [rootName, category.parent.name].join(' > ');
+          category.hierarchical.lvl2 = [rootName, category.parent.name, category.name].join(' > ');
           break;
       }
+      return copy(category);
     });
 
-    return categories.find(c => c.id == currentCategory);
+    //copy subcategories to categories
+    preparedCategories.filter(c => c.type == 'category').forEach((category) => {
+      /** @param {Category} category*/
+      category.categories = copy(categories.filter(c => c.parent_id == category.id).sort((a, b) => a.sort_order - b.sort_order));
+    });
+
+    //copy categories to root
+    let root = preparedCategories.find(c => c.id == rootId);
+    root.categories = copy(preparedCategories.filter(c => c.parent_id == rootId).sort((a, b) => a.sort_order - b.sort_order));
+
+    return preparedCategories.find(c => c.id == currentCategory);
   };
 
   /**
