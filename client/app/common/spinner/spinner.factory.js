@@ -1,33 +1,41 @@
 let SpinnerFactory = function ($rootScope) {
   'ngInject';
-  //TODO: remove $rootScope
-  $rootScope.spinner = [];
+  this.spinner = 0;
 
   /**
    * start(add) spinner
    */
   let start = () => {
-    $rootScope.spinner.push(true);
+    this.spinner++;
   };
 
   /**
    * end(remove) spinner
    */
   let end = () => {
-    $rootScope.spinner.splice(0, 1);
+    this.spinner--;
   };
 
   /**
    * remove all spinner
    */
   let reject = () => {
-    $rootScope.spinner = [];
+    this.spinner = 0;
+  };
+
+  /**
+   * is active loading
+   * @returns {boolean}
+   */
+  let hasSpinner = () => {
+    return this.spinner > 0;
   };
 
   return {
     start,
     end,
-    reject
+    reject,
+    hasSpinner
   };
 };
 

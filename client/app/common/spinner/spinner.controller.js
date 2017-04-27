@@ -1,6 +1,9 @@
 class SpinnerController {
-  constructor() {
+  constructor(spinnerFactory) {
+    'ngInject';
     this.name = 'spinner';
+
+    this.hasSpinner = spinnerFactory.hasSpinner;
   }
 }
 
