@@ -54,7 +54,12 @@ function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, Ses
       switch (errorResponse.status) {
         case 403:
           toastr.error("You don't have access to this actions");
-          stateService.go('admin.category');
+          let previous = SessionService.previousPage.data;
+          if (previous && previous.stateName) {
+            stateService.go(previous.stateName, previous.params);
+          } else {
+            stateService.go('admin.category');
+          }
           break;
         case 401:
           toastr.error('Please login again', `Authorisation error:`);
