@@ -124,7 +124,7 @@
     <!--TODO: rewrite this-->
     <div class="faq-user-visibility" ng-if="$ctrl.UserService.getRole() != 'contributor'">
       <h4>{{'FAQ.VISIBILITY_USER' | translate}}</h4>
-      <check-users ng-if="$ctrl.parentCategory"
+      <check-users ng-if="$ctrl.parentCategory && $ctrl.faq"
                    update-mode="$ctrl.mode == 'update'"
                    parent-users="$ctrl.parentCategory.id == 1 ? 'all' : $ctrl.parentCategory.granted_access"
                    selected="$ctrl.faq.granted_access">

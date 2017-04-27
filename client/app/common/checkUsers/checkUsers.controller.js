@@ -10,13 +10,17 @@ class CheckUsersController {
   $onInit() {
     this.UsersService.getAll()
       .then((result) => {
+        this.users = result;
         if (this.parentUsers == 'all') {
-          this.users = result;
-        } else {
-          this.users = result.filter(u => this.parentUsers.indexOf(u.id) > -1);
+          this.parentUsers = this.users.map(u => u.id);
         }
 
         this.users.forEach((user) => {
+          let isAdmin = user.role == 'admin' || user.role == 'Super Admin';
+          let inParentArray = this.parentUsers.indexOf(user.id) > -1;
+
+          user.disabled = isAdmin || !inParentArray;
+
           if (!this.updateMode) {
             this.selected.push(user.id);
           } else {

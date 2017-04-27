@@ -19,7 +19,6 @@ class EditFaqController {
     this.languages = $rootScope.settings.languages;
     this.faqVisibility = $rootScope.settings.faq_visibility;
     this.faqStatuses = $rootScope.settings.faq_statuses;
-    this.faq = {};
     this.categories = [];
     this.mode = 'create';
     this.loadingFileFlag = true;
@@ -85,18 +84,22 @@ class EditFaqController {
     //state can be in two states: createFaq or editFaq. for create - empty object, for edit - grab from server
     if (this.mode == 'create') {
       this.faq = faqHelper.newFaq($state.params.categoryId, UserService.getFullName());
+      CategoryService.getById($state.params.categoryId || 1)
+        .then(category => {
+          this.parentCategory = category;
+        });
     } else {
       this.ArticleService.getById($state.params.faqId)
         .then((result) => {
           self.faq = result;
         })
+        .then(() => {
+          return CategoryService.getById(self.faq.categoryId)
+        })
+        .then(category => {
+          this.parentCategory = category;
+        });
     }
-
-    CategoryService.getById($state.params.categoryId || 1)
-      .then(category => {
-        this.parentCategory = category;
-      });
-
 
     this.CategoryService.getAll()
       .then((result) => {
