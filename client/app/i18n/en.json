@@ -29,7 +29,7 @@
     "CONFIRM_CATEGORY": "Do you want to delete this Category?",
     "CONFIRM_SUBCATEGORY": "Do you want to delete this Subcategory?",
     "SORT_BY": "Sort by:",
-    "VISIBILITY_USER": "Visible to this users:",
+    "VISIBILITY_USER": "Visible to these users",
     "SORT_FILTER":{
       "CUSTOM": "Custom",
       "NAME_ASC": "Name[A-Z]",
@@ -68,7 +68,7 @@
     "KEYWORDS_PLACEHOLDER": "Add keywords separated by comma",
     "PUBLISH": "Publish in category:",
     "CONFIRM": "Do you want to delete this FAQ?",
-    "VISIBILITY_USER": "Visible to this users:",
+    "VISIBILITY_USER": "Visible to these users:",
 
     "STATUSES":{
       "DRAFT": "Draft",

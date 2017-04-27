@@ -58,6 +58,7 @@ class EditFaqController {
 
     $scope.$on('KBSettingsChanged', (ev, type) => {
       self.tinymceOptions.language_url = `/i18n/tinyMCE/${self.$scope.$root.KBSettings.lang.code}.js`;
+      self.tinymceOptions.language = self.$scope.$root.KBSettings.lang.code;
       $rootScope.$broadcast('$tinymce:refresh');
     });
 
@@ -75,6 +76,7 @@ class EditFaqController {
       height: 350,
       resize: false,
       language_url: `/i18n/tinyMCE/${$scope.$root.KBSettings.lang.code}.js`,
+      language : 'en',
       plugins: [
         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
         'searchreplace visualblocks visualchars code fullscreen',
