@@ -1,5 +1,5 @@
 class EditFaqController {
-  constructor($state, $scope, $rootScope, $filter, toastr, faqHelper, CategoryService,
+  constructor($state, $scope, $document, $rootScope, $filter, $translate, toastr, faqHelper, CategoryService,
               ArticleService, SettingsService, FilesService, UsersService, UserService) {
     'ngInject';
     this.name = 'editFaq';
@@ -58,6 +58,14 @@ class EditFaqController {
 
     $scope.$on('KBSettingsChanged', (ev, type) => {
       self.tinymceOptions.language_url = `/i18n/tinyMCE/${self.$scope.$root.KBSettings.lang.code}.js`;
+      $rootScope.$broadcast('$tinymce:refresh');
+    });
+
+    $rootScope.$on('$translateChangeSuccess', function () {
+      $translate("FAQ.KEYWORDS_PLACEHOLDER")
+        .then(function (res) {
+          $document.find('.tags>input').attr('placeholder', res);
+        });
     });
 
     // configs for tinyMCE editor @see https://www.tinymce.com/docs/
