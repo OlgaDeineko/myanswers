@@ -4,6 +4,7 @@ function UsersService($http, $q, $rootScope, userHelper, SessionService) {
 
   /**
    * Get all users
+   * @params {boolean} update - force update
    * @returns {Promise.<User[]>}
    */
   let getAll = (update) => {
@@ -31,7 +32,7 @@ function UsersService($http, $q, $rootScope, userHelper, SessionService) {
 
   /**
    * Create user
-   * @param {object} newUser - new faq
+   * @param {object} newUser - new user
    * @returns {Promise.<User>}
    */
   let create = (newUser) => {

@@ -109,10 +109,9 @@ angular.module('app', [
   'dndLists',
   'pascalprecht.translate'
 ])
-  .config(($locationProvider, $httpProvider, flowFactoryProvider, $translateProvider, $provide, $qProvider) => {
+  .config(($locationProvider, $httpProvider, flowFactoryProvider, $translateProvider, $provide) => {
     "ngInject";
-    // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
-    // #how-to-configure-your-server-to-work-with-html5mode
+    // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions#how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true).hashPrefix('!');
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
@@ -131,7 +130,6 @@ angular.module('app', [
         $delegate(exception, cause);
       };
     });
-    // $qProvider.errorOnUnhandledRejections(false);
 
     $translateProvider.useStaticFilesLoader({
       prefix: 'i18n/',
@@ -152,27 +150,28 @@ angular.module('app', [
   .run(($rootScope, $state, UserService, SessionService, SettingsService) => {
     "ngInject";
 
+    //if user logged get setting
+    //TODO: rewrite: load before angular.bootstrap
     if (UserService.isLogin) {
       UserService.getUserFromStorage();
+      SettingsService.getKBSettings();
     }
 
+    //initialise permissions
     $rootScope.$on('$stateChangeStart', (event, next) => {
       UserService.initPermission();
     });
 
+    //save previous page
     $rootScope.$on('$stateChangeSuccess', (ev, to, toParams, from, fromParams) => {
       if (from.name) {
         SessionService.setPreviousPage(from.name, fromParams)
       }
     });
 
-     if(UserService.isLogin()) {
-      SettingsService.getKBSettings();
-    }
-
+    //flag is ready translate
     $rootScope.translateIsReady = false;
     $rootScope.$on('$translateChangeSuccess', function () {
       $rootScope.translateIsReady = true;
     });
-
   });

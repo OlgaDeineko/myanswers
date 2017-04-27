@@ -33,13 +33,7 @@ let routerModule = angular.module('routing', [
           SettingsService.getKBSettings();
 
           $state.go('admin.category');
-        },
-        // data: {
-        //   permissions: {
-        //     only: 'superAdmin',
-        //     redirectTo: 'chooseSubdomain'
-        //   }
-        // }
+        }
       })
 
       .state('login', {

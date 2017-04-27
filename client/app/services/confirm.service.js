@@ -2,7 +2,7 @@ function ConfirmService($uibModal) {
   "ngInject";
 
   /**
-   *
+   * open confirm alert
    * @param text - message
    * @param {function=} onOk - success callback
    * @param {function=} onCancel - reject callback
@@ -17,15 +17,18 @@ function ConfirmService($uibModal) {
       }
     });
 
-    modalInstance.result.then(() => {
-      if (typeof onOk == 'function') {
-        onOk();
+    modalInstance.result.then(
+      () => {
+        if (typeof onOk == 'function') {
+          onOk();
+        }
+      },
+      () => {
+        if (typeof onCancel == 'function') {
+          onCancel();
+        }
       }
-    }, () => {
-      if (typeof onCancel == 'function') {
-        onCancel();
-      }
-    })
+    )
   };
 
   return {

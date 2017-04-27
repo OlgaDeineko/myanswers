@@ -818,7 +818,8 @@ function FakeDataService() {
           "first_name": "User1",
           "last_name": "admin",
           "role": ["admin"],
-          "subdomains": ["skiba"]
+          "subdomains": ["skiba"],
+          "status": "ENABLED"
         },
         {
           "id": "u2",
@@ -827,7 +828,8 @@ function FakeDataService() {
           "first_name": "User2",
           "last_name": "editor",
           "role": ["editor"],
-          "subdomains": ["skiba"]
+          "subdomains": ["skiba"],
+          "status": "ENABLED"
         },
         {
           "id": "u3",
@@ -836,7 +838,8 @@ function FakeDataService() {
           "first_name": "User3",
           "last_name": "visitor",
           "role": ["visitor"],
-          "subdomains": ["skiba"]
+          "subdomains": ["skiba"],
+          "status": "ENABLED"
         },
         {
           "id": "u4",
@@ -845,7 +848,8 @@ function FakeDataService() {
           "first_name": "User4",
           "last_name": "contributor",
           "role": ["contributor"],
-          "subdomains": ["skiba"]
+          "subdomains": ["skiba"],
+          "status": "ENABLED"
         },
         {
           "id": "u5",
@@ -854,7 +858,8 @@ function FakeDataService() {
           "first_name": "User5",
           "last_name": "editor",
           "role": ["editor"],
-          "subdomains": ["skiba"]
+          "subdomains": ["skiba"],
+          "status": "ENABLED"
         }
       ],
       checkSubdomain: {"subdomain": "exist"},

@@ -1,4 +1,4 @@
-import config, {langIcons, visibilityIcons, defaultKBSettings} from '../config';
+import {langIcons, visibilityIcons, defaultKBSettings} from '../config';
 
 function SettingsService($http, $rootScope, $q, $translate, SessionService) {
   "ngInject";
@@ -106,22 +106,27 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
     saveKBSettings(this.KBSettings);
   };
 
+  /**
+   * get kb settings (lang, order, visibility faq, etc.)
+   * @returns {Promise<object>}
+   */
   let getKBSettings = () => {
     _setKBSettings(SessionService.kbSettings.data);
     return $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/settings/dashboard`
     }).then(result => {
-      try {
-        this.visibleArticles = result.data.data.shared_resources.faq || [];
-        delete result.data.data.shared_resources;
-      } catch (e) {
-        this.visibleArticles = [];
-      }
+      this.visibleArticles = (result.data.data.shared_resources && result.data.data.shared_resources.faq) || [];
+      delete result.data.data.shared_resources;
       _setKBSettings(result.data.data);
     });
   };
 
+  /**
+   * save kb settings
+   * @param {object} KBSettings
+   * @returns {Promise}
+   */
   let saveKBSettings = (KBSettings) => {
     SessionService.kbSettings.data = KBSettings;
     return $http({
@@ -131,6 +136,10 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
     })
   };
 
+  /**
+   * get visible article for current user
+   * @returns {string[]}
+   */
   let getVisibleArticles = () => {
     return this.visibleArticles || []
   };

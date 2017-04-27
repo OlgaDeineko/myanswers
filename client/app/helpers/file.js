@@ -1,17 +1,17 @@
 /**
- * @name File
+ * @typedef {object} Attachment
  * @property {number} id - file id
  * @property {number} model_id - object id
  * @property {string} model - object type (article, category, etc.)
  * @property {string} attachment_url - file url
  * @property {string} size - size
  * @property {string} type - file type (doc, docx, pdf, etc.)
- * @property {number} mime - mie type
+ * @property {number} mime - mime type
  *
  * @property {string} name - file name
  */
 /**
- * @name FileResponse
+ * @typedef {object} AttachmentResponse
  * @property {number} id - file id
  * @property {number} model_id - object id
  * @property {string} model - object type (article, category, etc.)
@@ -21,7 +21,7 @@
  * @property {number} mime - mie type
  */
 /**
- * @name FileRequest
+ * @typedef {object} AttachmentRequest
  * @property {string} name - file name
  * @property {string} type - file type (doc, docx, pdf, etc.)
  * @property {string} base64 - file in base64
@@ -32,8 +32,8 @@ function FileHelper() {
 
   /**
    * Prepare file
-   * @param {FileResponse} file
-   * @returns {File}
+   * @param {AttachmentResponse} file
+   * @returns {Attachment}
    */
   let responseToData = (file) => {
     let reg = new RegExp(`.*\\\/${file.model}\/\\d+\/(.*)$`);
@@ -43,8 +43,10 @@ function FileHelper() {
 
   /**
    * Prepare file to request
-   * @param {File} file
-   * @returns {FileRequest}
+   * @param {object} file
+   * @param {string} file.name
+   * @param {string} file.base64
+   * @returns {AttachmentRequest}
    */
   let dataToRequest = (file) => {
     return {

@@ -18,6 +18,7 @@ class CreateUserModalController {
 
     if (this.$resolve.user) {
       this.newUser = this.$resolve.user;
+      this.newUser.role = this.newUser.roleName
       this.mode = 'update';
     }
 

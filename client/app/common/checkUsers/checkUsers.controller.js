@@ -16,7 +16,7 @@ class CheckUsersController {
         }
 
         this.users.forEach((user) => {
-          let isAdmin = user.role == 'admin' || user.role == 'Super Admin';
+          let isAdmin = user.roleName == 'admin' || user.roleName == 'Super Admin';
           let inParentArray = this.parentUsers.indexOf(user.id) > -1;
 
           user.disabled = isAdmin || !inParentArray;
@@ -24,7 +24,7 @@ class CheckUsersController {
           if (!this.updateMode) {
             this.selected.push(user.id);
           } else {
-            if ((user.role == 'admin' || user.role == 'Super Admin') && this.selected.indexOf(user.id) == -1) {
+            if ((user.roleName == 'admin' || user.roleName == 'Super Admin') && this.selected.indexOf(user.id) == -1) {
               this.selected.push(user.id);
             }
           }

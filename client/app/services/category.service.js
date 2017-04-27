@@ -76,14 +76,15 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
     });
   };
 
+  /**
+   * change order category
+   * @param {Category} category
+   */
   let changeOrder = (category) => {
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/categories/${category.id}`,
       data: categoryHelper.dataToRequest(category)
-    }).then(result => {
-      // $rootScope.$broadcast('updateCategories');
-      // return categoryHelper.responseToData(result.data.data);
     });
   };
 

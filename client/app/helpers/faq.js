@@ -5,19 +5,23 @@
  * @property {string} answer - faq answer (text)
  * @property {string} slug - article slug
  * @property {string} visibility - article visibility (public | internal | private)
- * @property {boolean} is_open_comments
+ * @property {number} is_open_comments
  * @property {string} lang - code article language
  * @property {string} author - author full name
+ * @property {string} author_href - author stormpath href
  * @property {string} status - article status (draft, publish, etc.)
  * @property {number} algolia_object_id - algolia id
  * @property {timestamp} created_at
  * @property {timestamp} updated_at
  * @property {object[]} tags - article tags
- * @property {number} tags.tag_id - tag id
+ * @property {number} tags.id - tag id
  * @property {string} tags.name - tag name
  * @property {number} hits_count - count article views
  * @property {string} remarks - article internal comment
+ * @property {Attachment[]} attachments - article internal comment
+ * @property {number} sort_order - number of order in category
  * @property {CategoryResponse[]} categories - categories article. now in array one element
+ * @property {string[]} granted_access - user ids who can see this faq
  *
  * @property {Category} category - category article. remove array :)
  * @property {number} categoryId - ID category article
@@ -30,6 +34,8 @@
  * @property {string} timeReads - time to read the answer
  * @property {number} likes - count article likes
  * @property {number} dislikes - count article dislikes
+ * @property {string} authorId - author id
+ * @property {boolean} isOwner - current user is owner
  */
 /**
  * @typedef {Object} ArticleResponse
@@ -41,6 +47,7 @@
  * @property {number} is_open_comments
  * @property {string} lang - code article language
  * @property {string} author - author full name
+ * @property {string} author_href - author stormpath href
  * @property {string} status - article status (draft, publish, etc.)
  * @property {number} algolia_object_id - algolia id
  * @property {timestamp} created_at
@@ -50,8 +57,10 @@
  * @property {string} tags.name - tag name
  * @property {number} hits_count - count article views
  * @property {string} remarks - article internal comment
- * @property {FileResponse} attachments - article internal comment
+ * @property {AttachmentResponse} attachments - article internal comment
+ * @property {number} sort_order - number of order in category
  * @property {CategoryResponse[]} categories - categories article. now in array one element
+ * @property {string[]} granted_access - user ids who can see this faq
  */
 /**
  * @typedef {Object} ArticleRequest
@@ -67,6 +76,7 @@
  * @property {integer[]} category_ids - category ids
  * @property {string} remarks - article internal comment
  * @property {string} author_href - user stormpath href
+ * @property {string[]} granted_access - user ids who can see this faq
  */
 
 function FaqHelper($rootScope, fileHelper, categoryHelper, UserService) {
@@ -78,21 +88,17 @@ function FaqHelper($rootScope, fileHelper, categoryHelper, UserService) {
    * @returns {Article}
    */
   let responseToData = (faq) => {
-
-    if(faq.categories && faq.categories.length){
-      faq.categories[0].id = +faq.categories[0].id;
+    faq.category = {};
+    if (Array.isArray(faq.categories)) {
       faq.category = categoryHelper.responseToData(faq.categories[0]);
-      faq.categoryId = faq.categories[0].id;
-    }else{
-      faq.category = '';
-      faq.categoryId = '';
     }
+    faq.categoryId = faq.category.id;
 
     if ($rootScope.settings) {
       faq.language = $rootScope.settings.languages.find((l) => l.code == faq.lang);
     }
 
-    if (faq.hasOwnProperty('attachments')) {
+    if (Array.isArray(faq.attachments)) {
       faq.attachments.map(fileHelper.responseToData);
     }
 
@@ -110,13 +116,12 @@ function FaqHelper($rootScope, fileHelper, categoryHelper, UserService) {
     let time = (faq.countWords / 200 + "").split('.');
     faq.timeReads = `${time[0]} min ${((('.' + time[1]) * 60).toFixed())} sec`;
 
-    if(!(faq.granted_access && Array.isArray(faq.granted_access))){
-      faq.granted_access = [];
-    }
+    faq.granted_access = faq.granted_access || [];
 
-    if(typeof faq.author_href == 'string') {
+    if (typeof faq.author_href == 'string') {
       faq.authorId = faq.author_href.replace(/(.*\/accounts\/)/g, '');
     }
+
     faq.isOwner = UserService.getId() == faq.authorId;
 
     //TODO remove this after this functional to be done on the server
@@ -169,7 +174,6 @@ function FaqHelper($rootScope, fileHelper, categoryHelper, UserService) {
    * @returns {object}
    */
   let newFaq = (categoryId, author) => {
-    //TODO add granted_access to docs
     return {
       question: '',
       answer: '',
@@ -194,7 +198,7 @@ function FaqHelper($rootScope, fileHelper, categoryHelper, UserService) {
     if (!$rootScope.settings) {
       return;
     }
-    let articlesCounts =[];
+    let articlesCounts = [];
     articlesCounts.push({
       name: "ALL",
       code: "all",

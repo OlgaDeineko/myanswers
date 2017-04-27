@@ -36,6 +36,7 @@ function SessionService($window) {
      * @param {*} data
      */
     set data(data) {
+      //TODO: check undefined
       if (typeof data == 'object') {
         data = JSON.stringify(data);
       }

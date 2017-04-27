@@ -23,7 +23,7 @@ function UserService($http, PermPermissionStore, userHelper, SessionService) {
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
-        role: user.role
+        roleName: user.roleName
       };
 
       SessionService.user.data = this.user;
@@ -76,7 +76,7 @@ function UserService($http, PermPermissionStore, userHelper, SessionService) {
    */
   let getRole = () => {
     if (!this.user) return;
-    return this.user.role;
+    return this.user.roleName;
   };
 
   /**

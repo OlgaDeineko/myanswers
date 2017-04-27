@@ -1,23 +1,28 @@
 /**
- * @name Category
+ * @typedef {Object} Category
  * @property {number} id - category id
  * @property {string} name - article question (title)
  * @property {number} parent_id - article slug
  * @property {string} lang - code article language
  * @property {string} author - author full name
+ * @property {number} sort_order - number of order category
  * @property {timestamp} created_at
  * @property {timestamp} updated_at
+ * @property {string[]} granted_access - user ids who can see this category
  *
  * @property {object} language - language object
  * @property {string} language.code - language code
  * @property {string} language.name - language name
- * @property {number} sort_order - number of order category
  * @property {Article[]} articles - category articles
  * @property {Category[]} categories - child categories
- * @property {string} type - category type (root || category || subcategory)
+ * @property {string} type - category type (root|category|subcategory)
+ * @property {object} hierarchical - hierarchy of nesting
+ * @property {string} hierarchical.lvl0 - level 0 (root)
+ * @property {string} hierarchical.lvl1 - level 1 (root > category)
+ * @property {string} hierarchical.lvl2 - level 2 (root > category > subcategory)
  */
 /**
- * @name CategoryResponse
+ * @typedef {Object} CategoryResponse
  * @property {number} id - category id
  * @property {string} name - article question (title)
  * @property {number} parent_id - article slug
@@ -26,15 +31,17 @@
  * @property {number} sort_order - number of order category
  * @property {timestamp} created_at
  * @property {timestamp} updated_at
+ * @property {string[]} granted_access - user ids who can see this category
  */
 /**
- * @name CategoryRequest
+ * @typedef {Object} CategoryRequest
  * @property {string} name - article question (title)
  * @property {number} parent_id - article slug
  * @property {string} lang - code article language
  * @property {string} author - author full name
  * @property {number} sort_order - number of order category
  * @property {string} author_href - user stormpath href
+ * @property {string[]} granted_access - user ids who can see this category
  */
 
 import {copy} from 'angular'
@@ -67,13 +74,8 @@ function CategoryHelper($rootScope) {
       category.language = $rootScope.settings.languages.find((l) => l.code == category.lang);
     }
 
-    if (!(category.granted_access && Array.isArray(category.granted_access))) {
-      category.granted_access = [];
-    }
-
-    if (!category.author) {
-      category.author = 'Unknown';
-    }
+    category.granted_access = category.granted_access || [];
+    category.author = category.author || 'Unknown';
 
     category.hierarchical = {
       lvl0: null,
@@ -154,7 +156,7 @@ function CategoryHelper($rootScope) {
    * return new object of category
    * @param {number} parentCategoryId - parent category id
    * @param {string} author - author
-   * @returns {object}
+   * @returns {CategoryRequest}
    */
   let newCategory = (parentCategoryId, author) => {
     return {
@@ -163,6 +165,7 @@ function CategoryHelper($rootScope) {
       lang: 'en',
       author: author || 'Unknown',
       sort_order: 0,
+      author_href: '',
       granted_access: []
     };
   };
