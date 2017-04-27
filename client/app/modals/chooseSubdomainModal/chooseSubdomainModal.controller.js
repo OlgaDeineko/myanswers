@@ -22,7 +22,7 @@ class ChooseSubdomainModalController {
 
   choose(subdomain) {
     let token = `t=${this.SessionService.token.data}`;
-    let user = `u=${this.SessionService.user.data}`;
+    let user = `u=${JSON.stringify(this.SessionService.user.data)}`;
     this.SessionService.token.remove();
     this.SessionService.subdomain.remove();
     this.SessionService.user.remove();
