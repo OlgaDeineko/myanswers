@@ -5,7 +5,6 @@ class ChooseSubdomainModalController {
     'ngInject';
 
     this.name = 'SUBDOMAIN.TITLE';
-    let self = this;
 
     this.$window = $window;
     this.SessionService = SessionService;
@@ -16,7 +15,7 @@ class ChooseSubdomainModalController {
 
     SettingsService.getAllSubdomains()
       .then((res) => {
-        self.subdomains = res.subdomains;
+        this.subdomains = res.subdomains;
       })
   }
 

@@ -2,7 +2,6 @@ class UsersController {
   constructor($scope, $uibModal, $filter, NgTableParams, toastr, UsersService) {
     'ngInject';
     this.name = 'USERS.TITLE';
-    let self = this;
 
     this.$uibModal = $uibModal;
     this.toastr = toastr;
@@ -27,10 +26,9 @@ class UsersController {
   };
 
   remove(userId) {
-    let self = this;
     this.UsersService.remove(userId)
       .then((result) => {
-        self.toastr.success(self.translate('MESSAGES.USER_REMOVED'));
+        this.toastr.success(this.translate('MESSAGES.USER_REMOVED'));
       })
   }
 
@@ -44,23 +42,22 @@ class UsersController {
   }
 
   disabled(user, status) {
-    let self = this;
     user.status = status;
     this.UsersService.update(user)
       .then((result) => {
-        self.toastr.success(self.translate('MESSAGES.USER_STATUS_CHANGED'));
+        this.toastr.success(this.translate('MESSAGES.USER_STATUS_CHANGED'));
       })
   }
 
-  getData(self, update) {
-    self.UsersService.getAll(update).then(result => {
-      self.users = result;
+  getData(update) {
+    this.UsersService.getAll(update).then(result => {
+      this.users = result;
 
-      self.tableParams = new self.NgTableParams({
+      this.tableParams = new this.NgTableParams({
         count: 15,
       }, {
         counts: [],
-        dataset:  self.users,
+        dataset:  this.users,
       });
     })
   }

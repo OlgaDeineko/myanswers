@@ -3,7 +3,6 @@ class ForgotPasswordController {
     'ngInject';
 
     this.name = 'REGISTRATION.RESET_PASSWORD';
-    let self = this;
 
     this.$state = $state;
     this.toastr = toastr;
@@ -14,10 +13,10 @@ class ForgotPasswordController {
 
     this.newPass = {};
     if ($scope.$root.translateIsReady) {
-      self.initForm();
+      this.initForm();
     } else {
-      $scope.$root.$on('$translateChangeSuccess', function () {
-        self.initForm();
+      $scope.$root.$on('$translateChangeSuccess', () => {
+        this.initForm();
       })
     }
   }
@@ -60,15 +59,15 @@ class ForgotPasswordController {
   }
 
   save(form, newPass) {
-    let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
       this.UserService.resetPassword(this.$state.params.resetToken, newPass.password)
         .then((result) => {
-          self.toastr.success(self.translate('MESSAGES.PASSWORD_CHANGED'));
+          this.toastr.success(this.translate('MESSAGES.PASSWORD_CHANGED'));
           this.$state.go('chooseSubdomain');
-        }, (error) => {
-          self.toastr.error(error.data.message, self.translate('MESSAGES.VALIDATION_ERROR'));
+        })
+        .catch((error) => {
+          this.toastr.error(error.data.message, this.translate('MESSAGES.VALIDATION_ERROR'));
         })
     }
   }

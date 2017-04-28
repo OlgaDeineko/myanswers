@@ -18,13 +18,13 @@ class CategoryController {
     this.articleType = 'all';
 
     $scope.$on('updateArticles', () => {
-      this.getAllData(this, true);
+      this.getAllData(true);
     });
     $scope.$on('updateCategories', () => {
-      this.getAllData(this, true);
+      this.getAllData(true);
     });
 
-    this.getAllData(this);
+    this.getAllData();
   }
 
   createCategory() {
@@ -36,17 +36,17 @@ class CategoryController {
     });
   };
 
-  getAllData(self, update) {
+  getAllData(update) {
     Promise.all([
-      self.CategoryService.getAll(update),
-      self.ArticleService.getAll(update)
+      this.CategoryService.getAll(update),
+      this.ArticleService.getAll(update)
     ]).then((res) => {
       let categories = res[0];
       let articles = res[1];
 
-      self.tree = self.categoryHelper.buildTree(articles, categories, self.currentCategory);
+      this.tree = this.categoryHelper.buildTree(articles, categories, this.currentCategory);
 
-      self.$scope.$apply();
+      this.$scope.$apply();
     })
   };
 

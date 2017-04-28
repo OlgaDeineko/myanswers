@@ -26,34 +26,32 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
    * @returns {Promise<Object>}
    */
   let getCommonSettings = () => {
-    let self = this;
-
     if (this.commonSettings) {
       return new Promise((resolve) => {
-        resolve(self.commonSettings);
+        resolve(this.commonSettings);
       })
     }
 
-    if (self.deferred) return self.deferred.promise;
+    if (this.deferred) return this.deferred.promise;
     this.deferred = $q.defer();
 
     $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/settings/common`,
     }).then((result) => {
-      self.commonSettings = result.data.data;
-      self.commonSettings.languages.map((lang) => {
+      this.commonSettings = result.data.data;
+      this.commonSettings.languages.map((lang) => {
         lang.icon = langIcons[lang.code];
       });
-      self.commonSettings.faq_visibility.map((vis) => {
+      this.commonSettings.faq_visibility.map((vis) => {
         vis.icon = visibilityIcons[vis.code];
       });
-      $rootScope.settings = self.commonSettings;
-      self.deferred.resolve(self.commonSettings);
-      delete self.deferred;
+      $rootScope.settings = this.commonSettings;
+      this.deferred.resolve(this.commonSettings);
+      delete this.deferred;
     });
 
-    return self.deferred.promise;
+    return this.deferred.promise;
   };
 
   /**
@@ -61,26 +59,25 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
    * @returns {Promise<object>}
    */
   let getAllSubdomains = () => {
-    let self = this;
     if (this.subdomains) {
       return new Promise((resolve) => {
-        resolve(self.subdomains);
+        resolve(this.subdomains);
       })
     }
 
-    if (self.deferred2) return self.deferred2.promise;
+    if (this.deferred2) return this.deferred2.promise;
     this.deferred2 = $q.defer();
 
     $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/settings/advanced`,
     }).then((result) => {
-      self.subdomains = result.data.data;
-      self.deferred2.resolve(self.subdomains);
-      delete self.subdomains;
+      this.subdomains = result.data.data;
+      this.deferred2.resolve(this.subdomains);
+      delete this.subdomains;
     });
 
-    return self.deferred2.promise;
+    return this.deferred2.promise;
   };
 
   /**

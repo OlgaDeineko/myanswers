@@ -2,7 +2,6 @@ class FaqController {
   constructor($sce, $state, toastr, ArticleService, SettingsService, FilesService) {
     "ngInject";
     this.name = 'FAQ.TITLE';
-    let self = this;
 
     this.$state = $state;
     this.toastr = toastr;
@@ -16,11 +15,11 @@ class FaqController {
 
     this.ArticleService.getById($state.params.faqId)
       .then((result) => {
-        self.faq = result;
+        this.faq = result;
       }, (error) => {
         error.data.errors.forEach((error) => {
-          self.toastr.error(error.message);
-          self.$state.go('admin.category');
+          this.toastr.error(error.message);
+          this.$state.go('admin.category');
         });
       })
   }

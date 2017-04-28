@@ -2,7 +2,6 @@ class VisitorArticleController {
   constructor($sce, $state, toastr, ArticleService, SettingsService) {
     "ngInject";
     this.name = 'faq';
-    let self = this;
 
     this.$state = $state;
     this.toastr = toastr;
@@ -19,14 +18,15 @@ class VisitorArticleController {
     let isAlgoliaObject = $state.current.name == 'visitorArticleAlgolia';
     this.ArticleService.getById($state.params.faqId, isAlgoliaObject)
       .then((result) => {
-        self.faq = result;
-        if(isAlgoliaObject){
-          self.currentCategoryId = result.categoryId;
+        this.faq = result;
+        if (isAlgoliaObject) {
+          this.currentCategoryId = result.categoryId;
         }
-      }, (error) => {
+      })
+      .catch((error) => {
         error.data.errors.forEach((error) => {
-          self.toastr.error(error.message);
-          self.$state.go('visitor');
+          this.toastr.error(error.message);
+          this.$state.go('visitor');
         });
       });
   }

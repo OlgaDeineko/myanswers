@@ -3,7 +3,6 @@ class EditFaqController {
               ArticleService, SettingsService, FilesService, UsersService, UserService) {
     'ngInject';
     this.name = 'editFaq';
-    let self = this;
 
     this.$state = $state;
     this.$scope = $scope;
@@ -36,12 +35,14 @@ class EditFaqController {
         $('#tinymceUploader').on('change', function () {
           let file = this.files[0];
           if (!/\.(jpeg|jpg|png)$/.test(file.name)) {
-            self.toastr.error(self.translate('MESSAGES.ERROR_IMAGE_TYPE'));
+            this.toastr.error(this.translate('MESSAGES.ERROR_IMAGE_TYPE'));
             $('#tinymceUploader').unbind('change');
             return false;
           }
           let reader = new FileReader();
           let fileName = `${Math.random().toString(36).substring(2)}${file.name.match(/.*(\.\w{3,4})$/)[1]}`;
+
+          let self = this;
           reader.onload = (event) => {
             self.FilesService.create([{name: fileName, base64: event.target.result}], 'faq_editor', '0')
               .then((result) => {
@@ -51,14 +52,15 @@ class EditFaqController {
                 $('#tinymceUploader').unbind('change')
               });
           };
+
           reader.readAsDataURL(file);
         });
       }
     };
 
     $scope.$on('KBSettingsChanged', (ev, type) => {
-      self.tinymceOptions.language_url = `/i18n/tinyMCE/${self.$scope.$root.KBSettings.lang.code}.js`;
-      self.tinymceOptions.language = self.$scope.$root.KBSettings.lang.code;
+      this.tinymceOptions.language_url = `/i18n/tinyMCE/${this.$scope.$root.KBSettings.lang.code}.js`;
+      this.tinymceOptions.language = this.$scope.$root.KBSettings.lang.code;
       $rootScope.$broadcast('$tinymce:refresh');
     });
 
@@ -101,10 +103,10 @@ class EditFaqController {
     } else {
       this.ArticleService.getById($state.params.faqId)
         .then((result) => {
-          self.faq = result;
+          this.faq = result;
         })
         .then(() => {
-          return CategoryService.getById(self.faq.categoryId)
+          return CategoryService.getById(this.faq.categoryId)
         })
         .then(category => {
           this.parentCategory = category;
@@ -113,7 +115,7 @@ class EditFaqController {
 
     this.CategoryService.getAll()
       .then((result) => {
-        self.categories = result;
+        this.categories = result;
       });
   }
 
@@ -129,50 +131,45 @@ class EditFaqController {
    * Create/update article
    */
   save() {
-    let self = this;
-
     this.ArticleService[this.mode](this.faq)
       .then((result) => {
-        if (self.filesBase64.length) {
-          self.ArticleService.saveAttachments(self.filesBase64, result.id);
+        if (this.filesBase64.length) {
+          this.ArticleService.saveAttachments(this.filesBase64, result.id);
         }
         return result
       })
       .then((result) => {
-        if (self.removedFiles.length) {
+        if (this.removedFiles.length) {
           Promise.all(
-            self.removedFiles.map((file) => {
-              return self.FilesService.remove(file.name, file.model, file.model_id);
+            this.removedFiles.map((file) => {
+              return this.FilesService.remove(file.name, file.model, file.model_id);
             })
           )
         }
         return result
       })
       .then((result) => {
-        self.$state.go("admin.faq", {'faqId': result.id});
-        self.toastr.success(self.translate(`MESSAGES.FAQ_${self.mode.toUpperCase()}`))
+        this.$state.go("admin.faq", {'faqId': result.id});
+        this.toastr.success(this.translate(`MESSAGES.FAQ_${this.mode.toUpperCase()}`))
       })
       .catch((error) => {
         error.data.errors.forEach(error => {
-          self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
+          this.toastr.error(error.message, this.translate('MESSAGES.VALIDATION_ERROR'));
         });
       })
   }
 
   remove() {
-    let self = this;
     this.ArticleService.remove(this.faq.id)
       .then((result) => {
-        self.$state.go("admin.category");
-        self.toastr.success('FAQ removed successfully.')
+        this.$state.go("admin.category");
+        this.toastr.success('FAQ removed successfully.')
       })
   }
 
   addedNewFile(file, event, $flow) {
-    let self = this;
-
     if (!/\.(doc|docx|pdf)$/.test(file.file.name)) {
-      this.toastr.error(self.translate('MESSAGES.ERROR_DOCUMENT_TYPE'));
+      this.toastr.error(this.translate('MESSAGES.ERROR_DOCUMENT_TYPE'));
       return false;
     }
     this.loadingFileFlag = true;
@@ -180,12 +177,12 @@ class EditFaqController {
     let reader = new FileReader();
 
     reader.onload = (event) => {
-      self.filesBase64.push({name: file.name, base64: event.target.result});
+      this.filesBase64.push({name: file.name, base64: event.target.result});
     };
 
     reader.onloadend = () => {
-      self.loadingFileFlag = false;
-      self.$scope.$apply();
+      this.loadingFileFlag = false;
+      this.$scope.$apply();
     };
 
     reader.readAsDataURL(file.file);

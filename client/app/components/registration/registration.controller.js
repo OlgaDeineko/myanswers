@@ -4,7 +4,6 @@ class RegistrationController {
   constructor($scope, $window, $filter, $state, toastr, UserService) {
     "ngInject";
     this.name = 'REGISTRATION.TITLE';
-    let self = this;
 
     this.$state = $state;
     this.$scope = $scope;
@@ -19,10 +18,10 @@ class RegistrationController {
     this.newUser = {};
 
     if ($scope.$root.translateIsReady) {
-      self.initForm();
+      this.initForm();
     } else {
-      $scope.$root.$on('$translateChangeSuccess', function () {
-        self.initForm();
+      $scope.$root.$on('$translateChangeSuccess', () => {
+        this.initForm();
       })
     }
   }
@@ -111,17 +110,17 @@ class RegistrationController {
   }
 
   register(form, newUser) {
-    const self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
       this.UserService.register(newUser)
         .then((result) => {
-          self.isCreated = newUser.subdomain.toLowerCase();
-          self.toastr.success(self.translate('MESSAGES.REGISTRATION_DONE_MSG'));
-          self.registrationDone = true;
-        }, (error) => {
+          this.isCreated = newUser.subdomain.toLowerCase();
+          this.toastr.success(this.translate('MESSAGES.REGISTRATION_DONE_MSG'));
+          this.registrationDone = true;
+        })
+        .catch((error) => {
           error.data.errors.forEach(error => {
-            self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
+            this.toastr.error(error.message, this.translate('MESSAGES.VALIDATION_ERROR'));
           });
         })
     }

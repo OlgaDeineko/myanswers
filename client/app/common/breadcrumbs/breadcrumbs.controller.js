@@ -3,24 +3,23 @@ class BreadcrumbsController {
     'ngInject';
 
     this.name = 'breadcrumbs';
-    let self = this;
     this.$state = $state;
     this.$scope = $scope;
 
     this.breadcrumbs = [];
 
     $scope.$watch(()=>{
-      return self.current;
+      return this.current;
     }, () => {
       CategoryService.getAll()
         .then((result) => {
           let id = this.current;
           while (id != 1) {
             let category = result.find((c) => c.id == id);
-            self.breadcrumbs.unshift(category);
+            this.breadcrumbs.unshift(category);
             id = category.parent_id;
           }
-          if(self.$scope.$root.$$phase != '$apply' && self.$scope.$root.$$phase != '$digest') self.$scope.$apply();
+          if(this.$scope.$root.$$phase != '$apply' && this.$scope.$root.$$phase != '$digest') this.$scope.$apply();
 
         })
     })

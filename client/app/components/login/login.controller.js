@@ -5,7 +5,6 @@ class LoginController {
     "ngInject";
 
     this.name = 'REGISTRATION.LOGIN';
-    let self = this;
 
     this.$scope = $scope;
     this.$state = $state;
@@ -19,12 +18,11 @@ class LoginController {
     this.subdomain = SessionService.getSubdomain();
 
     this.user = {};
-
     if ($scope.$root.translateIsReady) {
-      self.initForm();
+      this.initForm();
     } else {
-      $scope.$root.$on('$translateChangeSuccess', function () {
-        self.initForm();
+      $scope.$root.$on('$translateChangeSuccess', () => {
+        this.initForm();
       })
     }
 
@@ -34,7 +32,6 @@ class LoginController {
   }
 
   initForm() {
-    let self = this;
     this.schema = {
       type: "object",
       properties: {
@@ -72,24 +69,23 @@ class LoginController {
   }
 
   login(loginForm, user) {
-    let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (loginForm.$valid) {
-      user.subdomain = self.subdomain;
+      user.subdomain = this.subdomain;
       this.UserService.login(user)
         .then(() => {
           return this.SettingsService.getKBSettings();
         })
         .then(() => {
           if (this.UserService.getRole() == 'visitor') {
-            self.$state.go("visitor");
+            this.$state.go("visitor");
           } else {
-            self.$state.go("admin.category");
+            this.$state.go("admin.category");
           }
         })
         .catch((error) => {
           error.data.errors.forEach(error => {
-            self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
+            this.toastr.error(error.message, this.translate('MESSAGES.VALIDATION_ERROR'));
           });
         })
     }

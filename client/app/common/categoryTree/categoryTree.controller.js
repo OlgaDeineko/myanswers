@@ -51,25 +51,25 @@ class CategoryTreeController {
     this.searchModel = "";
 
     $scope.$on('updateArticles', () => {
-      this.getAllData(this, true);
+      this.getAllData(true);
     });
     $scope.$on('updateCategories', () => {
-      this.getAllData(this, true);
+      this.getAllData(true);
     });
 
-    this.getAllData(this);
+    this.getAllData();
   }
 
 
-  getAllData(self, update) {
+  getAllData(update) {
     Promise.all([
-      self.CategoryService.getAll(),
-      self.ArticleService.getAll()
+      this.CategoryService.getAll(update),
+      this.ArticleService.getAll(update)
     ]).then((result) => {
-      self.allCategories = result[0].filter((category) => category.parent_id != 0);
-      self.allArticles = (self.articleType == 'all')
+      this.allCategories = result[0].filter((category) => category.parent_id != 0);
+      this.allArticles = (this.articleType == 'all')
         ? result[1].filter((a) => a.status != 'trash')
-        : result[1].filter((a) => a.status == self.articleType);
+        : result[1].filter((a) => a.status == this.articleType);
       if (this.$scope.$root.$$phase != '$apply' && this.$scope.$root.$$phase != '$digest') this.$scope.$apply();
     });
   }
@@ -80,6 +80,7 @@ class CategoryTreeController {
 
     let idx = 0;
 
+    //TODO: optimise this
     function next() {
       if (idx < self.tree.categories.length) {
         if (self.tree.categories[idx].sort_order != idx) {

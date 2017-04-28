@@ -74,16 +74,17 @@ class CreateUserModalController {
   }
 
   save(form, newUser) {
-    let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
-      self.UsersService[self.mode](newUser)
+      this.UsersService[this.mode](newUser)
         .then((result) => {
-          self.toastr.success(self.translate(`MESSAGES.USER_${self.mode.toUpperCase()}`));
-          self.$uibModalInstance.close(result);
-        }, (error) => {
+          //TODO: create notification service
+          this.toastr.success(this.translate(`MESSAGES.USER_${this.mode.toUpperCase()}`));
+          this.$uibModalInstance.close(result);
+        })
+        .catch((error) => {
           error.data.errors.forEach(error => {
-            self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
+            this.toastr.error(error.message, this.translate('MESSAGES.VALIDATION_ERROR'));
           });
         })
     }

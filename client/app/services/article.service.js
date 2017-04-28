@@ -13,27 +13,25 @@ function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionSer
    * @returns {Promise.<Article[]>}
    */
   let getAll = (update) => {
-    let self = this;
-
     if (this.articles && !update) {
       return new Promise((resolve) => {
-        resolve(self.articles);
+        resolve(this.articles);
       })
     }
 
-    if (self.deferred) return self.deferred.promise;
+    if (this.deferred) return this.deferred.promise;
     this.deferred = $q.defer();
 
     $http({
       method: 'GET',
       url: `${SessionService.geApiUrl()}/faq`,
     }).then((result) => {
-      self.articles = result.data.data.map(faqHelper.responseToData);
-      self.articleCounts = faqHelper.countsTypes(self.articles);
-      self.deferred.resolve(self.articles);
-      delete self.deferred;
+      this.articles = result.data.data.map(faqHelper.responseToData);
+      this.articleCounts = faqHelper.countsTypes(this.articles);
+      this.deferred.resolve(this.articles);
+      delete this.deferred;
     });
-    return self.deferred.promise;
+    return this.deferred.promise;
   };
 
   /**
@@ -74,13 +72,12 @@ function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionSer
    * @returns {Promise.<Article>}
    */
   let create = (faq) => {
-    let self = this;
     return $http({
       method: 'POST',
       url: `${SessionService.geApiUrl()}/faq`,
       data: faqHelper.dataToRequest(faq)
     }).then((result) => {
-      self.articles = null;
+      this.articles = null;
       $rootScope.$broadcast('updateArticles');
       return faqHelper.responseToData(result.data.data);
     });
@@ -92,13 +89,12 @@ function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionSer
    * @returns {Promise.<Article>}
    */
   let update = (faq) => {
-    let self = this;
     return $http({
       method: 'PUT',
       url: `${SessionService.geApiUrl()}/faq/${faq.id}`,
       data: faqHelper.dataToRequest(faq)
     }).then((result) => {
-      self.articles = null;
+      this.articles = null;
       $rootScope.$broadcast('updateArticles');
       return faqHelper.responseToData(result.data.data);
     });
@@ -110,12 +106,11 @@ function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionSer
    * @returns {Promise.<Article>}
    */
   let remove = (faqId) => {
-    let self = this;
     return $http({
       method: 'DELETE',
       url: `${SessionService.geApiUrl()}/faq/${faqId}/trash`,
     }).then((result) => {
-      self.articles = null;
+      this.articles = null;
       $rootScope.$broadcast('updateArticles');
       return result.data.data
     });

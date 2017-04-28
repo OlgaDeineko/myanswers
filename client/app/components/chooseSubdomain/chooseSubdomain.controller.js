@@ -20,13 +20,13 @@ class ChooseSubdomainController {
   }
 
   moveTo(subdomain) {
-    let self = this;
     this.SubdomainService.check(subdomain)
       .then((result) => {
         this.$window.location.href = `http://${subdomain}.${mainDomain}/login`;
-      }, (error) => {
+      })
+      .catch((error) => {
         error.data.errors.forEach((error) => {
-          self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
+          this.toastr.error(error.message, this.translate('MESSAGES.VALIDATION_ERROR'));
         });
       })
   }

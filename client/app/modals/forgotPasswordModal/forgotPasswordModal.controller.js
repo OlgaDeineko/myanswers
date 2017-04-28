@@ -14,6 +14,7 @@ class ForgotPasswordModalController {
 
     this.forgotPassword = {};
 
+    //TODO: move to init form (for all project)
     this.schema = {
       type: "object",
       properties: {
@@ -38,16 +39,16 @@ class ForgotPasswordModalController {
   }
 
   save(form, newUser) {
-    let self = this;
     this.$scope.$broadcast('schemaFormValidate');
     if (form.$valid) {
-      self.UserService.forgotPassword(newUser.email)
+      this.UserService.forgotPassword(newUser.email)
         .then((result) => {
-          self.toastr.success(self.translate('MESSAGES.EMAIL_SENT'));
-          self.$uibModalInstance.close(result);
-        }, (error) => {
+          this.toastr.success(this.translate('MESSAGES.EMAIL_SENT'));
+          this.$uibModalInstance.close(result);
+        })
+        .catch((error) => {
           error.data.errors.forEach((error) => {
-            self.toastr.error(error.message, self.translate('MESSAGES.VALIDATION_ERROR'));
+            this.toastr.error(error.message, this.translate('MESSAGES.VALIDATION_ERROR'));
           });
         })
     }
