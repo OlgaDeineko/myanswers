@@ -1,4 +1,5 @@
 import config, {apiUrl, defaultSubdomain, protocol} from '../config';
+import {isUndefined} from 'angular';
 
 function SessionService($window) {
   "ngInject";
@@ -36,7 +37,8 @@ function SessionService($window) {
      * @param {*} data
      */
     set data(data) {
-      //TODO: check undefined
+      if(isUndefined(data)) return;
+
       if (typeof data == 'object') {
         data = JSON.stringify(data);
       }
