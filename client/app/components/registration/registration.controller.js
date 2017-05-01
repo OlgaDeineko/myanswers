@@ -17,15 +17,8 @@ class RegistrationController {
     this.isCreated = '';
     this.newUser = {};
 
-    if ($scope.$root.translateIsReady) {
-      this.initForm();
-    } else {
-      $scope.$root.$on('$translateChangeSuccess', () => {
-        this.initForm();
-      })
-    }
+    this.initForm();
   }
-
 
   initForm() {
     this.schema = {
@@ -96,9 +89,6 @@ class RegistrationController {
       },
       required: ["first_name", "last_name", "email", "subdomain", "password", "password_repeat"]
     };
-    this.form = [
-      "*"
-    ]
   }
 
   moteToLogin() {

@@ -168,5 +168,36 @@
     "NOT_ACCESS": "You don't have access to this actions",
     "LANGUAGE_CHANGED": "Language changed",
     "NOT_FOUND": "Resource not found"
+  },
+
+  "VALIDATION_ERRORS": {
+    "INVALID_TYPE": "Invalid type, expected {{schema.type}}",
+    "ENUM_MISMATCH": "No enum match for: {{viewValue}}",
+    "ANY_OF_MISSING": "Data does not match any schemas from \"anyOf\"",
+    "ONE_OF_MISSING": "Data does not match any schemas from \"oneOf\"",
+    "ONE_OF_MULTIPLE": "Data is valid against more than one schema from \"oneOf\"",
+    "NOT_PASSED": "Data matches schema from \"not\"",
+    "NUMBER_MULTIPLE_OF": "Value is not a multiple of {{schema.multipleOf}}",
+    "NUMBER_MINIMUM": "{{viewValue}} is less than the allowed minimum of {{schema.minimum}}",
+    "NUMBER_MINIMUM_EXCLUSIVE": "{{viewValue}} is equal to the exclusive minimum {{schema.minimum}}",
+    "NUMBER_MAXIMUM": "{{viewValue}} is greater than the allowed maximum of {{schema.maximum}}",
+    "NUMBER_MAXIMUM_EXCLUSIVE": "{{viewValue}} is equal to the exclusive maximum {{schema.maximum}}",
+    "NUMBER_NOT_A_NUMBER": "Value is not a valid number",
+    "STRING_LENGTH_SHORT": "String is too short ({{viewValue.length}} chars), minimum {{schema.minLength}}",
+    "STRING_LENGTH_LONG": "String is too long ({{viewValue.length}} chars), maximum {{schema.maxLength}}",
+    "STRING_PATTERN": "String does not match pattern: {{schema.pattern}}",
+    "OBJECT_PROPERTIES_MINIMUM": "Too few properties defined, minimum {{schema.minProperties}}",
+    "OBJECT_PROPERTIES_MAXIMUM": "Too many properties defined, maximum {{schema.maxProperties}}",
+    "OBJECT_REQUIRED": "Required",
+    "OBJECT_ADDITIONAL_PROPERTIES": "Additional properties not allowed",
+    "OBJECT_DEPENDENCY_KEY": "Dependency failed - key must exist",
+    "ARRAY_LENGTH_SHORT": "Array is too short ({{value.length}}), minimum {{schema.minItems}}",
+    "ARRAY_LENGTH_LONG": "Array is too long ({{value.length}}), maximum {{schema.maxItems}}",
+    "ARRAY_UNIQUE": "Array items are not unique",
+    "ARRAY_ADDITIONAL_ITEMS": "Additional items not allowed",
+    "FORMAT_CUSTOM": "ormat validation failed",
+    "KEYWORD_CUSTOM": "Keyword failed: \"{{title}}\"",
+    "CIRCULAR_REFERENCE": "Circular $refs",
+    "UNKNOWN_PROPERTY": "Unknown property (not in schema)"
   }
 }

@@ -1,5 +1,5 @@
 class CreateCategoryModalController {
-  constructor($scope, $rootScope, $filter, $stateParams, toastr,
+  constructor($scope, $filter, $stateParams, toastr,
               categoryHelper, CategoryService, UserService) {
     'ngInject';
 
@@ -30,28 +30,11 @@ class CreateCategoryModalController {
 
     CategoryService.getAll()
       .then((result) => {
-        this.form = [
-          "name",
-          "author",
-        ];
-        this.form.push({
-          key: 'parent_id',
-          type: "select",
-          title: this.translate('CATEGORY.PARENT_CATEGORY'),
-          titleMap: result.filter((cat) => cat.parent_id == 1 || cat.parent_id == 0).map((item) => {
-            return {value: item.id, name: item.name};
-          })
-        });
-        this.form.push({
-          key: 'lang',
-          type: "select",
-          title: this.translate('CATEGORY.LANGUAGE'),
-          titleMap: $rootScope.settings.languages.map((item) => {
-            return {value: item.code, name: item.name};
-          })
-        });
+        this.initForm(result)
       });
+  }
 
+  initForm(categories) {
     this.schema = {
       type: "object",
       properties: {
@@ -74,11 +57,28 @@ class CreateCategoryModalController {
         },
         "parent_id": {
           type: "number",
+          title: this.translate('CATEGORY.PARENT_CATEGORY'),
+          "x-schema-form": {
+            key: 'parent_id',
+            type: "select",
+            titleMap: categories.filter((cat) => cat.parent_id == 1 || cat.parent_id == 0).map((item) => {
+              return {value: item.id, name: item.name};
+            })
+          }
         },
         "lang": {
           type: "string",
+          title: this.translate('CATEGORY.LANGUAGE'),
+          "x-schema-form": {
+            key: 'lang',
+            type: "select",
+            titleMap: this.$scope.$root.settings.languages.map((item) => {
+              return {value: item.code, name: item.name};
+            })
+          }
         }
       },
+
       required: ["name", "author", "parent_id", "lang"]
     };
   }

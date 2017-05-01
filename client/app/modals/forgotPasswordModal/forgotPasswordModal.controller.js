@@ -14,7 +14,10 @@ class ForgotPasswordModalController {
 
     this.forgotPassword = {};
 
-    //TODO: move to init form (for all project)
+    this.initForm();
+  }
+
+  initForm() {
     this.schema = {
       type: "object",
       properties: {
@@ -33,9 +36,6 @@ class ForgotPasswordModalController {
       },
       required: ["email"]
     };
-    this.form = [
-      "*",
-    ];
   }
 
   save(form, newUser) {

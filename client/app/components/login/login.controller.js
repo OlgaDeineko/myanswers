@@ -18,13 +18,7 @@ class LoginController {
     this.subdomain = SessionService.getSubdomain();
 
     this.user = {};
-    if ($scope.$root.translateIsReady) {
-      this.initForm();
-    } else {
-      $scope.$root.$on('$translateChangeSuccess', () => {
-        this.initForm();
-      })
-    }
+    this.initForm();
 
     if (this.subdomain == defaultSubdomain) {
       this.$state.go("chooseSubdomain");
@@ -63,9 +57,6 @@ class LoginController {
       },
       required: ["subdomain", "email", "password"]
     };
-    this.form = [
-      "*"
-    ];
   }
 
   login(loginForm, user) {

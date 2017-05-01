@@ -14,7 +14,7 @@ module.exports = {
        { test: /\.((ttf)(\?v=.*)?)$/,    loader: "file-loader?name=./fonts/[hash].[ext]" },
        { test: /\.((eot)(\?v=.*)?)$/,  loader: "file-loader?name=./fonts/[hash].[ext]" },
        { test: /\.((svg|gif)(\?v=.*)?)$/,    loader: "file-loader?name=./images/[hash].[ext]"  },
-       { test: /\.((json)(\?v=.*)?)$/,    loader: "file-loader?name=./i18n/[name].[ext]"  },
+       { test: /i18n\/.*(\.json)$/,    loader: "json-loader"  },
        { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
        { test: /\.css$/, loader: 'style!css' }
     ]

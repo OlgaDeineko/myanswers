@@ -10,7 +10,6 @@ import Services from './services/services';
 import Helpers from './helpers/helpers';
 
 
-
 //
 import 'angular-schema-form';
 import 'angular-schema-form-bootstrap';
@@ -79,11 +78,12 @@ import 'tinymce/plugins/imagetools/plugin';
 import 'tinymce/plugins/codesample/plugin';
 import 'tinymce/plugins/toc/plugin';
 //
-import './i18n/en.json';
-import './i18n/nl.json';
+import enDictionary from './i18n/en.json';
+import nlDictionary from './i18n/nl.json';
 import './i18n/tinyMCE/en.js';
 import './i18n/tinyMCE/nl.js';
 
+import {VALIDATION_ERROR_CODES} from './constants/validationErrorCodes'
 
 angular.module('app', [
   uiRouter,
@@ -131,13 +131,12 @@ angular.module('app', [
       };
     });
 
-    $translateProvider.useStaticFilesLoader({
-      prefix: 'i18n/',
-      suffix: '.json'
-    });
+    $translateProvider.useSanitizeValueStrategy("escapeParameters");
 
-    $translateProvider.preferredLanguage('en');
-    $translateProvider.useSanitizeValueStrategy('escape');
+    $translateProvider
+      .translations("en", enDictionary)
+      .translations("nl", nlDictionary)
+      .preferredLanguage("en");
 
     flowFactoryProvider.factory = function (opts) {
       let Flow = require('ng-flow/dist/ng-flow-standalone');
@@ -147,9 +146,8 @@ angular.module('app', [
 
 
   .component('app', AppComponent)
-  .run(($rootScope, $state, UserService, SessionService, SettingsService) => {
+  .run(($rootScope, $state, UserService, SessionService, SettingsService, sfErrorMessage, $translate) => {
     "ngInject";
-
     //if user logged get setting
     //TODO: rewrite: load before angular.bootstrap
     if (UserService.isLogin) {
@@ -169,9 +167,10 @@ angular.module('app', [
       }
     });
 
-    //flag is ready translate
-    $rootScope.translateIsReady = false;
-    $rootScope.$on('$translateChangeSuccess', function () {
-      $rootScope.translateIsReady = true;
+    $rootScope.$on('$translateChangeSuccess', () => {
+      let translates = $translate.getTranslationTable();
+      for (let error in VALIDATION_ERROR_CODES) {
+        sfErrorMessage.defaultMessages[VALIDATION_ERROR_CODES[error]] = translates[`VALIDATION_ERRORS.${error}`];
+      }
     });
   });

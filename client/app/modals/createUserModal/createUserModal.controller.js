@@ -22,6 +22,10 @@ class CreateUserModalController {
       this.mode = 'update';
     }
 
+    this.initForm();
+  }
+
+  initForm() {
     this.schema = {
       type: "object",
       properties: {
@@ -55,22 +59,18 @@ class CreateUserModalController {
         },
         "role": {
           type: "string",
+          title: this.translate('USERS.ROLE'),
+          "x-schema-form": {
+            key: 'role',
+            type: "select",
+            titleMap: this.$scope.$root.settings.roles.map((item) => {
+              return {value: item.code, name: item.name};
+            })
+          }
         }
       },
       required: ["email", "first_name", "last_name", "role"]
     };
-
-    this.form = [
-      "email", "first_name", "last_name",
-      {
-        key: 'role',
-        type: "select",
-        title: this.translate('USERS.ROLE'),
-        titleMap: $rootScope.settings.roles.map((item) => {
-          return {value: item.code, name: item.name};
-        })
-      },
-    ];
   }
 
   save(form, newUser) {

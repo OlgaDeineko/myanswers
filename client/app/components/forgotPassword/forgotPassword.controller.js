@@ -12,13 +12,7 @@ class ForgotPasswordController {
     this.UserService = UserService;
 
     this.newPass = {};
-    if ($scope.$root.translateIsReady) {
-      this.initForm();
-    } else {
-      $scope.$root.$on('$translateChangeSuccess', () => {
-        this.initForm();
-      })
-    }
+    this.initForm();
   }
 
   initForm() {
@@ -53,9 +47,6 @@ class ForgotPasswordController {
       },
       required: ["password", "password_repeat"]
     };
-    this.form = [
-      "*"
-    ]
   }
 
   save(form, newPass) {
