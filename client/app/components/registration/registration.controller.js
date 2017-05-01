@@ -1,4 +1,4 @@
-import {mainDomain} from '../../config';
+import {MAIN_DOMAIN} from '../../constants/config';
 
 class RegistrationController {
   constructor($scope, $window, $filter, $state, toastr, UserService) {
@@ -93,7 +93,7 @@ class RegistrationController {
 
   moteToLogin() {
     if (this.isCreated) {
-      this.$window.location.href = `http://${this.isCreated}.${mainDomain}/login`;
+      this.$window.location.href = `http://${this.isCreated}.${MAIN_DOMAIN}/login`;
     } else {
       this.$state.go("chooseSubdomain");
     }

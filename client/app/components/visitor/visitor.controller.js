@@ -1,4 +1,4 @@
-import {mainDomain} from '../../config';
+import {MAIN_DOMAIN, DEFAULT_SUBDOMAIN} from '../../constants/config';
 
 class VisitorController {
   constructor($scope, $window, $stateParams, categoryHelper,UserService, CategoryService, ArticleService, AlgoliaService, SettingsService) {
@@ -68,7 +68,7 @@ class VisitorController {
 
   logout() {
     this.UserService.logOut();
-    this.$window.location.href = `http://main.${mainDomain}/subdomain`;
+    this.$window.location.href = `http://${DEFAULT_SUBDOMAIN}.${MAIN_DOMAIN}/subdomain`;
   }
 
   getAllData(update) {

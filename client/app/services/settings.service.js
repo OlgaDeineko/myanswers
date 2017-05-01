@@ -1,4 +1,4 @@
-import {langIcons, visibilityIcons, defaultKBSettings} from '../config';
+import {LANG_ICONS, VISIBILITY_ICONS} from '../constants/icons';
 
 function SettingsService($http, $rootScope, $q, $translate, SessionService) {
   "ngInject";
@@ -41,10 +41,10 @@ function SettingsService($http, $rootScope, $q, $translate, SessionService) {
     }).then((result) => {
       this.commonSettings = result.data.data;
       this.commonSettings.languages.map((lang) => {
-        lang.icon = langIcons[lang.code];
+        lang.icon = LANG_ICONS[lang.code];
       });
       this.commonSettings.faq_visibility.map((vis) => {
-        vis.icon = visibilityIcons[vis.code];
+        vis.icon = VISIBILITY_ICONS[vis.code];
       });
       $rootScope.settings = this.commonSettings;
       this.deferred.resolve(this.commonSettings);

@@ -1,4 +1,4 @@
-import {algolia} from '../config';
+import {ALGOLIA_ID, ALGOLIA_KEY} from '../constants/algolia';
 
 import AlgoliaSearch from 'algoliasearch'
 import AlgoliaSearchHelper from 'algoliasearch-helper'
@@ -6,7 +6,7 @@ import AlgoliaSearchHelper from 'algoliasearch-helper'
 function AlgoliaService(SessionService) {
   "ngInject";
   let algoliaIndex = SessionService.getSubdomain();
-  let algoliaClient = new AlgoliaSearch(algolia.id, algolia.key, {protocol: 'https:'});
+  let algoliaClient = new AlgoliaSearch(ALGOLIA_ID, ALGOLIA_KEY, {protocol: 'https:'});
   /**
    * @callback algoliaListener
    * @param {object} content - @see https://github.com/algolia/algoliasearch-helper-js#results-format

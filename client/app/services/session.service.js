@@ -1,4 +1,4 @@
-import config, {apiUrl, defaultSubdomain, protocol} from '../config';
+import {API_URL, DEFAULT_SUBDOMAIN, PROTOCOL} from '../constants/config';
 import {isUndefined} from 'angular';
 
 function SessionService($window) {
@@ -64,8 +64,8 @@ function SessionService($window) {
    * @returns {string}
    */
   let geApiUrl = () => {
-    let userSubdomain = getSubdomain()|| defaultSubdomain;
-    return `${protocol}${userSubdomain}.${apiUrl}`;
+    let userSubdomain = getSubdomain()|| DEFAULT_SUBDOMAIN;
+    return `${PROTOCOL}${userSubdomain}.${API_URL}`;
   };
 
   /**

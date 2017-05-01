@@ -1,4 +1,4 @@
-import config, {mainDomian, defaultSubdomain} from '../../config';
+import {DEFAULT_SUBDOMAIN} from '../../constants/config';
 
 class LoginController {
   constructor($scope, $state, $filter, $uibModal, toastr, UserService, SessionService, SettingsService) {
@@ -20,7 +20,7 @@ class LoginController {
     this.user = {};
     this.initForm();
 
-    if (this.subdomain == defaultSubdomain) {
+    if (this.subdomain == DEFAULT_SUBDOMAIN) {
       this.$state.go("chooseSubdomain");
     }
   }

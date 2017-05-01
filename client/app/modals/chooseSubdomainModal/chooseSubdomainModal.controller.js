@@ -1,4 +1,4 @@
-import {mainDomain} from '../../config';
+import {MAIN_DOMAIN} from '../../constants/config';
 
 class ChooseSubdomainModalController {
   constructor($scope, $window, SettingsService, SessionService) {
@@ -25,7 +25,7 @@ class ChooseSubdomainModalController {
     this.SessionService.token.remove();
     this.SessionService.subdomain.remove();
     this.SessionService.user.remove();
-    this.$window.location = `http://${subdomain}.${mainDomain}/superadmin/chooseSubdomain?${token}&${user}&d=${subdomain}`;
+    this.$window.location = `http://${subdomain}.${MAIN_DOMAIN}/superadmin/chooseSubdomain?${token}&${user}&d=${subdomain}`;
   }
 
   cancel() {

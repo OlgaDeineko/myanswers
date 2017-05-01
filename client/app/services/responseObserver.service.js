@@ -1,10 +1,11 @@
-import {local} from '../config';
+import {LOCAL} from '../constants/config';
+
 function ResponseObserver($q, $injector, $rootScope, toastr, spinnerFactory, SessionService, FakeDataService) {
   "ngInject";
   return {
     'request': (config) => {
       //TODO: remove on production
-      if (local && !(/(html|json)$/.test(config.url))) {
+      if (LOCAL && !(/(html|json)$/.test(config.url))) {
         return $q.reject({
           err: 'RejectForLocal',
           url: config.url.replace(/http.*\/api\/v1\//, ''),

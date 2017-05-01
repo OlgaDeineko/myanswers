@@ -1,4 +1,5 @@
-import {mainDomain, defaultSubdomain} from '../../config';
+import {MAIN_DOMAIN, DEFAULT_SUBDOMAIN} from '../../constants/config';
+
 class ChooseSubdomainController {
   constructor($window, $filter, toastr, SubdomainService, SessionService) {
     "ngInject";
@@ -13,7 +14,7 @@ class ChooseSubdomainController {
     SessionService.token.remove();
 
     let locationSubdomain = SessionService.getSubdomain();
-    if (locationSubdomain != defaultSubdomain) {
+    if (locationSubdomain != DEFAULT_SUBDOMAIN) {
       this.subdomain = locationSubdomain;
       this.moveTo(this.subdomain);
     }
@@ -22,7 +23,7 @@ class ChooseSubdomainController {
   moveTo(subdomain) {
     this.SubdomainService.check(subdomain)
       .then((result) => {
-        this.$window.location.href = `http://${subdomain}.${mainDomain}/login`;
+        this.$window.location.href = `http://${subdomain}.${MAIN_DOMAIN}/login`;
       })
       .catch((error) => {
         error.data.errors.forEach((error) => {

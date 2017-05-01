@@ -1,4 +1,4 @@
-import {mainDomain, defaultSubdomain} from '../../config';
+import {MAIN_DOMAIN, DEFAULT_SUBDOMAIN} from '../../constants/config';
 
 class NavbarController {
   constructor($uibModal, $window, UserService) {
@@ -14,7 +14,7 @@ class NavbarController {
 
   logout() {
     this.UserService.logOut();
-    this.$window.location.href = `http://${defaultSubdomain}.${mainDomain}/subdomain`;
+    this.$window.location.href = `http://${DEFAULT_SUBDOMAIN}.${MAIN_DOMAIN}/subdomain`;
   }
 
   openChooseDomain() {
