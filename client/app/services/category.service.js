@@ -78,13 +78,15 @@ function CategoryService($http, $q, $rootScope, categoryHelper, SessionService) 
 
   /**
    * change order category
-   * @param {Category} category
+   * @param {object} oder
+   * @param {number} oder.id
+   * @param {number} oder.order
    */
-  let changeOrder = (category) => {
+  let changeOrder = (oder) => {
     return $http({
-      method: 'PUT',
-      url: `${SessionService.geApiUrl()}/categories/${category.id}`,
-      data: categoryHelper.dataToRequest(category)
+      method: 'POST',
+      url: `${SessionService.geApiUrl()}/categories/sortOrder`,
+      data: oder
     });
   };
 

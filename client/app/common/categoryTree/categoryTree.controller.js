@@ -75,26 +75,18 @@ class CategoryTreeController {
   }
 
   moved(index, item) {
-    let self = this;
     this.tree.categories.splice(index, 1);
-
+    let order = []
     let idx = 0;
 
-    //TODO: optimise this
-    function next() {
-      if (idx < self.tree.categories.length) {
-        if (self.tree.categories[idx].sort_order != idx) {
-          self.tree.categories[idx].sort_order = idx;
-          self.CategoryService.changeOrder(self.tree.categories[idx++]).then(next);
-        } else {
-          idx++;
-          next();
-        }
+    this.tree.categories.forEach(item => {
+      if (item.sort_order != idx) {
+        order.push({id: item.id, order: idx})
       }
-    }
+      idx++;
+    });
 
-    next();
-
+    this.CategoryService.changeOrder(order);
   }
 
   changeOrder(item) {
