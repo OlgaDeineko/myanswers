@@ -7,16 +7,16 @@ module.exports = {
   entry: {},
   module: {
     loaders: [
-       { test: /i18n\/tinyMCE\/.*(\.js)$/, loader: "file-loader?name=./i18n/tinyMCE/[name].[ext]" },
+       { test: /.*(\/|\\)+.*i18n(\/|\\)tinyMCE(\/|\\).*(\.js)$/, loader: "file-loader?name=./i18n/tinyMCE/[name].[ext]" },
        { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
        { test: /\.html$/, loader: 'raw' },
        { test: /\.((woff|woff2)(\?v=.*)?)$/,  loader: "url-loader?limit=10000&mimetype=application/font-woff&name=./fonts/[hash].[ext]" },
        { test: /\.((ttf)(\?v=.*)?)$/,    loader: "file-loader?name=./fonts/[hash].[ext]" },
        { test: /\.((eot)(\?v=.*)?)$/,  loader: "file-loader?name=./fonts/[hash].[ext]" },
        { test: /\.((svg|gif)(\?v=.*)?)$/,    loader: "file-loader?name=./images/[hash].[ext]"  },
-       { test: /i18n\/.*(\.json)$/,    loader: "json-loader"  },
+       { test: /.*(\/|\\)+.*i18n(\/|\\).*(\.json)$/,    loader: "json-loader"  },
        { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
-       { test: /\.css$/, loader: 'style!css' }
+       { test: /.*(\/|\\)+.*\.css$/, loader: 'style!css' }
     ]
   },
   plugins: [
