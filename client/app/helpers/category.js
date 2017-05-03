@@ -124,7 +124,7 @@ function CategoryHelper($rootScope) {
         category.parent = copy(categories.find(c => c.id == category.parent_id));
       }
 
-      category.articles = articles.filter(a => a.categories.find(c => c.id == category.id));
+      category.articles = articles.filter(a => a.categories.find(c => c.id == category.id)).sort((a, b) => a.sort_order - b.sort_order);
 
       category.hierarchical.lvl0 = rootName;
       switch (category.type) {

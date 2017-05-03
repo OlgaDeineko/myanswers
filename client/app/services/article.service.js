@@ -139,6 +139,20 @@ function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionSer
     return this.articleCounts;
   };
 
+  /**
+   * change order faq
+   * @param {object} oder
+   * @param {number} oder.id
+   * @param {number} oder.order
+   */
+  let changeOrder = (oder) => {
+    return $http({
+      method: 'POST',
+      url: `${SessionService.geApiUrl()}/faq/sortOrder`,
+      data: oder
+    });
+  };
+
   return {
     getAll,
     getById,
@@ -148,6 +162,7 @@ function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionSer
     getByAlgoliaId,
     saveAttachments,
     getCounts,
+    changeOrder,
   }
 }
 

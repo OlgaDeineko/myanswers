@@ -17,11 +17,14 @@
     <div class="dropdown-toggle"
          data-toggle="dropdown">
       <i class="fa fa-angle-down pull-right"></i>
-      {{'CATEGORY.SORT_BY' | translate}} <span class="sort">{{'CATEGORY.SORT_FILTER.'+$ctrl.order.name | translate}}</span>
+      {{'CATEGORY.SORT_BY' | translate}} <span
+      class="sort">{{'CATEGORY.SORT_FILTER.'+$ctrl.order.name | translate}}</span>
     </div>
 
     <ul class="dropdown-menu">
-      <li ng-repeat="item in $ctrl.orderList" ng-click="$ctrl.changeOrder(item)">{{'CATEGORY.SORT_FILTER.'+item.name | translate}}</li>
+      <li ng-repeat="item in $ctrl.orderList" ng-click="$ctrl.changeOrder(item)">{{'CATEGORY.SORT_FILTER.'+item.name |
+        translate}}
+      </li>
     </ul>
   </div>
 
@@ -37,31 +40,45 @@
 <!--tree-->
 <div class="tree" ng-if="!$ctrl.searchModel.length && $ctrl.tree !== null">
   <!--categories-->
-  <div dnd-list="$ctrl.tree.categories">
-    <div ng-repeat="item in $parent.filteredCategories = ($ctrl.tree.categories | orderBy: $ctrl.order.cat)"
+  <div dnd-list="$ctrl.tree.categories"
+       dnd-allowed-types="['category']">
+    <div ng-repeat="category in $parent.filteredCategories = ($ctrl.tree.categories | orderBy: $ctrl.order.cat)"
 
-         dnd-draggable="item"
+         dnd-draggable="category"
+         dnd-type="'category'"
          dnd-effect-allowed="move"
-         dnd-dragstart="$ctrl.dragStart(item)"
-         dnd-moved="$ctrl.moved($index, item)">
+         dnd-dragstart="$ctrl.dragStart(category)"
+         dnd-moved="$ctrl.movedCategory($index, category)">
       <!--dnd-moved="$ctrl.tree.categories.splice($index, 1)">-->
 
-      <tree-item item="item" type="'category'" drag-icon="$ctrl.order.name == 'CUSTOM'"></tree-item>
+      <tree-item item="category"
+                 type="'category'"
+                 drag-icon="$ctrl.order.name == 'CUSTOM'"></tree-item>
 
       <div class="tree-row"
-           ng-if="item.expanded"
-           ng-repeat="subcat in item.categories">
+           ng-if="category.expanded"
+           ng-repeat="subcat in category.categories">
         <tree-item item="subcat" type="'category'"></tree-item>
       </div>
     </div>
   </div>
+
   <!--articles-->
-  <div ng-repeat="article in $parent.filteredArticles = ($ctrl.tree.articles | orderBy: $ctrl.order.faq)">
-    <div>
-      <tree-item
-          item="article"
-          type="'faq'">
-      </tree-item>
+  <div dnd-list="$ctrl.tree.articles"
+       dnd-allowed-types="['article']">
+    <div ng-repeat="article in $parent.filteredArticles = ($ctrl.tree.articles | orderBy: $ctrl.order.faq)"
+
+         dnd-draggable="article"
+         dnd-type="'article'"
+         dnd-effect-allowed="move"
+         dnd-dragstart="$ctrl.dragStart(article)"
+         dnd-moved="$ctrl.movedArticle($index, article)">
+      <div>
+        <tree-item item="article"
+                   type="'faq'"
+                   drag-icon="$ctrl.order.name == 'CUSTOM'">
+        </tree-item>
+      </div>
     </div>
   </div>
 </div><!--END:tree-->
@@ -70,7 +87,8 @@
 <div class="tree" ng-if="$ctrl.searchModel.length || $ctrl.tree === null">
   <!--categories-->
   <div ng-if="$ctrl.tree !== null">
-    <div ng-repeat="item in $parent.$parent.filteredCategories = ($ctrl.allCategories | filter: {parent_id: (($ctrl.tree.type == 'category' )? $ctrl.tree.id:''), name: $ctrl.searchModel } | orderBy: $ctrl.order.cat)">
+    <div
+      ng-repeat="item in $parent.$parent.filteredCategories = ($ctrl.allCategories | filter: {parent_id: (($ctrl.tree.type == 'category' )? $ctrl.tree.id:''), name: $ctrl.searchModel } | orderBy: $ctrl.order.cat)">
 
       <tree-item item="item" type="'category'"></tree-item>
 
@@ -82,11 +100,12 @@
     </div>
   </div>
   <!--articles-->
-  <div ng-repeat="article in $parent.filteredArticles = ($ctrl.allArticles | filter: {categoryId: (($ctrl.tree.type == 'category' )? $ctrl.tree.id:''), question: $ctrl.searchModel } | orderBy: $ctrl.order.faq)">
+  <div
+    ng-repeat="article in $parent.filteredArticles = ($ctrl.allArticles | filter: {categoryId: (($ctrl.tree.type == 'category' )? $ctrl.tree.id:''), question: $ctrl.searchModel } | orderBy: $ctrl.order.faq)">
     <div>
       <tree-item
-          item="article"
-          type="'faq'">
+        item="article"
+        type="'faq'">
       </tree-item>
     </div>
   </div>

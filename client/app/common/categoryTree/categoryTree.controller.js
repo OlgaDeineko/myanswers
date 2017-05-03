@@ -74,9 +74,9 @@ class CategoryTreeController {
     });
   }
 
-  moved(index, item) {
+  movedCategory(index, item) {
     this.tree.categories.splice(index, 1);
-    let order = []
+    let order = [];
     let idx = 0;
 
     this.tree.categories.forEach(item => {
@@ -87,6 +87,21 @@ class CategoryTreeController {
     });
 
     this.CategoryService.changeOrder(order);
+  }
+
+  movedArticle(index, item) {
+    this.tree.articles.splice(index, 1);
+    let order = [];
+    let idx = 0;
+
+    this.tree.articles.forEach(item => {
+      if (item.sort_order != idx) {
+        order.push({id: +item.id, order: idx})
+      }
+      idx++;
+    });
+
+    this.ArticleService.changeOrder(order);
   }
 
   changeOrder(item) {
