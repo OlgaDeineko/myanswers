@@ -89,10 +89,10 @@ function FaqHelper($rootScope, fileHelper, categoryHelper, UserService) {
    */
   let responseToData = (faq) => {
     faq.category = {};
-    if (Array.isArray(faq.categories)) {
+    if (Array.isArray(faq.categories) && faq.categories.length) {
       faq.category = categoryHelper.responseToData(faq.categories[0]);
+      faq.categoryId = faq.category.id;
     }
-    faq.categoryId = faq.category.id;
 
     if ($rootScope.settings) {
       faq.language = $rootScope.settings.languages.find((l) => l.code == faq.lang);

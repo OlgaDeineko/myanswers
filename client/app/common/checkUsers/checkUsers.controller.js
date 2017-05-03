@@ -21,7 +21,7 @@ class CheckUsersController {
 
           user.disabled = isAdmin || !inParentArray;
 
-          if (!this.updateMode) {
+          if (!this.updateMode && inParentArray) {
             this.selected.push(user.id);
           } else {
             if ((user.roleName == 'admin' || user.roleName == 'Super Admin') && this.selected.indexOf(user.id) == -1) {

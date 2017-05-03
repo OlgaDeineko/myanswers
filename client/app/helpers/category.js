@@ -55,6 +55,7 @@ function CategoryHelper($rootScope) {
    * @returns {Category}
    */
   let responseToData = (category) => {
+    if(!category) return;
     category.id = +category.id;
     category.sort_order = +category.sort_order;
     category.parent_id = +category.parent_id;
