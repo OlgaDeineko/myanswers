@@ -153,6 +153,10 @@ angular.module('app', [
     if (UserService.isLogin) {
       UserService.getUserFromStorage();
       SettingsService.getKBSettings();
+      FS.identify(UserService.getId, {
+        displayName: UserService.getFullName,
+        email: UserService.getEmail
+      });
     }
 
     //initialise permissions

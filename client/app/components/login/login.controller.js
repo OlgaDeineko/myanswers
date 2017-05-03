@@ -68,6 +68,10 @@ class LoginController {
           return this.SettingsService.getKBSettings();
         })
         .then(() => {
+          FS.identify(this.UserService.getId, {
+            displayName: this.UserService.getFullName,
+            email: this.UserService.getEmail
+          });
           if (this.UserService.getRole() == 'visitor') {
             this.$state.go("visitor");
           } else {
