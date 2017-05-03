@@ -153,6 +153,24 @@ function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionSer
     });
   };
 
+  /**
+   * get most viewed faq
+   * @param {number} categoryId
+   * @param {number} period - days
+   */
+  let getMostViewed = (categoryId, period) => {
+    return $http({
+      method: 'GET',
+      url: `${SessionService.geApiUrl()}/faq/mostViewed`,
+      params: {
+        categoryId: categoryId,
+        period: period
+      }
+    }).then((result) => {
+      return result.data.map(faqHelper.responseToData);
+    });
+  };
+
   return {
     getAll,
     getById,
@@ -163,6 +181,7 @@ function ArticleService($http, $q, $rootScope, faqHelper, fileHelper, SessionSer
     saveAttachments,
     getCounts,
     changeOrder,
+    getMostViewed,
   }
 }
 

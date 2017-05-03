@@ -15,10 +15,6 @@ class VisitorController {
     this.categoryHelper = categoryHelper;
     this.SettingsService = SettingsService;
 
-    this.mostViewed = AlgoliaService.initMostViewed((content) => {
-      this.articles = content.hits;
-      this.$scope.$apply();
-    });
 
     let orderList = [
       {
@@ -75,16 +71,22 @@ class VisitorController {
     Promise.all([
       this.CategoryService.getAll(update),
       this.ArticleService.getAll(update)
-    ]).then((result) => {
+    ])
+      .then((result) => {
       let categories = result[0];
       let articles = result[1].filter((article) => article.status == 'published');
 
       this.tree = this.categoryHelper.buildTree(articles, categories, this.currentCategory);
 
-      this.mostViewed.visibleArticles = this.SettingsService.getVisibleArticles();
-      this.mostViewed.hierarchicalCategory = this.tree.id == 1 ? this.tree.hierarchical.lvl0 : this.tree.hierarchical.lvl1;
-      this.mostViewed.search();
+      return this.tree.type == 'subcategory'? this.tree.parent_id: this.tree.id;
     })
+      .then((categoryId) => {
+        return this.ArticleService.getMostViewed(categoryId, 30)
+      })
+      .then((articles) => {
+        this.articles = articles;
+        if (this.$scope.$root.$$phase != '$apply' && this.$scope.$root.$$phase != '$digest') this.$scope.$apply();
+      })
   }
 }
 
